@@ -1,7 +1,8 @@
 # [qa 프로필 전용 설정 파일]
+server:
+  port: 8081 # QA 서버 포트
+
 spring:
-  server:
-    port: 8081 # QA 서버 포트
   profiles:
     group:
       qa: qa
@@ -12,6 +13,7 @@ spring:
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
   jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
     hibernate:
       ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션
     properties:
