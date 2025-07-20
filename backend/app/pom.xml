@@ -109,16 +109,14 @@
 
 		<!-- [queryDSL 동적 쿼리] : QueryDSL -->
 		<dependency>
-			<groupId>com.mysema.querydsl</groupId>
+			<groupId>io.github.openfeign.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
-			<version>3.7.4</version>
-			<scope>provided</scope>
+			<version>7.0</version>
 		</dependency>
-
 		<dependency>
-			<groupId>com.mysema.querydsl</groupId>
+			<groupId>io.github.openfeign.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
-			<version>3.7.4</version>
+			<version>7.0</version>
 		</dependency>
 
 		<!--[ModelMapper]-->
