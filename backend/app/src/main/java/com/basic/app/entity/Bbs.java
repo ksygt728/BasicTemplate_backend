@@ -63,7 +63,7 @@ public class Bbs {
   @Column(name = "TIMESTAMP", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
   private LocalDateTime timestamp; // 수정일
 
-  // User - BbsComment (1:N)
+  // Bbs - BbsComment (1:N)
   @OneToMany(mappedBy = "bbsId", fetch = FetchType.LAZY)
   private List<BbsComment> bbsComments = new ArrayList<BbsComment>(); // 게시글 댓글 리스트
 
