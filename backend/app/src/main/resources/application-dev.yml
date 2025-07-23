@@ -15,7 +15,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
     hibernate:
-      ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션 (none, update, create, create-drop 등)
+      ddl-auto: create # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션 (none, update, create, create-drop 등)
     properties:
       hibernate:
         show_sql: true # 실행되는 SQL 쿼리를 콘솔에 출력
