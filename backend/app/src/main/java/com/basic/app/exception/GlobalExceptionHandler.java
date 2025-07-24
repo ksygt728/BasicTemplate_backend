@@ -14,9 +14,11 @@ package com.basic.app.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,11 +30,23 @@ public class GlobalExceptionHandler {
   private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   /* Error를 동적으로 던질 때 사용 */
-  @ExceptionHandler(ResponseStatusException.class)
-  public ResponseEntity<ApiResponse<?>> handleResponseStatusException(ResponseStatusException e) {
+  // @ExceptionHandler(ResponseStatusException.class)
+  // public ResponseEntity<ApiResponse<?>>
+  // handleResponseStatusException(ResponseStatusException e) {
+  // return ResponseEntity
+  // .status(e.getStatusCode())
+  // .body(ApiResponse.fail(e.getReason()));
+  // }
+
+  /* Error code : 400 (@Validated) */
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException e) {
+    String errorMessage = e.getBindingResult().getAllErrors().get(0).getDefaultMessage();
+    log.warn("잘못된 요청(Validated) : {}", errorMessage);
+
     return ResponseEntity
-        .status(e.getStatusCode())
-        .body(ApiResponse.fail(e.getReason()));
+        .badRequest()
+        .body(ApiResponse.fail("Validation : " + errorMessage));
   }
 
   /* Error code : 400 (잘못된 요청 비즈로직 validation 실패 시) */
