@@ -15,6 +15,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.service.interfaces.UserService;
 
@@ -49,7 +51,8 @@ public class AdminUserController {
 
   /* [REQ_ADM_003] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateUserForAdmin(UserReqDto user) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateUserForAdmin(
+      @Validated(UpdateGroup.class) UserReqDto user) {
     Map<String, Object> results = userService.updateUserForAdmin(user);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

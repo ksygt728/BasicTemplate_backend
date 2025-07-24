@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.service.interfaces.DepartmentService;
 
@@ -49,14 +52,16 @@ public class AdminDepartmentController {
 
   /* [REQ_ADM_006] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(DepartmentReqDto department) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(
+      @Validated(CreateGroup.class) DepartmentReqDto department) {
     Map<String, Object> results = departmentService.insertDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_007] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(DepartmentReqDto department) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(
+      @Validated(UpdateGroup.class) DepartmentReqDto department) {
     Map<String, Object> results = departmentService.updateDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

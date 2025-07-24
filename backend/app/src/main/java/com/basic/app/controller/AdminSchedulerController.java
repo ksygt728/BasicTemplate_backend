@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.service.interfaces.SchedulerService;
 
@@ -73,14 +76,16 @@ public class AdminSchedulerController {
 
   /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(ScheMReqDto scheM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(
+      @Validated(CreateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> results = schedulerService.insertSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(ScheMReqDto scheM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(
+      @Validated(UpdateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> results = schedulerService.updateSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

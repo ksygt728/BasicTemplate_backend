@@ -15,6 +15,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.service.interfaces.RoleService;
@@ -51,14 +54,16 @@ public class AdminRoleController {
 
   /* [REQ_ADM_045] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertRoleForAdmin(RoleReqDto role) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertRoleForAdmin(
+      @Validated(CreateGroup.class) RoleReqDto role) {
     Map<String, Object> results = roleService.insertRoleForAdmin(role);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_046] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateRoleForAdmin(RoleReqDto role) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateRoleForAdmin(
+      @Validated(UpdateGroup.class) RoleReqDto role) {
     Map<String, Object> results = roleService.updateRoleForAdmin(role);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -79,7 +84,8 @@ public class AdminRoleController {
 
   /* [REQ_ADM_044] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 수정] */
   @PutMapping("/role-menu")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateRoleMenuForAdmin(List<RoleReqDto> roleMenu) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateRoleMenuForAdmin(
+      @Validated(UpdateGroup.class) List<RoleReqDto> roleMenu) {
     Map<String, Object> results = roleService.updateRoleMenuForAdmin(roleMenu);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -100,7 +106,8 @@ public class AdminRoleController {
 
   /* [REQ_ADM_050] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 추가] */
   @PostMapping("/role-user")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertRoleUserForAdmin(RoleUserReqDto roleUser) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertRoleUserForAdmin(
+      @Validated(CreateGroup.class) RoleUserReqDto roleUser) {
     Map<String, Object> results = roleService.insertRoleUserForAdmin(roleUser);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.WebSvcReqDto;
 import com.basic.app.service.interfaces.WebSvcService;
 
@@ -49,14 +52,16 @@ public class AdminWebSvcController {
 
   /* [REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(WebSvcReqDto webSvc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(
+      @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> results = webSvcService.inesrtWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(WebSvcReqDto webSvc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(
+      @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> results = webSvcService.updateWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

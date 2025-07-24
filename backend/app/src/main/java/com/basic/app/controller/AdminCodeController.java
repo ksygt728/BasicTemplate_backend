@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
@@ -51,14 +54,16 @@ public class AdminCodeController {
 
   /* [REQ_ADM_010] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 추가] */
   @PostMapping("/group")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertGroupCodeForAdmin(
+      @Validated(CreateGroup.class) ComCodeMReqDto comCodeM) {
     Map<String, Object> results = codeService.insertGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_011] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 수정] */
   @PutMapping("/group")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateGroupCodeForAdmin(
+      @Validated(UpdateGroup.class) ComCodeMReqDto comCodeM) {
     Map<String, Object> results = codeService.updateGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -86,14 +91,16 @@ public class AdminCodeController {
 
   /* [REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가] */
   @PostMapping("/attribute")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertAttrCodeForAdmin(
+      @Validated(CreateGroup.class) ComCodeTReqDto comCodeT) {
     Map<String, Object> results = codeService.insertAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_015] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 수정] */
   @PutMapping("/attribute")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateAttrCodeForAdmin(
+      @Validated(UpdateGroup.class) ComCodeTReqDto comCodeT) {
     Map<String, Object> results = codeService.updateAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -121,14 +128,16 @@ public class AdminCodeController {
 
   /* [REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가] */
   @PostMapping("/detail")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDetailCodeForAdmin(
+      @Validated(CreateGroup.class) ComCodeDReqDto comCodeD) {
     Map<String, Object> results = codeService.insertDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_019] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 수정] */
   @PutMapping("/detail")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDetailCodeForAdmin(
+      @Validated(UpdateGroup.class) ComCodeDReqDto comCodeD) {
     Map<String, Object> results = codeService.updateDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

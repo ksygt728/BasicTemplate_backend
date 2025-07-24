@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.MulLangReqDto;
 import com.basic.app.service.interfaces.MultiLangService;
 
@@ -49,14 +52,16 @@ public class AdminMulLangController {
 
   /* [REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMulLangForAdmin(MulLangReqDto mulLang) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMulLangForAdmin(
+      @Validated(CreateGroup.class) MulLangReqDto mulLang) {
     Map<String, Object> results = multiLangService.insertMulLangForAdmin(mulLang);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMulLangForAdmin(MulLangReqDto mulLang) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMulLangForAdmin(
+      @Validated(UpdateGroup.class) MulLangReqDto mulLang) {
     Map<String, Object> results = multiLangService.updateMulLangForAdmin(mulLang);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.BbsReqDto;
 import com.basic.app.service.interfaces.BbsService;
 
@@ -49,7 +52,8 @@ public class AdminBbsController {
 
   /* [REQ_ADM_083] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertBbsForAdmin(BbsReqDto bbs) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertBbsForAdmin(
+      @Validated(CreateGroup.class) BbsReqDto bbs) {
     Map<String, Object> results = bbsService.insertBbsForAdmin(bbs);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
 
@@ -57,7 +61,8 @@ public class AdminBbsController {
 
   /* [REQ_ADM_0834] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateBbsForAdmin(BbsReqDto bbs) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateBbsForAdmin(
+      @Validated(UpdateGroup.class) BbsReqDto bbs) {
     Map<String, Object> results = bbsService.updateBbsForAdmin(bbs);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
 

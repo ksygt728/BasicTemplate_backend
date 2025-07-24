@@ -13,6 +13,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.MailMReqDto;
 import com.basic.app.service.interfaces.MailService;
 
@@ -74,14 +77,16 @@ public class AdminMailController {
 
   /* [REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(MailMReqDto mailM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(
+      @Validated(CreateGroup.class) MailMReqDto mailM) {
     Map<String, Object> results = mailService.insertMailForAdmin(mailM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(MailMReqDto mailM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(
+      @Validated(UpdateGroup.class) MailMReqDto mailM) {
     Map<String, Object> results = mailService.updateMailForAdmin(mailM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

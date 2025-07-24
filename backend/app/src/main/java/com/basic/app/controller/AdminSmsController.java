@@ -14,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
+import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.SmsMReqDto;
 import com.basic.app.service.interfaces.SmsService;
 
@@ -49,14 +52,16 @@ public class AdminSmsController {
 
   /* [REQ_ADM_071] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSmsForAdmin(SmsMReqDto smsM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSmsForAdmin(
+      @Validated(CreateGroup.class) SmsMReqDto smsM) {
     Map<String, Object> results = smsService.insertSmsForAdmin(smsM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_072] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSmsForAdmin(SmsMReqDto smsM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSmsForAdmin(
+      @Validated(UpdateGroup.class) SmsMReqDto smsM) {
     Map<String, Object> results = smsService.updateSmsForAdmin(smsM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
