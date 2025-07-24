@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.ComCodeD;
-import com.basic.app.entity.ComCodeM;
-import com.basic.app.entity.ComCodeT;
+import com.basic.app.dto.requestDto.ComCodeDReqDto;
+import com.basic.app.dto.requestDto.ComCodeMReqDto;
+import com.basic.app.dto.requestDto.ComCodeTReqDto;
 import com.basic.app.service.interfaces.CodeService;
 
 @RestController
@@ -51,14 +51,14 @@ public class AdminCodeController {
 
   /* [REQ_ADM_010] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 추가] */
   @PostMapping("/group")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertGroupCodeForAdmin(ComCodeM comCodeM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
     Map<String, Object> results = codeService.insertGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_011] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 수정] */
   @PutMapping("/group")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateGroupCodeForAdmin(ComCodeM comCodeM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
     Map<String, Object> results = codeService.updateGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -86,14 +86,14 @@ public class AdminCodeController {
 
   /* [REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가] */
   @PostMapping("/attribute")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertAttrCodeForAdmin(ComCodeT comCodeT) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
     Map<String, Object> results = codeService.insertAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_015] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 수정] */
   @PutMapping("/attribute")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateAttrCodeForAdmin(ComCodeT comCodeT) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
     Map<String, Object> results = codeService.updateAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -121,14 +121,14 @@ public class AdminCodeController {
 
   /* [REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가] */
   @PostMapping("/detail")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDetailCodeForAdmin(ComCodeD comCodeD) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
     Map<String, Object> results = codeService.insertDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_019] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 수정] */
   @PutMapping("/detail")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDetailCodeForAdmin(ComCodeD comCodeD) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
     Map<String, Object> results = codeService.updateDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

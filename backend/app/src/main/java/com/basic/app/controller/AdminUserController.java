@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.User;
+import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.service.interfaces.UserService;
 
 @RestController
@@ -49,7 +49,7 @@ public class AdminUserController {
 
   /* [REQ_ADM_003] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateUserForAdmin(User user) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateUserForAdmin(UserReqDto user) {
     Map<String, Object> results = userService.updateUserForAdmin(user);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

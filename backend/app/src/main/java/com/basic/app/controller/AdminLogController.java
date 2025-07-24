@@ -1,5 +1,5 @@
 /**
- * @파일명   : AdminSystemLogController.java
+ * @파일명   : AdminLogController.java
  * @설명     : 시스템 로그(접속, 오류 등) 관리 기능 제공 컨트롤러
  * @작성자   : 김승연
  * @작성일   : 2025.07.23
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.LogAct;
-import com.basic.app.entity.LogError;
 import com.basic.app.service.interfaces.LogService;
 
 @RestController

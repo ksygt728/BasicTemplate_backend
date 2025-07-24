@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.Menu;
+import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.service.interfaces.MenuService;
 
 @Service
@@ -23,13 +23,13 @@ public class MenuServiceImpl implements MenuService {
   }
 
   @Override
-  public Map<String, Object> insertMenuForAdmin(Menu menu) {
+  public Map<String, Object> insertMenuForAdmin(MenuReqDto menu) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertMenuForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateMenuForAdmin(Menu menu) {
+  public Map<String, Object> updateMenuForAdmin(MenuReqDto menu) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateMenuForAdmin'");
   }

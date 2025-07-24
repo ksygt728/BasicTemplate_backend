@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.Chaebun;
+import com.basic.app.dto.requestDto.ChaebunReqDto;
 import com.basic.app.service.interfaces.SequenceService;
 
 @Service
@@ -23,13 +23,13 @@ public class SequenceServiceImpl implements SequenceService {
   }
 
   @Override
-  public Map<String, Object> insertSequenceForAdmin(Chaebun chaebun) {
+  public Map<String, Object> insertSequenceForAdmin(ChaebunReqDto chaebun) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertSequenceForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateSequenceForAdmin(Chaebun chaebun) {
+  public Map<String, Object> updateSequenceForAdmin(ChaebunReqDto chaebun) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateSequenceForAdmin'");
   }

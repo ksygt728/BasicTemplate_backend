@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.User;
+import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.service.interfaces.UserService;
 
 @Service
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public Map<String, Object> updateUserForAdmin(User user) {
+  public Map<String, Object> updateUserForAdmin(UserReqDto user) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateUserForAdmin'");
   }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.WebSvc;
+import com.basic.app.dto.requestDto.WebSvcReqDto;
 import com.basic.app.service.interfaces.WebSvcService;
 
 @Service
@@ -23,13 +23,13 @@ public class WebSvcServiceImpl implements WebSvcService {
   }
 
   @Override
-  public Map<String, Object> inesrtWebserviceForAdmin(WebSvc webSvc) {
+  public Map<String, Object> inesrtWebserviceForAdmin(WebSvcReqDto webSvc) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'inesrtWebserviceForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateWebserviceForAdmin(WebSvc webSvc) {
+  public Map<String, Object> updateWebserviceForAdmin(WebSvcReqDto webSvc) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateWebserviceForAdmin'");
   }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.SmsM;
+import com.basic.app.dto.requestDto.SmsMReqDto;
 import com.basic.app.service.interfaces.SmsService;
 
 @Service
@@ -29,13 +29,13 @@ public class SmsServiceImpl implements SmsService {
   }
 
   @Override
-  public Map<String, Object> insertSmsForAdmin(SmsM smsM) {
+  public Map<String, Object> insertSmsForAdmin(SmsMReqDto smsM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertSmsForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateSmsForAdmin(SmsM smsM) {
+  public Map<String, Object> updateSmsForAdmin(SmsMReqDto smsM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateSmsForAdmin'");
   }

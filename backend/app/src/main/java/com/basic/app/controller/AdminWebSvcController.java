@@ -1,5 +1,5 @@
 /**
- * @파일명   : AdminWebserviceController.java
+ * @파일명   : AdminWebSvcController.java
  * @설명     : 웹서비스 연동 관리 기능 제공 컨트롤러
  * @작성자   : 김승연
  * @작성일   : 2025.07.23
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.WebSvc;
+import com.basic.app.dto.requestDto.WebSvcReqDto;
 import com.basic.app.service.interfaces.WebSvcService;
 
 @RestController
@@ -49,14 +49,14 @@ public class AdminWebSvcController {
 
   /* [REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(WebSvc webSvc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(WebSvcReqDto webSvc) {
     Map<String, Object> results = webSvcService.inesrtWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(WebSvc webSvc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(WebSvcReqDto webSvc) {
     Map<String, Object> results = webSvcService.updateWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

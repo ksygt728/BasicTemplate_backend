@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.MailM;
+import com.basic.app.dto.requestDto.MailMReqDto;
 import com.basic.app.service.interfaces.MailService;
 
 @RestController
@@ -74,14 +74,14 @@ public class AdminMailController {
 
   /* [REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(MailM mailM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(MailMReqDto mailM) {
     Map<String, Object> results = mailService.insertMailForAdmin(mailM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(MailM mailM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(MailMReqDto mailM) {
     Map<String, Object> results = mailService.updateMailForAdmin(mailM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

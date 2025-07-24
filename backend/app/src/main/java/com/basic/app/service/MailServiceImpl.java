@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.MailM;
+import com.basic.app.dto.requestDto.MailMReqDto;
 import com.basic.app.service.interfaces.MailService;
 
 @Service
@@ -29,13 +29,13 @@ public class MailServiceImpl implements MailService {
   }
 
   @Override
-  public Map<String, Object> insertMailForAdmin(MailM mailM) {
+  public Map<String, Object> insertMailForAdmin(MailMReqDto mailM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertMailForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateMailForAdmin(MailM mailM) {
+  public Map<String, Object> updateMailForAdmin(MailMReqDto mailM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateMailForAdmin'");
   }

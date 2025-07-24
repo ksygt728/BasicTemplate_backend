@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.ScheM;
+import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.service.interfaces.SchedulerService;
 
 @RestController
@@ -73,21 +73,21 @@ public class AdminSchedulerController {
 
   /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(ScheM scheM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(ScheMReqDto scheM) {
     Map<String, Object> results = schedulerService.insertSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(ScheM scheM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(ScheMReqDto scheM) {
     Map<String, Object> results = schedulerService.updateSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_080] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 삭제] */
   @DeleteMapping("/{schedulerId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(ScheM scheM) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(ScheMReqDto scheM) {
     Map<String, Object> results = schedulerService.deleteSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

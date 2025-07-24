@@ -2,7 +2,7 @@ package com.basic.app.service.interfaces;
 
 import java.util.Map;
 
-import com.basic.app.entity.ScheM;
+import com.basic.app.dto.requestDto.ScheMReqDto;
 
 public interface SchedulerService {
 
@@ -12,12 +12,12 @@ public interface SchedulerService {
 
   Map<String, Object> findBySchedulerHistoryForAdmin(String scheId);
 
-  Map<String, Object> insertSchedulerForAdmin(ScheM scheM);
+  Map<String, Object> insertSchedulerForAdmin(ScheMReqDto scheM);
 
-  Map<String, Object> updateSchedulerForAdmin(ScheM scheM);
+  Map<String, Object> updateSchedulerForAdmin(ScheMReqDto scheM);
 
   Map<String, Object> executeSchedulerForAdmin(String scheId);
 
-  Map<String, Object> deleteSchedulerForAdmin(ScheM scheM);
+  Map<String, Object> deleteSchedulerForAdmin(ScheMReqDto scheM);
 
 }

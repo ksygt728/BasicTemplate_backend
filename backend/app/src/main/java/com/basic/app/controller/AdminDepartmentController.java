@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.Department;
+import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.service.interfaces.DepartmentService;
 
 @RestController
@@ -49,15 +49,15 @@ public class AdminDepartmentController {
 
   /* [REQ_ADM_006] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(Department department) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(DepartmentReqDto department) {
     Map<String, Object> results = departmentService.insertDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_007] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(Department department) {
-    Map<String, Object> results = departmentService.insertDepartmentForAdmin(department);
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(DepartmentReqDto department) {
+    Map<String, Object> results = departmentService.updateDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 

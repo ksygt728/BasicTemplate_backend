@@ -5,9 +5,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.Role;
-import com.basic.app.entity.RoleMenu;
-import com.basic.app.entity.RoleUser;
+import com.basic.app.dto.requestDto.RoleReqDto;
+import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.service.interfaces.RoleService;
 
 @Service
@@ -26,13 +25,13 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
-  public Map<String, Object> insertRoleForAdmin(Role role) {
+  public Map<String, Object> insertRoleForAdmin(RoleReqDto role) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertRoleForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateRoleForAdmin(Role role) {
+  public Map<String, Object> updateRoleForAdmin(RoleReqDto role) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateRoleForAdmin'");
   }
@@ -50,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
-  public Map<String, Object> updateRoleMenuForAdmin(List<RoleMenu> roleMenu) {
+  public Map<String, Object> updateRoleMenuForAdmin(List<RoleReqDto> roleMenu) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateRoleMenuForAdmin'");
   }
@@ -68,13 +67,13 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
-  public Map<String, Object> insertRoleUserForAdmin(RoleUser roleUser) {
+  public Map<String, Object> insertRoleUserForAdmin(RoleUserReqDto roleUser) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertRoleUserForAdmin'");
   }
 
   @Override
-  public Map<String, Object> deleteRoleUserForAdmin(List<RoleUser> roleUser) {
+  public Map<String, Object> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUser) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteRoleUserForAdmin'");
   }

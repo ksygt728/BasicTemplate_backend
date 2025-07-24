@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.Interface;
+import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.service.interfaces.InterfaceService;
 
 @RestController
@@ -49,7 +49,7 @@ public class AdminInterfaceController {
 
   /* [REQ_ADM_022] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 직접 실행] */
   @PostMapping("/execute/{ifc}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> executeInterfaceForAdmin(Interface ifc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> executeInterfaceForAdmin(InterfaceReqDto ifc) {
     Map<String, Object> results = interfaceService.executeInterfaceForAdmin(ifc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
@@ -63,14 +63,14 @@ public class AdminInterfaceController {
 
   /* [REQ_ADM_024] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertInterfaceForAdmin(Interface ifc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertInterfaceForAdmin(InterfaceReqDto ifc) {
     Map<String, Object> results = interfaceService.insertInterfaceForAdmin(ifc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_025] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateInterfaceForAdmin(Interface ifc) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateInterfaceForAdmin(InterfaceReqDto ifc) {
     Map<String, Object> results = interfaceService.updateInterfaceForAdmin(ifc);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

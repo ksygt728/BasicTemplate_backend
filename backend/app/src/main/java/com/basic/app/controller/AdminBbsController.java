@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.Bbs;
+import com.basic.app.dto.requestDto.BbsReqDto;
 import com.basic.app.service.interfaces.BbsService;
 
 @RestController
@@ -49,7 +49,7 @@ public class AdminBbsController {
 
   /* [REQ_ADM_083] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertBbsForAdmin(Bbs bbs) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertBbsForAdmin(BbsReqDto bbs) {
     Map<String, Object> results = bbsService.insertBbsForAdmin(bbs);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
 
@@ -57,7 +57,7 @@ public class AdminBbsController {
 
   /* [REQ_ADM_0834] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateBbsForAdmin(Bbs bbs) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateBbsForAdmin(BbsReqDto bbs) {
     Map<String, Object> results = bbsService.updateBbsForAdmin(bbs);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
 

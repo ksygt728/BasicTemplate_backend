@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.ComCodeD;
-import com.basic.app.entity.ComCodeM;
-import com.basic.app.entity.ComCodeT;
+import com.basic.app.dto.requestDto.ComCodeDReqDto;
+import com.basic.app.dto.requestDto.ComCodeMReqDto;
+import com.basic.app.dto.requestDto.ComCodeTReqDto;
 import com.basic.app.service.interfaces.CodeService;
 
 @Service
@@ -25,13 +25,13 @@ public class CodeServiceImpl implements CodeService {
   }
 
   @Override
-  public Map<String, Object> insertGroupCodeForAdmin(ComCodeM comCodeM) {
+  public Map<String, Object> insertGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertGroupCodeForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateGroupCodeForAdmin(ComCodeM comCodeM) {
+  public Map<String, Object> updateGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateGroupCodeForAdmin'");
   }
@@ -55,13 +55,13 @@ public class CodeServiceImpl implements CodeService {
   }
 
   @Override
-  public Map<String, Object> insertAttrCodeForAdmin(ComCodeT comCodeT) {
+  public Map<String, Object> insertAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertAttrCodeForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateAttrCodeForAdmin(ComCodeT comCodeT) {
+  public Map<String, Object> updateAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateAttrCodeForAdmin'");
   }
@@ -85,13 +85,13 @@ public class CodeServiceImpl implements CodeService {
   }
 
   @Override
-  public Map<String, Object> insertDetailCodeForAdmin(ComCodeD comCodeD) {
+  public Map<String, Object> insertDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertDetailCodeForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateDetailCodeForAdmin(ComCodeD comCodeD) {
+  public Map<String, Object> updateDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateDetailCodeForAdmin'");
   }

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.Menu;
+import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.service.interfaces.MenuService;
 
 @RestController
@@ -49,14 +49,14 @@ public class AdminMenuController {
 
   /* [REQ_ADM_039] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMenuForAdmin(Menu menu) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMenuForAdmin(MenuReqDto menu) {
     Map<String, Object> results = menuService.insertMenuForAdmin(menu);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_040] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMenuForAdmin(Menu menu) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMenuForAdmin(MenuReqDto menu) {
     Map<String, Object> results = menuService.updateMenuForAdmin(menu);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

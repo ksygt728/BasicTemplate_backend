@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.Chaebun;
+import com.basic.app.dto.requestDto.ChaebunReqDto;
 import com.basic.app.service.interfaces.SequenceService;
 
 @RestController
@@ -49,14 +49,14 @@ public class AdminSequenceController {
 
   /* [REQ_ADM_054] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSequenceForAdmin(Chaebun chaebun) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSequenceForAdmin(ChaebunReqDto chaebun) {
     Map<String, Object> results = sequenceService.insertSequenceForAdmin(chaebun);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_055] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSequenceForAdmin(Chaebun chaebun) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSequenceForAdmin(ChaebunReqDto chaebun) {
     Map<String, Object> results = sequenceService.updateSequenceForAdmin(chaebun);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

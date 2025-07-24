@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.ScheM;
+import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.service.interfaces.SchedulerService;
 
 @Service
@@ -29,13 +29,13 @@ public class SchedulerServiceImpl implements SchedulerService {
   }
 
   @Override
-  public Map<String, Object> insertSchedulerForAdmin(ScheM scheM) {
+  public Map<String, Object> insertSchedulerForAdmin(ScheMReqDto scheM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertSchedulerForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateSchedulerForAdmin(ScheM scheM) {
+  public Map<String, Object> updateSchedulerForAdmin(ScheMReqDto scheM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateSchedulerForAdmin'");
   }
@@ -47,7 +47,7 @@ public class SchedulerServiceImpl implements SchedulerService {
   }
 
   @Override
-  public Map<String, Object> deleteSchedulerForAdmin(ScheM scheM) {
+  public Map<String, Object> deleteSchedulerForAdmin(ScheMReqDto scheM) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteSchedulerForAdmin'");
   }

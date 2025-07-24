@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.custom.ApiResponse;
-import com.basic.app.entity.MulLang;
+import com.basic.app.dto.requestDto.MulLangReqDto;
 import com.basic.app.service.interfaces.MultiLangService;
 
 @RestController
@@ -49,14 +49,14 @@ public class AdminMulLangController {
 
   /* [REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가] */
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMulLangForAdmin(MulLang mulLang) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMulLangForAdmin(MulLangReqDto mulLang) {
     Map<String, Object> results = multiLangService.insertMulLangForAdmin(mulLang);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }
 
   /* [REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정] */
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMulLangForAdmin(MulLang mulLang) {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMulLangForAdmin(MulLangReqDto mulLang) {
     Map<String, Object> results = multiLangService.updateMulLangForAdmin(mulLang);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
   }

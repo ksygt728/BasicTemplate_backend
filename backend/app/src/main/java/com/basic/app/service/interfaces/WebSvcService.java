@@ -2,7 +2,7 @@ package com.basic.app.service.interfaces;
 
 import java.util.Map;
 
-import com.basic.app.entity.WebSvc;
+import com.basic.app.dto.requestDto.WebSvcReqDto;
 
 public interface WebSvcService {
 
@@ -10,9 +10,9 @@ public interface WebSvcService {
 
   Map<String, Object> findByWebserviceForAdmin(String svcId);
 
-  Map<String, Object> inesrtWebserviceForAdmin(WebSvc webSvc);
+  Map<String, Object> inesrtWebserviceForAdmin(WebSvcReqDto webSvc);
 
-  Map<String, Object> updateWebserviceForAdmin(WebSvc webSvc);
+  Map<String, Object> updateWebserviceForAdmin(WebSvcReqDto webSvc);
 
   Map<String, Object> deleteWebserviceForAdmin(String svcId);
 

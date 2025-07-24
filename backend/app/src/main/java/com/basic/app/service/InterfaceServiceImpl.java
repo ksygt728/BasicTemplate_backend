@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.Interface;
+import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.service.interfaces.InterfaceService;
 
 @Service
@@ -23,7 +23,7 @@ public class InterfaceServiceImpl implements InterfaceService {
   }
 
   @Override
-  public Map<String, Object> executeInterfaceForAdmin(Interface ifc) {
+  public Map<String, Object> executeInterfaceForAdmin(InterfaceReqDto ifc) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'executeInterfaceForAdmin'");
   }
@@ -35,13 +35,13 @@ public class InterfaceServiceImpl implements InterfaceService {
   }
 
   @Override
-  public Map<String, Object> insertInterfaceForAdmin(Interface ifc) {
+  public Map<String, Object> insertInterfaceForAdmin(InterfaceReqDto ifc) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertInterfaceForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateInterfaceForAdmin(Interface ifc) {
+  public Map<String, Object> updateInterfaceForAdmin(InterfaceReqDto ifc) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateInterfaceForAdmin'");
   }

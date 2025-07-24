@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.Department;
+import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.service.interfaces.DepartmentService;
 
 @Service
@@ -23,13 +23,13 @@ public class DepartmentServiceImpl implements DepartmentService {
   }
 
   @Override
-  public Map<String, Object> insertDepartmentForAdmin(Department department) {
+  public Map<String, Object> insertDepartmentForAdmin(DepartmentReqDto department) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertDepartmentForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateDepartmentForAdmin(String deptCode) {
+  public Map<String, Object> updateDepartmentForAdmin(DepartmentReqDto department) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateDepartmentForAdmin'");
   }

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.basic.app.entity.MulLang;
+import com.basic.app.dto.requestDto.MulLangReqDto;
 import com.basic.app.service.interfaces.MultiLangService;
 
 @Service
@@ -23,13 +23,13 @@ public class MultiLangServiceImpl implements MultiLangService {
   }
 
   @Override
-  public Map<String, Object> insertMulLangForAdmin(MulLang mulLang) {
+  public Map<String, Object> insertMulLangForAdmin(MulLangReqDto mulLang) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'insertMulLangForAdmin'");
   }
 
   @Override
-  public Map<String, Object> updateMulLangForAdmin(MulLang mulLang) {
+  public Map<String, Object> updateMulLangForAdmin(MulLangReqDto mulLang) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateMulLangForAdmin'");
   }
