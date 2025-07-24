@@ -1,3 +1,4 @@
+
 package com.basic.app.entity.compositeKey;
 
 import java.io.Serializable;

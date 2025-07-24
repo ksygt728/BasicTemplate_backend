@@ -1,3 +1,11 @@
+/**
+ * @파일명   : SwaggerConfig.java
+ * @설명     : Swagger API 문서 설정
+ * @작성자   : 김승연
+ * @작성일   : 2025.07.24
+ * @변경이력 :
+ *   2025.07.24     김승연       최초 생성
+ */
 package com.basic.app.config;
 
 import org.springframework.context.annotation.Bean;

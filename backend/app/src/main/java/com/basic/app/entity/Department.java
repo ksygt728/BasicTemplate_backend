@@ -43,7 +43,7 @@ public class Department {
   // Department - Company (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "COMPANY_CODE", nullable = false)
-  private Company companyCode; // 부서코드
+  private Company companyCode; // 회사코드
 
   @Column(name = "USE_YN", length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
