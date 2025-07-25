@@ -6,7 +6,6 @@ spring:
   profiles:
     group:
       prod: prod
-  env: prod # 현재 환경이 prod임을 명시적으로 표시
   datasource:
     url: jdbc:mysql://localhost:3308/CBSK-PROD?useUnicode=true&serverTimezone=Asia/Seoul # 운영 DB 접속 URL (DOCKER DB명: CBSK-PROD)
     username: root
@@ -22,8 +21,11 @@ spring:
         format_sql: false # SQL 쿼리 포맷팅 비활성화
         use_sql_comments: false # SQL 쿼리 주석 비활성화
 
-  logging:
-    level:
-      org:
-        hibernate: error # Hibernate의 로그 레벨 error로 설정
-        hibernate.type.descriptor.sql: error # SQL 파라미터 바인딩 값 로그 error로 설정
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: error # 최소한의 SQL 로그만
+        orm:
+          jdbc:
+            bind: off # 바인딩 값 로그 비활성화
