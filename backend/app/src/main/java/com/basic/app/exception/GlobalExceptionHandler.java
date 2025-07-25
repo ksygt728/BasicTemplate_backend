@@ -12,8 +12,6 @@
 
 package com.basic.app.exception;
 
-import java.nio.file.AccessDeniedException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.basic.app.custom.ApiResponse;
 import com.basic.app.exception.customException.BusinessException;
@@ -37,7 +36,7 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
 
-    log.warn("잘못된 요청(NotFoundException) : code = {}, message = {}", errorCode.getCode(), errorCode.getMessage());
+    log.error("잘못된 요청(NotFoundException) : code = {}, message = {}", errorCode.getCode(), errorCode.getMessage());
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
@@ -72,39 +71,52 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(IllegalArgumentException.class)
   public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException e) {
 
-    log.warn("잘못된 요청(IllegalArgument) : {} {}", e.getMessage(), e.getStackTrace());
+    log.error("잘못된 요청(IllegalArgument) : {} {}", e.getMessage(), e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(ErrorCode.VALIDATION_ERROR_SERVER));
   }
 
-  /* Error code : 401 (인증 실패) */
-  @ExceptionHandler(BadCredentialsException.class)
-  public ResponseEntity<ApiResponse<?>> handleBadCredentials(BadCredentialsException e) {
+  // /* Error code : 401 (인증 실패) */
+  // @ExceptionHandler(BadCredentialsException.class)
+  // public ResponseEntity<ApiResponse<?>>
+  // handleBadCredentials(BadCredentialsException e) {
 
-    log.error("인증실패(BadCredentials) : {}", e.getMessage());
-    return ResponseEntity
-        .status(HttpStatus.UNAUTHORIZED)
-        .body(ApiResponse.fail(ErrorCode.UNAUTHORIZED_FAILURE));
-  }
+  // log.error("인증실패(BadCredentials) : {}", e.getMessage());
+  // return ResponseEntity
+  // .status(HttpStatus.UNAUTHORIZED)
+  // .body(ApiResponse.fail(ErrorCode.UNAUTHORIZED_FAILURE));
+  // }
 
-  /* Error code : 403 (권한 없음) */
-  @ExceptionHandler(AccessDeniedException.class)
-  public ResponseEntity<ApiResponse<?>> handleAccessDenied(AccessDeniedException e) {
+  // /* Error code : 403 (권한 없음) */
+  // @ExceptionHandler(AccessDeniedException.class)
+  // public ResponseEntity<ApiResponse<?>>
+  // handleAccessDenied(AccessDeniedException e) {
 
-    log.error("권한 없음(AccessDenied) : {}", e.getMessage());
+  // log.error("권한 없음(AccessDenied) : {}", e.getMessage());
 
-    return ResponseEntity
-        .status(HttpStatus.FORBIDDEN)
-        .body(ApiResponse.fail(ErrorCode.ACCESS_DENIED));
-  }
+  // return ResponseEntity
+  // .status(HttpStatus.FORBIDDEN)
+  // .body(ApiResponse.fail(ErrorCode.ACCESS_DENIED));
+  // }
 
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
   public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e) {
 
-    log.error("페이지 없음(ResponseStatus) : {} {}", e.getMessage(), e.getStackTrace());
+    log.warn("페이지 없음(ResponseStatus) : {} {}", e.getMessage(), e.getStackTrace());
+
+    return ResponseEntity
+        .status(HttpStatus.NOT_FOUND)
+        .body(ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND));
+  }
+
+  /* Error code : 404 (페이지를 찾을 수 없음) : 사용자가 URL입력을 잘못한 경우 */
+  @ExceptionHandler(NoHandlerFoundException.class)
+  public ResponseEntity<ApiResponse<?>> handleNoHandlerFound(NoHandlerFoundException e) {
+
+    log.warn("페이지 없음(ResponseStatus) : {} {}", e.getMessage(), e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -115,7 +127,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiResponse<?>> handleException(Exception e) {
 
-    log.error("서버 에러(Exception) : {} {}", e.getMessage(), e.getStackTrace());
+    log.error("\n 서버 에러[Class : {}] : [Message : {}] \n {}", e.getClass(), e.getMessage(), e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
