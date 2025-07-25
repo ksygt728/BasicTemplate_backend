@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.basic.app.dto.requestDto.BbsReqDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserResDtoResDto {
+public class UserResDto {
 
   private String userId; // 사용자아이디
 
@@ -54,10 +55,12 @@ public class UserResDtoResDto {
 
   private String createUser; // 생성자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createDate; // 생성일
 
   private String updateUser; // 수정자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime timestamp; // 수정일
 
   // User - Bbs (1:N)

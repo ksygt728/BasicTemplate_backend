@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,10 +39,12 @@ public class ComCodeMResDto {
 
   private String createUser; // 생성자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createDate; // 생성일
 
   private String updateUser; // 수정자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime timestamp; // 수정일
 
   // CodeM - CodeT (1:N)

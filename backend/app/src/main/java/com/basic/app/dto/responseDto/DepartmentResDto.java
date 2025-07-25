@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,13 +46,15 @@ public class DepartmentResDto {
 
   private String createUser; // 생성자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createDate; // 생성일
 
   private String updateUser; // 수정자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime timestamp; // 수정일
 
   // Department - User (1:N)
-  private List<UserResDtoResDto> deptUsers = new ArrayList<UserResDtoResDto>(); // 부서 사원 리스트
+  private List<UserResDto> deptUsers = new ArrayList<UserResDto>(); // 부서 사원 리스트
 
 }
