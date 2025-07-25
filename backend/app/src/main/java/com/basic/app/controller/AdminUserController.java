@@ -38,29 +38,29 @@ public class AdminUserController {
   /* [REQ_ADM_001] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 조회] */
   @GetMapping // 전체 사용자 조회 또는 쿼리 파라미터로 조건부 조회
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllUserForAdmin() {
-    Map<String, Object> results = userService.findAllUserForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = userService.findAllUserForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_002] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 상세조회] */
   @GetMapping("/{userId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByUserForAdmin(@PathVariable String userId) {
-    Map<String, Object> results = userService.findByUserForAdmin(userId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = userService.findByUserForAdmin(userId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_003] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateUserForAdmin(
       @Validated(UpdateGroup.class) UserReqDto user) {
-    Map<String, Object> results = userService.updateUserForAdmin(user);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = userService.updateUserForAdmin(user);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_004] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 삭제] */
   @DeleteMapping("/{userId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteUserForAdmin(@PathVariable String userId) {
-    Map<String, Object> results = userService.deleteUserForAdmin(userId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = userService.deleteUserForAdmin(userId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

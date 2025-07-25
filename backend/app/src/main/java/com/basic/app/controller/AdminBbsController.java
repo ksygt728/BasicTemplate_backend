@@ -39,23 +39,23 @@ public class AdminBbsController {
   /* [REQ_ADM_081] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllBbsForAdmin() {
-    Map<String, Object> results = bbsService.findAllBbsForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = bbsService.findAllBbsForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_082] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 상세 조회] */
   @GetMapping("/{bbsId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByBbsForAdmin(@PathVariable String bbsId) {
-    Map<String, Object> results = bbsService.findByBbsForAdmin(bbsId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = bbsService.findByBbsForAdmin(bbsId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_083] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertBbsForAdmin(
       @Validated(CreateGroup.class) BbsReqDto bbs) {
-    Map<String, Object> results = bbsService.insertBbsForAdmin(bbs);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = bbsService.insertBbsForAdmin(bbs);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
 
   }
 
@@ -63,16 +63,16 @@ public class AdminBbsController {
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateBbsForAdmin(
       @Validated(UpdateGroup.class) BbsReqDto bbs) {
-    Map<String, Object> results = bbsService.updateBbsForAdmin(bbs);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = bbsService.updateBbsForAdmin(bbs);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
 
   }
 
   /* [REQ_ADM_085] [화면 : 시스템 관리 > 메뉴얼 관리] [기능 : 메뉴얼 삭제] */
   @DeleteMapping("/{bbsId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteBbsForAdmin(@PathVariable String bbsId) {
-    Map<String, Object> results = bbsService.deleteBbsForAdmin(bbsId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = bbsService.deleteBbsForAdmin(bbsId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
 
   }
 }

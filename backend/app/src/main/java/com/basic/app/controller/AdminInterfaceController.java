@@ -9,6 +9,7 @@
  */
 package com.basic.app.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,54 +37,70 @@ public class AdminInterfaceController {
   @Autowired
   private InterfaceService interfaceService;
 
+  /* [REQ_ADM_021_0] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 조회 폼 조회] */
+  @GetMapping("/search")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllInterfaceWithConditionsForAdmin(
+      InterfaceReqDto interfaceReqDto) {
+
+    Map<String, Object> data = interfaceService.findAllInterfaceWithConditionsForAdmin(interfaceReqDto);
+
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  }
+
   /* [REQ_ADM_021] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 기준정보 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllInterfaceForAdmin() {
-    Map<String, Object> results = interfaceService.findAllInterfaceForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+
+    Map<String, Object> data = interfaceService.findAllInterfaceForAdmin();
+
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_021_2] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] */
   @GetMapping("/{ifId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByInterfaceForAdmin(@PathVariable String ifId) {
-    Map<String, Object> results = interfaceService.findByInterfaceForAdmin(ifId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+
+    Map<String, Object> data = interfaceService.findByInterfaceForAdmin(ifId);
+
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_022] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 직접 실행] */
   @PostMapping("/execute/{ifc}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> executeInterfaceForAdmin(InterfaceReqDto ifc) {
-    Map<String, Object> results = interfaceService.executeInterfaceForAdmin(ifc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = interfaceService.executeInterfaceForAdmin(ifc);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_023] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 이력조회] */
   @GetMapping("/history/{ifId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByInterfaceHistoryForAdmin(@PathVariable String ifId) {
-    Map<String, Object> results = interfaceService.findByInterfaceHistoryForAdmin(ifId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = interfaceService.findByInterfaceHistoryForAdmin(ifId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_024] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertInterfaceForAdmin(
       @Validated(CreateGroup.class) InterfaceReqDto ifc) {
-    Map<String, Object> results = interfaceService.insertInterfaceForAdmin(ifc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+
+    Map<String, Object> data = interfaceService.insertInterfaceForAdmin(ifc);
+
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_025] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateInterfaceForAdmin(
       @Validated(UpdateGroup.class) InterfaceReqDto ifc) {
-    Map<String, Object> results = interfaceService.updateInterfaceForAdmin(ifc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = interfaceService.updateInterfaceForAdmin(ifc);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_026] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 삭제] */
   @DeleteMapping("/{ifId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteInterfaceForAdmin(@PathVariable String ifId) {
-    Map<String, Object> results = interfaceService.deleteInterfaceForAdmin(ifId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = interfaceService.deleteInterfaceForAdmin(ifId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

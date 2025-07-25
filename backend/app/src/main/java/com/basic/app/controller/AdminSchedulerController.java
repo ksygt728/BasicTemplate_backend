@@ -39,22 +39,22 @@ public class AdminSchedulerController {
   /* [REQ_ADM_074] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSchedulerForAdmin() {
-    Map<String, Object> results = schedulerService.findAllSchedulerForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.findAllSchedulerForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_074_2] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 조회] */
   @GetMapping("/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerForAdmin(@PathVariable String scheId) {
-    Map<String, Object> results = schedulerService.findBySchedulerForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.findBySchedulerForAdmin(scheId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_075] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 이력 조회] */
   @GetMapping("/history/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId) {
-    Map<String, Object> results = schedulerService.findBySchedulerHistoryForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* 사용 X */
@@ -62,38 +62,38 @@ public class AdminSchedulerController {
   // @GetMapping("/templates")
   // public ResponseEntity<ApiResponse<Map<String, Object>>>
   // findSchedulerTemplates() {
-  // Map<String, Object> results = schedulerService.findSchedulerTemplates();
+  // Map<String, Object> data = schedulerService.findSchedulerTemplates();
   // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
   /* [REQ_ADM_077] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 직접실행] */
   @PostMapping("/execute/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> executeSchedulerForAdmin(@PathVariable String scheId) {
-    Map<String, Object> results = schedulerService.executeSchedulerForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.executeSchedulerForAdmin(scheId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(
       @Validated(CreateGroup.class) ScheMReqDto scheM) {
-    Map<String, Object> results = schedulerService.insertSchedulerForAdmin(scheM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.insertSchedulerForAdmin(scheM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(
       @Validated(UpdateGroup.class) ScheMReqDto scheM) {
-    Map<String, Object> results = schedulerService.updateSchedulerForAdmin(scheM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.updateSchedulerForAdmin(scheM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_080] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 삭제] */
   @DeleteMapping("/{schedulerId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(ScheMReqDto scheM) {
-    Map<String, Object> results = schedulerService.deleteSchedulerForAdmin(scheM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = schedulerService.deleteSchedulerForAdmin(scheM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

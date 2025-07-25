@@ -39,54 +39,54 @@ public class AdminSmsController {
   /* [REQ_ADM_067] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSmsForAdmin() {
-    Map<String, Object> results = smsService.findAllSmsForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.findAllSmsForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_067_2] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 조회] */
   @GetMapping("/{smsId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySmsForAdmin(@PathVariable String smsId) {
-    Map<String, Object> results = smsService.findBySmsForAdmin(smsId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.findBySmsForAdmin(smsId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_071] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertSmsForAdmin(
       @Validated(CreateGroup.class) SmsMReqDto smsM) {
-    Map<String, Object> results = smsService.insertSmsForAdmin(smsM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.insertSmsForAdmin(smsM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_072] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateSmsForAdmin(
       @Validated(UpdateGroup.class) SmsMReqDto smsM) {
-    Map<String, Object> results = smsService.updateSmsForAdmin(smsM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.updateSmsForAdmin(smsM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_073] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 삭제] */
   @DeleteMapping("/{smsId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSmsForAdmin(@PathVariable String smsId) {
-    Map<String, Object> results = smsService.deleteSmsForAdmin(smsId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.deleteSmsForAdmin(smsId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_068] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 이력 조회] */
   @GetMapping("/history/{smsId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySmsHistoryForAdmin(@PathVariable String smsId) {
-    Map<String, Object> results = smsService.findBySmsHistoryForAdmin(smsId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = smsService.findBySmsHistoryForAdmin(smsId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* 사용 X */
   /* [REQ_ADM_069] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 템플릿 조회] */
   // @GetMapping("/templates")
   // public ResponseEntity<ApiResponse<Map<String, Object>>> findSmsTemplates() {
-  // Map<String, Object> results = smsService.findSmsTemplates();
+  // Map<String, Object> data = smsService.findSmsTemplates();
   // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
   /* 사용 X */
@@ -94,9 +94,9 @@ public class AdminSmsController {
   // @GetMapping("/templates/{templateId}")
   // public ResponseEntity<ApiResponse<Map<String, Object>>> findSmsTemplate(
   // @PathVariable ResponseEntity<ApiResponse<Map<String, Object>>> templateId) {
-  // Map<String, Object> results = smsService.findSmsTemplate(templateId);
+  // Map<String, Object> data = smsService.findSmsTemplate(templateId);
   // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
 }

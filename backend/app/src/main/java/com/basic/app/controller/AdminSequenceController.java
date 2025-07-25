@@ -39,37 +39,37 @@ public class AdminSequenceController {
   /* [REQ_ADM_053] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSequenceForAdmin() {
-    Map<String, Object> results = sequenceService.findAllSequenceForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = sequenceService.findAllSequenceForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_053_2] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 조회] */
   @GetMapping("/{seqId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySequenceForAdmin(@PathVariable String seqId) {
-    Map<String, Object> results = sequenceService.findBySequenceForAdmin(seqId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = sequenceService.findBySequenceForAdmin(seqId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_054] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertSequenceForAdmin(
       @Validated(CreateGroup.class) ChaebunReqDto chaebun) {
-    Map<String, Object> results = sequenceService.insertSequenceForAdmin(chaebun);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = sequenceService.insertSequenceForAdmin(chaebun);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_055] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateSequenceForAdmin(
       @Validated(UpdateGroup.class) ChaebunReqDto chaebun) {
-    Map<String, Object> results = sequenceService.updateSequenceForAdmin(chaebun);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = sequenceService.updateSequenceForAdmin(chaebun);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_056] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 삭제] */
   @DeleteMapping("/{seqId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSequenceForAdmin(@PathVariable String seqId) {
-    Map<String, Object> results = sequenceService.deleteSequenceForAdmin(seqId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = sequenceService.deleteSequenceForAdmin(seqId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

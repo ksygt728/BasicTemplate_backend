@@ -39,52 +39,52 @@ public class AdminWebSvcController {
   /* [REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllWebserviceForAdmin() {
-    Map<String, Object> results = webSvcService.findAllWebserviceForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.findAllWebserviceForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_027_2] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 조회] */
   @GetMapping("/{svcId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByWebserviceForAdmin(@PathVariable String svcId) {
-    Map<String, Object> results = webSvcService.findByWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.findByWebserviceForAdmin(svcId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(
       @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
-    Map<String, Object> results = webSvcService.inesrtWebserviceForAdmin(webSvc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.inesrtWebserviceForAdmin(webSvc);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(
       @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
-    Map<String, Object> results = webSvcService.updateWebserviceForAdmin(webSvc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.updateWebserviceForAdmin(webSvc);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_032] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 삭제] */
   @DeleteMapping("/{svcId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteWebserviceForAdmin(@PathVariable String svcId) {
-    Map<String, Object> results = webSvcService.deleteWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.deleteWebserviceForAdmin(svcId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_028] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 직접 실행] */
   @PostMapping("/execute/{svcId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> executeWebserviceForAdmin(@PathVariable String svcId) {
-    Map<String, Object> results = webSvcService.executeWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.executeWebserviceForAdmin(svcId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_029] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 이력조회] */
   @GetMapping("/history/{svcId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByWebserviceHistoryForAdmin(@PathVariable String svcId) {
-    Map<String, Object> results = webSvcService.findByWebserviceHistoryForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = webSvcService.findByWebserviceHistoryForAdmin(svcId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
 }

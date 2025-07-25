@@ -30,28 +30,28 @@ public class AdminLogController {
   /* [REQ_ADM_064] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 리스트 조회] */
   @GetMapping("/access-log")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllAccessLogForAdmin() {
-    Map<String, Object> results = logService.findAllAccessLogForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = logService.findAllAccessLogForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_064_2] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 조회] */
   @GetMapping("/access-log/{logAct}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByAccessLogForAdmin(@PathVariable String logId) {
-    Map<String, Object> results = logService.findByAccessLogForAdmin(logId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = logService.findByAccessLogForAdmin(logId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_065] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 리스트 조회] */
   @GetMapping("/error")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllErrorLogForAdmin() {
-    Map<String, Object> results = logService.findAllErrorLogForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = logService.findAllErrorLogForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_066] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 상세정보 조회] */
   @GetMapping("/error/{errId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByErrorLogForAdmin(@PathVariable String errId) {
-    Map<String, Object> results = logService.findByErrorLogForAdmin(errId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = logService.findByErrorLogForAdmin(errId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

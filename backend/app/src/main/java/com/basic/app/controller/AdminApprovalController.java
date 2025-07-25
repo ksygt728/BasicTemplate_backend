@@ -33,7 +33,7 @@ public class AdminApprovalController {
   /* [REQ_ADM_086] [화면 : 시스템 관리 > 결재 관리] [기능 : 예정] */
   @GetMapping("/planned") // 예정된 기능이므로 임시 경로를 지정
   public ResponseEntity<ApiResponse<Map<String, Object>>> findPlannedApprovals() {
-    Map<String, Object> results = approvalService.findPlannedApprovals();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = approvalService.findPlannedApprovals();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

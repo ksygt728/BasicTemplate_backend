@@ -38,31 +38,31 @@ public class AdminMailController {
   /* [REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllMailForAdmin() {
-    Map<String, Object> results = mailService.findAllMailForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.findAllMailForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_057_2] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 조회] */
   @GetMapping("/{mailId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByMailForAdmin(@PathVariable String mailId) {
-    Map<String, Object> results = mailService.findByMailForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.findByMailForAdmin(mailId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_058] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 이력 조회] */
   @GetMapping("/history/{mailId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId) {
-    Map<String, Object> results = mailService.findByMailHistoryForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.findByMailHistoryForAdmin(mailId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   // [REQ_ADM_057]로 대체 가능할 듯
   /* [REQ_ADM_059] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 템플릿 조회] */
   // @GetMapping("/templates")
   // public ResponseEntity<ApiResponse<Map<String, Object>>> findMailTemplates() {
-  // Map<String, Object> results = mailService.findMailTemplates();
+  // Map<String, Object> data = mailService.findMailTemplates();
   // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
   // [REQ_ADM_062]로 대체 가능할 듯
@@ -70,31 +70,31 @@ public class AdminMailController {
   // @PutMapping
   // public ResponseEntity<ApiResponse<Map<String, Object>>>
   // insertMailForAdmin(MailM mailM) {
-  // Map<String, Object> results = mailService.insertMailForAdmin(mailM);
+  // Map<String, Object> data = mailService.insertMailForAdmin(mailM);
   // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
   /* [REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(
       @Validated(CreateGroup.class) MailMReqDto mailM) {
-    Map<String, Object> results = mailService.insertMailForAdmin(mailM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.insertMailForAdmin(mailM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(
       @Validated(UpdateGroup.class) MailMReqDto mailM) {
-    Map<String, Object> results = mailService.updateMailForAdmin(mailM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.updateMailForAdmin(mailM);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_063] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 삭제] */
   @DeleteMapping("/{mailId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteMailForAdmin(@PathVariable String mailId) {
-    Map<String, Object> results = mailService.deleteMailForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = mailService.deleteMailForAdmin(mailId);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

@@ -39,37 +39,37 @@ public class AdminMulLangController {
   /* [REQ_ADM_033] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllMulLangForAdmin() {
-    Map<String, Object> results = multiLangService.findAllMulLangForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = multiLangService.findAllMulLangForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_034] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 언어별 조회] */
   @GetMapping("/{langCd}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByMulLangForAdmin(@PathVariable String langCd) {
-    Map<String, Object> results = multiLangService.findByMulLangForAdmin(langCd);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = multiLangService.findByMulLangForAdmin(langCd);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertMulLangForAdmin(
       @Validated(CreateGroup.class) MulLangReqDto mulLang) {
-    Map<String, Object> results = multiLangService.insertMulLangForAdmin(mulLang);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = multiLangService.insertMulLangForAdmin(mulLang);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateMulLangForAdmin(
       @Validated(UpdateGroup.class) MulLangReqDto mulLang) {
-    Map<String, Object> results = multiLangService.updateMulLangForAdmin(mulLang);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = multiLangService.updateMulLangForAdmin(mulLang);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제] */
   @DeleteMapping("/{langCd}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteMulLangForAdmin(@PathVariable String langCd) {
-    Map<String, Object> results = multiLangService.deleteMulLangForAdmin(langCd);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = multiLangService.deleteMulLangForAdmin(langCd);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

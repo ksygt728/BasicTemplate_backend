@@ -1,7 +1,9 @@
 
 /**
- * @파일명   : AdminDepartmentController.java
- * @설명     : 부서 관리 기능 제공 컨트롤러
+ * @파일명   : AdminDepartmentController.jav  @GetMapping("/{deptCode}")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
+    Map<String, Object> data = departmentService.findByDepartmentForAdmin(deptCode);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data)); @설명     : 부서 관리 기능 제공 컨트롤러
  * @작성자   : 김승연
  * @작성일   : 2025.07.23
  * @변경이력 :
@@ -39,37 +41,37 @@ public class AdminDepartmentController {
   /* [REQ_ADM_005] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 리스트 조회] */
   @GetMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllDepartmentForAdmin() {
-    Map<String, Object> results = departmentService.findAllDepartmentForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = departmentService.findAllDepartmentForAdmin();
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_005_2] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 조회] */
   @GetMapping("/{deptCode}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
-    Map<String, Object> results = departmentService.findByDepartmentForAdmin(deptCode);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = departmentService.findByDepartmentForAdmin(deptCode);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_006] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(
       @Validated(CreateGroup.class) DepartmentReqDto department) {
-    Map<String, Object> results = departmentService.insertDepartmentForAdmin(department);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = departmentService.insertDepartmentForAdmin(department);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_007] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(
       @Validated(UpdateGroup.class) DepartmentReqDto department) {
-    Map<String, Object> results = departmentService.updateDepartmentForAdmin(department);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = departmentService.updateDepartmentForAdmin(department);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_008] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 삭제] */
   @DeleteMapping("/{deptCode}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> deleteDepartmentForAdmin(@PathVariable String deptCode) {
-    Map<String, Object> results = departmentService.deleteDepartmentForAdmin(deptCode);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+    Map<String, Object> data = departmentService.deleteDepartmentForAdmin(deptCode);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }
