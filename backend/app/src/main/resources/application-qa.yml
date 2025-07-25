@@ -29,3 +29,6 @@ logging:
         orm:
           jdbc:
             bind: off # 바인딩 값 로그 비활성화
+    org.jooq: ERROR
+    org.jooq.tools: ERROR
+    org.jooq.tools.LoggerListener: ERROR

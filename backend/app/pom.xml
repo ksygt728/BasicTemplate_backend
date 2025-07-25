@@ -136,6 +136,12 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- [jOOQ] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+		</dependency>
+
 
 		<!-- [mail] -->
 		<dependency>
@@ -225,6 +231,58 @@
 					<source>21</source>
 					<target>21</target>
 				</configuration>
+			</plugin>
+			
+			<!-- jOOQ 코드 생성기 플러그인 -->
+			<plugin>
+				<groupId>org.jooq</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+				<executions>
+					<execution>
+						<id>generate-jooq-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<jdbc>
+								<driver>com.mysql.cj.jdbc.Driver</driver>
+								<url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</url>
+								<user>root</user>
+								<password>root961019</password>
+							</jdbc>
+							<generator>
+								<database>
+									<name>org.jooq.meta.mysql.MySQLDatabase</name>
+									<includes>.*</includes>
+									<inputSchema>CBSK-DEV</inputSchema>
+									<forcedTypes>
+										<!-- DATE를 LocalDate로 매핑 -->
+										<forcedType>
+											<name>LOCALDATE</name>
+											<includeTypes>DATE</includeTypes>
+										</forcedType>
+										<!-- TIMESTAMP를 LocalDateTime으로 매핑 -->
+										<forcedType>
+											<name>LOCALDATETIME</name>
+											<includeTypes>TIMESTAMP</includeTypes>
+										</forcedType>
+									</forcedTypes>
+								</database>
+								<target>
+									<packageName>com.basic.app.jooq.generated</packageName>
+									<directory>target/generated-sources/jooq</directory>
+								</target>
+								<generate>
+									<deprecated>false</deprecated>
+									<records>true</records>
+									<immutablePojos>true</immutablePojos>
+									<fluentSetters>true</fluentSetters>
+								</generate>
+							</generator>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

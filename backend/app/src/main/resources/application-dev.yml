@@ -31,3 +31,6 @@ logging:
         orm:
           jdbc:
             bind: trace # Hibernate 6 이상에서 바인딩 값 출력
+    org.jooq: DEBUG
+    org.jooq.tools: DEBUG
+    org.jooq.tools.LoggerListener: DEBUG
