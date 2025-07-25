@@ -114,7 +114,7 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- [queryDSL 동적 쿼리] : QueryDSL -->
+		<!-- [queryDSL 동적 쿼리] : QueryDSL
 		<dependency>
 			<groupId>io.github.openfeign.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
@@ -124,13 +124,13 @@
 			<groupId>io.github.openfeign.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
 			<version>7.0</version>
-		</dependency>
+		</dependency> -->
 
 		<!--[ModelMapper]-->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
-			<version>2.4.4</version>
+			<version>3.1.1</version>
 		</dependency>
 
 
@@ -148,7 +148,7 @@
 		</dependency>
 
 		<!-- [security] -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -157,7 +157,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<!--[JWTToken]  -->
 		<dependency>
