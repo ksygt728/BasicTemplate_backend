@@ -8,6 +8,8 @@
  */
 package com.basic.app.custom;
 
+import com.basic.app.exception.ErrorCode;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,21 +23,35 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ApiResponse<T> {
   private boolean success;
+  private String errorCode;
   private String message;
   private T data;
 
   public static <T> ApiResponse<T> success(T data) {
     return ApiResponse.<T>builder()
         .success(true)
+        .errorCode(null)
         .message("success")
         .data(data)
         .build();
   }
 
-  public static <T> ApiResponse<T> fail(String message) {
+  // 사용 안함
+  public static <T> ApiResponse<T> fail(String errorCode, String message) {
     return ApiResponse.<T>builder()
         .success(false)
+        .errorCode(errorCode)
         .message(message)
+        .data(null)
+        .build();
+  }
+
+  // Enum으로 ErrorCode를 받는 메서드 추가
+  public static <T> ApiResponse<T> fail(ErrorCode errorCode) {
+    return ApiResponse.<T>builder()
+        .success(false)
+        .errorCode(errorCode.getCode())
+        .message(errorCode.getMessage())
         .data(null)
         .build();
   }
