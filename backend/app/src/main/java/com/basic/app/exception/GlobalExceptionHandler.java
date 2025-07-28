@@ -12,10 +12,15 @@
 
 package com.basic.app.exception;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,8 +41,18 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
 
-    log.error("잘못된 요청(NotFoundException) : code = {}, message = {}", errorCode.getCode(), errorCode.getMessage());
+    log.warn(
+        """
 
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(errorCode));
@@ -49,8 +64,18 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
 
-    log.warn("잘못된 요청(NotFoundException) : code = {}, message = {}", errorCode.getCode(), errorCode.getMessage());
+    log.warn(
+        """
 
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(errorCode));
@@ -60,18 +85,48 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException e) {
 
-    log.warn("잘못된 요청(@Validated) : {} ", e.getMessage());
+    ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_CLIENT;
+
+    List<FieldError> validatorErrors = e.getBindingResult().getFieldErrors();
+    String validatorErrorMessage = validatorErrors.get(0).getDefaultMessage();
+
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage() + " [" + validatorErrorMessage + "]",
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT));
+        .body(
+            ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, validatorErrorMessage));
   }
 
   /* Error code : 400 (잘못된 요청 비즈로직 validation 실패 시) - 원인 : 게발자 실수 가능성 */
   @ExceptionHandler(IllegalArgumentException.class)
   public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException e) {
 
-    log.error("잘못된 요청(IllegalArgument) : {} {}", e.getMessage(), e.getStackTrace());
+    ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_SERVER;
+
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
@@ -105,7 +160,20 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(ResponseStatusException.class)
   public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e) {
 
-    log.warn("페이지 없음(ResponseStatus) : {} {}", e.getMessage(), e.getStackTrace());
+    ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
+
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -116,7 +184,20 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(NoHandlerFoundException.class)
   public ResponseEntity<ApiResponse<?>> handleNoHandlerFound(NoHandlerFoundException e) {
 
-    log.warn("페이지 없음(ResponseStatus) : {} {}", e.getMessage(), e.getStackTrace());
+    ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
+
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -127,7 +208,20 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiResponse<?>> handleException(Exception e) {
 
-    log.error("\n 서버 에러[Class : {}] : [Message : {}] \n {}", e.getClass(), e.getMessage(), e.getStackTrace());
+    ErrorCode errorCode = ErrorCode.SERVER_ERROR;
+
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)

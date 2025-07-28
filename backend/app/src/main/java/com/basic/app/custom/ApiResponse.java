@@ -36,22 +36,22 @@ public class ApiResponse<T> {
         .build();
   }
 
-  // 사용 안함
-  public static <T> ApiResponse<T> fail(String errorCode, String message) {
-    return ApiResponse.<T>builder()
-        .success(false)
-        .errorCode(errorCode)
-        .message(message)
-        .data(null)
-        .build();
-  }
-
   // Enum으로 ErrorCode를 받는 메서드 추가
   public static <T> ApiResponse<T> fail(ErrorCode errorCode) {
     return ApiResponse.<T>builder()
         .success(false)
         .errorCode(errorCode.getCode())
         .message(errorCode.getMessage())
+        .data(null)
+        .build();
+  }
+
+  // getMessage 메서드에 추가 메시지를 포함할 수 있는 오버로딩
+  public static <T> ApiResponse<T> fail(ErrorCode errorCode, String message) {
+    return ApiResponse.<T>builder()
+        .success(false)
+        .errorCode(errorCode.getCode())
+        .message(errorCode.getMessage() + " [" + message + "]")
         .data(null)
         .build();
   }
