@@ -1,0 +1,46 @@
+/**
+ * @파일명   : MailHResDto.java
+ * @설명     : 
+ * @작성자   : 김승연
+ * @작성일   : 2025.07.23
+ * @변경이력 :
+ *   2025.07.23     김승연       최초 생성
+ */
+package com.basic.app.dto.responseDto;
+
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class MailHResDto {
+
+  private String logId; // 사용자이력ID
+
+  private String mailId; // 메일아이디
+
+  private String fromAddr; // 발신자
+
+  private String toAddr; // 수신자
+
+  private String title; // 제목
+
+  private String content; // 내용
+
+  private String success; // 성공여부
+
+  private String errorMsg; // 실패사유
+
+}
