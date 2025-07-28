@@ -1,0 +1,34 @@
+# [qa 프로필 전용 설정 파일]
+server:
+  port: 8081 # QA 서버 포트
+
+spring:
+  profiles:
+    group:
+      qa: qa
+  datasource:
+    url: jdbc:mysql://localhost:3307/CBSK-QA?useUnicode=true&serverTimezone=Asia/Seoul # QA DB 접속 URL (DOCKER DB명: CBSK-QA)
+    username: root
+    password: root961019
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
+    hibernate:
+      ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션
+    properties:
+      hibernate:
+        show_sql: false # SQL 쿼리 콘솔 출력 비활성화
+        format_sql: false # SQL 쿼리 포맷팅 비활성화
+        use_sql_comments: false # SQL 쿼리 주석 비활성화
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: error # 최소한의 SQL 로그만
+        orm:
+          jdbc:
+            bind: off # 바인딩 값 로그 비활성화
+    org.jooq: ERROR
+    org.jooq.tools: ERROR
+    org.jooq.tools.LoggerListener: ERROR

@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: CBSK # 서비스명
+  profiles:
+    active: dev # 디폴트 활성 프로필(dev)
+  jpa:
+    database: mysql # 사용할 데이터베이스 종류 지정 (mysql, h2 등)
+    database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 실제 DB에 적용될 물리적 네이밍 전략 지정
+    open-in-view: false # Open EntityManager in View 패턴 비활성화(화면단에서의 DB접근 제한) (권장: false)
+
+
+  # View resolver setting (not use)
+  # mvc:
+  #   view:
+  #     prefix: /WEB-INF/views/
+  #     suffix: .jsp
+  # AWS RDS 연동(Elastic beanstalk) 예시 (주석 처리)
+  # datasource:
+  #   url: jdbc:mysql://vmsdb.ce4abl7nyur3.ap-northeast-2.rds.amazonaws.com:3306/vmsdb
+  #   username: root
+  #   password: vmsfighting
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+  #   driver-class-name: com.mysql.jdbc.Driver
+  # 로그 관련 공통 주석
+  # logging:
+  #   level:
+  #     root: info  # 전체 로그 레벨 설정
+  #     com.finalTest.lins.controller: info  # 특정 패키지(컨트롤러)의 로그 레벨 설정
+  #   file:
+  #     name: myLog.log  # 로그 파일 이름 지정
+  #     path: C:/Users/ksygt/Desktop/logTest/  # 로그 파일 저장 경로 지정
+  #   main:
+  #     banner-mode: off  # Spring Boot 실행 배너 출력 여부 (off: 출력 안 함)
+  #   output:
+  #     ansi:
+  #       enabled: always  # 콘솔 로그에 ANSI 컬러 항상 사용
+  #   org:
+  #     springframework.web: debug  # Spring Web 관련 로그 레벨 debug로 설정
+  #     hibernate: error  # Hibernate 로그 레벨 error로 설정
+  # spring:
+  #   jpa:
+  #     properties:
+  #       hibernate:
+  #         enable_lazy_load_no_trans: true  # 트랜잭션 없이 LAZY 로딩 허용 (권장X)
