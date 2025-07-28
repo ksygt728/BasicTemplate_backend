@@ -38,6 +38,4 @@ public class SmsM extends BaseEntity {
   @Column(name = "DESCRIPTION", length = 2048)
   private String description; // 설명
 
-  @Column(name = "TIMESTAMP", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-  private LocalDateTime timestamp; // 수정일
 }

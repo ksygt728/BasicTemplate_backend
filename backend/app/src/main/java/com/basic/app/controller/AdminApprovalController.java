@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.custom.ApiResponse;
+import com.basic.app.api.ApiResponse;
 import com.basic.app.service.interfaces.ApprovalService;
 
 @RestController

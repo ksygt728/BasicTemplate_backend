@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.custom.ApiResponse;
+import com.basic.app.api.ApiResponse;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.service.interfaces.UserService;

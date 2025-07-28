@@ -7,7 +7,7 @@
  *   2025.07.23     김승연       최초 생성
  */
 
-package com.basic.app.mapping;
+package com.basic.app.api;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +31,14 @@ public class ModelMapperUtils {
         .collect(Collectors.toList());
   }
 
-  // Page 변환
-  public static <S, T> Page<T> map(Page<S> source, Class<T> targetClass) {
-    return source.map(entity -> modelMapper.map(entity, targetClass));
+  // Page -> PageResponse 변환(동적쿼리 타입 JOOQ 사용 시)
+  public static <S> PageResponse<S> map(Page<S> source) {
+    return new PageResponse<>(source);
+  }
+
+  // Entity -> DTO 변환 & Page -> PageResponse 변환
+  public static <S, T> PageResponse<T> map(Page<S> source, Class<T> targetClass) {
+    Page<T> page = source.map(entity -> modelMapper.map(entity, targetClass));
+    return new PageResponse<>(page);
   }
 }

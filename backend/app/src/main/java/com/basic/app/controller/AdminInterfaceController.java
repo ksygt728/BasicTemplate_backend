@@ -9,10 +9,12 @@
  */
 package com.basic.app.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,10 +26,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.custom.ApiResponse;
+import com.basic.app.api.ApiResponse;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
+import com.basic.app.entity.Interface;
 import com.basic.app.service.interfaces.InterfaceService;
 
 @RestController
@@ -40,18 +43,20 @@ public class AdminInterfaceController {
   /* [REQ_ADM_021_0] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 조회 폼 조회] */
   @GetMapping("/search")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllInterfaceWithConditionsForAdmin(
-      InterfaceReqDto interfaceReqDto) {
+      InterfaceReqDto interfaceReqDto,
+      @PageableDefault(page = 0, size = 5, sort = "ifId", direction = Sort.Direction.ASC) Pageable pageable) {
 
-    Map<String, Object> data = interfaceService.findAllInterfaceWithConditionsForAdmin(interfaceReqDto);
+    Map<String, Object> data = interfaceService.findAllInterfaceWithConditionsForAdmin(interfaceReqDto, pageable);
 
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_021] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 기준정보 리스트 조회] */
   @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllInterfaceForAdmin() {
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllInterfaceForAdmin(
+      @PageableDefault(page = 0, size = 10, sort = "ifId", direction = Sort.Direction.ASC) Pageable pageable) {
 
-    Map<String, Object> data = interfaceService.findAllInterfaceForAdmin();
+    Map<String, Object> data = interfaceService.findAllInterfaceForAdmin(pageable);
 
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
@@ -83,7 +88,6 @@ public class AdminInterfaceController {
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertInterfaceForAdmin(
       @Validated(CreateGroup.class) InterfaceReqDto ifc) {
-
     Map<String, Object> data = interfaceService.insertInterfaceForAdmin(ifc);
 
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
@@ -93,8 +97,11 @@ public class AdminInterfaceController {
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateInterfaceForAdmin(
       @Validated(UpdateGroup.class) InterfaceReqDto ifc) {
+
     Map<String, Object> data = interfaceService.updateInterfaceForAdmin(ifc);
+
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+
   }
 
   /* [REQ_ADM_026] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 삭제] */

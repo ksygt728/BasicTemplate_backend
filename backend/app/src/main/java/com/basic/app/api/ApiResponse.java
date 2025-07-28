@@ -6,7 +6,7 @@
  * @변경이력 :
  *   2025.07.24     김승연       최초 생성
  */
-package com.basic.app.custom;
+package com.basic.app.api;
 
 import com.basic.app.exception.ErrorCode;
 

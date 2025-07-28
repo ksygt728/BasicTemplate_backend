@@ -28,7 +28,7 @@ import lombok.ToString;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
-  @Column(name = "STS", nullable = false, insertable = false, columnDefinition = "CHAR(1) DEFAULT 'C'")
+  @Column(name = "STS", nullable = false, insertable = false, columnDefinition = "VARCHAR(1) DEFAULT 'C'")
   private String sts = "C"; // 시스템 상태 (C, D)
 
   @CreatedBy
