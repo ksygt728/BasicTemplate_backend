@@ -41,9 +41,4 @@ public class RoleMenuReqDto {
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 
-  @NotBlank(groups = { CreateGroup.class }, message = "생성자는 필수입니다.")
-  private String createUser; // 생성자
-
-  @NotBlank(groups = { UpdateGroup.class }, message = "수정자는 필수입니다.")
-  private String updateUser; // 수정자
 }

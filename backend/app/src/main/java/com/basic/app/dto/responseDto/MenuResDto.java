@@ -43,18 +43,6 @@ public class MenuResDto {
 
   private int orderNum; // 정렬순서
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // Menu - RoleMenu (1:N)
   private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); // 메뉴가 가진 권한 리스트
 

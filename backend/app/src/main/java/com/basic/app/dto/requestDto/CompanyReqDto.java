@@ -34,9 +34,4 @@ public class CompanyReqDto {
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "회사코드명은 필수입니다.")
   private String companyName; // 회사명
 
-  @NotBlank(groups = { CreateGroup.class }, message = "생성자는 필수입니다.")
-  private String createUser; // 생성자
-
-  @NotBlank(groups = { UpdateGroup.class }, message = "수정자는 필수입니다.")
-  private String updateUser; // 수정자
 }

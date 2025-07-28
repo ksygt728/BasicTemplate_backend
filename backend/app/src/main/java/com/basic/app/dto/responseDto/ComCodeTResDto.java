@@ -37,18 +37,6 @@ public class ComCodeTResDto {
 
   private int orderNum; // 정렬순서
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // CodeT - CodeD (1:N)
   private List<ComCodeDResDto> comCodeDs = new ArrayList<ComCodeDResDto>(); // 속성코드에 포함된 상세코드 리스트
 

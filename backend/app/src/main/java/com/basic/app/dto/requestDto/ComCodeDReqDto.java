@@ -45,9 +45,4 @@ public class ComCodeDReqDto {
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 필수입니다.")
   private int orderNum; // 정렬순서
 
-  @NotBlank(groups = { CreateGroup.class }, message = "생성자는 필수입니다.")
-  private String createUser; // 생성자
-
-  @NotBlank(groups = { UpdateGroup.class }, message = "수정자는 필수입니다.")
-  private String updateUser; // 수정자
 }

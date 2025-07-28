@@ -48,9 +48,4 @@ public class NoticeReqDto {
   @Null(groups = { CreateGroup.class, UpdateGroup.class }, message = "작성일은 NULL이어야 합니다")
   private LocalDateTime writeDate; // 작성일
 
-  @NotBlank(groups = { CreateGroup.class }, message = "생성자는 필수입니다.")
-  private String createUser; // 생성자
-
-  @NotBlank(groups = { UpdateGroup.class }, message = "수정자는 필수입니다.")
-  private String updateUser; // 수정자
 }

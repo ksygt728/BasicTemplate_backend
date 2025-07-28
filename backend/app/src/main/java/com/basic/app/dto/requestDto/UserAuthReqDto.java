@@ -8,7 +8,7 @@
  */
 package com.basic.app.dto.requestDto;
 
-import java.time.LocalDateTime;
+import com.basic.app.entity.baseEntity.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,20 +23,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserAuthReqDto {
+public class UserAuthReqDto extends BaseEntity {
   // Validation 사용 안함
   private String userId; // 사용자아이디
 
   private String refreshToken; // 리프레시토큰
-
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  private LocalDateTime timestamp; // 수정일
 
 }

@@ -35,18 +35,6 @@ public class RoleResDto {
 
   private String roleDesc; // 권한설명
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // Role - RoleMenu (1:N)
   private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); // 권한이 가진 메뉴 리스트
 

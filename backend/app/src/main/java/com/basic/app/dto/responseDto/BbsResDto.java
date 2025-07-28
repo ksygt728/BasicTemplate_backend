@@ -42,18 +42,6 @@ public class BbsResDto {
 
   private LocalDateTime writeDate; // 작성일
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // Bbs - BbsComment (1:N)
   private List<BbsCommentResDto> bbsComments = new ArrayList<BbsCommentResDto>(); // 게시글 댓글 리스트
 

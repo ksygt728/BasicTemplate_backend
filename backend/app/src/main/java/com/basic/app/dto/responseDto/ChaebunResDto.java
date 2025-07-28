@@ -41,15 +41,4 @@ public class ChaebunResDto {
 
   private String dateformat; // 데이터포맷
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
 }

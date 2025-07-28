@@ -51,18 +51,6 @@ public class UserResDto {
   // User - Department (N:1) [Onwer]
   private String deptCode; // 부서코드
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // User - Bbs (1:N)
   private List<BbsReqDto> bbsWritors = new ArrayList<BbsReqDto>(); // 작성한 게시글 리스트
 

@@ -42,18 +42,6 @@ public class DepartmentResDto {
 
   private String useYn; // 사용여부 (Y,N)
 
-  private String sts; // 시스템 상태 (C, D)
-
-  private String createUser; // 생성자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime createDate; // 생성일
-
-  private String updateUser; // 수정자
-
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-  private LocalDateTime timestamp; // 수정일
-
   // Department - User (1:N)
   private List<UserResDto> deptUsers = new ArrayList<UserResDto>(); // 부서 사원 리스트
 
