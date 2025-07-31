@@ -96,7 +96,7 @@ public class GlobalExceptionHandler {
               [*** Strace *** : {}]
             """,
         errorCode.getCode(),
-        errorCode.getMessage() + " [" + validatorErrorMessage + "]",
+        errorCode.getMessage() + validatorErrorMessage,
         e.getClass(),
         e.getMessage(),
         e.getStackTrace());

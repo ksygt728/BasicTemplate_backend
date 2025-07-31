@@ -51,7 +51,7 @@ public class ApiResponse<T> {
     return ApiResponse.<T>builder()
         .success(false)
         .errorCode(errorCode.getCode())
-        .message(errorCode.getMessage() + " [" + message + "]")
+        .message(errorCode.getMessage() + message)
         .data(null)
         .build();
   }
