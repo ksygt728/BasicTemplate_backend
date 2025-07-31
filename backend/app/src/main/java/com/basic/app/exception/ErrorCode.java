@@ -18,7 +18,7 @@ public enum ErrorCode {
   VALIDATION_ERROR("4003", "유효성 검사에 실패했습니다."),
 
   VALIDATION_ERROR_CLIENT("4004", "클라이언트 유효성 검사에 실패했습니다."),
-  VALIDATION_ERROR_SERVER("4005", "서버 유효성 검사에 실패했습니다."),
+  VALIDATION_ERROR_SERVER("5000", "서버 유효성 검사에 실패했습니다."),
 
   DATABASE_ERROR("5001", "데이터베이스 오류가 발생했습니다."),
   EXTERNAL_API_ERROR("5002", "외부 API 호출 오류가 발생했습니다."),
