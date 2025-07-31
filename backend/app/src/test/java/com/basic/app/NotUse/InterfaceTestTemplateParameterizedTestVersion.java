@@ -1,11 +1,8 @@
-package com.basic.app.FeatureTest;
+package com.basic.app.NotUse;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -18,11 +15,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestTemplate;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -51,7 +45,7 @@ import lombok.extern.log4j.Log4j2;
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
-public class InterfaceCrudTest {
+public class InterfaceTestTemplateParameterizedTestVersion {
 
         @Autowired
         private MockMvc mockMvc;
@@ -103,28 +97,8 @@ public class InterfaceCrudTest {
                 interfaceRepository.deleteAllById(afterAllDeleteList);
         }
 
-        // 예시 기본 정상 데이터
-        private Map<String, Object> baseTestData() {
-                return Map.of(
-                                "ifId", "IF100",
-                                "ifName", "기본 테스트 인터페이스",
-                                "status", "ACTIVE",
-                                "createdBy", "admin");
-        }
-
-        /**
-         * 테스트에 사용할 사용자 데이터를 제공하는 메서드
-         * 각 User 인스턴스가 하나의 테스트 케이스가 됨
-         */
-        static Stream<InterfaceReqDto> interfaceInitData() {
-                return Stream.of(
-                                new InterfaceReqDto("IF001", "회원가입 요청", "/api/v1/users/signup"),
-                                new InterfaceReqDto("IF002", "로그인 요청", "/api/v1/users/login"),
-                                new InterfaceReqDto("IF030", "세션 체크", "/api/v1/auth/session/check"));
-
-        }
-
         Stream<Arguments> 인터페이스_기준정보_조회_TestData() {
+
                 // [TC_ID : TC-097] [TC명 : 인터페이스 기준정보 조회1] [REQ_ID : REQ_ADM_021] [화면 : 기준 정보 >
                 // 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : 정상 조회 1건 조회]
                 String testName1 = "정상조회";
@@ -186,7 +160,7 @@ public class InterfaceCrudTest {
         @ParameterizedTest
         @MethodSource("인터페이스_기준정보_조회_TestData")
         @DisplayName("[TC_ID : TC-097] [TC명 : 인터페이스 기준정보 조회1] [REQ_ID : REQ_ADM_021] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : ]")
-        void 인터페이스_기준정보_조회(TestCaseDetailForSearch<?, ?> testCaseDetail) throws Exception {
+        void 인터페이스_기준정보_조회_미사용(TestCaseDetailForSearch<?, ?> testCaseDetail) throws Exception {
 
                 /* 1. given */
                 String url = testCaseDetail.getUrl();
@@ -196,7 +170,10 @@ public class InterfaceCrudTest {
                 ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
 
                 boolean preSave = testCaseDetail.isPreSave(); // 사전에 먼저 저장이 필요한 테스트 케이스
-
+                // 테스트 후 삭제할 리스트에 추가
+                if (testData instanceof InterfaceReqDto dto && dto.getIfId() != null) {
+                        afterAllDeleteList.add(dto.getIfId());
+                }
                 /* 2. when */
                 TestUtils.showLogTestCaseStart(testCaseName);
 
@@ -304,9 +281,12 @@ public class InterfaceCrudTest {
                 ApiResponse<?> expected = testCaseDetail.getExpected();
                 ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
 
-                MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-
+                // 테스트 후 삭제할 리스트에 추가
+                if (testData instanceof InterfaceReqDto dto && dto.getIfId() != null) {
+                        afterAllDeleteList.add(dto.getIfId());
+                }
                 /* 2. when */
+                MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
 
                 TestUtils.showLogTestCaseStart(testCaseName);
 
@@ -314,48 +294,6 @@ public class InterfaceCrudTest {
                                 post(url)
                                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                                                 .params(multiValueMap))
-                                .andExpect(httpStatus)
-                                .andReturn();
-
-                /* 3. then */
-                JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
-                JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
-
-                TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
-
-                assertThat(expectedToJson).isEqualTo(actualToJson);
-
-        }
-
-        @TestTemplate
-        @ExtendWith(SearchTestInvocationProvider.class)
-        @DisplayName("[TC_ID : TC-097] [TC명 : 인터페이스 기준정보 조회1] [REQ_ID : REQ_ADM_021] [화면 : 기준 정보 > 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : ]")
-        void 인터페이스_기준정보_조회2(TestCaseDetailForSearch<?, ?> testCaseDetail) throws Exception {
-
-                /* 1. given */
-                String url = testCaseDetail.getUrl();
-                String testCaseName = testCaseDetail.getTestName();
-                Object testData = testCaseDetail.getTestData();
-                ApiResponse<?> expected = testCaseDetail.getExpected();
-                ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
-
-                boolean preSave = testCaseDetail.isPreSave(); // 사전에 먼저 저장이 필요한 테스트 케이스
-
-                /* 2. when */
-                TestUtils.showLogTestCaseStart(testCaseName);
-
-                if (preSave) { // 잘못된 형식 테스트에는 테스트 데이터가 없음
-                        MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-                        mockMvc.perform(
-                                        post(BASE_URL)
-                                                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                                                        .params(multiValueMap))
-                                        .andExpect(status().isOk())
-                                        .andReturn();
-                }
-
-                // 조회
-                MvcResult actual = mockMvc.perform(get(url))
                                 .andExpect(httpStatus)
                                 .andReturn();
 

@@ -1,4 +1,4 @@
-package com.basic.app.FeatureTest;
+package com.basic.app.NotUse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -39,7 +39,7 @@ import lombok.extern.log4j.Log4j2;
 @SpringBootTest // 전체 Spring ApplicationContext를 로딩해서 통합 테스트를 실행
 @AutoConfigureMockMvc // MockMvc를 자동 설정하여 주입 가능하게 만듦
 @Transactional // 테스트가 끝나면 자동으로 DB 롤백 처리 (테스트 데이터가 남지 않음)
-public class InterfaceTest {
+public class InterfaceTestNotUse {
 
     @Autowired
     private MockMvc mockMvc; // Controller 테스트용 HTTP 요청 도구

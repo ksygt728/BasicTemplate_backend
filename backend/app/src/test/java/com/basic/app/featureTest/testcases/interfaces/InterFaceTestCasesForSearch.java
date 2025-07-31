@@ -1,4 +1,4 @@
-package com.basic.app.FeatureTest;
+package com.basic.app.featureTest.testcases.interfaces;
 
 import org.junit.jupiter.api.extension.*;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class SearchTestInvocationProvider implements TestTemplateInvocationContextProvider {
+public class InterFaceTestCasesForSearch implements TestTemplateInvocationContextProvider {
     private final String BASE_URL = "/admin/interface";
 
     @Override
@@ -77,7 +77,8 @@ public class SearchTestInvocationProvider implements TestTemplateInvocationConte
         return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
             @Override
             public String getDisplayName(int invocationIndex) {
-                return "검색 테스트 케이스 " + (testCase.getTestName());
+                return "인터페이스 조회 테스트케이스 : [" + invocationIndex + "] " + (testCase.getTestName());
+
             }
 
             @Override
