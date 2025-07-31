@@ -33,7 +33,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
          */
         String url1 = BASE_URL;
         String testName1 = "정상등록";
-        InterfaceReqDto testData1 = new InterfaceReqDto("IF0012", "회원가입 요청", "/api/v1/users/signup");
+        InterfaceReqDto testData1 = new InterfaceReqDto("IF001_TEST", "회원가입 요청", "/api/v1/users/signup");
         ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", testData1));
         ResultMatcher status1 = status().isOk();
 
