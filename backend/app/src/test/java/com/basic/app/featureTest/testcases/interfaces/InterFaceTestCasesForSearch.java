@@ -72,7 +72,7 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
         return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
             @Override
             public String getDisplayName(int invocationIndex) {
-                return "인터페이스 조회 테스트케이스 : [" + invocationIndex + "] " + (testCase.getTestName());
+                return "[" + invocationIndex + "] " + "인터페이스 조회 : " + (testCase.getTestName());
 
             }
 

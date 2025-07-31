@@ -42,7 +42,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
          * 관리] [기능 : 인터페이스 추가] [테스트항목 : 필수값 누락]
          */
         String url2 = BASE_URL;
-        String testName2 = "필수값 누락(IF ID)";
+        String testName2 = "필수값 누락 | IF ID 누락";
         InterfaceReqDto testData2 = new InterfaceReqDto("", "회원가입 요청", "/api/v1/users/signup");
         ApiResponse<?> expected2 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "IF아이디는 필수입니다.");
         ResultMatcher status2 = status().is4xxClientError();
@@ -52,7 +52,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
          * 관리] [기능 : 인터페이스 추가] [테스트항목 : 필수값 누락]
          */
         String url3 = BASE_URL;
-        String testName3 = "필수값 누락(IF명)";
+        String testName3 = "필수값 누락 | IF명 누락";
         InterfaceReqDto testData3 = new InterfaceReqDto("IF001", "", "/api/v1/users/signup");
         ApiResponse<?> expected3 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "인터페이스명은 필수입니다.");
         ResultMatcher status3 = status().is4xxClientError();
@@ -63,7 +63,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
          */
 
         String url5 = BASE_URL;
-        String testName5 = "존재하는 ID 등록 시도(중복)";
+        String testName5 = "존재하는 ID 등록 시도 | 중복";
         InterfaceReqDto testData5 = new InterfaceReqDto("IF003_SEARCH", "회원정보 요청", "/api/v1/users/info");
         ApiResponse<?> expected5 = ApiResponse.fail(ErrorCode.OBJECT_IS_EXISTED);
         ResultMatcher status5 = status().is4xxClientError();
@@ -91,7 +91,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
         return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
             @Override
             public String getDisplayName(int invocationIndex) {
-                return "인터페이스 추가 테스트케이스 : [" + invocationIndex + "] " + (testCase.getTestName());
+                return "[" + invocationIndex + "] " + "인터페이스 추가 : " + (testCase.getTestName());
             }
 
             @Override
