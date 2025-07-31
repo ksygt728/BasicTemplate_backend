@@ -1,22 +1,32 @@
 package com.basic.app.featureTest.testcases.interfaces;
 
-import org.junit.jupiter.api.extension.*;
-import org.springframework.test.web.servlet.ResultMatcher;
-
-import com.basic.app.util.TestCaseDetailForSearch;
-
-import com.basic.app.api.ApiResponse;
-import com.basic.app.dto.requestDto.InterfaceReqDto;
-import com.basic.app.exception.ErrorCode;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.extension.Extension;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
+import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.ResultMatcher;
+
+import com.basic.app.api.ApiResponse;
+import com.basic.app.dto.requestDto.InterfaceReqDto;
+import com.basic.app.entity.Interface;
+import com.basic.app.exception.ErrorCode;
+import com.basic.app.repository.InterfaceRepository;
+import com.basic.app.util.TestCaseDetail;
+
 public class InterFaceTestCasesForSearch implements TestTemplateInvocationContextProvider {
     private final String BASE_URL = "/admin/interface";
+
+    @Autowired
+    private InterfaceRepository interfaceRepository;
 
     @Override
     public boolean supportsTestTemplate(ExtensionContext context) {
@@ -25,10 +35,11 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
 
     @Override
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
+        
         // [TC_ID : TC-097] [TC명 : 인터페이스 기준정보 조회1] [REQ_ID : REQ_ADM_021] [화면 : 기준 정보 >
         // 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : 정상 조회 1건 조회]
         String testName1 = "정상조회";
-        InterfaceReqDto testData1 = new InterfaceReqDto("IF002_SEARCH", "상품페이지 요청", "/api/v1/items/product");
+        InterfaceReqDto testData1 = new InterfaceReqDto("IF002_SEARCH", "주문페이지 요청", "/api/v1/orders/request");
         ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", testData1));
         ResultMatcher status1 = status().isOk();
         String url1 = BASE_URL + "/" + testData1.getIfId();
@@ -68,10 +79,10 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
         boolean preSave5 = false; // 사전에 먼저 저장이 필요한 테스트 케이스
 
         // 기존 변수들을 활용하여 TestCaseDetailForSearch 객체로 리스트 생성
-        List<TestCaseDetailForSearch> testCases = List.of(
-                new TestCaseDetailForSearch<>(url1, testName1, testData1, expected1, status1, searchForm1, preSave1),
-                new TestCaseDetailForSearch<>(url3, testName3, testData3, expected3, status3, searchForm3, preSave3),
-                new TestCaseDetailForSearch<>(url5, testName5, testData5, expected5, status5, searchForm5, preSave5));
+        List<TestCaseDetail> testCases = List.of(
+                new TestCaseDetail<>(url1, testName1, testData1, expected1, status1),
+                new TestCaseDetail<>(url3, testName3, testData3, expected3, status3),
+                new TestCaseDetail<>(url5, testName5, testData5, expected5, status5));
 
         // 각 케이스에 대한 InvocationContext 생성
         return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
@@ -88,8 +99,8 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
                     public boolean supportsParameter(ParameterContext parameterContext,
                             ExtensionContext extensionContext) {
                         Class<?> type = parameterContext.getParameter().getType();
-                        // TestCaseDetailForSearch만 지원
-                        return TestCaseDetailForSearch.class.isAssignableFrom(type);
+                        // TestCaseDetail만 지원
+                        return TestCaseDetail.class.isAssignableFrom(type);
                     }
 
                     @Override
