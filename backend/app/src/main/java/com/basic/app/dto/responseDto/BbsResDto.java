@@ -43,6 +43,7 @@ public class BbsResDto {
   private LocalDateTime writeDate; // 작성일
 
   // Bbs - BbsComment (1:N)
-  private List<BbsCommentResDto> bbsComments = new ArrayList<BbsCommentResDto>(); // 게시글 댓글 리스트
+  // private List<BbsCommentResDto> bbsComments = new
+  // ArrayList<BbsCommentResDto>(); // 게시글 댓글 리스트
 
 }
