@@ -10,6 +10,7 @@ package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.validation.constraints.Email;
@@ -28,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserReqDto {
+public class UserReqDto extends BaseReqDto {
 
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용자아이디는 필수입니다.")
   private String userId; // 사용자아이디
@@ -42,12 +43,13 @@ public class UserReqDto {
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "전화번호는 필수입니다.")
   private String phoneNum; // 전화번호
 
-  @Email
+  @Email(groups = { CreateGroup.class, UpdateGroup.class }, message = "유효한 이메일 형식이 아닙니다.")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "이메일은 필수입니다.")
   private String email; // 이메일
 
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "역할은 필수입니다.")
-  private String role; // 역할
+  // @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "역할은
+  // 필수입니다.")
+  // private String role; // 역할
 
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용자타입은 필수입니다.")
   private String userType; // 사용자타입

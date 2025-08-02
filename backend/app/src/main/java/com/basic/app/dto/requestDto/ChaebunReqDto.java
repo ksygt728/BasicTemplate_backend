@@ -10,6 +10,7 @@ package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Null;
@@ -26,7 +27,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ChaebunReqDto {
+public class ChaebunReqDto extends BaseReqDto {
 
   @NotBlank(groups = { UpdateGroup.class }, message = "채번아이디는 필수입니다.")
   private String seqId; // 채번아이디
