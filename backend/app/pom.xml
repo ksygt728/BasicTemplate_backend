@@ -147,7 +147,7 @@
 		</dependency>
 
 		<!-- [security] -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -156,13 +156,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
 
 		<!--[JWTToken]  -->
 		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>3.10.2</version>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>4.4.0</version>
 		</dependency>
 
 		<!--[Swagger] -->
@@ -178,7 +178,18 @@
 			<version>3.0.0</version>
 		</dependency>
 
+		<!--[Redis] -->
+		<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 
+		<!-- Lettuce (기본 연결 클라이언트) -->
+		<dependency>
+			<groupId>io.lettuce</groupId>
+			<artifactId>lettuce-core</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

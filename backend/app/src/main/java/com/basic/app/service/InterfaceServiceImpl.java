@@ -71,14 +71,14 @@ public class InterfaceServiceImpl implements InterfaceService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 null 반환)
-    Interface interfaceObj = interfaceRepository.findByIfIdAndSts(ifId, Status.POSITIVE)
+    // 2. Entity -> DTO 변환
+    InterfaceResDto interfaceResDto = interfaceRepository.findById(ifId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .map(entity -> entity.toDto(InterfaceResDto.class))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
-    // 2. Entity -> DTO 변환
-    InterfaceResDto interfaceDto = ModelMapperUtils.map(interfaceObj, InterfaceResDto.class);
-
     // 3. 결과를 Map에 담아 반환
-    data.put("data", interfaceDto);
+    data.put("data", interfaceResDto);
     return data;
   }
 
@@ -102,23 +102,21 @@ public class InterfaceServiceImpl implements InterfaceService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. DTO -> Entity 변환
-    Interface interfaceObj = ModelMapperUtils.map(ifc, Interface.class);
+    Interface ifcEntity = ifc.toEntity(Interface.class);
 
     // 2. ID로 기존 엔티티 조회
-    // 만약 엔티티가 존재한다면 NotFoundException 발생(발생할 수 없는 접근이므로 BusinessException 처리)
-    interfaceRepository.findByIfIdAndSts(interfaceObj.getIfId(), Status.POSITIVE)
+    interfaceRepository.findById(ifcEntity.getIfId())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .ifPresent(entity -> {
           throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
         });
 
-    // 3. 데이터 저장
-    Interface savedInterface = interfaceRepository.save(interfaceObj);
+    // 3. DTO -> Entity 후 데이터 저장
+    Interface savedIfcEntity = interfaceRepository.save(ifcEntity);
 
     // 4. Entity -> DTO 변환
-    InterfaceResDto savedInterfaceDto = ModelMapperUtils.map(savedInterface, InterfaceResDto.class);
-
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedInterfaceDto);
+    data.put("data", savedIfcEntity.toDto(InterfaceResDto.class));
     return data;
   }
 
@@ -128,21 +126,19 @@ public class InterfaceServiceImpl implements InterfaceService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. DTO -> Entity 변환
-    Interface interfaceObj = ModelMapperUtils.map(ifc, Interface.class);
+    Interface ifcEntity = ifc.toEntity(Interface.class);
 
     // 2. ID로 기존 엔티티 조회
-    // 만약 엔티티가 존재하지 않으면 NotFoundException 발생(불가능한 접근이므로 NotFoundException 처리)
-    interfaceRepository.findByIfIdAndSts(interfaceObj.getIfId(), Status.POSITIVE)
+    interfaceRepository.findById(ifcEntity.getIfId())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 3. 엔티티 수정 & 저장(자동)
-    Interface savedInterface = interfaceRepository.save(interfaceObj);
+    Interface savedIfcEntity = interfaceRepository.save(ifcEntity);
 
     // 4. Entity -> DTO 변환
-    InterfaceResDto savedInterfaceDto = ModelMapperUtils.map(savedInterface, InterfaceResDto.class);
-
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedInterfaceDto);
+    data.put("data", savedIfcEntity.toDto(InterfaceResDto.class));
 
     return data;
   }
@@ -155,9 +151,8 @@ public class InterfaceServiceImpl implements InterfaceService {
     Interface interfaceObj = interfaceRepository.findByIfIdAndSts(ifId, Status.POSITIVE)
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
-    // 2. 상태를 'D'로 변경하여 삭제 처리
+    // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
     interfaceObj.setSts(Status.NAGATIVE);
-    Interface savedInterface = interfaceRepository.save(interfaceObj);
 
     // 3. 결과를 Map에 담아 반환
     data.put("data", "success");

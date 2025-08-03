@@ -26,6 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ApiResponse;
@@ -43,7 +44,6 @@ import com.basic.app.util.TestCaseDetailSearchForm;
 import com.basic.app.util.TestUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest

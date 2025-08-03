@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Null;
@@ -28,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeReqDto {
+public class NoticeReqDto extends BaseReqDto {
 
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "공지아이디는 필수입니다.")
   private String notId; // 공지아이디
