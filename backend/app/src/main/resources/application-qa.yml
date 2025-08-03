@@ -21,6 +21,12 @@ spring:
         format_sql: false # SQL 쿼리 포맷팅 비활성화
         use_sql_comments: false # SQL 쿼리 주석 비활성화
 
+  data:
+    redis:
+      host: localhost
+      port: 6380
+      timeout: 30000ms
+
 logging:
   level:
     org:
@@ -32,3 +38,19 @@ logging:
     org.jooq: ERROR
     org.jooq.tools: ERROR
     org.jooq.tools.LoggerListener: ERROR
+
+jwt:
+  env: qa # 현재 활성화된 프로필 설정 (dev 프로필 사용)
+  access-token-header: Authorization-AccessToken-QA
+  refresh-token-header: Authorization-RefreshToken-QA
+  bearer-type: Bearer
+  issuer: CBSK SERVER(QA)
+  subject:
+    first: CBSK JWT TOKEN
+    second: userId
+    third: phoneNum
+  expire-time:
+    access-token: 10m # 10분 = 1000 * 60 * 10
+    refresh-token: 60d
+  dead-time-for-server: 10s # 10초
+  secret-key: CBSK-DEV-SECRET-KEY # JWT 서명에 사용할 비밀 키

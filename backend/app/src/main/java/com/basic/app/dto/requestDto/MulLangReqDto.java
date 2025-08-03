@@ -10,6 +10,7 @@ package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MulLangReqDto {
+public class MulLangReqDto extends BaseReqDto {
 
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어코드는 필수입니다.")
   private String langCd; // 언어코드

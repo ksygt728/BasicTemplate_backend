@@ -36,9 +36,9 @@ public class RoleResDto {
   private String roleDesc; // 권한설명
 
   // Role - RoleMenu (1:N)
-  private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); // 권한이 가진 메뉴 리스트
+  // private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); // 권한이 가진 메뉴 리스트
 
   // Role - RoleUser (1:N)
-  private List<RoleUserResDto> roleUsers = new ArrayList<RoleUserResDto>(); // 권한이 가진 사용자 리스트
+  // private List<RoleUserResDto> roleUsers = new ArrayList<RoleUserResDto>(); // 권한이 가진 사용자 리스트
 
 }

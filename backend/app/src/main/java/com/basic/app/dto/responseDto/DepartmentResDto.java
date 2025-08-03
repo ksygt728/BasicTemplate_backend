@@ -38,11 +38,12 @@ public class DepartmentResDto {
   private int deptLv; // 부서레벨
 
   // Department - Company (N:1) [Onwer]
-  private String companyCode; // 회사코드
+  private CompanyResDto companyCode; // 회사코드
 
   private String useYn; // 사용여부 (Y,N)
 
   // Department - User (1:N)
-  private List<UserResDto> deptUsers = new ArrayList<UserResDto>(); // 부서 사원 리스트
+  // private List<UserResDto> deptUsers = new ArrayList<UserResDto>(); // 부서 사원
+  // 리스트
 
 }

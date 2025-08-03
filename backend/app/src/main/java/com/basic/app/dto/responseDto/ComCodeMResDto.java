@@ -36,6 +36,7 @@ public class ComCodeMResDto {
   private String grpNm; // 그룹코드명
 
   // CodeM - CodeT (1:N)
-  private List<ComCodeTReqDto> comCodeTs = new ArrayList<ComCodeTReqDto>(); // 그뤂코드에 포함된 그뤂코드속성 리스트
+  // private List<ComCodeTReqDto> comCodeTs = new ArrayList<ComCodeTReqDto>(); //
+  // 그뤂코드에 포함된 그뤂코드속성 리스트
 
 }

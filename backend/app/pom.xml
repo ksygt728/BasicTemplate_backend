@@ -114,20 +114,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- [queryDSL 동적 쿼리] : QueryDSL -->
-		<!-- <dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<version>5.0.0</version>
-			<classifier>jakarta</classifier>
-			<scope>provided</scope>
-		</dependency>
+		<!-- [jOOQ] -->
 		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-			<version>5.0.0</version>
-			<classifier>jakarta</classifier>
-		</dependency> -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jooq</artifactId>
+		</dependency>
 
 		<!--[ModelMapper]-->
 		<dependency>
@@ -136,12 +127,11 @@
 			<version>3.1.1</version>
 		</dependency>
 
-		<!-- [jOOQ] -->
+		<!--[AOP]-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jooq</artifactId>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-
 
 		<!-- [mail] -->
 		<dependency>
@@ -157,7 +147,7 @@
 		</dependency>
 
 		<!-- [security] -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -166,13 +156,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
 
 		<!--[JWTToken]  -->
 		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>3.10.2</version>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>4.4.0</version>
 		</dependency>
 
 		<!--[Swagger] -->
@@ -188,37 +178,18 @@
 			<version>3.0.0</version>
 		</dependency>
 
-
-		<!-- jackson-->
-		<!-- <dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.12.0</version>
-		</dependency>
+		<!--[Redis] -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.12.0</version>
-		</dependency> 
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-hibernate5</artifactId>
-			<version>2.12.0</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		-->
 
-		<!--Springopenapi -->
-		<!-- <dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.9</version>
-		</dependency>
+		<!-- Lettuce (기본 연결 클라이언트) -->
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-data-rest</artifactId>
-			<version>1.5.2</version>
-		</dependency> -->
-
+			<groupId>io.lettuce</groupId>
+			<artifactId>lettuce-core</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

@@ -3,6 +3,8 @@ package com.basic.app.service.interfaces;
 import java.util.Map;
 
 import com.basic.app.dto.requestDto.UserReqDto;
+import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
+import com.basic.app.entity.User;
 
 public interface UserService {
 
@@ -13,5 +15,9 @@ public interface UserService {
   Map<String, Object> updateUserForAdmin(UserReqDto user);
 
   Map<String, Object> deleteUserForAdmin(String userId);
+
+  Map<String, Object> signUp(UserReqDto user);
+
+  Map<String, Object> signIn(AuthReqDto user);
 
 }
