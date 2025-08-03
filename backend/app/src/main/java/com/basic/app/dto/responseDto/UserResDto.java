@@ -49,18 +49,22 @@ public class UserResDto {
   private String gender; // 성별 (M, F)
 
   // User - Department (N:1) [Onwer]
-  private String deptCode; // 부서코드
+  private DepartmentResDto deptCode; // 부서코드
 
   // User - Bbs (1:N)
-  private List<BbsReqDto> bbsWritors = new ArrayList<BbsReqDto>(); // 작성한 게시글 리스트
+  // private List<BbsReqDto> bbsWritors = new ArrayList<BbsReqDto>(); // 작성한 게시글
+  // 리스트
 
   // User - BbsComment (1:N)
-  private List<BbsCommentResDto> bbsCommentWritors = new ArrayList<BbsCommentResDto>(); // 작성한 댓글 리스트
+  // private List<BbsCommentResDto> bbsCommentWritors = new
+  // ArrayList<BbsCommentResDto>(); // 작성한 댓글 리스트
 
   // User - Notice (1:N)
-  private List<NoticeResDto> noticeWritors = new ArrayList<NoticeResDto>(); // 작성한 공지 리스트
+  // private List<NoticeResDto> noticeWritors = new ArrayList<NoticeResDto>(); //
+  // 작성한 공지 리스트
 
   // User - RoleUser (1:N)
-  private List<RoleUserResDto> roleUsers = new ArrayList<RoleUserResDto>(); // 사용자가 가진 권한 리스트
+  // private List<RoleUserResDto> roleUsers = new ArrayList<RoleUserResDto>(); //
+  // 사용자가 가진 권한 리스트
 
 }

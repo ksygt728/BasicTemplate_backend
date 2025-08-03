@@ -44,6 +44,7 @@ public class MenuResDto {
   private int orderNum; // 정렬순서
 
   // Menu - RoleMenu (1:N)
-  private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); // 메뉴가 가진 권한 리스트
+  // private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); //
+  // 메뉴가 가진 권한 리스트
 
 }

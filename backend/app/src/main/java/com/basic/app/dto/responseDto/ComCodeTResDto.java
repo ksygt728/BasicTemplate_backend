@@ -38,6 +38,7 @@ public class ComCodeTResDto {
   private int orderNum; // 정렬순서
 
   // CodeT - CodeD (1:N)
-  private List<ComCodeDResDto> comCodeDs = new ArrayList<ComCodeDResDto>(); // 속성코드에 포함된 상세코드 리스트
+  // private List<ComCodeDResDto> comCodeDs = new ArrayList<ComCodeDResDto>(); //
+  // 속성코드에 포함된 상세코드 리스트
 
 }

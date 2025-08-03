@@ -2,6 +2,7 @@ package com.basic.app.entity.baseEntity;
 
 import java.time.LocalDateTime;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -48,4 +49,9 @@ public abstract class BaseEntity {
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   @Column(name = "TIMESTAMP", nullable = false)
   private LocalDateTime timestamp; // 수정일시
+
+  public <T> T toDto(Class<T> targetClass) {
+    return new ModelMapper().map(this, targetClass);
+  }
+
 }

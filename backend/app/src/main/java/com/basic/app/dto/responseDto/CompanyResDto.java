@@ -34,5 +34,5 @@ public class CompanyResDto {
   private String companyName; // 회사명
 
   // Company - Department (1:N)
-  private List<DepartmentResDto> dpets = new ArrayList<DepartmentResDto>(); // 부서 리스트
+  // private List<DepartmentResDto> dpets = new ArrayList<DepartmentResDto>(); // 부서 리스트
 }

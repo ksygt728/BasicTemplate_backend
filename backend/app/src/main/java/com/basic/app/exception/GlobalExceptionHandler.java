@@ -18,6 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authorization.AuthorizationDeniedException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,6 +31,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.basic.app.api.ApiResponse;
 import com.basic.app.exception.customException.BusinessException;
+import com.basic.app.exception.customException.JwtExeption;
 import com.basic.app.exception.customException.NotFoundException;
 
 @ControllerAdvice
@@ -39,18 +44,8 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
 
-    log.warn(
-        """
+    showErrorLogFormat(e, errorCode);
 
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage(),
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(errorCode));
@@ -62,18 +57,8 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
 
-    log.warn(
-        """
+    showErrorLogFormat(e, errorCode);
 
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage(),
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(errorCode));
@@ -88,18 +73,7 @@ public class GlobalExceptionHandler {
     List<FieldError> validatorErrors = e.getBindingResult().getFieldErrors();
     String validatorErrorMessage = validatorErrors.get(0).getDefaultMessage();
 
-    log.warn(
-        """
-
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage() + validatorErrorMessage,
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
+    showErrorLogFormat(e, errorCode, validatorErrorMessage);
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
@@ -113,46 +87,38 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_SERVER;
 
-    log.warn(
-        """
-
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage(),
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
+    showErrorLogFormat(e, errorCode);
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(ErrorCode.VALIDATION_ERROR_SERVER));
   }
 
-  // /* Error code : 401 (인증 실패) */
-  // @ExceptionHandler(BadCredentialsException.class)
-  // public ResponseEntity<ApiResponse<?>>
-  // handleBadCredentials(BadCredentialsException e) {
+  /* Error code : 401 (로그인 인증 실패시) */
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<ApiResponse<?>> handleUsernameNotFound(BadCredentialsException e) {
 
-  // log.error("인증실패(BadCredentials) : {}", e.getMessage());
-  // return ResponseEntity
-  // .status(HttpStatus.UNAUTHORIZED)
-  // .body(ApiResponse.fail(ErrorCode.UNAUTHORIZED_FAILURE));
-  // }
+    ErrorCode errorCode = ErrorCode.UNAUTHORIZED_FAILURE;
 
-  // /* Error code : 403 (권한 없음) */
-  // @ExceptionHandler(AccessDeniedException.class)
-  // public ResponseEntity<ApiResponse<?>>
-  // handleAccessDenied(AccessDeniedException e) {
+    showErrorLogFormat(e, errorCode);
 
-  // log.error("권한 없음(AccessDenied) : {}", e.getMessage());
+    return ResponseEntity
+        .status(HttpStatus.UNAUTHORIZED)
+        .body(ApiResponse.fail(ErrorCode.UNAUTHORIZED_FAILURE));
+  }
 
-  // return ResponseEntity
-  // .status(HttpStatus.FORBIDDEN)
-  // .body(ApiResponse.fail(ErrorCode.ACCESS_DENIED));
-  // }
+  /* Error code : 403 (권한이 없을경우 @PreAuthorize) */
+  @ExceptionHandler(AuthorizationDeniedException.class)
+  public ResponseEntity<ApiResponse<?>> handleAuthorizationDenied(AuthorizationDeniedException e) {
+
+    ErrorCode errorCode = ErrorCode.ACCESS_DENIED;
+
+    showErrorLogFormat(e, errorCode);
+
+    return ResponseEntity
+        .status(HttpStatus.FORBIDDEN)
+        .body(ApiResponse.fail(ErrorCode.ACCESS_DENIED));
+  }
 
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
@@ -160,18 +126,7 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
-    log.warn(
-        """
-
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage(),
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
+    showErrorLogFormat(e, errorCode);
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -184,18 +139,7 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
-    log.warn(
-        """
-
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
-            """,
-        errorCode.getCode(),
-        errorCode.getMessage(),
-        e.getClass(),
-        e.getMessage(),
-        e.getStackTrace());
+    showErrorLogFormat(e, errorCode);
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -208,6 +152,15 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = ErrorCode.SERVER_ERROR;
 
+    showErrorLogFormat(e, errorCode);
+
+    return ResponseEntity
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(ApiResponse.fail(ErrorCode.SERVER_ERROR));
+  }
+
+  // 로그 출력 형식(default)
+  public void showErrorLogFormat(Exception e, ErrorCode errorCode) {
     log.warn(
         """
 
@@ -220,10 +173,21 @@ public class GlobalExceptionHandler {
         e.getClass(),
         e.getMessage(),
         e.getStackTrace());
-
-    return ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(ApiResponse.fail(ErrorCode.SERVER_ERROR));
   }
 
+  // VALIDATION_ERROR_CLIENT 에 추가 메시지 전달(예: @Validated 어노테이션에서 발생한 에러 메시지)
+  public void showErrorLogFormat(Exception e, ErrorCode errorCode, String additionalMessage) {
+    log.warn(
+        """
+
+              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
+              [*** Server Log ***] : [Class : {}] - [Message : {}]
+              [*** Strace *** : {}]
+            """,
+        errorCode.getCode(),
+        errorCode.getMessage() + additionalMessage,
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
+  }
 }

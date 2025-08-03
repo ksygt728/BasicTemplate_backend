@@ -10,6 +10,7 @@ package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MenuReqDto {
+public class MenuReqDto extends BaseReqDto {
 
   @NotBlank(groups = { UpdateGroup.class }, message = "메뉴코드는 필수입니다.")
   private String menuCd; // 메뉴코드

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Null;
@@ -28,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BbsReqDto {
+public class BbsReqDto extends BaseReqDto {
 
   @NotBlank(groups = UpdateGroup.class, message = "게시판아이디는 필수입니다.")
   private String bbsId; // 게시판아이디

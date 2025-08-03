@@ -12,6 +12,7 @@ package com.basic.app.dto.requestDto;
 import java.time.LocalDateTime;
 
 import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LogApiReqDto {
+public class LogApiReqDto extends BaseReqDto {
 
   @NotBlank(groups = { CreateGroup.class }, message = "로그아이디는 필수입니다.")
   private String logId; // 로그아이디
