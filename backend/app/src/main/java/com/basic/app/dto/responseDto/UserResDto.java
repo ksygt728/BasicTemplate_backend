@@ -49,7 +49,7 @@ public class UserResDto {
   private String gender; // 성별 (M, F)
 
   // User - Department (N:1) [Onwer]
-  private String deptCode; // 부서코드
+  private DepartmentResDto deptCode; // 부서코드
 
   // User - Bbs (1:N)
   // private List<BbsReqDto> bbsWritors = new ArrayList<BbsReqDto>(); // 작성한 게시글
