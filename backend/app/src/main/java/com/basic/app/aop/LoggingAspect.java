@@ -1,5 +1,7 @@
 package com.basic.app.aop;
 
+import java.lang.reflect.Field;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -77,7 +79,29 @@ public class LoggingAspect {
 
   private String serializeArgsToJson(Object[] args) {
     try {
-      return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(args);
+      Object[] maskedArgs = new Object[args.length];
+      for (int i = 0; i < args.length; i++) {
+        Object arg = args[i];
+        if (arg == null) {
+          maskedArgs[i] = null;
+          continue;
+        }
+        Class<?> clazz = arg.getClass();
+        // DTO나 Map 등만 마스킹 시도
+        if (!clazz.getName().startsWith("java.")) {
+          Object clone = objectMapper.convertValue(arg, clazz);
+          for (Field field : clazz.getDeclaredFields()) {
+            if ("password".equalsIgnoreCase(field.getName())) {
+              field.setAccessible(true);
+              field.set(clone, "****");
+            }
+          }
+          maskedArgs[i] = clone;
+        } else {
+          maskedArgs[i] = arg;
+        }
+      }
+      return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(maskedArgs);
     } catch (Exception e) {
       return "[Unserializable request params]";
     }
