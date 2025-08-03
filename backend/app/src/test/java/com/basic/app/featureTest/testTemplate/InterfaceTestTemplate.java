@@ -145,7 +145,9 @@ public class InterfaceTestTemplate {
                 /* 2. when */
                 TestUtils.showLogTestCaseStart(testCaseName);
 
-                MvcResult actual = mockMvc.perform(get(url))
+                MvcResult actual = mockMvc.perform(get(url)
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .header("test-token", true))
                                 .andExpect(httpStatus)
                                 .andReturn();
 
@@ -182,6 +184,8 @@ public class InterfaceTestTemplate {
                 multiValueMap.add("sort", pageRequest.getSort().toString());
 
                 MvcResult actual = mockMvc.perform(get(url)
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .header("test-token", true)
                                 .params(multiValueMap))
                                 .andExpect(httpStatus)
                                 .andReturn();
@@ -216,6 +220,7 @@ public class InterfaceTestTemplate {
                 MvcResult actual = mockMvc.perform(
                                 post(url)
                                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                                .header("test-token", true)
                                                 .params(multiValueMap))
                                 .andExpect(httpStatus)
                                 .andReturn();
@@ -250,6 +255,7 @@ public class InterfaceTestTemplate {
                 MvcResult actual = mockMvc.perform(
                                 put(url)
                                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                                .header("test-token", true)
                                                 .params(multiValueMap))
                                 .andExpect(httpStatus)
                                 .andReturn();
@@ -279,7 +285,10 @@ public class InterfaceTestTemplate {
                 /* 2. when */
                 TestUtils.showLogTestCaseStart(testCaseName);
 
-                MvcResult actual = mockMvc.perform(delete(url))
+                MvcResult actual = mockMvc.perform(
+                                delete(url)
+                                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                                .header("test-token", true))
                                 .andExpect(httpStatus)
                                 .andReturn();
 
