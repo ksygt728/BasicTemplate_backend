@@ -3,10 +3,12 @@ package com.basic.app.service;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.service.interfaces.MenuService;
 
+@Transactional
 @Service
 public class MenuServiceImpl implements MenuService {
 
