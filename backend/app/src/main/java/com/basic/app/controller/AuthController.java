@@ -86,7 +86,7 @@ public class AuthController {
   /* [REQ_CMN_012] [화면 : 로그인] [기능 : 로그인 > 비밀번호 찾기] */
   /* [REQ_CMN_013] [화면 : 로그인] [기능 : 로그인 > 비밀번호 찾기 > 비밀번호 초기화] */
 
-  // @PreAuthorize("isAuthenticated() and (#user.userId == authentication.name or hasRole('ADMIN'))")
+  @PreAuthorize("isAuthenticated() and (#user.userId == authentication.name or hasRole('ADMIN'))")
   @PostMapping("/test")
   public ResponseEntity<ApiResponse<Map<String, Object>>> test(
       @Validated(CreateGroup.class) AuthReqDto user) {
@@ -94,7 +94,7 @@ public class AuthController {
     // 로그인 처리
     Map<String, Object> data = userService.signIn(user);
 
-    String test = "ㅋㅋ";
+    String test = "응답하면 정상";
     data.put("data", test);
 
     return ResponseEntity.status(HttpStatus.OK)

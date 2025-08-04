@@ -94,6 +94,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         boolean isVerified = jwtProvider.isVaildAccessToken(jwtAccessToken);
         if (isVerified) {
           log.warn("TEST LOG : Access Token이 유효합니다. 통과");
+          // 2-0. 블랙리시트에 저장된 Access Token인지 확인
+          // 나중에 로그아웃이랑 같이 추가
 
           // 2-1. JWT 토큰 서명을 통해서 서명이 정상이면 Authentication 객체생성
           String userId = jwtProvider.getClaimId(jwtAccessToken);
