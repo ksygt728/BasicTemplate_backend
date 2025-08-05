@@ -102,7 +102,7 @@ public class DepartmentTestTemplate {
                                 .map(Department::getDeptCode)
                                 .toList());
 
-                departmentRepository.deleteAllById(testDataCompanyList.stream()
+                companyRepository.deleteAllById(testDataCompanyList.stream()
                                 .map(Company::getCompanyCode)
                                 .toList());
 
