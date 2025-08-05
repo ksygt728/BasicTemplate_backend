@@ -21,8 +21,6 @@ public class AuditorAwareConfig {
     return () -> {
       // 실제 로그인 정보에서 가져오기 (예: Spring Security 사용 시)
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      log.error("Authentication : " + authentication);
-      log.error("Authentication name : " + authentication.getName());
       if (authentication == null || !authentication.isAuthenticated()
           || authentication.getName().equals("anonymousUser")) {
         return Optional.of("SYSTEM");
