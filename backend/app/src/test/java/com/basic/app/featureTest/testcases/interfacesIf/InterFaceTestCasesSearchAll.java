@@ -1,4 +1,4 @@
-package com.basic.app.featureTest.testcases.interfaces;
+package com.basic.app.featureTest.testcases.interfacesIf;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,38 +37,38 @@ public class InterFaceTestCasesSearchAll implements
     public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
 
         /*
-         * [TC_ID : TC-097] [TC명 : 인터페이스 기준정보 조회1] [REQ_ID : REQ_ADM_021] [화면 : 기준 정보 >
-         * 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : 정상 조회 N건
-         * 조회]
+         * [TC_ID : TC-017] [TC명 : 부서 정보 조회1] [REQ_ID : REQ_ADM_005] [화면 : 조직 관리 > 부서
+         * 관리] [기능 : 부서 정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : N건 조회]
          */
 
-        String testName1 = "정상조회(N건)";
+        String testName_order1 = "정상조회(N건)";
         // searchForm
-        InterfaceReqDto testData1 = new InterfaceReqDto("IF009", null, null);
-        PageRequest pageRequest1 = PageRequest.of(0, 5, Sort.by("ifId").descending());
+        InterfaceReqDto testData_order1 = new InterfaceReqDto("IF009", null, null);
+        PageRequest pageRequest_order1 = PageRequest.of(0, 5, Sort.by("ifId").descending());
         List<InterfaceResDto> content = List.of(
                 new InterfaceResDto("IF009_SEARCH", "이벤트정보 요청", "/api/v1/events/info"));
         // Response
 
-        PageResponse<InterfaceResDto> pageResponse1 = new PageResponse<>(new PageImpl<>(
-                content, pageRequest1, 1)); // totalElements=10
-        pageResponse1.setTotalElements(1);
-        pageResponse1.setTotalPages(1);
-        pageResponse1.setFirst(true);
-        pageResponse1.setLast(true);
-        ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", pageResponse1));
+        PageResponse<InterfaceResDto> pageResponse_order1 = new PageResponse<>(new PageImpl<>(
+                content, pageRequest_order1, 1)); // totalElements=10
+        pageResponse_order1.setTotalElements(1);
+        pageResponse_order1.setTotalPages(1);
+        pageResponse_order1.setFirst(true);
+        pageResponse_order1.setLast(true);
+        ApiResponse<?> expected_order1 = ApiResponse.success(Map.of("data", pageResponse_order1));
 
-        ResultMatcher status1 = status().isOk();
-        String url1 = BASE_URL + "/search";
+        ResultMatcher status_order1 = status().isOk();
+        String url_order1 = BASE_URL + "/search";
 
         List<TestCaseDetailSearchForm> testCases = List.of(
-                new TestCaseDetailSearchForm<>(url1, testName1, testData1, expected1, status1, pageRequest1));
+                new TestCaseDetailSearchForm<>(url_order1, testName_order1, testData_order1, expected_order1,
+                        status_order1, pageRequest_order1));
 
         // 각 케이스에 대한 InvocationContext 생성
         return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
             @Override
             public String getDisplayName(int invocationIndex) {
-                return "인터페이스 조회 테스트케이스 : [" + invocationIndex + "] " +
+                return "인터페이스 조회 : [" + invocationIndex + "] " +
                         (testCase.getTestName());
 
             }

@@ -3,11 +3,13 @@ package com.basic.app.service;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.BbsReqDto;
 import com.basic.app.service.interfaces.BbsService;
 
 @Service
+@Transactional
 public class BbsServiceImpl implements BbsService {
 
   @Override
