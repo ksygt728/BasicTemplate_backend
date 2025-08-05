@@ -45,16 +45,16 @@ public class TestUtils {
 
   // 테스트케이스별 시작로그 출력
   public static void showLogTestCaseStart(String testCaseName) throws Exception {
-    log.info("🔄 테스트 시작: " + testCaseName);
+    // log.info("🔄 [CBSK-TEST] 테스트 시작: " + testCaseName);
 
   }
 
   // 테스트케이스별 종료로그 출력
   public static void showLogTestCaseEnd(Object testData, JsonNode expectedToJson, JsonNode actualToJson)
       throws Exception {
-    log.info("🧪 Test Data: {}", testData);
-    log.info("☑️ Expected Response: {}", expectedToJson);
-    log.info("🧠 Actual Response: {}", actualToJson);
+    log.info("\n🧪 [CBSK-TEST] Test Data: {}", testData);
+    log.info("\n☑️ [CBSK-TEST] Expected Response: {}", expectedToJson);
+    log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actualToJson);
   }
 
 }
