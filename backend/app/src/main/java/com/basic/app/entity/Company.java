@@ -34,6 +34,6 @@ public class Company extends BaseEntity {
   private String companyName; // 회사명
 
   // Company - Department (1:N)
-  @OneToMany(mappedBy = "companyCode", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
   private List<Department> dpets = new ArrayList<Department>(); // 부서 리스트
 }

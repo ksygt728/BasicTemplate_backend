@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.service.interfaces.RoleService;
 
+@Transactional
 @Service
 public class RoleServiceImpl implements RoleService {
 

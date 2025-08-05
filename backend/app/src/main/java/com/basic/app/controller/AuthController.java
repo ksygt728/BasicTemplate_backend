@@ -54,6 +54,7 @@ public class AuthController {
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
+  /* [REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)] */
   @PostMapping("/signIn")
   public ResponseEntity<ApiResponse<Map<String, Object>>> signIn(
       @Validated(CreateGroup.class) AuthReqDto user) {
@@ -75,7 +76,6 @@ public class AuthController {
         .body(ApiResponse.success(null));
   }
 
-  /* [REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)] */
   /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] */
   /* [REQ_CMN_006] [화면 : 로그인] [기능 : 구글 계정 로그인] */
   /* [REQ_CMN_007] [화면 : 로그인] [기능 : 네이버 계정 로그인] */
@@ -86,8 +86,6 @@ public class AuthController {
   /* [REQ_CMN_012] [화면 : 로그인] [기능 : 로그인 > 비밀번호 찾기] */
   /* [REQ_CMN_013] [화면 : 로그인] [기능 : 로그인 > 비밀번호 찾기 > 비밀번호 초기화] */
 
-  // @PreAuthorize("isAuthenticated() and (#user.writor == authentication.name or
-  // hasRole('ADMIN'))")
   @PreAuthorize("isAuthenticated() and (#user.userId == authentication.name or hasRole('ADMIN'))")
   @PostMapping("/test")
   public ResponseEntity<ApiResponse<Map<String, Object>>> test(
@@ -96,7 +94,7 @@ public class AuthController {
     // 로그인 처리
     Map<String, Object> data = userService.signIn(user);
 
-    String test = "ㅋㅋ";
+    String test = "응답하면 정상";
     data.put("data", test);
 
     return ResponseEntity.status(HttpStatus.OK)

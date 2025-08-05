@@ -2,11 +2,13 @@ package com.basic.app.service.interfaces;
 
 import java.util.Map;
 
+import org.springframework.data.domain.Pageable;
+
 import com.basic.app.dto.requestDto.DepartmentReqDto;
 
 public interface DepartmentService {
 
-  Map<String, Object> findAllDepartmentForAdmin();
+  Map<String, Object> findAllDepartmentForAdmin(DepartmentReqDto departmentReqDto, Pageable pageable);
 
   Map<String, Object> findByDepartmentForAdmin(String deptCode);
 
