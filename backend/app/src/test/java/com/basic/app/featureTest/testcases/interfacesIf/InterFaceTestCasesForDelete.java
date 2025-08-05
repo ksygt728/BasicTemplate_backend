@@ -1,4 +1,4 @@
-package com.basic.app.featureTest.testcases.interfaces;
+package com.basic.app.featureTest.testcases.interfacesIf;
 
 import org.junit.jupiter.api.extension.*;
 import org.springframework.test.web.servlet.ResultMatcher;

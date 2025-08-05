@@ -80,12 +80,6 @@ public class InterfaceJooqRepository {
      * 
      * 3. 쿼리 결과 및 카운트
      */
-    List<InterfaceResDto> data = dsl.selectFrom(INTERFACE)
-        .where(conditions) // 조건 추가
-        .orderBy(sortFields) // 정렬 조건 적용
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
-        .fetchInto(InterfaceResDto.class);
 
     long total = dsl.selectCount()
         .from(INTERFACE)
@@ -93,6 +87,13 @@ public class InterfaceJooqRepository {
         .limit(pageable.getPageSize()) // 페이지 크기 적용
         .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
+
+    List<InterfaceResDto> data = dsl.selectFrom(INTERFACE)
+        .where(conditions) // 조건 추가
+        .orderBy(sortFields) // 정렬 조건 적용
+        .limit(pageable.getPageSize()) // 페이지 크기 적용
+        .offset(pageable.getOffset()) // 페이지 오프셋 적용
+        .fetchInto(InterfaceResDto.class);
 
     /* JOOQ의 쿼리결과는 List이고 Page객체를 return하는 기능이 없기떄문에 수동으로 Page객체 생성 */
     return new PageImpl(data, pageable, total);

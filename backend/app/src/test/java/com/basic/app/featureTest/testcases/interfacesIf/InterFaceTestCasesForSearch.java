@@ -1,4 +1,4 @@
-package com.basic.app.featureTest.testcases.interfaces;
+package com.basic.app.featureTest.testcases.interfacesIf;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
