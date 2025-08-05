@@ -3,12 +3,14 @@ package com.basic.app.service;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
 import com.basic.app.service.interfaces.CodeService;
 
+@Transactional
 @Service
 public class CodeServiceImpl implements CodeService {
 

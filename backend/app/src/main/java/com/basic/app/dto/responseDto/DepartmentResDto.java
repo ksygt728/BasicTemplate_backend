@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.basic.app.entity.Company;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class DepartmentResDto {
   private int deptLv; // 부서레벨
 
   // Department - Company (N:1) [Onwer]
-  private CompanyResDto companyCode; // 회사코드
+  private CompanyResDto company; // 회사코드
 
   private String useYn; // 사용여부 (Y,N)
 

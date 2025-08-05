@@ -1,9 +1,7 @@
 
 /**
- * @파일명   : AdminDepartmentController.jav  @GetMapping("/{deptCode}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
-    Map<String, Object> data = departmentService.findByDepartmentForAdmin(deptCode);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data)); @설명     : 부서 관리 기능 제공 컨트롤러
+ * @파일명   : AdminDepartmentController.java  
+   @설명     : 부서 관리 기능 제공 컨트롤러
  * @작성자   : 김승연
  * @작성일   : 2025.07.23
  * @변경이력 :
@@ -14,6 +12,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -39,15 +40,20 @@ public class AdminDepartmentController {
   private DepartmentService departmentService;
 
   /* [REQ_ADM_005] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 리스트 조회] */
-  @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllDepartmentForAdmin() {
-    Map<String, Object> data = departmentService.findAllDepartmentForAdmin();
+  @GetMapping("/search")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllDepartmentForAdmin(
+      DepartmentReqDto departmentReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "deptCode", direction = Sort.Direction.ASC) Pageable pageable) {
+
+    Map<String, Object> data = departmentService.findAllDepartmentForAdmin(departmentReqDto, pageable);
+
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_005_2] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 조회] */
   @GetMapping("/{deptCode}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
+
     Map<String, Object> data = departmentService.findByDepartmentForAdmin(deptCode);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }

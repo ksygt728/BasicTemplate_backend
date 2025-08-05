@@ -54,6 +54,7 @@ public class AuthController {
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
+  /* [REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)] */
   @PostMapping("/signIn")
   public ResponseEntity<ApiResponse<Map<String, Object>>> signIn(
       @Validated(CreateGroup.class) AuthReqDto user) {
@@ -75,7 +76,6 @@ public class AuthController {
         .body(ApiResponse.success(null));
   }
 
-  /* [REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)] */
   /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] */
   /* [REQ_CMN_006] [화면 : 로그인] [기능 : 구글 계정 로그인] */
   /* [REQ_CMN_007] [화면 : 로그인] [기능 : 네이버 계정 로그인] */

@@ -16,11 +16,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,7 +45,7 @@ public class Department extends BaseEntity {
   // Department - Company (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "COMPANY_CODE", nullable = false)
-  private Company companyCode; // 회사코드
+  private Company company; // 회사코드
 
   @Column(name = "USE_YN", length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
