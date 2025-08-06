@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysql-qa:
+    image: mysql:8.0
+    container_name: CBSK-DB-QA
+    environment:
+      MYSQL_ROOT_PASSWORD: root961019
+      MYSQL_DATABASE: CBSK-QA
+      TZ: Asia/Seoul
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-qa-data:/var/lib/mysql
+
+  redis-qa:
+    image: redis:latest
+    container_name: CBSK-REDIS-QA
+    environment:
+      TZ: Asia/Seoul
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-qa-data:/data
+
+  zookeeper-qa:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: CBSK-ZOOKEEPER-QA
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2182:2181"
+
+  kafka-qa:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: CBSK-KAFKA-QA
+    depends_on:
+      - zookeeper-qa
+    ports:
+      - "9093:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-qa:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+volumes:
+  mysql-qa-data:
+  redis-qa-data:
