@@ -2,8 +2,9 @@ package com.basic.app.service.interfaces;
 
 import java.util.Map;
 
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.data.domain.Pageable;
 
+import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.exception.ErrorCode;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ public interface LogService {
 
   Map<String, Object> findByAccessLogForAdmin(String logId);
 
-  Map<String, Object> findAllErrorLogForAdmin();
+  Map<String, Object> findAllErrorLogForAdmin(LogErrorReqDto logErrorReqDto, Pageable pageable);
 
   Map<String, Object> findByErrorLogForAdmin(String errId);
 
