@@ -69,7 +69,7 @@ public class InterfaceJooqRepository {
         case "ifId":
           sortFields.add(isAsc ? INTERFACE.IF_ID.asc() : INTERFACE.IF_ID.desc());
           break;
-        case "createdAt":
+        case "createDate":
           sortFields.add(isAsc ? INTERFACE.CREATE_DATE.asc() : INTERFACE.CREATE_DATE.desc());
           break;
         // 필요한 필드 추가
@@ -96,7 +96,7 @@ public class InterfaceJooqRepository {
         .fetchInto(InterfaceResDto.class);
 
     /* JOOQ의 쿼리결과는 List이고 Page객체를 return하는 기능이 없기떄문에 수동으로 Page객체 생성 */
-    return new PageImpl(data, pageable, total);
+    return new PageImpl<>(data, pageable, total);
 
   }
 }
