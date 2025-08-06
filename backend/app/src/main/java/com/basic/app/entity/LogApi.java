@@ -1,12 +1,14 @@
 package com.basic.app.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import com.basic.app.entity.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,8 +25,15 @@ import lombok.ToString;
 @Entity(name = "TB_LOG_API") // API 호출 로그 테이블
 public class LogApi extends BaseEntity {
   @Id
-  @Column(name = "LOG_ID", length = 45)
+  @Column(name = "LOG_ID", length = 36)
   private String logId; // 로그아이디
+
+  @PrePersist
+  public void prePersist() {
+    if (logId == null) {
+      logId = UUID.randomUUID().toString(); // "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
 
   @Column(name = "USER_ID", length = 45)
   private String userId; // 사용자 아이디
