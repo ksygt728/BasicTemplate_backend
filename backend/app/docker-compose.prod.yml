@@ -24,25 +24,53 @@ services:
       - redis-prod-data:/data
 
   zookeeper-prod:
-    image: confluentinc/cp-zookeeper:7.4.0
+    image: confluentinc/cp-zookeeper:7.5.0
     container_name: CBSK-ZOOKEEPER-PROD
+    ports:
+      - "2183:2181"  # 운영용 Zookeeper 포트
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
-    ports:
-      - "2183:2181"
 
-  kafka-prod:
-    image: confluentinc/cp-kafka:7.4.0
-    container_name: CBSK-KAFKA-PROD
-    depends_on:
-      - zookeeper-prod
+  broker-prod:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: CBSK-BROKER-PROD
     ports:
-      - "9094:9092"
+      - "9094:9092"  # 운영용 Kafka 포트
     environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-prod:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9094
+      KAFKA_ZOOKEEPER_CONNECT: CBSK-ZOOKEEPER-PROD:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://CBSK-BROKER-PROD:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+  kafka-ui-prod:
+    image: provectuslabs/kafka-ui:latest
+    container_name: CBSK-KAFKA-UI-PROD
+    ports:
+      - "9082:8080"  # 운영용 Kafka UI 포트
+    environment:
+      KAFKA_CLUSTERS_0_NAME: prod
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: CBSK-BROKER-PROD:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: CBSK-ZOOKEEPER-PROD:2181
+    depends_on:
+      - CBSK-BROKER-PROD
+      - CBSK-ZOOKEEPER-PROD
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: CBSK-JENKINS-PROD
+    restart: unless-stopped
+    privileged: true # 도커 명령어 실행을 위해 필요
+    user: root
+    ports:
+      - "9902:8080"   # 웹 UI
+      - "50020:50000" # 에이전트 포트
+    environment:
+      - JAVA_OPTS=-Duser.timezone=Asia/Seoul
+    volumes:
+      - jenkins_home-prod:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker # 호스트의 docker 바이너리 공유
 volumes:
   mysql-prod-data:
   redis-prod-data:
+  jenkins_home-prod:
