@@ -41,7 +41,7 @@ public class RoleUser extends BaseEntity {
   @JoinColumn(name = "USER_ID")
   private User userId;
 
-  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
 }

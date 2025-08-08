@@ -23,36 +23,57 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.basic.app.dto.requestDto.InterfaceReqDto;
-import com.basic.app.dto.responseDto.InterfaceResDto;
-import com.basic.app.jooq.generated.tables.TbIf;
+import com.basic.app.dto.requestDto.LogErrorReqDto;
+import com.basic.app.dto.responseDto.LogErrorResDto;
+import com.basic.app.jooq.generated.tables.TbLogError;
 
 @Repository
 @Transactional
-public class InterfaceJooqRepository {
+public class LogErrorJooqRepository {
 
   @Autowired
   private DSLContext dsl;
 
-  public Page<InterfaceResDto> findAllInterfaceWithConditions(InterfaceReqDto reqDto, Pageable pageable) {
+  public Page<LogErrorResDto> findAllLogErrorWithConditions(LogErrorReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 
-    TbIf INTERFACE = TbIf.TB_IF;
+    TbLogError TB_LOG_ERROR = TbLogError.TB_LOG_ERROR;
 
     /**
      * 1. 조건 추가 부분
      * 
      */
-    if (reqDto.getIfId() != null && !reqDto.getIfId().isEmpty()) {
-      conditions.add(INTERFACE.IF_ID.like("%" + reqDto.getIfId() + "%"));
+    if (reqDto.getErrId() != null && !reqDto.getErrId().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.ERR_ID.like("%" + reqDto.getErrId() + "%"));
     }
 
-    if (reqDto.getIfName() != null && !reqDto.getIfName().isEmpty()) {
-      conditions.add(INTERFACE.IF_NAME.like("%" + reqDto.getIfName() + "%"));
+    if (reqDto.getUserId() != null && !reqDto.getUserId().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.USER_ID.like("%" + reqDto.getUserId() + "%"));
     }
+
+    if (reqDto.getIpAddr() != null && !reqDto.getIpAddr().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.IP_ADDR.like("%" + reqDto.getIpAddr() + "%"));
+    }
+
+    if (reqDto.getRequestUri() != null && !reqDto.getRequestUri().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.REQUEST_URI.like("%" + reqDto.getRequestUri() + "%"));
+    }
+
+    if (reqDto.getHttpMethod() != null && !reqDto.getHttpMethod().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.HTTP_METHOD.like("%" + reqDto.getHttpMethod() + "%"));
+    }
+
+    if (reqDto.getErrMsg() != null && !reqDto.getErrMsg().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.ERR_MSG.like("%" + reqDto.getErrMsg() + "%"));
+    }
+
+    if (reqDto.getErrStack() != null && !reqDto.getErrStack().isEmpty()) {
+      conditions.add(TB_LOG_ERROR.ERR_STACK.like("%" + reqDto.getErrStack() + "%"));
+    }
+
     // 필요한 조건 추가
 
-    conditions.add(INTERFACE.STS.eq("C"));
+    conditions.add(TB_LOG_ERROR.STS.eq("C"));
 
     /**
      * 2. 정렬 처리
@@ -66,11 +87,11 @@ public class InterfaceJooqRepository {
       boolean isAsc = order.getDirection().isAscending();
 
       switch (property) {
-        case "ifId":
-          sortFields.add(isAsc ? INTERFACE.IF_ID.asc() : INTERFACE.IF_ID.desc());
+        case "userId":
+          sortFields.add(isAsc ? TB_LOG_ERROR.USER_ID.asc() : TB_LOG_ERROR.USER_ID.desc());
           break;
         case "createDate":
-          sortFields.add(isAsc ? INTERFACE.CREATE_DATE.asc() : INTERFACE.CREATE_DATE.desc());
+          sortFields.add(isAsc ? TB_LOG_ERROR.CREATE_DATE.asc() : TB_LOG_ERROR.CREATE_DATE.desc());
           break;
         // 필요한 필드 추가
       }
@@ -82,18 +103,18 @@ public class InterfaceJooqRepository {
      */
 
     long total = dsl.selectCount()
-        .from(INTERFACE)
+        .from(TB_LOG_ERROR)
         .where(conditions) // 동일한 조건으로 전체 카운트
         .limit(pageable.getPageSize()) // 페이지 크기 적용
         .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
-    List<InterfaceResDto> data = dsl.selectFrom(INTERFACE)
+    List<LogErrorResDto> data = dsl.selectFrom(TB_LOG_ERROR)
         .where(conditions) // 조건 추가
         .orderBy(sortFields) // 정렬 조건 적용
         .limit(pageable.getPageSize()) // 페이지 크기 적용
         .offset(pageable.getOffset()) // 페이지 오프셋 적용
-        .fetchInto(InterfaceResDto.class);
+        .fetchInto(LogErrorResDto.class);
 
     /* JOOQ의 쿼리결과는 List이고 Page객체를 return하는 기능이 없기떄문에 수동으로 Page객체 생성 */
     return new PageImpl<>(data, pageable, total);

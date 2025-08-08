@@ -1,12 +1,16 @@
 package com.basic.app.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import com.basic.app.entity.baseEntity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,11 +27,26 @@ import lombok.ToString;
 @Entity(name = "TB_LOG_API") // API 호출 로그 테이블
 public class LogApi extends BaseEntity {
   @Id
-  @Column(name = "LOG_ID", length = 45)
+  @Column(name = "LOG_ID", length = 36)
   private String logId; // 로그아이디
+
+  @PrePersist
+  public void prePersist() {
+    if (logId == null) {
+      logId = UUID.randomUUID().toString(); // "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
 
   @Column(name = "USER_ID", length = 45)
   private String userId; // 사용자 아이디
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @Column(name = "START_DATE", length = 45)
+  private LocalDateTime startDate; // 시작시간
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @Column(name = "END_DATE", length = 45)
+  private LocalDateTime endDate; // 종료시간
 
   @Column(name = "IP_ADDR", length = 45)
   private String ipAddr; // 아이피주소
@@ -41,16 +60,16 @@ public class LogApi extends BaseEntity {
   @Column(name = "HTTP_METHOD", length = 45)
   private String httpMethod; // 메소드
 
-  @Column(name = "REQUEST_BODY", length = 2048)
+  @Column(name = "REQUEST_BODY", length = 65535)
   private String requestBody; // 요청내용
 
-  @Column(name = "RESPONSE_BODY", length = 2048)
+  @Column(name = "RESPONSE_BODY", length = 65535)
   private String responseBody; // 응답내용
 
   @Column(name = "STATUS_CODE", length = 45)
   private String statusCode; // STATUS_CODE
 
   @Column(name = "EXEC_TIME")
-  private LocalDateTime execTime; // 실행시간
+  private long execTime; // 실행시간
 
 }

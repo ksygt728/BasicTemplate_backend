@@ -47,7 +47,7 @@ public class Department extends BaseEntity {
   @JoinColumn(name = "COMPANY_CODE", nullable = false)
   private Company company; // 회사코드
 
-  @Column(name = "USE_YN", length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
   // Department - User (1:N)

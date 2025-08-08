@@ -33,7 +33,7 @@ public class MulLang extends BaseEntity {
   @Column(name = "LANG_GUBUN", length = 45, nullable = false)
   private String langGubun; // 언어구분
 
-  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
 }

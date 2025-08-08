@@ -127,6 +127,12 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- [Jackson] LocalDateTime 역질렬화 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+
 		<!--[AOP]-->
 		<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -188,6 +194,12 @@
 		<dependency>
 			<groupId>io.lettuce</groupId>
 			<artifactId>lettuce-core</artifactId>
+		</dependency>
+
+		<!-- Kafka () -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
 		</dependency>
 		
 	</dependencies>

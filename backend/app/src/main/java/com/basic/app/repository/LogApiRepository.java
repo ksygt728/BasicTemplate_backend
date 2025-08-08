@@ -11,9 +11,9 @@ package com.basic.app.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.basic.app.entity.Company;
+import com.basic.app.entity.LogApi;
 
 @Repository
-public interface CompanyRepository extends JpaRepository<Company, String> {
+public interface LogApiRepository extends JpaRepository<LogApi, String> {
 
 }
