@@ -12,16 +12,20 @@
 
 package com.basic.app.exception;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,21 +34,36 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.basic.app.api.ApiResponse;
+import com.basic.app.entity.LogError;
 import com.basic.app.exception.customException.BusinessException;
-import com.basic.app.exception.customException.JwtExeption;
 import com.basic.app.exception.customException.NotFoundException;
+import com.basic.app.repository.LogErrorRepository;
+import com.basic.app.service.interfaces.LogService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
   private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+  @Autowired
+  private LogService logService;
 
   /* Error code : 400 - 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(이상한 상황..) */
   @ExceptionHandler(NotFoundException.class)
-  public ResponseEntity<ApiResponse<?>> handleNotFoundException(NotFoundException e) {
+  public ResponseEntity<ApiResponse<?>> handleNotFoundException(NotFoundException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
@@ -53,12 +72,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 400 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(비즈니르로직으로 인한 validation) */
   @ExceptionHandler(BusinessException.class)
-  public ResponseEntity<ApiResponse<?>> handleBusinessException(BusinessException e) {
+  public ResponseEntity<ApiResponse<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
 
     showErrorLogFormat(e, errorCode);
 
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(errorCode));
@@ -66,7 +91,8 @@ public class GlobalExceptionHandler {
 
   /* Error code : 400 (@Validated) - 원인 : 클라이언트 책임 */
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException e) {
+  public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException e,
+      HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_CLIENT;
 
@@ -75,6 +101,12 @@ public class GlobalExceptionHandler {
 
     showErrorLogFormat(e, errorCode, validatorErrorMessage);
 
+    try {
+      logService.insertErrorLog(e, request, errorCode, validatorErrorMessage);
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(
@@ -83,12 +115,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 400 (잘못된 요청 비즈로직 validation 실패 시) - 원인 : 게발자 실수 가능성 */
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException e) {
+  public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_SERVER;
 
     showErrorLogFormat(e, errorCode);
 
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(ApiResponse.fail(ErrorCode.VALIDATION_ERROR_SERVER));
@@ -96,11 +134,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 401 (로그인 인증 실패시) */
   @ExceptionHandler(BadCredentialsException.class)
-  public ResponseEntity<ApiResponse<?>> handleUsernameNotFound(BadCredentialsException e) {
+  public ResponseEntity<ApiResponse<?>> handleUsernameNotFound(BadCredentialsException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.UNAUTHORIZED_FAILURE;
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.UNAUTHORIZED)
@@ -109,11 +154,19 @@ public class GlobalExceptionHandler {
 
   /* Error code : 403 (권한이 없을경우 @PreAuthorize) */
   @ExceptionHandler(AuthorizationDeniedException.class)
-  public ResponseEntity<ApiResponse<?>> handleAuthorizationDenied(AuthorizationDeniedException e) {
+  public ResponseEntity<ApiResponse<?>> handleAuthorizationDenied(AuthorizationDeniedException e,
+      HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.ACCESS_DENIED;
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.FORBIDDEN)
@@ -122,11 +175,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
-  public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e) {
+  public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -135,11 +195,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 404 (페이지를 찾을 수 없음) : 사용자가 URL입력을 잘못한 경우 */
   @ExceptionHandler(NoHandlerFoundException.class)
-  public ResponseEntity<ApiResponse<?>> handleNoHandlerFound(NoHandlerFoundException e) {
+  public ResponseEntity<ApiResponse<?>> handleNoHandlerFound(NoHandlerFoundException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
@@ -148,11 +215,18 @@ public class GlobalExceptionHandler {
 
   /* Error code : 500 (서버 내부 오류) */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ApiResponse<?>> handleException(Exception e) {
+  public ResponseEntity<ApiResponse<?>> handleException(Exception e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.SERVER_ERROR;
 
     showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
 
     return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -175,7 +249,8 @@ public class GlobalExceptionHandler {
         e.getStackTrace());
   }
 
-  // VALIDATION_ERROR_CLIENT 에 추가 메시지 전달(예: @Validated 어노테이션에서 발생한 에러 메시지)
+  // 로그 출력 형식(VALIDATION_ERROR_CLIENT 에 추가 메시지 전달(예: @Validated 어노테이션에서 발생한 에러
+  // 메시지))
   public void showErrorLogFormat(Exception e, ErrorCode errorCode, String additionalMessage) {
     log.warn(
         """
@@ -190,4 +265,5 @@ public class GlobalExceptionHandler {
         e.getMessage(),
         e.getStackTrace());
   }
+
 }

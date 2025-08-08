@@ -37,6 +37,7 @@ public enum ErrorCode {
   OBJECT_NOT_FOUND("4001", "데이터가 존재하지 않습니다."),
   OBJECT_IS_EXISTED("4002", "이미 존재하는 데이터입니다."),
   DEPARTMENT_NOT_WRITE("4003", "부서 정보는 HR에서 받아오는 정보로 추가/수정/삭제가 불가합니다. HR에 문의하세요."),
+  DATEFORMAT_INVALID("4004", "날짜 형식이 올바르지 않습니다."),
 
   // 5000번대: 서버 및 외부 시스템 관련
   SERVER_ERROR("5001", "서버 에러가 발생했습니다. 관리자에게 문의하세요."),

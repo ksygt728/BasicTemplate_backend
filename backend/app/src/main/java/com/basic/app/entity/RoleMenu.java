@@ -44,7 +44,7 @@ public class RoleMenu extends BaseEntity {
   @Column(name = "MENU_RW", length = 45, nullable = false)
   private String menuRw; // 메뉴 접근 수준 (R,W)
 
-  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
 }

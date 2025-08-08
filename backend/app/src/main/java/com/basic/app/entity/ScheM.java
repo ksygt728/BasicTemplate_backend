@@ -38,7 +38,7 @@ public class ScheM extends BaseEntity {
   @Column(name = "LAST_EXEC_TIME")
   private LocalDateTime lastExecTime; // 마지막실행시간
 
-  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
 }

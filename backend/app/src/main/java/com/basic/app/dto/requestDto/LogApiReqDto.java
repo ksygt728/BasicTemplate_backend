@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,10 @@ public class LogApiReqDto extends BaseReqDto {
 
   private String userId; // 사용자 아이디
 
+  private String startDate; // 시작시간
+
+  private String endDate; // 종료시간
+
   private String ipAddr; // 아이피주소
 
   private String userAgent; // 브라우저 정보
@@ -49,6 +54,6 @@ public class LogApiReqDto extends BaseReqDto {
 
   private String statusCode; // STATUS_CODE
 
-  private LocalDateTime execTime; // 실행시간
+  private long execTime; // 실행시간
 
 }

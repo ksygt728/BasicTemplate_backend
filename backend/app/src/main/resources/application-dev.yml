@@ -19,6 +19,7 @@ spring:
       ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션 (none, update, create, create-drop 등)
     properties:
       hibernate:
+        jdbc.batch_size: 100
         show_sql: false # 실행되는 SQL 쿼리를 콘솔에 비활성화
         format_sql: true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
         use_sql_comments: true # SQL 쿼리에 주석 추가해서 출력
@@ -30,6 +31,27 @@ spring:
       database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
       timeout: 30000ms
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: log-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 500 # 한 번에 가져올 최대 레코드 수
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        max.poll.interval.ms: 300000
+        session.timeout.ms: 600000
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        "[spring.json.type.mapping]": "LogApi:com.basic.app.entity.LogApi"
+    listener:
+      concurrency: 5 # 1개 인스턴스 5개 컨슈머 스레드 생성
+      missing-topics-fatal: false # 리스너가 시작 시 존재하지 않는 토픽이 있어도 예외 발생시키지 않음 (개발 편의 목적)
+
 logging:
   level:
     org:
@@ -38,9 +60,10 @@ logging:
         orm:
           jdbc:
             bind: trace # Hibernate 6 이상에서 바인딩 값 출력
-    org.jooq: DEBUG
-    org.jooq.tools: DEBUG
-    org.jooq.tools.LoggerListener: DEBUG
+    org.jooq: debug
+    org.jooq.tools: debug
+    org.jooq.tools.LoggerListener: debug
+    org.springframework.kafka: error
 
 jwt:
   env: dev # 현재 활성화된 프로필 설정 (dev 프로필 사용)

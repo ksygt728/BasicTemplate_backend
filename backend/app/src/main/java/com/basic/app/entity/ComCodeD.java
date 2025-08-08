@@ -42,7 +42,7 @@ public class ComCodeD extends BaseEntity {
   @Column(name = "DTL_NM", length = 100, nullable = false)
   private String dtlNm; // 상세코드명
 
-  @Column(name = "USE_YN", length = 1, columnDefinition = "CHAR(1) DEFAULT 'N'")
+  @Column(name = "USE_YN", length = 1, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
   @Column(name = "ORDER_NUM", nullable = false)
