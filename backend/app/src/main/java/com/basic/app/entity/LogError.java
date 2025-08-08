@@ -1,10 +1,13 @@
 package com.basic.app.entity;
 
+import java.util.UUID;
+
 import com.basic.app.entity.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,9 +23,17 @@ import lombok.ToString;
 @Builder
 @Entity(name = "TB_LOG_ERROR") // 에러 로그 테이블
 public class LogError extends BaseEntity {
+
   @Id
-  @Column(name = "ERR_ID", length = 45)
-  private String errId; // 로그아이디
+  @Column(name = "ERR_ID", length = 36)
+  private String errId;
+
+  @PrePersist
+  public void prePersist() {
+    if (errId == null) {
+      errId = UUID.randomUUID().toString(); // "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
 
   @Column(name = "USER_ID", length = 45)
   private String userId; // 사용자 아이디
@@ -42,7 +53,7 @@ public class LogError extends BaseEntity {
   @Column(name = "ERR_MSG", length = 2048)
   private String errMsg; // 에러내용
 
-  @Column(name = "ERR_STACK", length = 2048)
+  @Column(name = "ERR_STACK", length = 65535)
   private String errStack; // 에러내용상세
 
 }
