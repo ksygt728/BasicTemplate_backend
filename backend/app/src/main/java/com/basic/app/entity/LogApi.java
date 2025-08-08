@@ -1,9 +1,11 @@
 package com.basic.app.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.basic.app.entity.baseEntity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,6 +40,14 @@ public class LogApi extends BaseEntity {
   @Column(name = "USER_ID", length = 45)
   private String userId; // 사용자 아이디
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+  @Column(name = "START_DATE", length = 45)
+  private LocalDateTime startDate; // 시작시간
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+  @Column(name = "END_DATE", length = 45)
+  private LocalDateTime endDate; // 종료시간
+
   @Column(name = "IP_ADDR", length = 45)
   private String ipAddr; // 아이피주소
 
@@ -60,6 +70,6 @@ public class LogApi extends BaseEntity {
   private String statusCode; // STATUS_CODE
 
   @Column(name = "EXEC_TIME")
-  private LocalDateTime execTime; // 실행시간
+  private long execTime; // 실행시간
 
 }

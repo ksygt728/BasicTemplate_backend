@@ -45,7 +45,6 @@ public class LogApiResDto {
 
   private String statusCode; // STATUS_CODE
 
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-  private LocalDateTime execTime; // 실행시간
+  private long execTime; // 실행시간
 
 }

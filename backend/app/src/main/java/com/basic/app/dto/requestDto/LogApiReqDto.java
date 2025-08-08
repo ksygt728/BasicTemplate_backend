@@ -49,6 +49,6 @@ public class LogApiReqDto extends BaseReqDto {
 
   private String statusCode; // STATUS_CODE
 
-  private LocalDateTime execTime; // 실행시간
+  private long execTime; // 실행시간
 
 }

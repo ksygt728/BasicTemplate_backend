@@ -3,6 +3,7 @@ package com.basic.app.service;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.PageResponse;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
-import com.basic.app.dto.responseDto.InterfaceResDto;
 import com.basic.app.dto.responseDto.LogErrorResDto;
+import com.basic.app.entity.LogApi;
 import com.basic.app.entity.LogError;
 import com.basic.app.exception.ErrorCode;
+import com.basic.app.repository.LogApiRepository;
 import com.basic.app.repository.LogErrorRepository;
 import com.basic.app.repository.jooqRepository.LogErrorJooqRepository;
 import com.basic.app.service.interfaces.LogService;
 import com.basic.app.util.UserRequestInfoManager;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Transactional
@@ -30,10 +33,17 @@ import jakarta.servlet.http.HttpServletRequest;
 public class LogServiceImpl implements LogService {
 
   @Autowired
+  private LogApiRepository logApiRepository;
+
+  @Autowired
   private LogErrorRepository logErrorRepository;
 
   @Autowired
   private LogErrorJooqRepository logErrorJooqRepository;
+
+  LogServiceImpl(LogApiRepository logApiRepository) {
+    this.logApiRepository = logApiRepository;
+  }
 
   @Override
   public Map<String, Object> findAllAccessLogForAdmin() {
@@ -68,6 +78,14 @@ public class LogServiceImpl implements LogService {
   public Map<String, Object> findByErrorLogForAdmin(String errId) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'findByErrorLogForAdmin'");
+  }
+
+  @Override
+  public int insertApiLog(@RequestBody List<LogApi> logApi) {
+
+    logApiRepository.saveAll(logApi);
+    return 1;
+
   }
 
   @Override

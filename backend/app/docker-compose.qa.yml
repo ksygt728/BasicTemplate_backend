@@ -22,37 +22,42 @@ services:
       - "6380:6379"
     volumes:
       - redis-qa-data:/data
-  zookeeper-qa:
-    image: confluentinc/cp-zookeeper:7.5.0
+
+  zookeeper:
+    image: wurstmeister/zookeeper
     container_name: CBSK-ZOOKEEPER-QA
     ports:
-      - "2182:2181"  # QA용 Zookeeper 포트 (겹치지 않게)
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
+      - "2182:2181" # QA용 포트 분리
 
-  broker-qa:
-    image: confluentinc/cp-kafka:7.5.0
-    container_name: CBSK-BROKER-QA
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    container_name: CBSK-KAFKA-QA
     ports:
-      - "9093:9092"  # QA용 Kafka 포트
+      - "9093:9092" # QA용 포트 분리
     environment:
-      KAFKA_ZOOKEEPER_CONNECT: CBSK-ZOOKEEPER-QA:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://CBSK-BROKER-QA:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      # 외부 접근을 위한 리스너 설정
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9093,INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
-  kafka-ui-qa:
+  kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: CBSK-KAFKA-UI-QA
     ports:
-      - "9081:8080"  # QA용 Kafka UI 포트
-    environment:
-      KAFKA_CLUSTERS_0_NAME: qa
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: CBSK-BROKER-QA:9092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: CBSK-ZOOKEEPER-QA:2181
+      - "9081:8080" # QA용 포트 분리
     depends_on:
-      - CBSK-BROKER-QA
-      - CBSK-ZOOKEEPER-QA
+      - kafka
+      - zookeeper
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+      - KAFKA_CLUSTERS_0_NAME=qa
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+
 
   jenkins:
     image: jenkins/jenkins:lts
