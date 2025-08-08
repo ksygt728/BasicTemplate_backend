@@ -63,7 +63,7 @@ logging:
     org.jooq: debug
     org.jooq.tools: debug
     org.jooq.tools.LoggerListener: debug
-    org.springframework.kafka: debug
+    org.springframework.kafka: error
 
 jwt:
   env: dev # 현재 활성화된 프로필 설정 (dev 프로필 사용)

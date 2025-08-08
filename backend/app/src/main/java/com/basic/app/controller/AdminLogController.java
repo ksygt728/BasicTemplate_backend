@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.api.ApiResponse;
+import com.basic.app.dto.requestDto.LogApiReqDto;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.service.interfaces.LogService;
 
@@ -34,8 +35,12 @@ public class AdminLogController {
 
   /* [REQ_ADM_064] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 리스트 조회] */
   @GetMapping("/api-log/search")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllAccessLogForAdmin() {
-    Map<String, Object> data = logService.findAllAccessLogForAdmin();
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllAccessLogForAdmin(
+      LogApiReqDto logApiReqDto,
+      @PageableDefault(page = 0, size = 100, sort = "endDate", direction = Sort.Direction.DESC) Pageable pageable) {
+
+    Map<String, Object> data = logService.findAllApiLogForAdmin(logApiReqDto, pageable);
+
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 

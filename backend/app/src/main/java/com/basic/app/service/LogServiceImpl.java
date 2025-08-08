@@ -14,13 +14,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.PageResponse;
+import com.basic.app.dto.requestDto.LogApiReqDto;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
+import com.basic.app.dto.responseDto.LogApiResDto;
 import com.basic.app.dto.responseDto.LogErrorResDto;
 import com.basic.app.entity.LogApi;
 import com.basic.app.entity.LogError;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.repository.LogApiRepository;
 import com.basic.app.repository.LogErrorRepository;
+import com.basic.app.repository.jooqRepository.LogApiJooqRepository;
 import com.basic.app.repository.jooqRepository.LogErrorJooqRepository;
 import com.basic.app.service.interfaces.LogService;
 import com.basic.app.util.UserRequestInfoManager;
@@ -36,6 +39,9 @@ public class LogServiceImpl implements LogService {
   private LogApiRepository logApiRepository;
 
   @Autowired
+  private LogApiJooqRepository logApiJooqRepository;
+
+  @Autowired
   private LogErrorRepository logErrorRepository;
 
   @Autowired
@@ -46,15 +52,20 @@ public class LogServiceImpl implements LogService {
   }
 
   @Override
-  public Map<String, Object> findAllAccessLogForAdmin() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findAllAccessLogForAdmin'");
-  }
+  public Map<String, Object> findAllApiLogForAdmin(LogApiReqDto logApiReqDto, Pageable pageable) {
+    Map<String, Object> data = new HashMap<>();
 
-  @Override
-  public Map<String, Object> findByAccessLogForAdmin(String logId) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findByAccessLogForAdmin'");
+    // 1. 조건에 맞는 데이터 조회
+    Page<LogApiResDto> logApiDtoList = logApiJooqRepository.findAllLogApiWithConditions(logApiReqDto,
+        pageable);
+
+    // 2. Page -> PageResponse 변환(이미 DTO로 변환된 상태이므로 추가 변환은 필요 없음)
+    PageResponse<LogApiResDto> pagedLogApiDtoList = ModelMapperUtils.map(logApiDtoList);
+
+    // 3. 결과를 Map에 담아 반환
+    data.put("data", pagedLogApiDtoList);
+
+    return data;
   }
 
   @Override
@@ -119,6 +130,18 @@ public class LogServiceImpl implements LogService {
     StringWriter sw = new StringWriter();
     e.printStackTrace(new PrintWriter(sw));
     return sw.toString();
+  }
+
+  @Override
+  public Map<String, Object> findAllAccessLogForAdmin() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'findAllAccessLogForAdmin'");
+  }
+
+  @Override
+  public Map<String, Object> findByAccessLogForAdmin(String logId) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'findByAccessLogForAdmin'");
   }
 
 }

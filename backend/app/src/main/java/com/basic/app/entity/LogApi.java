@@ -40,11 +40,11 @@ public class LogApi extends BaseEntity {
   @Column(name = "USER_ID", length = 45)
   private String userId; // 사용자 아이디
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   @Column(name = "START_DATE", length = 45)
   private LocalDateTime startDate; // 시작시간
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   @Column(name = "END_DATE", length = 45)
   private LocalDateTime endDate; // 종료시간
 
@@ -60,10 +60,10 @@ public class LogApi extends BaseEntity {
   @Column(name = "HTTP_METHOD", length = 45)
   private String httpMethod; // 메소드
 
-  @Column(name = "REQUEST_BODY", length = 2048)
+  @Column(name = "REQUEST_BODY", length = 65535)
   private String requestBody; // 요청내용
 
-  @Column(name = "RESPONSE_BODY", length = 2048)
+  @Column(name = "RESPONSE_BODY", length = 65535)
   private String responseBody; // 응답내용
 
   @Column(name = "STATUS_CODE", length = 45)

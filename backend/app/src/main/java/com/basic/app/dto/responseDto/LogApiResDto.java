@@ -31,6 +31,12 @@ public class LogApiResDto {
 
   private String userId; // 사용자 아이디
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private LocalDateTime startDate; // 시작시간
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private LocalDateTime endDate; // 종료시간
+
   private String ipAddr; // 아이피주소
 
   private String userAgent; // 브라우저 정보

@@ -127,6 +127,12 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- [Jackson] LocalDateTime 역질렬화 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+
 		<!--[AOP]-->
 		<dependency>
 				<groupId>org.springframework.boot</groupId>
