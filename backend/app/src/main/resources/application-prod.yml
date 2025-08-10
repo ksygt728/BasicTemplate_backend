@@ -49,16 +49,21 @@ spring:
 
 logging:
   level:
+    root: info # 기본 로깅 레벨
     org:
+      jooq: debug
+      "[jooq.tools]": debug
+      "[jooq.tools.LoggerListener]": debug
+      "[springframework.kafka]": error
       hibernate:
-        SQL: error # 최소한의 SQL 로그만
+        SQL: debug # 실행되는 SQL 출력
         orm:
           jdbc:
-            bind: off # 바인딩 값 로그 비활성화
-    org.jooq: error
-    org.jooq.tools: error
-    org.jooq.tools.LoggerListener: error
-    org.springframework.kafka: error
+            bind: trace # Hibernate 6 이상에서 바인딩 값 출력
+  pattern:
+    # console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [ %-5level] %logger{36} - %msg%n" # 콘솔 출력 포맷
+    console: "\u001B[36m%d{yyyy-MM-dd HH:mm:ss.SSS}\u001B[0m \u001B[35m[%thread]\u001B[0m \u001B[33m[%-5level]\u001B[0m \u001B[32m%logger{36}\u001B[0m - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n"
 
 jwt:
   env: prod # 현재 활성화된 프로필 설정 (prod 프로필 사용)

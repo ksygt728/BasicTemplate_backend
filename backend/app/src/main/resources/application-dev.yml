@@ -19,10 +19,10 @@ spring:
       ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션 (none, update, create, create-drop 등)
     properties:
       hibernate:
-        jdbc.batch_size: 100
-        show_sql: false # 실행되는 SQL 쿼리를 콘솔에 비활성화
-        format_sql: true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
-        use_sql_comments: true # SQL 쿼리에 주석 추가해서 출력
+        "[jdbc.batch_size]": 100
+        "[show_sql]": false # 실행되는 SQL 쿼리를 콘솔에 비활성화
+        "[format_sql]": true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
+        "[use_sql_comments]": true # SQL 쿼리에 주석 추가해서 출력
 
   data:
     redis:
@@ -41,8 +41,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
-        max.poll.interval.ms: 300000
-        session.timeout.ms: 600000
+        "[max.poll.interval.ms]": 300000
+        "[session.timeout.ms]": 600000
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -54,16 +54,21 @@ spring:
 
 logging:
   level:
+    root: info # 기본 로깅 레벨
     org:
+      jooq: debug
+      "[jooq.tools]": debug
+      "[jooq.tools.LoggerListener]": debug
+      "[springframework.kafka]": error
       hibernate:
         SQL: debug # 실행되는 SQL 출력
         orm:
           jdbc:
             bind: trace # Hibernate 6 이상에서 바인딩 값 출력
-    org.jooq: debug
-    org.jooq.tools: debug
-    org.jooq.tools.LoggerListener: debug
-    org.springframework.kafka: error
+  pattern:
+    # console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [ %-5level] %logger{36} - %msg%n" # 콘솔 출력 포맷
+    console: "\u001B[36m%d{yyyy-MM-dd HH:mm:ss.SSS}\u001B[0m \u001B[35m[%thread]\u001B[0m \u001B[33m[%-5level]\u001B[0m \u001B[32m%logger{36}\u001B[0m - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n"
 
 jwt:
   env: dev # 현재 활성화된 프로필 설정 (dev 프로필 사용)
