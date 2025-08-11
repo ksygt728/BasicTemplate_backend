@@ -44,9 +44,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     log.error(
         """
 
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
+              [*** Response Error Message ***]
+              - ErrorCode : {}
+              - Message : {}
+              [*** Server Log ***]
+              - Class : {}
+              - Message : {}
+              [*** Strace ***]
+              {}
             """,
         errorCode.getCode(),
         errorCode.getMessage(),

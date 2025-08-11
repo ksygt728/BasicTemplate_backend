@@ -93,7 +93,7 @@ public class LogServiceImpl implements LogService {
 
   @Override
   public int insertApiLog(@RequestBody List<LogApi> logApi) {
-
+    // Kafka에서 수신한 API 로그를 DB에 저장
     logApiRepository.saveAll(logApi);
     return 1;
 
@@ -101,13 +101,29 @@ public class LogServiceImpl implements LogService {
 
   @Override
   public int insertErrorLog(Exception e, HttpServletRequest request, ErrorCode errorCode,
-      String validatorErrorMessage) {
+      String additionalMessage) {
 
     UserRequestInfoManager urm = new UserRequestInfoManager(request);
 
-    String errMsg = "[*** Response Error Message ***] : [errorCode : " + errorCode.getCode() + "] - [message : "
-        + errorCode.getMessage() + validatorErrorMessage + "] [*** Server Log ***] : [Class : " + e.getClass()
-        + " - [Message : " + e.getMessage() + "]";
+    // String errMsg = "[*** Response Error Message ***] : [errorCode : " +
+    // errorCode.getCode() + "] - [message : "
+    // + errorCode.getMessage() + additionalMessage + "] [*** Server Log ***] :
+    // [Class : " + e.getClass()
+    // + " - [Message : " + e.getMessage() + "]";
+
+    String errMsg = """
+          [*** Response Error Message ***]
+          - ErrorCode : %s
+          - Message : %s
+          [*** Server Log ***]
+          - Class : %s
+          - Message : %s
+        """.formatted(
+        errorCode.getCode(),
+        errorCode.getMessage(),
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
 
     String errStack = getStackTraceAsString(e);
 

@@ -12,6 +12,7 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,29 +37,31 @@ public class AdminSchedulerController {
   @Autowired
   private SchedulerService schedulerService;
 
-  /* [REQ_ADM_074] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 리스트 조회] */
+  /* [REQ_ADM_074] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 리스트 조회] */
   @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSchedulerForAdmin() {
-    Map<String, Object> data = schedulerService.findAllSchedulerForAdmin();
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
+      Pageable pageable) {
+    Map<String, Object> data = schedulerService.findAllSchedulerForAdmin(scheMReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
-  /* [REQ_ADM_074_2] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 조회] */
+  /* [REQ_ADM_074_2] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 조회] */
   @GetMapping("/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.findBySchedulerForAdmin(scheId);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
-  /* [REQ_ADM_075] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 이력 조회] */
+  /* [REQ_ADM_075] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 이력 조회] */
   @GetMapping("/history/{scheId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId) {
-    Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId);
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
+      Pageable pageable) {
+    Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* 사용 X */
-  /* [REQ_ADM_076] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 템플릿 조회] */
+  /* [REQ_ADM_076] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 템플릿 조회] */
   // @GetMapping("/templates")
   // public ResponseEntity<ApiResponse<Map<String, Object>>>
   // findSchedulerTemplates() {
@@ -67,14 +70,14 @@ public class AdminSchedulerController {
   // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   // }
 
-  /* [REQ_ADM_077] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 직접실행] */
+  /* [REQ_ADM_077] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 직접실행] */
   @PostMapping("/execute/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> executeSchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.executeSchedulerForAdmin(scheId);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
-  /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 추가] */
+  /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 추가] */
   @PostMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(
       @Validated(CreateGroup.class) ScheMReqDto scheM) {
@@ -82,7 +85,7 @@ public class AdminSchedulerController {
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
-  /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 수정] */
+  /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 수정] */
   @PutMapping
   public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(
       @Validated(UpdateGroup.class) ScheMReqDto scheM) {
@@ -90,10 +93,10 @@ public class AdminSchedulerController {
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
-  /* [REQ_ADM_080] [화면 : 시스템 관리 > 스케쥴러 관리] [기능 : 스케쥴러 삭제] */
-  @DeleteMapping("/{schedulerId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(ScheMReqDto scheM) {
-    Map<String, Object> data = schedulerService.deleteSchedulerForAdmin(scheM);
+  /* [REQ_ADM_080] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 삭제] */
+  @DeleteMapping("/{scheId}")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(@PathVariable String scheId) {
+    Map<String, Object> data = schedulerService.deleteSchedulerForAdmin(scheId);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

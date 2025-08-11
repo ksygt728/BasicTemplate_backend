@@ -3,6 +3,22 @@
  * @설명     : 전역 에러 핸들러
  *            1) 프론트엔드로 에러를 던질 때 사용 - 응답구조 ApiResponse로 통일
  *            2) 에러 로그 생성 및 로그테이블 적재
+ * 
+ *         [커스텀 에러 Exception 클래스 구분]
+ *           1) [하] BusinessException : 비즈니스 로직에서 발생하는 예외로 업무과 관련된 예외.
+ *              - 비즈니스예외를 처리하기 위해, 예외상황이 아니지만 일부러 예외를 만들어 던지는 경우임
+ *              - 예외상황이 명확함
+ *           2) [중] ClientActionException : 비즈니스예외는 아니지만 명확한 클라이언트의 잘못된 동작으로 인해 예외가 발생하는 경우
+ *           3) [상] SystemErrorException : try-catch 등 예외가 발생하는 구간이 있지만 어떤 예외가 발생할지 애매한경우(예측불가) 각종 에러가 발생할 수 있는 부분 등 예외함.
+ *               - 원래는 예측되지 않은 예외는 '관리자에게 문의하세요'로 던졌지만 에러발생원인을 파악하기 위해 중간단계로써 추가 
+ *               - ErrorCode와 파라미터를 실어 같이 던질 수 있음 
+ *               - 에러확인을 위해 Exception받아 실제 예외를 던지는 구조
+ *               - 여기서 예외가 잡혔다면 명확한 처리를 위해 별도로 실제 예외를 던져야함(BusinessException 또는 ClientActionException)
+ *           4) [상] NotFoundException : 주로 클라이언트의 동작과 서버의 동작이 불일치 할 경우
+ *               - 해당 예외가 발생한 경우는 뭔가 개발이 잘못된 경우임
+ * *             - e.g. 수정을 하는데 수정할 데이터가 없는 경우, 삭제를 하는데 삭제할 데이터가 없는 경우
+ * 
+ * 
  * @작성자   : 김승연
  * @작성일   : 2025.07.23
  * @변경이력 :
@@ -12,8 +28,6 @@
 
 package com.basic.app.exception;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -23,9 +37,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,10 +45,10 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.basic.app.api.ApiResponse;
-import com.basic.app.entity.LogError;
 import com.basic.app.exception.customException.BusinessException;
+import com.basic.app.exception.customException.ClientActionException;
 import com.basic.app.exception.customException.NotFoundException;
-import com.basic.app.repository.LogErrorRepository;
+import com.basic.app.exception.customException.SystemErrorException;
 import com.basic.app.service.interfaces.LogService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,6 +60,73 @@ public class GlobalExceptionHandler {
 
   @Autowired
   private LogService logService;
+
+  /*
+   * ====================================================================
+   * =====================[CUSTOM EXCEPTION HANDLER]=====================
+   * ====================================================================
+   */
+
+  /* Error code : 400 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(비즈니르로직으로 인한 validation) */
+  @ExceptionHandler(BusinessException.class)
+  public ResponseEntity<ApiResponse<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
+
+    ErrorCode errorCode = e.getErrorCode();
+
+    showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(ApiResponse.fail(errorCode));
+  }
+
+  /* Error code : 400 클라이언트의 잘못된 요청으로 인해 발생하는 예외를 처리하기 위한 커스텀 예외 클래스 */
+  @ExceptionHandler(ClientActionException.class)
+  public ResponseEntity<ApiResponse<?>> handleClientActionException(ClientActionException e,
+      HttpServletRequest request) {
+
+    ErrorCode errorCode = e.getErrorCode();
+    String additionalMessage = e.getAdditionalMessage();
+
+    showErrorLogFormat(e, errorCode, additionalMessage);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, additionalMessage);
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(ApiResponse.fail(errorCode));
+  }
+
+  /* Error code : 400 - try-catch나 관리자가 직접 에러메세지를보고 판단해야하는 경우 */
+  @ExceptionHandler(SystemErrorException.class)
+  public ResponseEntity<ApiResponse<?>> handleSystemErrorException(SystemErrorException e, HttpServletRequest request) {
+
+    ErrorCode errorCode = e.getErrorCode();
+    String additionalMessage = e.getAdditionalMessage();
+
+    showErrorLogFormat(e.getE(), errorCode, additionalMessage);
+
+    try {
+      logService.insertErrorLog(e.getE(), request, errorCode, additionalMessage);
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(ApiResponse.fail(errorCode));
+  }
 
   /* Error code : 400 - 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(이상한 상황..) */
   @ExceptionHandler(NotFoundException.class)
@@ -70,24 +148,11 @@ public class GlobalExceptionHandler {
         .body(ApiResponse.fail(errorCode));
   }
 
-  /* Error code : 400 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(비즈니르로직으로 인한 validation) */
-  @ExceptionHandler(BusinessException.class)
-  public ResponseEntity<ApiResponse<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
-
-    ErrorCode errorCode = e.getErrorCode();
-
-    showErrorLogFormat(e, errorCode);
-
-    try {
-      logService.insertErrorLog(e, request, errorCode, "");
-    } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
-      ex.printStackTrace();
-    }
-    return ResponseEntity
-        .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(errorCode));
-  }
+  /*
+   * ====================================================================
+   * =====================[NORMAL EXCEPTION HANDLER]=====================
+   * ====================================================================
+   */
 
   /* Error code : 400 (@Validated) - 원인 : 클라이언트 책임 */
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -238,9 +303,14 @@ public class GlobalExceptionHandler {
     log.warn(
         """
 
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
+              [*** Response Error Message ***]
+              - ErrorCode : {}
+              - Message : {}
+              [*** Server Log ***]
+              - Class : {}
+              - Message : {}
+              [*** Strace ***]
+              {}
             """,
         errorCode.getCode(),
         errorCode.getMessage(),
@@ -255,9 +325,14 @@ public class GlobalExceptionHandler {
     log.warn(
         """
 
-              [*** Response Error Message ***] : [errorCode : {}] - [message : {}]
-              [*** Server Log ***] : [Class : {}] - [Message : {}]
-              [*** Strace *** : {}]
+              [*** Response Error Message ***]
+              - ErrorCode : {}
+              - Message : {}
+              [*** Server Log ***]
+              - Class : {}
+              - Message : {}
+              [*** Strace ***]
+              {}
             """,
         errorCode.getCode(),
         errorCode.getMessage() + additionalMessage,

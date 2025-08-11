@@ -23,7 +23,7 @@ public interface LogService {
   Map<String, Object> findByErrorLogForAdmin(String errId);
 
   int insertErrorLog(Exception e, HttpServletRequest request, ErrorCode errorCode,
-      String validatorErrorMessage);
+      String additionalMessage);
 
   int insertApiLog(List<LogApi> logApi);
 

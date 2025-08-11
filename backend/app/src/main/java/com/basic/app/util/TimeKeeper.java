@@ -13,9 +13,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
@@ -39,7 +39,7 @@ public class TimeKeeper {
       String[] dates = dateTimeStr.split(splitChar);
       if (dates.length == 2) {
         String start = dates[0].trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         LocalDateTime startDateTime = LocalDateTime.parse(start, formatter);
         return startDateTime;
       }
@@ -55,7 +55,7 @@ public class TimeKeeper {
       String[] dates = dateTimeStr.split(splitChar);
       if (dates.length == 2) {
         String end = dates[1].trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         LocalDateTime endDateTime = LocalDateTime.parse(end, formatter);
         return endDateTime;
       }
@@ -73,6 +73,28 @@ public class TimeKeeper {
     return Instant.ofEpochMilli(timestamp)
         .atZone(ZoneId.of("Asia/Seoul"))
         .toLocalDateTime();
+  }
+
+  public LocalDateTime convertDateToLocalDateTime(Date date) {
+    if (date == null)
+      return null;
+
+    LocalDateTime localDateTime = date.toInstant()
+        .atZone(ZoneId.of("Asia/Seoul"))
+        .toLocalDateTime();
+
+    // 밀리초까지 포맷해서 출력
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
+    String formattedDateTime = localDateTime.format(formatter);
+    return LocalDateTime.parse(formattedDateTime, formatter);
+  }
+
+  public LocalDateTime convertStringToLocalDateTime(String date) {
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+    LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+    return localDateTime;
   }
 
 }
