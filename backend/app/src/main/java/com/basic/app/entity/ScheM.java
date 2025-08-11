@@ -3,6 +3,7 @@ package com.basic.app.entity;
 import java.time.LocalDateTime;
 
 import com.basic.app.entity.baseEntity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,11 +33,28 @@ public class ScheM extends BaseEntity {
   @Column(name = "DESCRIPTION", length = 2048)
   private String description; // 설명
 
+  @Column(name = "SCHE_GROUP", length = 45, nullable = false)
+  private String scheGroup; // 스케줄러 그뤂명
+
+  @Column(name = "CLASS_NAME", length = 100, nullable = false)
+  private String className; // 클래스명
+
+  @Column(name = "METHOD_NAME", length = 100, nullable = false)
+  private String methodName; // 메소드명
+
+  @Column(name = "TRIGGER_NAME", length = 100, nullable = false)
+  private String triggerName; // 트리거명
+
   @Column(name = "CRON_EXP", length = 45, nullable = false)
   private String cronExp; // CRON식
 
-  @Column(name = "LAST_EXEC_TIME")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @Column(name = "LAST_EXEC_TIME", columnDefinition = "TIMESTAMP(3)")
   private LocalDateTime lastExecTime; // 마지막실행시간
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @Column(name = "NEXT_EXEC_TIME", columnDefinition = "TIMESTAMP(3)")
+  private LocalDateTime nextExecTime; // 마지막실행시간
 
   @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)

@@ -127,6 +127,12 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- [Spring quartz] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+
 		<!-- [Jackson] LocalDateTime 역질렬화 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>

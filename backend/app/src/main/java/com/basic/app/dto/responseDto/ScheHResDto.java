@@ -31,11 +31,13 @@ public class ScheHResDto {
 
   private String scheId; // 스케줄아이디
 
+  private String scheGroup; // 스케줄러 그뤂명
+
   private String startTime; // 시작시간
 
   private String endTime; // 종료시간
 
-  private String execTime; // 실행시간
+  private long execTime; // 실행시간
 
   private String success; // 성공여부
 

@@ -8,8 +8,6 @@
  */
 package com.basic.app.dto.requestDto;
 
-import java.time.LocalDateTime;
-
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
@@ -38,12 +36,21 @@ public class ScheMReqDto extends BaseReqDto {
 
   private String description; // 설명
 
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "스케줄러 그뤂명은 필수입니다.")
+  private String scheGroup; // 스케줄러 그뤂명
+
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "클래스명은 필수입니다.")
+  private String className; // 클래스명
+
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메소드명은 필수입니다.")
+  private String methodName; // 메소드명
+
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "트리거명은 필수입니다.")
+  private String triggerName; // 트리거명
+
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "크론식은 필수입니다.")
   private String cronExp; // CRON식
 
-  private LocalDateTime lastExecTime; // 마지막실행시간
-
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 
 }
