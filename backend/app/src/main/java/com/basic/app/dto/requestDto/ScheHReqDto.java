@@ -12,6 +12,7 @@ import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,11 +34,11 @@ public class ScheHReqDto extends BaseReqDto {
 
   private String scheId; // 스케줄아이디
 
+  private String scheGroup; // 스케줄러 그뤂명
+
   private String startTime; // 시작시간
 
   private String endTime; // 종료시간
-
-  private String execTime; // 실행시간
 
   private String success; // 성공여부
 

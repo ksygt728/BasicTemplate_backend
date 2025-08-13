@@ -19,10 +19,40 @@ spring:
       ddl-auto: update # 애플리케이션 실행 시 DDL 자동 생성/수정 옵션 (none, update, create, create-drop 등)
     properties:
       hibernate:
-        jdbc.batch_size: 100
-        show_sql: false # 실행되는 SQL 쿼리를 콘솔에 비활성화
-        format_sql: true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
-        use_sql_comments: true # SQL 쿼리에 주석 추가해서 출력
+        "[jdbc.batch_size]": 100
+        "[show_sql]": false # 실행되는 SQL 쿼리를 콘솔에 비활성화
+        "[format_sql]": true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
+        "[use_sql_comments]": true # SQL 쿼리에 주석 추가해서 출력
+
+  quartz:
+    job-store-type: jdbc # Quartz 상태 저장 방식을 JDBC(DB)로 설정
+    jdbc:
+      initialize-schema: never # 스키마 자동 생성 비활성화 (직접 SQL 실행 후 사용)
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: MyClusteredScheduler # 스케줄러 이름, 클러스터 내 구분용
+            instanceId: AUTO # 클러스터 노드별 고유 ID 자동 생성
+
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX # 트랜잭션 지원하는 JDBC JobStore 구현체
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate # MySQL용 드라이버 델리게이트
+            useProperties: false # 잡 데이터 저장시 별도 properties 사용 안함
+            dataSource: myDS # 사용할 데이터소스 이름
+            tablePrefix: QRTZ_ # Quartz 테이블 접두사
+            isClustered: true # 클러스터링 활성화
+            clusterCheckinInterval: 20000 # 클러스터 상태 점검 주기 (밀리초, 20초)
+
+          threadPool:
+            threadCount: 10 # Quartz 스레드 풀 크기 (동시 실행 가능한 잡 수)
+
+          dataSource:
+            myDS:
+              driver: com.mysql.cj.jdbc.Driver # 데이터소스 드라이버
+              URL: jdbc:mysql://localhost:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
+              user: root # 데이터소스 사용자명
+              password: root961019 # 데이터소스 비밀번호
 
   data:
     redis:
@@ -41,8 +71,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
-        max.poll.interval.ms: 300000
-        session.timeout.ms: 600000
+        "[max.poll.interval.ms]": 300000
+        "[session.timeout.ms]": 600000
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -54,16 +84,25 @@ spring:
 
 logging:
   level:
+    root: info # 기본 로깅 레벨
     org:
+      jooq: debug
+      "[jooq.tools]": debug
+      "[jooq.tools.LoggerListener]": debug
+      "[springframework.kafka]": error
       hibernate:
         SQL: debug # 실행되는 SQL 출력
         orm:
           jdbc:
             bind: trace # Hibernate 6 이상에서 바인딩 값 출력
-    org.jooq: debug
-    org.jooq.tools: debug
-    org.jooq.tools.LoggerListener: debug
-    org.springframework.kafka: error
+    com:
+      basic:
+        app: debug
+        featureTest: debug # 테스트 패키지
+  pattern:
+    # console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [ %-5level] %logger{36} - %msg%n" # 콘솔 출력 포맷
+    console: "\u001B[36m%d{yyyy-MM-dd HH:mm:ss.SSS}\u001B[0m \u001B[35m[%thread]\u001B[0m \u001B[1;33m[%-5level]\u001B[0m \u001B[32m%logger{36}\u001B[34m - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n"
 
 jwt:
   env: dev # 현재 활성화된 프로필 설정 (dev 프로필 사용)

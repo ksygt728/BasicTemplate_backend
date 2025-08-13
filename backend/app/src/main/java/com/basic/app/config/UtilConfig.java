@@ -61,6 +61,6 @@ public class UtilConfig {
 
 	@Bean
 	public SimpleDateFormat currentTimeFormat() {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	}
 }

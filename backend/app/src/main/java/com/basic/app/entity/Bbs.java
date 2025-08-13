@@ -47,7 +47,7 @@ public class Bbs extends BaseEntity {
   @JoinColumn(name = "WRITOR", nullable = false)
   private User writor; // 작성자
 
-  @Column(name = "WRITE_DATE", nullable = false, columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+  @Column(name = "WRITE_DATE", nullable = false, columnDefinition = "TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3)")
   private LocalDateTime writeDate; // 작성일
 
   // Bbs - BbsComment (1:N)
