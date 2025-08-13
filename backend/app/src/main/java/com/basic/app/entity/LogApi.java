@@ -41,11 +41,11 @@ public class LogApi extends BaseEntity {
   private String userId; // 사용자 아이디
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-  @Column(name = "START_DATE", length = 45)
+  @Column(name = "START_DATE", columnDefinition = "TIMESTAMP(3)")
   private LocalDateTime startDate; // 시작시간
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-  @Column(name = "END_DATE", length = 45)
+  @Column(name = "END_DATE", columnDefinition = "TIMESTAMP(3)")
   private LocalDateTime endDate; // 종료시간
 
   @Column(name = "IP_ADDR", length = 45)
