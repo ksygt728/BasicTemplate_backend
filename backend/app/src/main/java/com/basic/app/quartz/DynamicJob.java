@@ -64,9 +64,9 @@ public class DynamicJob implements Job {
                 .filter(sche -> sche.getUseYn().equals("Y") && sche.getSts().equals(Status.POSITIVE))
                 .orElse(null);
 
-        /* step 1 : DB에 없는 항목이면 스케쥴러에서 Job 삭제 처리(DML로 기준정보만 삭제한 경우) */
+        /* step 1 : DB에 없는 항목이면 스케줄러에서 Job 삭제 처리(DML로 기준정보만 삭제한 경우) */
         if (scheM == null) {
-            log.warn("사용하지 않는 SCHE_ID : {} 이(가) schedulerFactory에 등록되어 실행되고 있습니다. 스케쥴러에서 자체적으로 삭제처리합니다.", scheId);
+            log.warn("사용하지 않는 SCHE_ID : {} 이(가) schedulerFactory에 등록되어 실행되고 있습니다. 스케줄러에서 자체적으로 삭제처리합니다.", scheId);
             try {
                 scheduler.deleteJob(context.getJobDetail().getKey());
                 return;

@@ -33,9 +33,11 @@ public class ScheHResDto {
 
   private String scheGroup; // 스케줄러 그뤂명
 
-  private String startTime; // 시작시간
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private LocalDateTime startTime; // 시작시간
 
-  private String endTime; // 종료시간
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private LocalDateTime endTime; // 종료시간
 
   private long execTime; // 실행시간
 

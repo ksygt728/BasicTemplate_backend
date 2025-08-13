@@ -168,7 +168,7 @@ public class SchedulerServiceImpl implements SchedulerService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. 모든 인터페이스 조회
-    Page<ScheH> pagedScheHList = schedulerHistoryRepository.findAllByScheIdAndStsOrderByStartTimeDesc(scheId,
+    Page<ScheH> pagedScheHList = schedulerHistoryRepository.findAllByScheIdAndSts(scheId,
         Status.POSITIVE,
         pageable);
 

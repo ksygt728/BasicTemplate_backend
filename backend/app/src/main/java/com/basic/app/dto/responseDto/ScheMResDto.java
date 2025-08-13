@@ -48,6 +48,9 @@ public class ScheMResDto {
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   private LocalDateTime lastExecTime; // 마지막실행시간
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private LocalDateTime nextExecTime; // 마지막실행시간
+
   private String useYn; // 사용여부 (Y,N)
 
 }

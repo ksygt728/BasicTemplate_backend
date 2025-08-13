@@ -38,6 +38,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -241,6 +242,27 @@ public class GlobalExceptionHandler {
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
   public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e, HttpServletRequest request) {
+
+    ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
+
+    showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+
+    return ResponseEntity
+        .status(HttpStatus.NOT_FOUND)
+        .body(ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND));
+  }
+
+  /* Error code : 404 (페이지를 찾을 수 없음) */
+  @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+  public ResponseEntity<ApiResponse<?>> handleHttpRequestMethodNotSupportedException(
+      HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 

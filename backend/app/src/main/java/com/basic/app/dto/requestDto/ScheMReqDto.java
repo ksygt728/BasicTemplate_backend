@@ -28,10 +28,10 @@ import lombok.ToString;
 @Builder
 public class ScheMReqDto extends BaseReqDto {
 
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "스케쥴아이디는 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "스케줄아이디는 필수입니다.")
   private String scheId; // 스케줄아이디
 
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "스케쥴명 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "스케줄명 필수입니다.")
   private String scheName; // 스케줄명
 
   private String description; // 설명

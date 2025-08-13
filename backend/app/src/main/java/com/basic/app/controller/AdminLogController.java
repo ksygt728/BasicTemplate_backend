@@ -45,7 +45,7 @@ public class AdminLogController {
   }
 
   /* [REQ_ADM_064_2] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 조회] */
-  @GetMapping("/api-log/{logAct}")
+  @GetMapping("/api-log/{logId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findByAccessLogForAdmin(@PathVariable String logId) {
     Map<String, Object> data = logService.findByAccessLogForAdmin(logId);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));

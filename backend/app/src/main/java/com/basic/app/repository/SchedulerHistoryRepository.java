@@ -20,6 +20,6 @@ import com.basic.app.entity.ScheH;
 @Repository
 public interface SchedulerHistoryRepository extends JpaRepository<ScheH, String> {
 
-  Page<ScheH> findAllByScheIdAndStsOrderByStartTimeDesc(String scheId, String positive, Pageable pageable);
+  Page<ScheH> findAllByScheIdAndSts(String scheId, String positive, Pageable pageable);
 
 }

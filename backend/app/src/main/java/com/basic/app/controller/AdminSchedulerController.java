@@ -13,6 +13,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -38,9 +40,9 @@ public class AdminSchedulerController {
   private SchedulerService schedulerService;
 
   /* [REQ_ADM_074] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 리스트 조회] */
-  @GetMapping
+  @GetMapping("/search")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
-      Pageable pageable) {
+      @PageableDefault(page = 0, size = 200, sort = "scheId", direction = Sort.Direction.ASC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findAllSchedulerForAdmin(scheMReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
@@ -55,7 +57,7 @@ public class AdminSchedulerController {
   /* [REQ_ADM_075] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 이력 조회] */
   @GetMapping("/history/{scheId}")
   public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
-      Pageable pageable) {
+      @PageableDefault(page = 0, size = 200, sort = "startDate", direction = Sort.Direction.DESC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
