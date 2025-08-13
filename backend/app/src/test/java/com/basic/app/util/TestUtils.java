@@ -1,26 +1,41 @@
 package com.basic.app.util;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ApiResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class TestUtils {
 
-  private static final ObjectMapper objectMapper = new ObjectMapper();
+  private static final ObjectMapper objectMapper = createObjectMapper();
+
+  private static ObjectMapper createObjectMapper() {
+    ObjectMapper mapper = new ObjectMapper();
+
+    // Java 8 시간 모듈 등록
+    JavaTimeModule timeModule = new JavaTimeModule();
+    mapper.registerModule(timeModule);
+
+    // 설정
+    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    mapper.enable(SerializationFeature.INDENT_OUTPUT); // 테스트 시 읽기 쉽게
+
+    return mapper;
+  }
 
   // DTO -> MultiValueMap
   public static MultiValueMap<String, String> dtoToMultiValueMap(Object dto) {

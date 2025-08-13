@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version> 
+			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -76,7 +76,7 @@
 			<version>3.5.3</version>
 		</dependency>
 
-		<!-- [jasper] : JSP 페이지를 사용할때 필요(RestAPI 구현할때는 필요없음 -->
+		<!-- [jasper] : JSP 페이지를 사용할때 필요(RestAPI 구현할때는 필요없음) -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
@@ -127,6 +127,12 @@
 			<version>3.1.1</version>
 		</dependency>
 
+		<!-- [Spring quartz] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+
 		<!-- [Jackson] LocalDateTime 역질렬화 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -135,8 +141,8 @@
 
 		<!--[AOP]-->
 		<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-aop</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
 		<!-- [mail] -->
@@ -166,9 +172,9 @@
 
 		<!--[JWTToken]  -->
 		<dependency>
-				<groupId>com.auth0</groupId>
-				<artifactId>java-jwt</artifactId>
-				<version>4.4.0</version>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
 		</dependency>
 
 		<!--[Swagger] -->
@@ -186,8 +192,8 @@
 
 		<!--[Redis] -->
 		<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-redis</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 		<!-- Lettuce (기본 연결 클라이언트) -->
@@ -201,7 +207,7 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -215,7 +221,7 @@
 					<target>21</target>
 				</configuration>
 			</plugin>
-			
+
 			<!-- jOOQ 코드 생성기 플러그인 -->
 			<plugin>
 				<groupId>org.jooq</groupId>
@@ -230,7 +236,8 @@
 						<configuration>
 							<jdbc>
 								<driver>com.mysql.cj.jdbc.Driver</driver>
-								<url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</url>
+								<url>
+									jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</url>
 								<user>root</user>
 								<password>root961019</password>
 							</jdbc>

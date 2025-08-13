@@ -38,7 +38,7 @@ public abstract class BaseEntity {
 
   @CreatedDate
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-  @Column(name = "CREATE_DATE", nullable = false, updatable = false) // update할때 들어가면 안됨
+  @Column(name = "CREATE_DATE", columnDefinition = "TIMESTAMP(3)", nullable = false, updatable = false) // update할때 들어가면
   private LocalDateTime createDate; // 생성일시
 
   @LastModifiedBy
@@ -47,7 +47,7 @@ public abstract class BaseEntity {
 
   @LastModifiedDate
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-  @Column(name = "TIMESTAMP", nullable = false)
+  @Column(name = "TIMESTAMP", columnDefinition = "TIMESTAMP(3)", nullable = false)
   private LocalDateTime timestamp; // 수정일시
 
   public <T> T toDto(Class<T> targetClass) {

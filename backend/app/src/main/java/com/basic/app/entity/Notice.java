@@ -44,7 +44,7 @@ public class Notice extends BaseEntity {
   @JoinColumn(name = "WRITOR", nullable = false)
   private User writor; // 작성자
 
-  @Column(name = "WRITE_DATE", nullable = false)
+  @Column(name = "WRITE_DATE", columnDefinition = "TIMESTAMP(3)", nullable = false)
   private LocalDateTime writeDate; // 작성일
 
 }

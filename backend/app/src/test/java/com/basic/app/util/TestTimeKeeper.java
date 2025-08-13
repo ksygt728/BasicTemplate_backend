@@ -30,7 +30,7 @@ import lombok.extern.log4j.Log4j2;
 @Setter
 @NoArgsConstructor
 @Component
-public class TimeKeeper {
+public class TestTimeKeeper {
 
   private String splitChar = "~"; // 기간 구분자
 

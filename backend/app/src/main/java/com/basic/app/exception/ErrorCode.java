@@ -39,6 +39,11 @@ public enum ErrorCode {
   DEPARTMENT_NOT_WRITE("4003", "부서 정보는 HR에서 받아오는 정보로 추가/수정/삭제가 불가합니다. HR에 문의하세요."),
   DATEFORMAT_INVALID("4004", "날짜 형식이 올바르지 않습니다."),
 
+  SCHEDULER_NOT_FOUND("4010", "스케줄러 정보가 존재하지 않습니다."),
+  SCHEDULER_CREATE_FAILED("4011", "스케줄러 등록에 실패했습니다. cron표현식이 올바른지 확인해주세요."),
+  SCHEDULER_EXCUTE_FAILED("4012", "스케줄러 실행에 실패했습니다."),
+  SCHEDULER_IS_EXCUTING("4013", "스케줄러가 이미 실행중입니다."),
+
   // 5000번대: 서버 및 외부 시스템 관련
   SERVER_ERROR("5001", "서버 에러가 발생했습니다. 관리자에게 문의하세요."),
   DATABASE_ERROR("5002", "데이터베이스 오류가 발생했습니다."),
@@ -46,7 +51,7 @@ public enum ErrorCode {
   VALIDATION_ERROR_SERVER("5004", "서버 유효성 검사에 실패했습니다."),
 
   // 9000번대: 기타 및 예상치 못한 오류
-  UNEXPECTED_ERROR("9001", "예상치 못한 오류가 발생했습니다."),
+  UNEXPECTED_ERROR("9001", "예상치 못한 오류가 발생했습니다.")
 
   ;
 
