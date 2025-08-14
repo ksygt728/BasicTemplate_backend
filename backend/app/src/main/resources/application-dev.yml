@@ -100,8 +100,7 @@ logging:
         app: debug
         featureTest: debug # 테스트 패키지
   pattern:
-    # console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [ %-5level] %logger{36} - %msg%n" # 콘솔 출력 포맷
-    console: "\u001B[36m%d{yyyy-MM-dd HH:mm:ss.SSS}\u001B[0m \u001B[35m[%thread]\u001B[0m \u001B[1;33m[%-5level]\u001B[0m \u001B[32m%logger{36}\u001B[34m - %msg%n"
+    console: "\u001B[1;36m%d{yyyy-MM-dd HH:mm:ss.SSS}\u001B[0m \u001B[35m[%thread-%X{tid}][%X{traceId}]\u001B[0m \u001B[1;33m[%level]\u001B[0m \u001B[32m%logger{32}.%M:%L : \u001B[34m%msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - %msg%n"
 
 jwt:
