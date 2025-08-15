@@ -12,6 +12,8 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +31,7 @@ import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
+import com.basic.app.dto.requestDto.specialDto.CodeSearchFormReqDto;
 import com.basic.app.service.interfaces.CodeService;
 
 @RestController
@@ -37,6 +40,14 @@ public class AdminCodeController {
 
   @Autowired
   private CodeService codeService;
+
+  /* [REQ_ADM_009_0] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색] */
+  @GetMapping("/search")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllCodeMWithConditions(CodeSearchFormReqDto reqDto,
+      @PageableDefault(page = 0, size = 2000) Pageable pageable) {
+    Map<String, Object> data = codeService.findAllCodeRowMWithConditions(reqDto, pageable);
+    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  }
 
   /* [REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 리스트 조회] */
   @GetMapping("/group")
