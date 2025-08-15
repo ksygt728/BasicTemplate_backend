@@ -99,6 +99,10 @@ public class CodeJooqRepository {
                   .and(TB_COM_CODE_D.STS.eq(Status.POSITIVE)))));
     }
 
+    if (reqDto.getUseYn() != null && !reqDto.getUseYn().isEmpty()) {
+      conditions.add(CD.USE_YN.like("%" + reqDto.getUseYn() + "%"));
+    }
+
     conditions.add(CM.STS.eq(Status.POSITIVE));
 
     /**

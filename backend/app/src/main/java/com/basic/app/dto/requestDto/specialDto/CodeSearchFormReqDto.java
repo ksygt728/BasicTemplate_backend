@@ -39,4 +39,6 @@ public class CodeSearchFormReqDto extends BaseReqDto {
 
   private String dtlNm; // 상세코드명
 
+  private String useYn; // 상세코드명
+
 }

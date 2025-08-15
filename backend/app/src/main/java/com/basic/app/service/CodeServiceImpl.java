@@ -79,11 +79,6 @@ public class CodeServiceImpl implements CodeService {
         codeSearchFormReqDto,
         pageable);
 
-    log.warn("codeDtoList.getTotalElements() : " + codeDtoList.getTotalElements());
-    for (CodeSearchFormResDto dto : codeDtoList.getContent()) {
-      log.warn("cdoeDtoList: {} {}", dto.getDtlCd(), dto.getAttrCd());
-    }
-
     // 2. Page에서 List 꺼내기
     List<CodeSearchFormResDto> codeRows = codeDtoList.getContent();
 
