@@ -97,24 +97,54 @@ public class CodeServiceImpl implements CodeService {
         return groupMap;
       });
 
-      Map<String, ComCodeInfo> comCodeList = group.getComCodeInfo();
-      ComCodeInfo codeRow = comCodeList.computeIfAbsent(
-          row.getDtlCd() != null ? row.getDtlCd() : "UNKNOWN_" + System.currentTimeMillis(),
-          k -> {
-            ComCodeInfo attrMap = ComCodeInfo.builder()
-                .dtlCd(row.getDtlCd())
-                .useYn(row.getUseYn())
-                .dtlOrderNum(row.getCodeDOrderNum())
-                .build();
+      // Map<String, ComCodeInfo> comCodeList = group.getComCodeInfo();
+      List<ComCodeInfo> comCodeList = group.getComCodeInfo();
 
-            return attrMap;
-          });
-      codeRow.getCodeAttributes().add(
-          ComCodeAttributesAndValues.builder()
-              .attrCd(row.getAttrCd())
-              .attrNm(row.getAttrNm())
-              .dtlNm(row.getDtlNm())
-              .build());
+      ComCodeInfo comCodeInfo = null;
+
+      if (row.getDtlCd() != null) {
+        comCodeInfo = comCodeList.stream()
+            .filter(info -> info.getDtlCd().equals(row.getDtlCd()))
+            .findFirst()
+            .orElse(null);
+      }
+
+      if (comCodeInfo == null) {
+        comCodeInfo = ComCodeInfo.builder()
+            .dtlCd(row.getDtlCd())
+            .useYn(row.getUseYn())
+            .dtlOrderNum(row.getCodeDOrderNum())
+            .build();
+
+        comCodeList.add(comCodeInfo);
+      }
+
+      ComCodeAttributesAndValues comCodeAttributes = ComCodeAttributesAndValues.builder()
+          .attrCd(row.getAttrCd())
+          .attrNm(row.getAttrNm())
+          .dtlNm(row.getDtlNm())
+          .build();
+
+      comCodeInfo.getCodeAttributes().add(comCodeAttributes);
+
+      // ComCodeInfo codeRow = comCodeList.computeIfAbsent(
+      // row.getDtlCd() != null ? row.getDtlCd() : "UNKNOWN_" +
+      // System.currentTimeMillis(),
+      // k -> {
+      // ComCodeInfo attrMap = ComCodeInfo.builder()
+      // .dtlCd(row.getDtlCd())
+      // .useYn(row.getUseYn())
+      // .dtlOrderNum(row.getCodeDOrderNum())
+      // .build();
+
+      // return attrMap;
+      // });
+      // codeRow.getCodeAttributes().add(
+      // ComCodeAttributesAndValues.builder()
+      // .attrCd(row.getAttrCd())
+      // .attrNm(row.getAttrNm())
+      // .dtlNm(row.getDtlNm())
+      // .build());
     }
 
     // pivotMap의 values를 List<GroupCodeInfo> 형태로 받을 수 있습니다.

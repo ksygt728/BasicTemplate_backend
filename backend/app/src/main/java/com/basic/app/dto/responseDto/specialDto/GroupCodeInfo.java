@@ -1,7 +1,7 @@
 package com.basic.app.dto.responseDto.specialDto;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +24,10 @@ public class GroupCodeInfo {
 
   private String grpNm; // 그룹코드명
 
+  // @Builder.Default
+  // private Map<String, ComCodeInfo> comCodeInfo = new LinkedHashMap<>(); // 각각 행
+
   @Builder.Default
-  private Map<String, ComCodeInfo> comCodeInfo = new LinkedHashMap<>(); // 각각 행
+  private List<ComCodeInfo> comCodeInfo = new ArrayList<>(); // 각각 행
 
 }
