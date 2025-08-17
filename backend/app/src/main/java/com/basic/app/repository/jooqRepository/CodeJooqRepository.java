@@ -113,10 +113,12 @@ public class CodeJooqRepository {
     long total = dsl.selectCount()
         .from(CM)
         .leftOuterJoin(CT)
-        .on(CM.GRP_CD.eq(CT.GRP_CD))
+        .on(CM.GRP_CD.eq(CT.GRP_CD)
+            .and(CT.STS.eq(Status.POSITIVE).or(CT.STS.isNull())))
         .leftOuterJoin(CD)
         .on(CD.GRP_CD.eq(CT.GRP_CD)
             .and(CD.ATTR_CD.eq(CT.ATTR_CD)))
+        .and(CD.STS.eq(Status.POSITIVE).or(CD.STS.isNull()))
         .where(conditions) // 조건 추가
         .limit(pageable.getPageSize()) // 페이지 크기 적용
         .offset(pageable.getOffset()) // 페이지 오프셋 적용
@@ -129,10 +131,12 @@ public class CodeJooqRepository {
             CD.ORDER_NUM.as("codeDOrderNum"), CT.ORDER_NUM.as("codeTOrderNum"))
         .from(CM)
         .leftOuterJoin(CT)
-        .on(CM.GRP_CD.eq(CT.GRP_CD))
+        .on(CM.GRP_CD.eq(CT.GRP_CD)
+            .and(CT.STS.eq(Status.POSITIVE).or(CT.STS.isNull())))
         .leftOuterJoin(CD)
         .on(CD.GRP_CD.eq(CT.GRP_CD)
             .and(CD.ATTR_CD.eq(CT.ATTR_CD)))
+        .and(CD.STS.eq(Status.POSITIVE).or(CD.STS.isNull()))
         .where(conditions) // 조건 추가
         .orderBy(CM.GRP_CD.asc(), CD.ORDER_NUM.asc(), CT.ORDER_NUM.asc()) // 정렬 조건 적용
         .limit(pageable.getPageSize()) // 페이지 크기 적용

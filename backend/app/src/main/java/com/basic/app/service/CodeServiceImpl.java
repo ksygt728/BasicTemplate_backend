@@ -97,7 +97,7 @@ public class CodeServiceImpl implements CodeService {
         return groupMap;
       });
 
-      // Map<String, ComCodeInfo> comCodeList = group.getComCodeInfo();
+      // 행 추가
       List<ComCodeInfo> comCodeList = group.getComCodeInfo();
 
       ComCodeInfo comCodeInfo = null;
@@ -119,6 +119,7 @@ public class CodeServiceImpl implements CodeService {
         comCodeList.add(comCodeInfo);
       }
 
+      // 열 추가
       ComCodeAttributesAndValues comCodeAttributes = ComCodeAttributesAndValues.builder()
           .attrCd(row.getAttrCd())
           .attrNm(row.getAttrNm())
@@ -127,8 +128,15 @@ public class CodeServiceImpl implements CodeService {
 
       comCodeInfo.getCodeAttributes().add(comCodeAttributes);
 
+      // Map<String, ComCodeInfo> comCodeList =
+      // group.getComCodeInfo().stream().collect(Collectors.toMap(
+      // ComCodeInfo::getDtlCd,
+      // comCodeInfo -> comCodeInfo,
+      // (existing, replacement) -> existing, // 중복된 키는 기존 값을 유지
+      // LinkedHashMap::new)); // 순서를 유지하기 위해 LinkedHashMap 사용
       // ComCodeInfo codeRow = comCodeList.computeIfAbsent(
-      // row.getDtlCd() != null ? row.getDtlCd() : "UNKNOWN_" +
+      // row.getDtlCd() != null ? row.getDtlCd()
+      // : "UNKNOWN_" +
       // System.currentTimeMillis(),
       // k -> {
       // ComCodeInfo attrMap = ComCodeInfo.builder()
@@ -145,6 +153,10 @@ public class CodeServiceImpl implements CodeService {
       // .attrNm(row.getAttrNm())
       // .dtlNm(row.getDtlNm())
       // .build());
+
+      // comCodeList.put(codeRow.getDtlCd(), codeRow);
+      // group.setComCodeInfo(new ArrayList<>(comCodeList.values()));
+      // }
     }
 
     // pivotMap의 values를 List<GroupCodeInfo> 형태로 받을 수 있습니다.
