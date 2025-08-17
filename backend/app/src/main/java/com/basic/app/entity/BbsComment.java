@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_BBS_COMMENT") // 게시판 댓글 테이블
+@Entity
+@Table(name = "TB_BBS_COMMENT") // 게시판 댓글 테이블
 public class BbsComment extends BaseEntity {
 
   @Id
