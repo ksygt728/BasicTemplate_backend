@@ -24,10 +24,9 @@ import com.basic.app.api.ResponseApi;
 import com.basic.app.service.interfaces.ApprovalService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "AdminApprovalController", description = "결재 API")
 @RestController
 @RequestMapping("/admin/approval")
 public class AdminApprovalController {

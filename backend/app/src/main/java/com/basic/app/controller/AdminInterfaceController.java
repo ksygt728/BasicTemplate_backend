@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
@@ -38,8 +39,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import com.basic.app.annotation.SwaggerCommonResponseApi;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "AdminInterfaceController", description = "인터페이스 API")
 @RestController
 @RequestMapping("/admin/interface")
 public class AdminInterfaceController {

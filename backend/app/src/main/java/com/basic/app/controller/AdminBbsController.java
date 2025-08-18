@@ -36,7 +36,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "AdminBbsController", description = "게시판 API")
 @RestController
 @RequestMapping("/admin/bbs")
 public class AdminBbsController {

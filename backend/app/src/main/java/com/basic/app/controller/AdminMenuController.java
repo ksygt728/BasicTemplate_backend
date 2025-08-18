@@ -41,7 +41,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "AdminMenuController", description = "메뉴 API")
 @RestController
 @RequestMapping("/admin/menu")
 public class AdminMenuController {
