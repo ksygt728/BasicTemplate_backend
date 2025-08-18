@@ -1,6 +1,5 @@
 package com.basic.app.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -11,6 +10,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_SCHE_H") // 스케줄 실행 이력 테이블
+@Entity
+@Table(name = "TB_SCHE_H") // 스케줄 실행 이력 테이블
 public class ScheH extends BaseEntity {
   @Id
   @Column(name = "LOG_ID", length = 36)

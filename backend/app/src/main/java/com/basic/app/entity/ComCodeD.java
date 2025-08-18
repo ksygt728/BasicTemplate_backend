@@ -1,5 +1,6 @@
 package com.basic.app.entity;
 
+import com.basic.app.dto.responseDto.ComCodeDResDto;
 import com.basic.app.entity.baseEntity.BaseEntity;
 import com.basic.app.entity.compositeKey.ComCodeDId;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +26,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_COM_CODE_D") // 공통코드 상세 테이블
+@Entity
+@Table(name = "TB_COM_CODE_D") // 공통코드 상세 테이블
 public class ComCodeD extends BaseEntity {
 
   @EmbeddedId
@@ -47,5 +50,14 @@ public class ComCodeD extends BaseEntity {
 
   @Column(name = "ORDER_NUM", nullable = false)
   private int orderNum; // 정렬순서
+
+  public ComCodeDResDto toDto(ComCodeD entity) {
+    return ComCodeDResDto.builder()
+        .dtlCd(entity.getComCodeDId().getDtlCd())
+        .dtlNm(entity.getDtlNm())
+        .useYn(entity.getUseYn())
+        .orderNum(entity.getOrderNum())
+        .build();
+  }
 
 }

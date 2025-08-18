@@ -5,6 +5,7 @@ import com.basic.app.entity.baseEntity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_MUL_LANG") // 다국어 테이블
+@Entity
+@Table(name = "TB_MUL_LANG") // 다국어 테이블
 public class MulLang extends BaseEntity {
   @Id
   @Column(name = "LANG_CD", length = 45)

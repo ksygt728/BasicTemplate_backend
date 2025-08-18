@@ -5,6 +5,7 @@ import com.basic.app.entity.baseEntity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_MAIL_H") // 메일 발송 이력 테이블
+@Entity
+@Table(name = "TB_MAIL_H") // 메일 발송 이력 테이블
 public class MailH extends BaseEntity {
   @Id
   @Column(name = "LOG_ID", length = 45)

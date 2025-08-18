@@ -12,8 +12,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+
+import com.basic.app.entity.compositeKey.ComCodeTId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,16 +33,15 @@ import lombok.ToString;
 @Builder
 public class ComCodeTResDto {
 
-  private String grpCd; // 그룹코드
+  // private ComCodeTId comCodeTId;
 
   private String attrCd; // 속성코드
 
   private String attrNm; // 속성명
 
-  private int orderNum; // 정렬순서
+  private int orderNum; // 정렬`순서
 
   // CodeT - CodeD (1:N)
-  // private List<ComCodeDResDto> comCodeDs = new ArrayList<ComCodeDResDto>(); //
-  // 속성코드에 포함된 상세코드 리스트
+  private List<ComCodeDResDto> comCodeDs = new ArrayList<ComCodeDResDto>(); //
 
 }

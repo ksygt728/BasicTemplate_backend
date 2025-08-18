@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +22,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_SCHE_M") // 스케줄 마스터 테이블
+@Entity
+@Table(name = "TB_SCHE_M") // 스케줄 마스터 테이블
 public class ScheM extends BaseEntity {
   @Id
   @Column(name = "SCHE_ID", length = 45)
