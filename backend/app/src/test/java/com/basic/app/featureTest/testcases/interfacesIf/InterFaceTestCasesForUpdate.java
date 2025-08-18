@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.basic.app.util.TestCaseDetail;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.exception.ErrorCode;
 
@@ -33,7 +33,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url1 = BASE_URL;
         String testName1 = "비정상수정 | 키수정 - 키는 수정할 수 없음";
         InterfaceReqDto testData1 = new InterfaceReqDto("IF005_SEARCH_(수정)", "배송정보 요청", "/api/v1/items/product");
-        ApiResponse<?> expected1 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected1 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         ResultMatcher status1 = status().is4xxClientError();
 
         /*
@@ -43,7 +43,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url2 = BASE_URL;
         String testName2 = "정상수정 | 이름 수정";
         InterfaceReqDto testData2 = new InterfaceReqDto("IF005_SEARCH", "배송정보 요청(수정)", "/api/v1/items/product");
-        ApiResponse<?> expected2 = ApiResponse.success(Map.of("data", testData2));
+        ResponseApi<?> expected2 = ResponseApi.success(Map.of("data", testData2));
         ResultMatcher status2 = status().isOk();
 
         /*
@@ -53,7 +53,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url3 = BASE_URL;
         String testName3 = "정상수정 | Text 수정";
         InterfaceReqDto testData3 = new InterfaceReqDto("IF005_SEARCH", "배송정보 요청", "/api/v1/items/product/update");
-        ApiResponse<?> expected3 = ApiResponse.success(Map.of("data", testData3));
+        ResponseApi<?> expected3 = ResponseApi.success(Map.of("data", testData3));
         ResultMatcher status3 = status().isOk();
 
         /*
@@ -63,7 +63,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url4 = BASE_URL;
         String testName4 = "정상수정 | 이름 + Text 수정";
         InterfaceReqDto testData4 = new InterfaceReqDto("IF005_SEARCH", "배송정보 요청(수정)", "/api/v1/items/product/update");
-        ApiResponse<?> expected4 = ApiResponse.success(Map.of("data", testData4));
+        ResponseApi<?> expected4 = ResponseApi.success(Map.of("data", testData4));
         ResultMatcher status4 = status().isOk();
 
         /*
@@ -73,7 +73,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url5 = BASE_URL;
         String testName5 = "필수값 누락 | IF ID 누락";
         InterfaceReqDto testData5 = new InterfaceReqDto("", "배송정보 요청(수정)", "/api/v1/items/product/update");
-        ApiResponse<?> expected5 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "IF아이디는 필수입니다.");
+        ResponseApi<?> expected5 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "IF아이디는 필수입니다.");
         ResultMatcher status5 = status().is4xxClientError();
 
         /*
@@ -83,7 +83,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String url6 = BASE_URL;
         String testName6 = "필수값 누락 | IF명 누락";
         InterfaceReqDto testData6 = new InterfaceReqDto("IF005_SEARCH", "", "/api/v1/items/product/update");
-        ApiResponse<?> expected6 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "인터페이스명은 필수입니다.");
+        ResponseApi<?> expected6 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "인터페이스명은 필수입니다.");
         ResultMatcher status6 = status().is4xxClientError();
 
         /*
@@ -94,7 +94,7 @@ public class InterFaceTestCasesForUpdate implements TestTemplateInvocationContex
         String testName7 = "존재하지 않는 ID 수정 시도 | 키 미존재";
         InterfaceReqDto testData7 = new InterfaceReqDto("IF005_SEARCH_NOT_EXIST", "배송정보 요청(수정)_수정시도",
                 "/api/v1/items/product/update");
-        ApiResponse<?> expected7 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected7 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         ResultMatcher status7 = status().is4xxClientError();
         /*
          * [TC_ID : TC-120] [TC명 : 인터페이스 수정4] [REQ_ID : REQ_ADM_025] [화면 : 기준 정보 > 인터페이스

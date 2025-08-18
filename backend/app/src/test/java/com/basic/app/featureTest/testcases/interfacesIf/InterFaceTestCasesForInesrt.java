@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.basic.app.util.TestCaseDetail;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.entity.Interface;
 import com.basic.app.exception.ErrorCode;
@@ -34,7 +34,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
         String url1 = BASE_URL;
         String testName1 = "정상등록";
         InterfaceReqDto testData1 = new InterfaceReqDto("IF001_TEST", "회원가입 요청", "/api/v1/users/signup");
-        ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", testData1));
+        ResponseApi<?> expected1 = ResponseApi.success(Map.of("data", testData1));
         ResultMatcher status1 = status().isOk();
 
         /*
@@ -44,7 +44,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
         String url2 = BASE_URL;
         String testName2 = "필수값 누락 | IF ID 누락";
         InterfaceReqDto testData2 = new InterfaceReqDto("", "회원가입 요청", "/api/v1/users/signup");
-        ApiResponse<?> expected2 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "IF아이디는 필수입니다.");
+        ResponseApi<?> expected2 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "IF아이디는 필수입니다.");
         ResultMatcher status2 = status().is4xxClientError();
 
         /*
@@ -54,7 +54,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
         String url3 = BASE_URL;
         String testName3 = "필수값 누락 | IF명 누락";
         InterfaceReqDto testData3 = new InterfaceReqDto("IF001", "", "/api/v1/users/signup");
-        ApiResponse<?> expected3 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "인터페이스명은 필수입니다.");
+        ResponseApi<?> expected3 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "인터페이스명은 필수입니다.");
         ResultMatcher status3 = status().is4xxClientError();
 
         /*
@@ -65,7 +65,7 @@ public class InterFaceTestCasesForInesrt implements TestTemplateInvocationContex
         String url5 = BASE_URL;
         String testName5 = "존재하는 ID 등록 시도 | 중복";
         InterfaceReqDto testData5 = new InterfaceReqDto("IF003_SEARCH", "회원정보 요청", "/api/v1/users/info");
-        ApiResponse<?> expected5 = ApiResponse.fail(ErrorCode.OBJECT_IS_EXISTED);
+        ResponseApi<?> expected5 = ResponseApi.fail(ErrorCode.OBJECT_IS_EXISTED);
         ResultMatcher status5 = status().is4xxClientError();
 
         /*

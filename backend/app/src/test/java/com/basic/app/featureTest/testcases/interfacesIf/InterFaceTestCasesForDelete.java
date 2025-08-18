@@ -5,7 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.basic.app.util.TestCaseDetail;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.entity.Interface;
 import com.basic.app.exception.ErrorCode;
@@ -36,7 +36,7 @@ public class InterFaceTestCasesForDelete implements TestTemplateInvocationContex
         String testName1 = "정상 삭제";
         InterfaceReqDto testData1 = new InterfaceReqDto("IF013_SEARCH", "상품평 요청", "/api/v1/reviews/product");
         String url1 = BASE_URL + "/" + testData1.getIfId();
-        ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", "success"));
+        ResponseApi<?> expected1 = ResponseApi.success(Map.of("data", "success"));
         ResultMatcher status1 = status().isOk();
 
         /*
@@ -48,7 +48,7 @@ public class InterFaceTestCasesForDelete implements TestTemplateInvocationContex
         String testName2 = "이미 삭제한 항목 삭제 시도";
         InterfaceReqDto testData2 = new InterfaceReqDto("IF018_SEARCH", "로그인정보 요청", "/api/v1/auth/login");
         String url2 = BASE_URL + "/" + testData2.getIfId();
-        ApiResponse<?> expected2 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected2 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         ResultMatcher status2 = status().is4xxClientError();
         /*
          * [TC_ID : TC-124] [TC명 : 인터페이스 삭제3] [REQ_ID : REQ_ADM_026] [화면 : 기준 정보 > 인터페이스
@@ -58,7 +58,7 @@ public class InterFaceTestCasesForDelete implements TestTemplateInvocationContex
         String testName3 = "존재하지 않는 ID 삭제 시도";
         InterfaceReqDto testData3 = new InterfaceReqDto("IF019_SEARCH_TEST", "상품페이지 요청", "/api/v1/items/product");
         String url3 = BASE_URL + "/" + testData3.getIfId();
-        ApiResponse<?> expected3 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected3 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         ResultMatcher status3 = status().is4xxClientError();
 
         /*

@@ -19,7 +19,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.exception.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -60,7 +60,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         accessDeniedException.getStackTrace());
 
     // 응답 객체 구성
-    ApiResponse<Object> apiResponse = ApiResponse.fail(ErrorCode.ACCESS_DENIED);
+    ResponseApi<Object> apiResponse = ResponseApi.fail(ErrorCode.ACCESS_DENIED);
 
     // JSON 변환 후 응답
     response.setContentType("application/json;charset=UTF-8");
