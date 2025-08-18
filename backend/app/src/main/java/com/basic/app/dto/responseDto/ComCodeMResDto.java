@@ -13,8 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
+import com.basic.app.entity.ComCodeDPivot;
+import com.basic.app.entity.ComCodeT;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +33,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class ComCodeMResDto {
+
   private String grpCd; // 그룹코드
 
   private String grpCdType; // 그룹코드유형
@@ -36,7 +41,6 @@ public class ComCodeMResDto {
   private String grpNm; // 그룹코드명
 
   // CodeM - CodeT (1:N)
-  // private List<ComCodeTReqDto> comCodeTs = new ArrayList<ComCodeTReqDto>(); //
-  // 그뤂코드에 포함된 그뤂코드속성 리스트
+  private List<ComCodeTResDto> comCodeTs = new ArrayList<ComCodeTResDto>(); // 그뤂코드에 포함된 그뤂코드속성 리스트
 
 }
