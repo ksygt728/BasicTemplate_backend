@@ -12,6 +12,8 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -29,6 +31,7 @@ import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
+import com.basic.app.dto.requestDto.specialDto.CodeSearchFormReqDto;
 import com.basic.app.service.interfaces.CodeService;
 
 @RestController
@@ -38,10 +41,11 @@ public class AdminCodeController {
   @Autowired
   private CodeService codeService;
 
-  /* [REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 리스트 조회] */
-  @GetMapping("/group")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllGroupCodeForAdmin() {
-    Map<String, Object> data = codeService.findAllGroupCodeForAdmin();
+  /* [REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색] */
+  @GetMapping("/search")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllCodeMWithConditions(CodeSearchFormReqDto reqDto,
+      @PageableDefault(page = 0, size = 2000) Pageable pageable) {
+    Map<String, Object> data = codeService.findAllCodeRowMWithConditions(reqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
@@ -76,18 +80,20 @@ public class AdminCodeController {
   }
 
   /* [REQ_ADM_013] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 리스트 조회] */
-  @GetMapping("/attribute")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllAttrCodeForAdmin() {
-    Map<String, Object> data = codeService.findAllAttrCodeForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  }
+  // @GetMapping("/attribute")
+  // public ResponseEntity<ApiResponse<Map<String, Object>>>
+  // findAllAttrCodeForAdmin() {
+  // Map<String, Object> data = codeService.findAllAttrCodeForAdmin();
+  // return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  // }
 
-  /* [REQ_ADM_013_2] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 조회] */
-  @GetMapping("/attribute/{attrCd}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByAttrCodeForAdmin(@PathVariable String attrCd) {
-    Map<String, Object> data = codeService.findByAttrCodeForAdmin(attrCd);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  }
+  // /* [REQ_ADM_013_2] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 조회] */
+  // @GetMapping("/attribute/{attrCd}")
+  // public ResponseEntity<ApiResponse<Map<String, Object>>>
+  // findByAttrCodeForAdmin(@PathVariable String attrCd) {
+  // Map<String, Object> data = codeService.findByAttrCodeForAdmin(attrCd);
+  // return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  // }
 
   /* [REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가] */
   @PostMapping("/attribute")
@@ -106,25 +112,28 @@ public class AdminCodeController {
   }
 
   /* [REQ_ADM_016] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 삭제] */
-  @DeleteMapping("/attribute/{attrCd}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteAttrCodeForAdmin(@PathVariable String attrCd) {
-    Map<String, Object> data = codeService.deleteAttrCodeForAdmin(attrCd);
+  @DeleteMapping("/attribute/{grpCd}/{attrCd}")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteAttrCodeForAdmin(@PathVariable String grpCd,
+      @PathVariable String attrCd) {
+    Map<String, Object> data = codeService.deleteAttrCodeForAdmin(grpCd, attrCd);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 
   /* [REQ_ADM_017] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 리스트 조회] */
-  @GetMapping("/detail")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllDetailCodeForAdmin() {
-    Map<String, Object> data = codeService.findAllDetailCodeForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  }
+  // @GetMapping("/detail")
+  // public ResponseEntity<ApiResponse<Map<String, Object>>>
+  // findAllDetailCodeForAdmin() {
+  // Map<String, Object> data = codeService.findAllDetailCodeForAdmin();
+  // return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  // }
 
-  /* [REQ_ADM_017_2] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 조회] */
-  @GetMapping("/detail/{dtlCd}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByDetailCodeForAdmin(@PathVariable String dtlCd) {
-    Map<String, Object> data = codeService.findByDetailCodeForAdmin(dtlCd);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  }
+  // /* [REQ_ADM_017_2] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 조회] */
+  // @GetMapping("/detail/{dtlCd}")
+  // public ResponseEntity<ApiResponse<Map<String, Object>>>
+  // findByDetailCodeForAdmin(@PathVariable String dtlCd) {
+  // Map<String, Object> data = codeService.findByDetailCodeForAdmin(dtlCd);
+  // return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+  // }
 
   /* [REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가] */
   @PostMapping("/detail")
@@ -143,9 +152,10 @@ public class AdminCodeController {
   }
 
   /* [REQ_ADM_020] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 삭제] */
-  @DeleteMapping("/detail/{dtlCd}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteDetailCodeForAdmin(@PathVariable String dtlCd) {
-    Map<String, Object> data = codeService.deleteDetailCodeForAdmin(dtlCd);
+  @DeleteMapping("/detail/{grpCd}/{attrCd}/{dtlCd}")
+  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteDetailCodeForAdmin(@PathVariable String grpCd,
+      @PathVariable String attrCd, @PathVariable String dtlCd) {
+    Map<String, Object> data = codeService.deleteDetailCodeForAdmin(grpCd, attrCd, dtlCd);
     return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
   }
 }

@@ -1,12 +1,11 @@
 package com.basic.app.entity;
 
-import java.time.LocalDateTime;
-
 import com.basic.app.entity.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +19,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_SMS_M") // SMS 템플릿 테이블
+@Entity
+@Table(name = "TB_SMS_M") // SMS 템플릿 테이블
 public class SmsM extends BaseEntity {
   @Id
   @Column(name = "SMS_ID", length = 45)

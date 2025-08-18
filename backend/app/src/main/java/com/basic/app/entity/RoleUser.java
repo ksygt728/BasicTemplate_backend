@@ -10,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "TB_ROLE_USER") // 권한-사용자 매핑 테이블
+@Entity
+@Table(name = "TB_ROLE_USER") // 권한-사용자 매핑 테이블
 public class RoleUser extends BaseEntity {
 
   @EmbeddedId

@@ -6,14 +6,8 @@
  * @변경이력 :
  *   2025.07.23     김승연       최초 생성
  */
-package com.basic.app.dto.responseDto;
+package com.basic.app.dto.responseDto.specialDto;
 
-import java.time.LocalDateTime;
-
-import com.basic.app.entity.compositeKey.ComCodeDId;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import jakarta.persistence.MapsId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,16 +21,26 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ComCodeDResDto {
+public class CodeSearchFormResDto {
 
-  // private ComCodeDId comCodeDId;
+  private String grpCdType; // 그룹코드유형
+
+  private String grpCd; // 그룹코드
+
+  private String grpNm; // 그룹코드명
 
   private String dtlCd; // 상세코드
 
+  private String attrCd; // 속성코드
+
   private String dtlNm; // 상세코드명
+
+  private String attrNm; // 속성명
 
   private String useYn; // 사용여부 (Y,N)
 
-  private int orderNum; // 정렬순서
+  private int codeTOrderNum; // 정렬순서
+
+  private int codeDOrderNum; // 정렬순서
 
 }
