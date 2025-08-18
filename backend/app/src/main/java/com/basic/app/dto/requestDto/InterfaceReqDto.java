@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -29,12 +30,15 @@ import lombok.ToString;
 @Builder
 public class InterfaceReqDto extends BaseReqDto {
 
+  @Schema(description = "인터페이스 아이디", example = "IF001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "IF아이디는 필수입니다.")
   private String ifId; // 인터페이스 아이디
 
+  @Schema(description = "인터페이스명", example = "회원정보조회인터페이스")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "인터페이스명은 필수입니다.")
   private String ifName; // 인터페이스명
 
+  @Schema(description = "WSDL", example = "<wsdl>...</wsdl>")
   private String text; // WSDL
 
 }

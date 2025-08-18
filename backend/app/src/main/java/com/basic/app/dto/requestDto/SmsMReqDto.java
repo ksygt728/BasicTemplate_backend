@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -28,18 +29,23 @@ import lombok.ToString;
 @Builder
 public class SmsMReqDto extends BaseReqDto {
 
+  @Schema(description = "SMS아이디", example = "SMS001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "SMS아이디는 필수입니다.")
   private String smsId; // SMS 아이디
 
+  @Schema(description = "언어타입", example = "ko")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어타입은 필수입니다.")
   private String langType; // 언어타입
 
+  @Schema(description = "템플릿명", example = "회원가입인증")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "템플릿명은 필수입니다.")
   private String smsName; // 템플릿명
 
+  @Schema(description = "SMS내용", example = "인증번호는 1234입니다.")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "SMS내용은 필수입니다.")
   private String text; // SMS내용
 
+  @Schema(description = "설명", example = "SMS 설명")
   private String description; // 설명
 
 }

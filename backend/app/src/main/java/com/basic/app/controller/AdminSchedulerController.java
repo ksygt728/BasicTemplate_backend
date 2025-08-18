@@ -26,11 +26,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
+import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ScheMReqDto;
+import com.basic.app.dto.responseDto.ScheHResDto;
+import com.basic.app.dto.responseDto.ScheMResDto;
 import com.basic.app.service.interfaces.SchedulerService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/admin/scheduler")
@@ -40,65 +50,80 @@ public class AdminSchedulerController {
   private SchedulerService schedulerService;
 
   /* [REQ_ADM_074] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 리스트 조회] */
+  @Operation(summary = "[REQ_ADM_074] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 리스트 조회]", description = "스케줄러 리스트 조회 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/search")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
       @PageableDefault(page = 0, size = 200, sort = "scheId", direction = Sort.Direction.ASC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findAllSchedulerForAdmin(scheMReqDto, pageable);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_074_2] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 조회] */
+  @Operation(summary = "[REQ_ADM_074_2] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 조회]", description = "스케줄러 조회 기능 제공")
+  @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/{scheId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerForAdmin(@PathVariable String scheId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findBySchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.findBySchedulerForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_075] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 이력 조회] */
+  @Operation(summary = "[REQ_ADM_075] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 이력 조회]", description = "스케줄러 이력 조회 기능 제공")
+  @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheHResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/history/{scheId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
       @PageableDefault(page = 0, size = 200, sort = "startDate", direction = Sort.Direction.DESC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId, pageable);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* 사용 X */
-  /* [REQ_ADM_076] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 템플릿 조회] */
-  // @GetMapping("/templates")
-  // public ResponseEntity<ApiResponse<Map<String, Object>>>
-  // findSchedulerTemplates() {
-  // Map<String, Object> data = schedulerService.findSchedulerTemplates();
-  // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  // }
-
   /* [REQ_ADM_077] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 직접실행] */
+  @Operation(summary = "[REQ_ADM_077] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 직접실행]", description = "스케줄러 직접실행 기능 제공")
+  @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping("/execute/{scheId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> executeSchedulerForAdmin(@PathVariable String scheId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> executeSchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.executeSchedulerForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_078] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 추가] */
+  @Operation(summary = "[REQ_ADM_078] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 추가]", description = "스케줄러 추가 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSchedulerForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> insertSchedulerForAdmin(
       @Validated(CreateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> data = schedulerService.insertSchedulerForAdmin(scheM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_079] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 수정] */
+  @Operation(summary = "[REQ_ADM_079] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 수정]", description = "스케줄러 수정 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
+  @SwaggerCommonResponseApi
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSchedulerForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> updateSchedulerForAdmin(
       @Validated(UpdateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> data = schedulerService.updateSchedulerForAdmin(scheM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_080] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 삭제] */
+  @Operation(summary = "[REQ_ADM_080] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 삭제]", description = "스케줄러 삭제 기능 제공")
+  @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
   @DeleteMapping("/{scheId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSchedulerForAdmin(@PathVariable String scheId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteSchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.deleteSchedulerForAdmin(scheId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }

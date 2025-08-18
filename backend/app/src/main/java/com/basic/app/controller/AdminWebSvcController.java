@@ -23,11 +23,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
+import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.WebSvcReqDto;
+import com.basic.app.dto.responseDto.WebSvcResDto;
 import com.basic.app.service.interfaces.WebSvcService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/admin/webservice")
@@ -37,54 +46,79 @@ public class AdminWebSvcController {
   private WebSvcService webSvcService;
 
   /* [REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회] */
+  @Operation(summary = "[REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회]", description = "웹서비스 기준정보 리스트 조회 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllWebserviceForAdmin() {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllWebserviceForAdmin() {
     Map<String, Object> data = webSvcService.findAllWebserviceForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_027_2] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 조회] */
+  @Operation(summary = "[REQ_ADM_027_2] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 조회]", description = "웹서비스 기준정보 조회 기능 제공")
+  @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/{svcId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByWebserviceForAdmin(@PathVariable String svcId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.findByWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가] */
+  @Operation(summary = "[REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가]", description = "웹서비스 추가 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> inesrtWebserviceForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> inesrtWebserviceForAdmin(
       @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> data = webSvcService.inesrtWebserviceForAdmin(webSvc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정] */
+  @Operation(summary = "[REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정]", description = "웹서비스 수정 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateWebserviceForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> updateWebserviceForAdmin(
       @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> data = webSvcService.updateWebserviceForAdmin(webSvc);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_032] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 삭제] */
+  @Operation(summary = "[REQ_ADM_032] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 삭제]", description = "웹서비스 삭제 기능 제공")
+  @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
   @DeleteMapping("/{svcId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteWebserviceForAdmin(@PathVariable String svcId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.deleteWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_028] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 직접 실행] */
+  @Operation(summary = "[REQ_ADM_028] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 직접 실행]", description = "웹서비스 직접 실행 기능 제공")
+  @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping("/execute/{svcId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> executeWebserviceForAdmin(@PathVariable String svcId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> executeWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.executeWebserviceForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_029] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 이력조회] */
+  @Operation(summary = "[REQ_ADM_029] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 이력조회]", description = "웹서비스 이력조회 기능 제공")
+  @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/history/{svcId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByWebserviceHistoryForAdmin(@PathVariable String svcId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByWebserviceHistoryForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.findByWebserviceHistoryForAdmin(svcId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
 }

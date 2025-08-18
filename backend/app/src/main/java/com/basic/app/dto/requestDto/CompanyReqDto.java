@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Getter
 @Setter
 @ToString
@@ -29,9 +31,11 @@ import lombok.ToString;
 @Builder
 public class CompanyReqDto extends BaseReqDto {
 
+  @Schema(description = "회사코드", example = "COMP001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "회사코드는 필수입니다.")
   private String companyCode; // 회사코드
 
+  @Schema(description = "회사명", example = "(주)테스트회사")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "회사코드명은 필수입니다.")
   private String companyName; // 회사명
 

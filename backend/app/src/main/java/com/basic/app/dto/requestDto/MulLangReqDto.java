@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -28,18 +29,23 @@ import lombok.ToString;
 @Builder
 public class MulLangReqDto extends BaseReqDto {
 
+  @Schema(description = "언어코드", example = "ko")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어코드는 필수입니다.")
   private String langCd; // 언어코드
 
+  @Schema(description = "언어유형", example = "KR")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어유형은 필수입니다.")
   private String langType; // 언어유형
 
+  @Schema(description = "언어명", example = "한국어")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어명은 필수입니다.")
   private String langNm; // 언어명
 
+  @Schema(description = "언어구분", example = "공용")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "언어구분은 필수입니다.")
   private String langGubun; // 언어구분
 
+  @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 

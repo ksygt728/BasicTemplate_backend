@@ -22,11 +22,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
+import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.MailMReqDto;
+import com.basic.app.dto.responseDto.MailHResDto;
+import com.basic.app.dto.responseDto.MailMResDto;
 import com.basic.app.service.interfaces.MailService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/admin/mail")
@@ -36,65 +46,67 @@ public class AdminMailController {
   private MailService mailService;
 
   /* [REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회] */
+  @Operation(summary = "[REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회]", description = "메일 리스트 조회 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllMailForAdmin() {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin() {
     Map<String, Object> data = mailService.findAllMailForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_057_2] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 조회] */
+  @Operation(summary = "[REQ_ADM_057_2] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 조회]", description = "메일 조회 기능 제공")
+  @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/{mailId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByMailForAdmin(@PathVariable String mailId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailForAdmin(@PathVariable String mailId) {
     Map<String, Object> data = mailService.findByMailForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_058] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 이력 조회] */
+  @Operation(summary = "[REQ_ADM_058] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 이력 조회]", description = "메일 이력 조회 기능 제공")
+  @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailHResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/history/{mailId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId) {
     Map<String, Object> data = mailService.findByMailHistoryForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  // [REQ_ADM_057]로 대체 가능할 듯
-  /* [REQ_ADM_059] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 템플릿 조회] */
-  // @GetMapping("/templates")
-  // public ResponseEntity<ApiResponse<Map<String, Object>>> findMailTemplates() {
-  // Map<String, Object> data = mailService.findMailTemplates();
-  // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  // }
-
-  // [REQ_ADM_062]로 대체 가능할 듯
-  /* [REQ_ADM_060] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 템플릿 수정] */
-  // @PutMapping
-  // public ResponseEntity<ApiResponse<Map<String, Object>>>
-  // insertMailForAdmin(MailM mailM) {
-  // Map<String, Object> data = mailService.insertMailForAdmin(mailM);
-  // return
-  // ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
-  // }
-
   /* [REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가] */
+  @Operation(summary = "[REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가]", description = "메일 추가 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertMailForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> insertMailForAdmin(
       @Validated(CreateGroup.class) MailMReqDto mailM) {
     Map<String, Object> data = mailService.insertMailForAdmin(mailM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정] */
+  @Operation(summary = "[REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정]", description = "메일 수정 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
+  @SwaggerCommonResponseApi
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateMailForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> updateMailForAdmin(
       @Validated(UpdateGroup.class) MailMReqDto mailM) {
     Map<String, Object> data = mailService.updateMailForAdmin(mailM);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_063] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 삭제] */
+  @Operation(summary = "[REQ_ADM_063] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 삭제]", description = "메일 삭제 기능 제공")
+  @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
   @DeleteMapping("/{mailId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteMailForAdmin(@PathVariable String mailId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMailForAdmin(@PathVariable String mailId) {
     Map<String, Object> data = mailService.deleteMailForAdmin(mailId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }

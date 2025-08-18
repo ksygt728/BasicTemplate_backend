@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -28,14 +29,15 @@ import lombok.ToString;
 @Builder
 public class RoleUserReqDto extends BaseReqDto {
 
-  // RoleUser - Role (N:1) [Onwer]
+  @Schema(description = "권한코드", example = "ROLE001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
   private String roldCd;
 
-  // RoleUser - User (N:1) [Onwer]
+  @Schema(description = "사용자아이디", example = "user123")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용자아이디는 필수입니다.")
   private String userId;
 
+  @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 

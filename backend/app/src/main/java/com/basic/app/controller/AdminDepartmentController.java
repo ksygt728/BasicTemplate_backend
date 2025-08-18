@@ -1,4 +1,3 @@
-
 /**
  * @파일명   : AdminDepartmentController.java  
    @설명     : 부서 관리 기능 제공 컨트롤러
@@ -26,11 +25,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
+import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.DepartmentReqDto;
+import com.basic.app.dto.responseDto.DepartmentResDto;
 import com.basic.app.service.interfaces.DepartmentService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 @RestController
 @RequestMapping("/admin/department")
@@ -40,44 +48,61 @@ public class AdminDepartmentController {
   private DepartmentService departmentService;
 
   /* [REQ_ADM_005] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 리스트 조회] */
+  @Operation(summary = "[REQ_ADM_005] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 리스트 조회]", description = "부서 정보 리스트 조회 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = DepartmentResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/search")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllDepartmentForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllDepartmentForAdmin(
       DepartmentReqDto departmentReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "deptCode", direction = Sort.Direction.ASC) Pageable pageable) {
 
     Map<String, Object> data = departmentService.findAllDepartmentForAdmin(departmentReqDto, pageable);
 
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_005_2] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 조회] */
+  @Operation(summary = "[REQ_ADM_005_2] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 조회]", description = "부서 정보 조회 기능 제공")
+  @Parameter(name = "deptCode", description = "부서코드", example = "20000000")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = DepartmentResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/{deptCode}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByDepartmentForAdmin(@PathVariable String deptCode) {
 
     Map<String, Object> data = departmentService.findByDepartmentForAdmin(deptCode);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_006] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 추가] */
+  @Operation(summary = "[REQ_ADM_006] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 추가]", description = "부서 정보 추가 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = DepartmentResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertDepartmentForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> insertDepartmentForAdmin(
       @Validated(CreateGroup.class) DepartmentReqDto department) {
     Map<String, Object> data = departmentService.insertDepartmentForAdmin(department);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_007] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 수정] */
+  @Operation(summary = "[REQ_ADM_007] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 수정]", description = "부서 정보 수정 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = DepartmentResDto.class)))
+  @SwaggerCommonResponseApi
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateDepartmentForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> updateDepartmentForAdmin(
       @Validated(UpdateGroup.class) DepartmentReqDto department) {
     Map<String, Object> data = departmentService.updateDepartmentForAdmin(department);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_008] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 삭제] */
+  @Operation(summary = "[REQ_ADM_008] [화면 : 조직 관리 > 부서 관리] [기능 : 부서 정보 삭제]", description = "부서 정보 삭제 기능 제공")
+  @Parameter(name = "deptCode", description = "부서코드", example = "20000000")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
   @DeleteMapping("/{deptCode}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteDepartmentForAdmin(@PathVariable String deptCode) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteDepartmentForAdmin(@PathVariable String deptCode) {
     Map<String, Object> data = departmentService.deleteDepartmentForAdmin(deptCode);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }
