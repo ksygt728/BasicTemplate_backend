@@ -10,8 +10,10 @@ package com.basic.app.dto.responseDto;
 
 import java.time.LocalDateTime;
 
+import com.basic.app.entity.compositeKey.ComCodeDId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.MapsId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,9 +29,7 @@ import lombok.ToString;
 @Builder
 public class ComCodeDResDto {
 
-  private String grpCd; // 그룹코드
-
-  private String attrCd; // 속성코드
+  // private ComCodeDId comCodeDId;
 
   private String dtlCd; // 상세코드
 
