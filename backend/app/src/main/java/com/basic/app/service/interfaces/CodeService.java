@@ -8,6 +8,8 @@ import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
 import com.basic.app.dto.requestDto.specialDto.CodeSearchFormReqDto;
+import com.basic.app.entity.compositeKey.ComCodeDId;
+import com.basic.app.entity.compositeKey.ComCodeTId;
 
 public interface CodeService {
 
@@ -29,7 +31,7 @@ public interface CodeService {
 
   Map<String, Object> updateAttrCodeForAdmin(ComCodeTReqDto comCodeT);
 
-  Map<String, Object> deleteAttrCodeForAdmin(String attrCd);
+  Map<String, Object> deleteAttrCodeForAdmin(String grpCd, String attrCd);
 
   Map<String, Object> findAllDetailCodeForAdmin();
 
@@ -39,7 +41,7 @@ public interface CodeService {
 
   Map<String, Object> updateDetailCodeForAdmin(ComCodeDReqDto comCodeD);
 
-  Map<String, Object> deleteDetailCodeForAdmin(String dtlCd);
+  Map<String, Object> deleteDetailCodeForAdmin(String grpCd, String attrCd, String dtlCd);
 
   Map<String, Object> findAllCodeMWithConditions(CodeSearchFormReqDto reqDto, Pageable pageable);
 

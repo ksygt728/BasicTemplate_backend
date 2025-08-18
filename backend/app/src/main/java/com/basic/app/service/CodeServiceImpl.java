@@ -19,15 +19,27 @@ import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.requestDto.ComCodeMReqDto;
 import com.basic.app.dto.requestDto.ComCodeTReqDto;
 import com.basic.app.dto.requestDto.specialDto.CodeSearchFormReqDto;
+import com.basic.app.dto.responseDto.ComCodeDResDto;
+import com.basic.app.dto.responseDto.ComCodeMResDto;
+import com.basic.app.dto.responseDto.ComCodeTResDto;
 import com.basic.app.dto.responseDto.specialDto.CodeSearchFormResDto;
 import com.basic.app.dto.responseDto.specialDto.ComCodeAttributesAndValues;
 import com.basic.app.dto.responseDto.specialDto.ComCodeInfo;
 import com.basic.app.dto.responseDto.specialDto.GroupCodeInfo;
+import com.basic.app.entity.ComCodeD;
+import com.basic.app.entity.ComCodeM;
+import com.basic.app.entity.ComCodeT;
+import com.basic.app.entity.compositeKey.ComCodeDId;
+import com.basic.app.entity.compositeKey.ComCodeTId;
+import com.basic.app.exception.ErrorCode;
+import com.basic.app.exception.customException.BusinessException;
+import com.basic.app.exception.customException.NotFoundException;
 import com.basic.app.repository.CodeDRepository;
 import com.basic.app.repository.CodeMRepository;
 import com.basic.app.repository.CodeTRepository;
 import com.basic.app.repository.jooqRepository.CodeJooqRepository;
 import com.basic.app.service.interfaces.CodeService;
+import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -183,26 +195,98 @@ public class CodeServiceImpl implements CodeService {
 
   @Override
   public Map<String, Object> findByGroupCodeForAdmin(String grpCd) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findByGroupCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 null 반환)
+    // 2. Entity -> DTO 변환
+
+    ComCodeMResDto comCodeMResDto = codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .map(entity -> entity.toDto(entity))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 3. 결과를 Map에 담아 반환
+    data.put("data", comCodeMResDto);
+    return data;
+
   }
 
   @Override
   public Map<String, Object> insertGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'insertGroupCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeM codeMEntity = comCodeM.toEntity(ComCodeM.class);
+
+    // 2. ID로 기존 엔티티 조회
+    codeMRepository.findById(codeMEntity.getGrpCd())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .ifPresent(entity -> {
+          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
+        });
+
+    // 3. DTO -> Entity 후 데이터 저장
+    ComCodeM savedCodeMEntity = codeMRepository.save(codeMEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeMEntity.toDto(ComCodeMResDto.class));
+    return data;
+
   }
 
   @Override
   public Map<String, Object> updateGroupCodeForAdmin(ComCodeMReqDto comCodeM) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateGroupCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeM codeMEntity = comCodeM.toEntity(ComCodeM.class);
+
+    // 2. ID로 기존 엔티티 조회
+    codeMRepository.findById(codeMEntity.getGrpCd())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 3. 엔티티 수정 & 저장(자동)
+    ComCodeM savedCodeMEntity = codeMRepository.save(codeMEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeMEntity.toDto(ComCodeMResDto.class));
+
+    return data;
   }
 
   @Override
   public Map<String, Object> deleteGroupCodeForAdmin(String grpCd) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteGroupCodeForAdmin'");
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 NotFoundException 발생)
+    ComCodeM codeMEntity = codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
+    // 그뤂코드에 해당하는 속성코드와 상세코드도 함께 삭제처리
+    codeDRepository.findByGrpCd(grpCd)
+        .stream().forEach(entity -> {
+          entity.setSts(Status.NAGATIVE);
+        });
+
+    codeTRepository.findByGrpCd(grpCd)
+        .stream().forEach(entity -> {
+          entity.setSts(Status.NAGATIVE);
+        });
+
+    // 그뤂코드 삭제처리
+    codeMEntity.setSts(Status.NAGATIVE);
+
+    // 3. 결과를 Map에 담아 반환
+    data.put("data", "success");
+    return data;
   }
 
   @Override
@@ -219,20 +303,103 @@ public class CodeServiceImpl implements CodeService {
 
   @Override
   public Map<String, Object> insertAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'insertAttrCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeT codeTEntity = comCodeT.toEntity(comCodeT);
+
+    // 2. ID로 기존 엔티티 조회
+    // 그룹코드가 존재하는지 확인
+    String grpCd = codeTEntity.getComCodeTId().getGrpCd(); // 그뤂코드 Key
+    ComCodeTId comCodeTId = codeTEntity.getComCodeTId(); // 속성코드 Key
+
+    ComCodeM codeMEntity = codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 속성코드가 존재하는지 않는지 확인
+    codeTRepository.findById(comCodeTId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .ifPresent(entity -> {
+          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
+        });
+
+    // 3. DTO -> Entity 후 데이터 저장
+    // 연관관계 설정
+    codeTEntity.setComCodeM(codeMEntity);
+
+    ComCodeT savedCodeTEntity = codeTRepository.save(codeTEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeTEntity.toDto(ComCodeTResDto.class));
+    return data;
+
   }
 
   @Override
   public Map<String, Object> updateAttrCodeForAdmin(ComCodeTReqDto comCodeT) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateAttrCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeT codeTEntity = comCodeT.toEntity(comCodeT);
+
+    // 2. ID로 기존 엔티티 조회
+    // 그룹코드가 존재하는지 확인
+    String grpCd = codeTEntity.getComCodeTId().getGrpCd(); // 그뤂코드 Key
+    ComCodeTId comCodeTId = codeTEntity.getComCodeTId(); // 속성코드 Key
+
+    codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 속성코드가 존재하는지 확인
+    codeTRepository.findById(comCodeTId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 3. 엔티티 수정 & 저장(자동)
+    ComCodeT savedCodeTEntity = codeTRepository.save(codeTEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeTEntity.toDto(ComCodeTResDto.class));
+
+    return data;
+
   }
 
   @Override
-  public Map<String, Object> deleteAttrCodeForAdmin(String attrCd) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteAttrCodeForAdmin'");
+  public Map<String, Object> deleteAttrCodeForAdmin(String grpCd, String attrCd) {
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 NotFoundException 발생)
+    // 복합키 생성
+    ComCodeTId comCodeTId = ComCodeTId.builder()
+        .grpCd(grpCd)
+        .attrCd(attrCd)
+        .build();
+
+    ComCodeT codeTEntity = codeTRepository.findById(comCodeTId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
+    // 속성코드에 해당하는 상세코드도 함께 삭제처리
+    codeDRepository.findByComCodeTId(comCodeTId)
+        .stream().forEach(entity -> {
+          entity.setSts(Status.NAGATIVE);
+        });
+
+    // 속성코드 삭제처리
+    codeTEntity.setSts(Status.NAGATIVE);
+
+    // 3. 결과를 Map에 담아 반환
+    data.put("data", "success");
+    return data;
+
   }
 
   @Override
@@ -249,20 +416,112 @@ public class CodeServiceImpl implements CodeService {
 
   @Override
   public Map<String, Object> insertDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'insertDetailCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeD codeDEntity = comCodeD.toEntity(comCodeD);
+
+    // 2. ID로 기존 엔티티 조회
+    String grpCd = codeDEntity.getComCodeDId().getComCodeTId().getGrpCd(); // 그뤂코드 Key
+    ComCodeTId comCodeTId = codeDEntity.getComCodeDId().getComCodeTId(); // 속성코드 Key
+    ComCodeDId comCodeDId = codeDEntity.getComCodeDId(); // 상세코드 Key
+
+    // 그룹코드가 존재하는지 확인
+    codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 속성코드가 존재하는지 확인
+    ComCodeT comCodeT = codeTRepository.findById(comCodeTId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 상세코드가 존재하는지 않는지 확인
+    codeDRepository.findById(comCodeDId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .ifPresent(entity -> {
+          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
+        });
+
+    // 3. DTO -> Entity 후 데이터 저장
+    // 연관관계 설정
+    codeDEntity.setComCodeT(comCodeT);
+
+    ComCodeD savedCodeDEntity = codeDRepository.save(codeDEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeDEntity.toDto(ComCodeDResDto.class));
+    return data;
+
   }
 
   @Override
   public Map<String, Object> updateDetailCodeForAdmin(ComCodeDReqDto comCodeD) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateDetailCodeForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    ComCodeD codeDEntity = comCodeD.toEntity(comCodeD);
+
+    // 2. ID로 기존 엔티티 조회
+    // 그룹코드가 존재하는지 확인
+    String grpCd = codeDEntity.getComCodeDId().getComCodeTId().getGrpCd(); // 그뤂코드 Key
+    ComCodeTId comCodeTId = codeDEntity.getComCodeDId().getComCodeTId(); // 속성코드 Key
+    ComCodeDId comCodeDId = codeDEntity.getComCodeDId(); // 상세코드 Key
+
+    codeMRepository.findById(grpCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 속성코드가 존재하는지 확인
+    codeTRepository.findById(comCodeTId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 상세코드가 존재하는지 확인
+    codeDRepository.findById(comCodeDId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 3. 엔티티 수정 & 저장(자동)
+    ComCodeD savedCodeDEntity = codeDRepository.save(codeDEntity);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedCodeDEntity.toDto(ComCodeDResDto.class));
+
+    return data;
   }
 
   @Override
-  public Map<String, Object> deleteDetailCodeForAdmin(String dtlCd) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteDetailCodeForAdmin'");
+  public Map<String, Object> deleteDetailCodeForAdmin(String grpCd, String attrCd, String dtlCd) {
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 NotFoundException 발생)
+    // 복합키 생성
+    ComCodeTId comCodeTId = ComCodeTId.builder()
+        .grpCd(grpCd)
+        .attrCd(attrCd)
+        .build();
+
+    ComCodeDId comCodeDId = ComCodeDId.builder()
+        .comCodeTId(comCodeTId)
+        .dtlCd(dtlCd)
+        .build();
+
+    ComCodeD codeDEntity = codeDRepository.findById(comCodeDId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
+    codeDEntity.setSts(Status.NAGATIVE);
+
+    // 3. 결과를 Map에 담아 반환
+    data.put("data", "success");
+    return data;
+
   }
 
 }

@@ -8,13 +8,23 @@
  */
 package com.basic.app.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.basic.app.entity.ComCodeD;
 import com.basic.app.entity.compositeKey.ComCodeDId;
+import com.basic.app.entity.compositeKey.ComCodeTId;
 
 @Repository
 public interface CodeDRepository extends JpaRepository<ComCodeD, ComCodeDId> {
+
+  @Query("SELECT c FROM ComCodeD c WHERE c.comCodeDId.comCodeTId.grpCd = ?1 AND c.sts = 'C'")
+  List<ComCodeD> findByGrpCd(String grpCd);
+
+  @Query("SELECT c FROM ComCodeD c WHERE c.comCodeDId.comCodeTId = ?1 AND c.sts = 'C'")
+  List<ComCodeD> findByComCodeTId(ComCodeTId comCodeTId);
 
 }

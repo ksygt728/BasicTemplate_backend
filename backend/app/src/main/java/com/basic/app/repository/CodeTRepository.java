@@ -8,7 +8,10 @@
  */
 package com.basic.app.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.basic.app.entity.ComCodeT;
@@ -16,5 +19,8 @@ import com.basic.app.entity.compositeKey.ComCodeTId;
 
 @Repository
 public interface CodeTRepository extends JpaRepository<ComCodeT, ComCodeTId> {
+
+  @Query("SELECT c FROM ComCodeT c WHERE c.comCodeTId.grpCd = ?1 AND c.sts = 'C'")
+  List<ComCodeT> findByGrpCd(String grpCd);
 
 }
