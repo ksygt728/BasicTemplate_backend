@@ -1,5 +1,7 @@
 package com.basic.app.quartz;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -11,6 +13,7 @@ import org.quartz.JobExecutionException;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Component
 public class DynamicJob implements Job {
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Autowired
     private XConverter xConverter;
@@ -78,22 +84,27 @@ public class DynamicJob implements Job {
         /* step 2 : 스케줄러 실행 */
         try {
             Class<?> clazz = Class.forName(className);
-            Object instance = clazz.getDeclaredConstructor().newInstance();
+
+            // Spring Bean을 ApplicationContext에서 가져오기
+            Object instance = applicationContext.getBean(clazz);
+
             Method method = clazz.getMethod(methodName);
             method.invoke(instance);
             success = "Y";
 
         } catch (Exception e) {
-            errorMessage = e.getMessage();
+            errorMessage = e.getMessage() + "\n" + getStackTraceAsString(e);
             e.printStackTrace();
         } finally {
             /* step 3 : 스케줄러 업데이트 및 이력 저장 */
             LocalDateTime endTime = LocalDateTime.now();
 
-            scheM.setLastExecTime(endTime);
-            if (nextExecTime != null) // 직접 실행을 할경우 nextExecTime이 null이라 제외
-                scheM.setNextExecTime(nextExecTime);
-            schedulerRepository.save(scheM);
+            if (scheM != null) {
+                scheM.setLastExecTime(endTime);
+                if (nextExecTime != null) // 직접 실행을 할경우 nextExecTime이 null로들어옴. 제외
+                    scheM.setNextExecTime(nextExecTime);
+                schedulerRepository.save(scheM);
+            }
 
             ScheH scheH = ScheH.builder()
                     .scheId(scheId)
@@ -107,5 +118,11 @@ public class DynamicJob implements Job {
 
             schedulerHistoryRepository.save(scheH);
         }
+    }
+
+    private String getStackTraceAsString(Exception e) {
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        return sw.toString();
     }
 }
