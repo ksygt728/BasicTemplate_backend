@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -29,6 +30,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Component
+@DisallowConcurrentExecution
 public class DynamicJob implements Job {
 
     @Autowired
