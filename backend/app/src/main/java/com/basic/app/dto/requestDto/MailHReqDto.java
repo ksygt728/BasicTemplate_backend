@@ -48,7 +48,7 @@ public class MailHReqDto extends BaseReqDto {
   @Schema(description = "내용", example = "메일 내용입니다.")
   private String content; // 내용
 
-  @Schema(description = "성공여부", example = "Y", allowableValues = { "Y", "N" })
+  @Schema(description = "성공여부", example = "Y", allowableValues = { "Y", "N", "W" })
   private String success; // 성공여부
 
   @Schema(description = "실패사유", example = "SMTP 오류")

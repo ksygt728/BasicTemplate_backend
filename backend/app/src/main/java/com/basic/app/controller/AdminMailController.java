@@ -52,8 +52,10 @@ public class AdminMailController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
   @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin() {
-    Map<String, Object> data = mailService.findAllMailForAdmin();
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin() throws Exception {
+    // Map<String, Object> data = mailService.findAllMailForAdmin();
+    Map<String, Object> data = null;
+    mailService.mailSendTest2();
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 

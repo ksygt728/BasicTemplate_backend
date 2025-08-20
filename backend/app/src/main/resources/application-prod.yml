@@ -5,7 +5,8 @@ server:
 spring:
   profiles:
     group:
-      prod: prod
+      env: prod
+
   datasource:
     url: jdbc:mysql://localhost:3308/CBSK-PROD?useUnicode=true&serverTimezone=Asia/Seoul # 운영 DB 접속 URL (DOCKER DB명: CBSK-PROD)
     username: root
@@ -76,6 +77,20 @@ spring:
         "[spring.json.type.mapping]": "LogApi:com.basic.app.entity.LogApi"
     listener:
       missing-topics-fatal: false # 리스너가 시작 시 존재하지 않는 토픽이 있어도 예외 발생시키지 않음 (개발 편의 목적)
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ksygt728.study@gmail.com
+    alias: "[CBSK] SYSTEM"
+    password: awuc myeu ipxo vjdc
+    max-mail-queue: 1000 # 메일 큐 최대 크기
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 logging:
   level:
