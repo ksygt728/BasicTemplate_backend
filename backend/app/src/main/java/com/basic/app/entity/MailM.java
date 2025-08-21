@@ -35,7 +35,7 @@ public class MailM extends BaseEntity {
   @Column(name = "TITLE", length = 100, nullable = false)
   private String title; // 제목
 
-  @Column(name = "CONTENT", length = 2048, nullable = false)
+  @Column(name = "CONTENT", columnDefinition = "TEXT", nullable = false)
   private String content; // 내용
 
   @Column(name = "DESCRIPTION", length = 2048)

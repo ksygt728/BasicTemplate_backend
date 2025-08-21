@@ -24,30 +24,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 public class UtilConfig {
 
 	@Bean
-	@Scope("prototype")
-	public ArrayList<String> stringList() {
-		return new ArrayList<String>();
-	}
-
-	@Bean
-	@Scope("prototype")
-	public ArrayList<Boolean> booleanList() {
-		return new ArrayList<Boolean>();
-	}
-
-	@Bean
-	@Scope("prototype")
-	public ArrayList<Integer> integerList() {
-		return new ArrayList<Integer>();
-	}
-
-	@Bean
-	@Scope("prototype")
-	public HashMap<String, Object> map() {
-		return new HashMap<String, Object>();
-	}
-
-	@Bean
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}

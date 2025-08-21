@@ -18,7 +18,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.exception.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -59,7 +59,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         authException.getStackTrace());
 
     // 응답 객체 구성
-    ApiResponse<Object> apiResponse = ApiResponse.fail(ErrorCode.LOGIN_REQUIRED);
+    ResponseApi<Object> apiResponse = ResponseApi.fail(ErrorCode.LOGIN_REQUIRED);
 
     // JSON 변환 후 응답
     response.setContentType("application/json;charset=UTF-8");

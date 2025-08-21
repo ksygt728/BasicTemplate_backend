@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -28,9 +29,11 @@ import lombok.ToString;
 @Builder
 public class WebSvcReqDto extends BaseReqDto {
 
+  @Schema(description = "웹서비스 아이디", example = "SVC001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "웹서비스아이디는 필수입니다.")
   private String svcId; // 웹서비스 아이디
 
+  @Schema(description = "웹서비스명", example = "회원정보조회서비스")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "웹서비스명 필수입니다.")
   private String svcName; // 웹서비스명
 

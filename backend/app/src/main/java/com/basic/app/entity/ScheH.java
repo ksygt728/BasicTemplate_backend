@@ -58,7 +58,7 @@ public class ScheH extends BaseEntity {
   @Column(name = "SUCCESS", length = 1)
   private String success; // 성공여부
 
-  @Column(name = "ERROR_MSG", length = 65535)
+  @Column(name = "ERROR_MSG", columnDefinition = "TEXT")
   private String errorMsg; // 실패사유
 
 }

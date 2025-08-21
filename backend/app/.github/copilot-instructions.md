@@ -17,11 +17,11 @@
 
 #### 📤 응답 패턴
 
-- 모든 REST 응답은 일관된 형식을 위해 `ApiResponse<T>` 래퍼를 사용해요. 📦
+- 모든 REST 응답은 일관된 형식을 위해 `ResponseApi<T>` 래퍼를 사용해요. 📦
 - 성공 시에는 표준 HTTP 상태 코드 \*\*200 (OK)\*\*을 사용해요. ✅
 - **예시**:
   ```java
-  return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(results));
+  return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(results));
   ```
 
 #### ✍️ 요청 유효성 검사
@@ -83,7 +83,7 @@
 
 ### ✅ 따라야 할 공통 패턴
 
-1.  REST 응답 시에는 항상 **`ApiResponse` 래퍼**를 사용해요. 📦
+1.  REST 응답 시에는 항상 **`ResponseApi` 래퍼**를 사용해요. 📦
 2.  생성/업데이트 작업에는 **유효성 검사 그룹**을 사용해요. 🧐
 3.  새 파일 작성 시에는 확립된 **한국어 문서화 형식**을 따르세요. 📝
 4.  새로운 비즈니스 로직은 **서비스 인터페이스**를 구현하여 작성해요. 🤝

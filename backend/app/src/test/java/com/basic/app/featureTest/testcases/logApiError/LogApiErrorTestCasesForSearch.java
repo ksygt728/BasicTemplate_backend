@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.dto.requestDto.LogApiReqDto;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
@@ -56,7 +56,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "{\"result\":\"success\"}",
                 "200",
                 1000L);
-        ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", testData1));
+        ResponseApi<?> expected1 = ResponseApi.success(Map.of("data", testData1));
         String url1 = BASE_URL + "/api-log/" + testData1.getLogId();
         ResultMatcher status1 = status().isOk();
 
@@ -85,7 +85,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "{\"result\":\"success\"}",
                 "200",
                 1000L);
-        ApiResponse<?> expected2 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected2 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url2 = BASE_URL + "/api-log/" + testData2.getLogId();
         ResultMatcher status2 = status().is4xxClientError();
 
@@ -101,7 +101,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
          */
         String testName3 = "잘못된 형식 입력";
         String testData3 = null; // 잘못된 형식 입력을 위한 DTO는 null로 설정
-        ApiResponse<?> expected3 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected3 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url3 = BASE_URL + "/";
         ResultMatcher status3 = status().is4xxClientError();
 
@@ -123,7 +123,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "NullPointerException 발생", // errMsg
                 "java.lang.NullPointerException\n\tat com.basic.app..." // errStack
         );
-        ApiResponse<?> expected4 = ApiResponse.success(Map.of("data", testData4));
+        ResponseApi<?> expected4 = ResponseApi.success(Map.of("data", testData4));
         String url4 = BASE_URL + "/error-log/" + testData4.getErrId();
         ResultMatcher status4 = status().isOk();
 
@@ -152,7 +152,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "NullPointerException 발생", // errMsg
                 "java.lang.NullPointerException\n\tat com.basic.app..." // errStack
         );
-        ApiResponse<?> expected5 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected5 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url5 = BASE_URL + "/error-log/" + testData5.getErrId();
         ResultMatcher status5 = status().is4xxClientError();
 
@@ -173,7 +173,7 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
 
         String testName6 = "잘못된 형식 입력";
         InterfaceReqDto testData6 = null; // 잘못된 형식 입력을 위한 DTO는 null로 설정
-        ApiResponse<?> expected6 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected6 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url6 = BASE_URL + "/";
         ResultMatcher status6 = status().is4xxClientError();
 

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.dto.responseDto.CompanyResDto;
 import com.basic.app.exception.ErrorCode;
@@ -41,7 +41,7 @@ public class DepartmentTestCasesForDelete implements TestTemplateInvocationConte
         DepartmentReqDto testData_order1 = new DepartmentReqDto("20000000_TEST", "경영지원본부", "20000000_TEST", 1,
                 "C100_TEST", "Y");
         String url_order1 = BASE_URL + "/" + testData_order1.getDeptCode();
-        ApiResponse<?> expected_order1 = ApiResponse.fail(ErrorCode.DEPARTMENT_NOT_WRITE);
+        ResponseApi<?> expected_order1 = ResponseApi.fail(ErrorCode.DEPARTMENT_NOT_WRITE);
         ResultMatcher status_order1 = status().is4xxClientError();
 
         // 기존 변수들을 활용하여 TestCaseDetail 객체로 리스트 생성

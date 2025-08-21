@@ -2,7 +2,7 @@ package com.basic.app.util;
 
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +19,6 @@ public class TestCaseDetail<T> {
   private String url;
   private String testName;
   private T testData;
-  private ApiResponse<?> expected;
+  private ResponseApi<?> expected;
   private ResultMatcher httpStatus;
 }

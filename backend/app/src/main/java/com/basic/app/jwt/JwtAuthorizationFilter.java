@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.auth.CustomUserDetailsService;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.JwtExeption;
@@ -207,7 +207,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         e.getStackTrace());
 
     // 응답 객체 구성
-    ApiResponse<Object> apiResponse = ApiResponse.fail(errorCode);
+    ResponseApi<Object> apiResponse = ResponseApi.fail(errorCode);
 
     // JSON 변환 후 응답
     response.setContentType("application/json;charset=UTF-8");

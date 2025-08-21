@@ -13,7 +13,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.dto.responseDto.CompanyResDto;
 import com.basic.app.exception.ErrorCode;
@@ -37,7 +37,7 @@ public class SchedulerTestCasesForDelete implements TestTemplateInvocationContex
          */
         String testName_order1 = "정상 삭제";
         String testData_order1 = "sche-003_test"; // 비활성 상태인 로그 정리 스케줄러
-        ApiResponse<?> expected_order1 = ApiResponse.success(testData_order1);
+        ResponseApi<?> expected_order1 = ResponseApi.success(testData_order1);
         String url_order1 = BASE_URL + "/" + testData_order1;
         ResultMatcher status_order1 = status().isOk();
 
@@ -47,7 +47,7 @@ public class SchedulerTestCasesForDelete implements TestTemplateInvocationContex
          */
         String testName_order2 = "이미 삭제한 항목 삭제 시도";
         String testData_order2 = "sche-005_test"; // 이미 삭제된 스케줄러 ID
-        ApiResponse<?> expected_order2 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected_order2 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url_order2 = BASE_URL + "/" + testData_order2;
         ResultMatcher status_order2 = status().is4xxClientError();
 
@@ -57,7 +57,7 @@ public class SchedulerTestCasesForDelete implements TestTemplateInvocationContex
          */
         String testName_order3 = "존재하지 않는 ID 삭제 시도";
         String testData_order3 = "sche-999_nonexistent"; // 존재하지 않는 ID
-        ApiResponse<?> expected_order3 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected_order3 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url_order3 = BASE_URL + "/" + testData_order3;
         ResultMatcher status_order3 = status().is4xxClientError();
 
@@ -72,7 +72,7 @@ public class SchedulerTestCasesForDelete implements TestTemplateInvocationContex
          */
         String testName_order5 = "잘못된 형식 입력";
         String testData_order5 = null; // 빈 ID
-        ApiResponse<?> expected_order5 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected_order5 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url_order5 = BASE_URL + "/";
         ResultMatcher status_order5 = status().is4xxClientError();
 

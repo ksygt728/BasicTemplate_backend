@@ -18,7 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.api.PageResponse;
 import com.basic.app.dto.requestDto.ScheHReqDto;
 import com.basic.app.dto.requestDto.ScheMReqDto;
@@ -71,7 +71,7 @@ public class SchedulerTestCasesSearchAll implements
         pageResponse_order1.setTotalPages(1);
         pageResponse_order1.setFirst(true);
         pageResponse_order1.setLast(true);
-        ApiResponse<?> expected_order1 = ApiResponse.success(Map.of("data", pageResponse_order1));
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", pageResponse_order1));
 
         ResultMatcher status_order1 = status().isOk();
         String url_order1 = BASE_URL + "/search";
@@ -121,7 +121,7 @@ public class SchedulerTestCasesSearchAll implements
         // pageResponse_order2.setTotalPages(1);
         // pageResponse_order2.setFirst(true);
         // pageResponse_order2.setLast(true);
-        // ApiResponse<?> expected_order2 = ApiResponse.success(Map.of("data",
+        // ResponseApi<?> expected_order2 = ResponseApi.success(Map.of("data",
         // pageResponse_order2));
 
         // ResultMatcher status_order2 = status().isOk();

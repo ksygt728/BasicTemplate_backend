@@ -16,7 +16,14 @@ import lombok.Getter;
 @Getter
 public class BusinessException extends BaseException {
 
+    private String additionalMessage = "";
+
     public BusinessException(ErrorCode errorCode) {
         super(errorCode);
+    }
+
+    public BusinessException(ErrorCode errorCode, String additionalMessage) {
+        super(errorCode);
+        this.additionalMessage = additionalMessage;
     }
 }

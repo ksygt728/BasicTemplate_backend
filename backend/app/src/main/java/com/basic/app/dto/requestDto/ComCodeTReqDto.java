@@ -23,6 +23,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -32,15 +33,19 @@ import lombok.ToString;
 @Builder
 public class ComCodeTReqDto extends BaseReqDto {
 
+  @Schema(description = "그룹코드", example = "GRP001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "그뤂코드는 필수입니다.")
   private String grpCd; // 그룹코드
 
+  @Schema(description = "속성코드", example = "ATTR001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "속성코드는 필수입니다.")
   private String attrCd; // 속성코드
 
+  @Schema(description = "속성명", example = "공통속성")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "속성명은 필수입니다.")
   private String attrNm; // 속성명
 
+  @Schema(description = "정렬순서", example = "1")
   @Min(value = 1, groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 1 이상 필수입니다.")
   private int orderNum; // 정렬순서
 

@@ -23,6 +23,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Getter
 @Setter
 @ToString
@@ -31,22 +33,28 @@ import lombok.ToString;
 @Builder
 public class BbsReqDto extends BaseReqDto {
 
+  @Schema(description = "게시판아이디", example = "BBS001")
   @NotBlank(groups = UpdateGroup.class, message = "게시판아이디는 필수입니다.")
   private String bbsId; // 게시판아이디
 
+  @Schema(description = "게시판타입", example = "공지")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "게시판아이디는 필수입니다.")
   private String bbsType; // 게시판타입
 
+  @Schema(description = "제목", example = "공지사항 제목")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "제목을 입력하세요.")
   private String title; // 제목
 
+  @Schema(description = "내용", example = "공지사항 내용입니다.")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "내용을 입력하세요.")
   private String content; // 내용
 
   // Bbs - User (N:1) [Onwer]
+  @Schema(description = "작성자", example = "user123")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "작성자는 필수입니다.")
   private String writor; // 작성자
 
+  @Schema(description = "작성일", example = "* 시스템에서 자동으로 주기때문에 별도 기입 불필요")
   @Null(groups = { CreateGroup.class, UpdateGroup.class }, message = "작성일은 Null이어야 합니다.")
   private LocalDateTime writeDate; // 작성일
 

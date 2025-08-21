@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -28,23 +29,30 @@ import lombok.ToString;
 @Builder
 public class MenuReqDto extends BaseReqDto {
 
+  @Schema(description = "메뉴코드", example = "MENU001")
   @NotBlank(groups = { UpdateGroup.class }, message = "메뉴코드는 필수입니다.")
   private String menuCd; // 메뉴코드
 
+  @Schema(description = "메뉴명", example = "대시보드")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴명은 필수입니다.")
   private String menuNm; // 메뉴명
 
+  @Schema(description = "상위메뉴코드", example = "MENU000")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "상위메뉴코드는 필수입니다.")
   private String upperMenuCd; // 상위메뉴코드
 
+  @Schema(description = "메뉴레벨", example = "1")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴레벨은 필수입니다.")
   private int menuLv; // 메뉴레벨
 
+  @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 
+  @Schema(description = "메뉴 URL", example = "/dashboard")
   private String menuUrl; // 메뉴 URL
 
+  @Schema(description = "정렬순서", example = "1")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 필수입니다.")
   private int orderNum; // 정렬순서
 

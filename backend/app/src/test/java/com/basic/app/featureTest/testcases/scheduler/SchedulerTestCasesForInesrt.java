@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.responseDto.CompanyResDto;
 import com.basic.app.dto.responseDto.ScheMResDto;
 import com.basic.app.entity.ScheM;
@@ -52,7 +52,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 null,
                 null,
                 "N");
-        ApiResponse<?> expected_order1 = ApiResponse.success(Map.of("data", testData_order1));
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", testData_order1));
         String url_order1 = BASE_URL;
         ResultMatcher status_order1 = status().isOk();
 
@@ -72,7 +72,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 LocalDateTime.of(2025, 8, 3, 3, 0, 0, 0),
                 LocalDateTime.of(2025, 8, 10, 3, 0, 0, 0),
                 "N");
-        ApiResponse<?> expected_order2 = ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "스케줄아이디는 필수입니다.");
+        ResponseApi<?> expected_order2 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "스케줄아이디는 필수입니다.");
         String url_order2 = BASE_URL;
         ResultMatcher status_order2 = status().is4xxClientError();
 
@@ -92,7 +92,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 LocalDateTime.of(2025, 8, 3, 3, 0, 0, 0),
                 LocalDateTime.of(2025, 8, 10, 3, 0, 0, 0),
                 "N");
-        ApiResponse<?> expected_order3 = ApiResponse.fail(ErrorCode.OBJECT_IS_EXISTED);
+        ResponseApi<?> expected_order3 = ResponseApi.fail(ErrorCode.OBJECT_IS_EXISTED);
         String url_order3 = BASE_URL;
         ResultMatcher status_order3 = status().is4xxClientError();
 
@@ -118,7 +118,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 LocalDateTime.of(2025, 8, 3, 3, 0, 0, 0),
                 LocalDateTime.of(2025, 8, 10, 3, 0, 0, 0),
                 "N");
-        ApiResponse<?> expected_order5 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected_order5 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url_order5 = BASE_URL + "/";
         ResultMatcher status_order5 = status().is4xxClientError();
 
