@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.entity.LogApi;
 import com.basic.app.util.TimeKeeper;
 import com.basic.app.util.UserRequestInfoManager;
@@ -100,7 +100,7 @@ public class LoggingAspect {
 
       UserRequestInfoManager userRequestInfoManager = new UserRequestInfoManager(request);
 
-      ResponseEntity<ApiResponse<Map<String, Object>>> responseEntity = (ResponseEntity<ApiResponse<Map<String, Object>>>) result;
+      ResponseEntity<ResponseApi<Map<String, Object>>> responseEntity = (ResponseEntity<ResponseApi<Map<String, Object>>>) result;
       String statusCode = String.valueOf(responseEntity.getStatusCode().value());
 
       kafkaTemplate.send("log-topic", new LogApi(

@@ -11,6 +11,7 @@ package com.basic.app.dto.requestDto.specialDto;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -29,9 +30,11 @@ import lombok.ToString;
 @Builder
 public class AuthReqDto extends BaseReqDto {
 
+  @Schema(description = "사용자 아이디", example = "user123")
   @NotBlank(groups = { CreateGroup.class }, message = "사용자아이디는 필수입니다.")
   private String userId; // 사용자아이디
 
+  @Schema(description = "비밀번호", example = "password123")
   @NotBlank(groups = { CreateGroup.class }, message = "비밀번호는 필수입니다.")
   private String password; // 비밀번호
 

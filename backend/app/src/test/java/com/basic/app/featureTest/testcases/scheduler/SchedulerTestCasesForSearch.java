@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.PageResponse;
 import com.basic.app.dto.responseDto.ScheHResDto;
@@ -58,7 +58,7 @@ public class SchedulerTestCasesForSearch implements TestTemplateInvocationContex
                 LocalDateTime.of(2025, 8, 1, 0, 0, 0, 0),
                 LocalDateTime.of(2025, 8, 2, 0, 0, 0, 0),
                 "Y");
-        ApiResponse<?> expected_order1 = ApiResponse.success(Map.of("data", testData_order1));
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", testData_order1));
         String url_order1 = BASE_URL + "/" + testData_order1.getScheId();
         ResultMatcher status_order1 = status().isOk();
 
@@ -85,7 +85,7 @@ public class SchedulerTestCasesForSearch implements TestTemplateInvocationContex
                 LocalDateTime.of(2025, 8, 1, 0, 0, 0, 0),
                 LocalDateTime.of(2025, 8, 2, 0, 0, 0, 0),
                 "Y");
-        ApiResponse<?> expected_order3 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected_order3 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url_order3 = BASE_URL + "/" + testData_order3.getScheId();
         ResultMatcher status_order3 = status().is4xxClientError();
 
@@ -101,7 +101,7 @@ public class SchedulerTestCasesForSearch implements TestTemplateInvocationContex
          */
         String testName_order10 = "잘못된 형식 입력 - null 값";
         String testData_order10 = null; // null 값
-        ApiResponse<?> expected_order10 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected_order10 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url_order10 = BASE_URL + "/";
         ResultMatcher status_order10 = status().is4xxClientError();
 

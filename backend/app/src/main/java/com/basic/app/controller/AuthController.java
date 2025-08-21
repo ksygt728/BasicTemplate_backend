@@ -21,13 +21,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
+import com.basic.app.dto.responseDto.UserResDto;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.service.interfaces.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "AuthController", description = "인증 API")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -42,17 +51,23 @@ public class AuthController {
   /* [REQ_CMN_002] [화면 : 회원가입] [기능 : 이용약관 동의] */
 
   /* [REQ_CMN_003] [화면 : 회원가입] [기능 : 회원정보 입력] */
+  @Operation(summary = "[REQ_CMN_003] [화면 : 회원가입] [기능 : 회원정보 입력]", description = "사용자 회원가입을 처리합니다.")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping("/signUp")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> signUp(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> signUp(
       @Validated(CreateGroup.class) UserReqDto user) {
     Map<String, Object> data = userService.signUp(user);
 
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)] */
+  @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 일반 로그인(성공)]", description = "사용자 로그인을 처리합니다.")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping("/signIn")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> signIn(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> signIn(
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
@@ -69,7 +84,7 @@ public class AuthController {
     return ResponseEntity.status(HttpStatus.OK)
         .header(accessTokenHeader, jwtAccessToken)
         .header(refreshTokenHeader, jwtRefreshToken)
-        .body(ApiResponse.success(null));
+        .body(ResponseApi.success(null));
   }
 
   /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] */
@@ -84,7 +99,7 @@ public class AuthController {
 
   @PreAuthorize("isAuthenticated() and (#user.userId == authentication.name or hasRole('ADMIN'))")
   @PostMapping("/test")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> test(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> test(
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
@@ -94,6 +109,6 @@ public class AuthController {
     data.put("data", test);
 
     return ResponseEntity.status(HttpStatus.OK)
-        .body(ApiResponse.success(data));
+        .body(ResponseApi.success(data));
   }
 }

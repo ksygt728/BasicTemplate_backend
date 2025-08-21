@@ -52,10 +52,10 @@ public class LogError extends BaseEntity {
   @Column(name = "HTTP_METHOD", length = 45)
   private String httpMethod; // 메소드
 
-  @Column(name = "ERR_MSG", length = 2048)
+  @Column(name = "ERR_MSG", columnDefinition = "TEXT")
   private String errMsg; // 에러내용
 
-  @Column(name = "ERR_STACK", length = 65535)
+  @Column(name = "ERR_STACK", columnDefinition = "TEXT")
   private String errStack; // 에러내용상세
 
 }

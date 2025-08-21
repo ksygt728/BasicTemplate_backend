@@ -18,7 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.api.PageResponse;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.dto.responseDto.LogErrorResDto;
@@ -71,7 +71,7 @@ public class LogErrorTestCasesSearchAll implements
         pageResponse_order1.setTotalPages(1);
         pageResponse_order1.setFirst(true);
         pageResponse_order1.setLast(true);
-        ApiResponse<?> expected_order1 = ApiResponse.success(Map.of("data", pageResponse_order1));
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", pageResponse_order1));
 
         ResultMatcher status_order1 = status().isOk();
         String url_order1 = BASE_URL + "/error-log/search";

@@ -5,7 +5,7 @@ server:
 spring:
   profiles:
     group:
-      dev: dev
+      env: dev
 
   datasource:
     url: jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
@@ -23,6 +23,13 @@ spring:
         "[show_sql]": false # 실행되는 SQL 쿼리를 콘솔에 비활성화
         "[format_sql]": true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
         "[use_sql_comments]": true # SQL 쿼리에 주석 추가해서 출력
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
+      timeout: 30000ms
 
   quartz:
     job-store-type: jdbc # Quartz 상태 저장 방식을 JDBC(DB)로 설정
@@ -54,12 +61,19 @@ spring:
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
-  data:
-    redis:
-      host: localhost
-      port: 6379
-      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
-      timeout: 30000ms
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ksygt728.study@gmail.com
+    alias: "[CBSK] SYSTEM-DEV"
+    password: awuc myeu ipxo vjdc
+    max-mail-queue: 2 # 메일 큐 최대 크기
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   kafka:
     bootstrap-servers: localhost:9092

@@ -15,7 +15,7 @@ import lombok.Getter;
 @Getter
 public class ClientActionException extends BaseException {
 
-    private String additionalMessage;
+    private String additionalMessage = "";
 
     public ClientActionException(ErrorCode errorCode) {
         super(errorCode);

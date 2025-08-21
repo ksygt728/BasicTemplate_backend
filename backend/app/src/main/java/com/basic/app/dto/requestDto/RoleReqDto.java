@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -27,12 +28,15 @@ import lombok.ToString;
 @Builder
 public class RoleReqDto {
 
+  @Schema(description = "권한코드", example = "ROLE001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
   private String roldCd; // 권한코드
 
+  @Schema(description = "권한명", example = "관리자")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한명은 필수입니다.")
   private String roleName; // 권한명
 
+  @Schema(description = "권한설명", example = "시스템 전체 관리")
   private String roleDesc; // 권한설명
 
 }

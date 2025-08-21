@@ -14,7 +14,7 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.util.TestCaseDetail;
@@ -34,7 +34,7 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
         // 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : [단건] 정상 조회] [테스트 상세 : 정상 조회 1건 조회]
         String testName1 = "정상조회";
         InterfaceReqDto testData1 = new InterfaceReqDto("IF002_SEARCH", "주문페이지 요청", "/api/v1/orders/request");
-        ApiResponse<?> expected1 = ApiResponse.success(Map.of("data", testData1));
+        ResponseApi<?> expected1 = ResponseApi.success(Map.of("data", testData1));
         ResultMatcher status1 = status().isOk();
         String url1 = BASE_URL + "/" + testData1.getIfId();
 
@@ -47,7 +47,7 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
         // 않는ID 조회]
         String testName3 = "존재하지 않는 ID 조회";
         InterfaceReqDto testData3 = new InterfaceReqDto("IF_ID_NOT_EXIST", "상품페이지 요청", "/api/v1/items/product");
-        ApiResponse<?> expected3 = ApiResponse.fail(ErrorCode.OBJECT_NOT_FOUND);
+        ResponseApi<?> expected3 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         ResultMatcher status3 = status().is4xxClientError();
         String url3 = BASE_URL + "/" + testData3.getIfId();
 
@@ -58,7 +58,7 @@ public class InterFaceTestCasesForSearch implements TestTemplateInvocationContex
         // 인터페이스 관리] [기능 : 인터페이스 기준정보 조회] [테스트항목 : 잘못된 형식 입력] [테스트 상세 : 잘못된 형식 입력]
         String testName5 = "잘못된 형식 입력";
         InterfaceReqDto testData5 = null; // 잘못된 형식 입력을 위한 DTO는 null로 설정
-        ApiResponse<?> expected5 = ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND);
+        ResponseApi<?> expected5 = ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND);
         String url5 = BASE_URL + "/";
         ResultMatcher status5 = status().is4xxClientError();
 

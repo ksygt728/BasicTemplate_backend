@@ -7,7 +7,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,8 +46,8 @@ public class TestUtils {
     return multiValueMap;
   }
 
-  // ApiResponse -> JsonNode
-  public static JsonNode apiReponseToJsonNode(ApiResponse<?> expected) throws Exception {
+  // ResponseApi -> JsonNode
+  public static JsonNode apiReponseToJsonNode(ResponseApi<?> expected) throws Exception {
     String expectedJson = objectMapper.writeValueAsString(expected);
     return objectMapper.readTree(expectedJson);
   }

@@ -23,12 +23,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.annotation.SwaggerCommonResponseApi;
+import com.basic.app.api.ResponseApi;
+import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.ChaebunReqDto;
+import com.basic.app.dto.responseDto.ChaebunResDto;
 import com.basic.app.service.interfaces.SequenceService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "AdminSequenceController", description = "시퀀스 API")
 @RestController
 @RequestMapping("/admin/sequence")
 public class AdminSequenceController {
@@ -37,39 +48,56 @@ public class AdminSequenceController {
   private SequenceService sequenceService;
 
   /* [REQ_ADM_053] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 리스트 조회] */
+  @Operation(summary = "[REQ_ADM_053] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 리스트 조회]", description = "채번 리스트 조회 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findAllSequenceForAdmin() {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSequenceForAdmin() {
     Map<String, Object> data = sequenceService.findAllSequenceForAdmin();
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_053_2] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 조회] */
+  @Operation(summary = "[REQ_ADM_053_2] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 조회]", description = "채번 조회 기능 제공")
+  @Parameter(name = "seqId", description = "시퀀스 아이디", example = "SEQ001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
+  @SwaggerCommonResponseApi
   @GetMapping("/{seqId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> findBySequenceForAdmin(@PathVariable String seqId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findBySequenceForAdmin(@PathVariable String seqId) {
     Map<String, Object> data = sequenceService.findBySequenceForAdmin(seqId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_054] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 추가] */
+  @Operation(summary = "[REQ_ADM_054] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 추가]", description = "채번 추가 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
+  @SwaggerCommonResponseApi
   @PostMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> insertSequenceForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> insertSequenceForAdmin(
       @Validated(CreateGroup.class) ChaebunReqDto chaebun) {
     Map<String, Object> data = sequenceService.insertSequenceForAdmin(chaebun);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_055] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 수정] */
+  @Operation(summary = "[REQ_ADM_055] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 수정]", description = "채번 수정 기능 제공")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
+  @SwaggerCommonResponseApi
   @PutMapping
-  public ResponseEntity<ApiResponse<Map<String, Object>>> updateSequenceForAdmin(
+  public ResponseEntity<ResponseApi<Map<String, Object>>> updateSequenceForAdmin(
       @Validated(UpdateGroup.class) ChaebunReqDto chaebun) {
     Map<String, Object> data = sequenceService.updateSequenceForAdmin(chaebun);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
   /* [REQ_ADM_056] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 삭제] */
+  @Operation(summary = "[REQ_ADM_056] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 삭제]", description = "채번 삭제 기능 제공")
+  @Parameter(name = "seqId", description = "시퀀스 아이디", example = "SEQ001")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
   @DeleteMapping("/{seqId}")
-  public ResponseEntity<ApiResponse<Map<String, Object>>> deleteSequenceForAdmin(@PathVariable String seqId) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteSequenceForAdmin(@PathVariable String seqId) {
     Map<String, Object> data = sequenceService.deleteSequenceForAdmin(seqId);
-    return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(data));
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }

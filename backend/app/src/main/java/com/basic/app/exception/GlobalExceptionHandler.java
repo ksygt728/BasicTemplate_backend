@@ -1,7 +1,7 @@
 /**
  * @파일명   : GlobalExceptionHandler.java
  * @설명     : 전역 에러 핸들러
- *            1) 프론트엔드로 에러를 던질 때 사용 - 응답구조 ApiResponse로 통일
+ *            1) 프론트엔드로 에러를 던질 때 사용 - 응답구조 ResponseApi로 통일
  *            2) 에러 로그 생성 및 로그테이블 적재
  * 
  *         [커스텀 에러 Exception 클래스 구분]
@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.exception.customException.ClientActionException;
 import com.basic.app.exception.customException.NotFoundException;
@@ -70,26 +70,27 @@ public class GlobalExceptionHandler {
 
   /* Error code : 400 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(비즈니르로직으로 인한 validation) */
   @ExceptionHandler(BusinessException.class)
-  public ResponseEntity<ApiResponse<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
+    String additionalMessage = e.getAdditionalMessage();
 
-    showErrorLogFormat(e, errorCode);
+    showErrorLogFormat(e, errorCode, additionalMessage);
 
     try {
-      logService.insertErrorLog(e, request, errorCode, "");
+      logService.insertErrorLog(e, request, errorCode, additionalMessage);
     } catch (Exception ex) {
       log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(errorCode));
+        .body(ResponseApi.fail(errorCode, additionalMessage));
   }
 
   /* Error code : 400 클라이언트의 잘못된 요청으로 인해 발생하는 예외를 처리하기 위한 커스텀 예외 클래스 */
   @ExceptionHandler(ClientActionException.class)
-  public ResponseEntity<ApiResponse<?>> handleClientActionException(ClientActionException e,
+  public ResponseEntity<ResponseApi<?>> handleClientActionException(ClientActionException e,
       HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
@@ -105,12 +106,12 @@ public class GlobalExceptionHandler {
     }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(errorCode));
+        .body(ResponseApi.fail(errorCode, additionalMessage));
   }
 
   /* Error code : 400 - try-catch나 관리자가 직접 에러메세지를보고 판단해야하는 경우 */
   @ExceptionHandler(SystemErrorException.class)
-  public ResponseEntity<ApiResponse<?>> handleSystemErrorException(SystemErrorException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleSystemErrorException(SystemErrorException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
     String additionalMessage = e.getAdditionalMessage();
@@ -126,19 +127,20 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(errorCode));
+        .body(ResponseApi.fail(errorCode, additionalMessage));
   }
 
   /* Error code : 400 - 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(이상한 상황..) */
   @ExceptionHandler(NotFoundException.class)
-  public ResponseEntity<ApiResponse<?>> handleNotFoundException(NotFoundException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleNotFoundException(NotFoundException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
+    String additionalMessage = e.getAdditionalMessage();
 
-    showErrorLogFormat(e, errorCode);
+    showErrorLogFormat(e, errorCode, additionalMessage);
 
     try {
-      logService.insertErrorLog(e, request, errorCode, "");
+      logService.insertErrorLog(e, request, errorCode, additionalMessage);
     } catch (Exception ex) {
       log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
@@ -146,7 +148,7 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(errorCode));
+        .body(ResponseApi.fail(errorCode, additionalMessage));
   }
 
   /*
@@ -157,7 +159,7 @@ public class GlobalExceptionHandler {
 
   /* Error code : 400 (@Validated) - 원인 : 클라이언트 책임 */
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ApiResponse<?>> handleValidationException(MethodArgumentNotValidException e,
+  public ResponseEntity<ResponseApi<?>> handleValidationException(MethodArgumentNotValidException e,
       HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_CLIENT;
@@ -176,12 +178,12 @@ public class GlobalExceptionHandler {
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(
-            ApiResponse.fail(ErrorCode.VALIDATION_ERROR_CLIENT, validatorErrorMessage));
+            ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, validatorErrorMessage));
   }
 
   /* Error code : 400 (잘못된 요청 비즈로직 validation 실패 시) - 원인 : 게발자 실수 가능성 */
   @ExceptionHandler(IllegalArgumentException.class)
-  public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleIllegalArgument(IllegalArgumentException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_SERVER;
 
@@ -195,12 +197,12 @@ public class GlobalExceptionHandler {
     }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ApiResponse.fail(ErrorCode.VALIDATION_ERROR_SERVER));
+        .body(ResponseApi.fail(ErrorCode.VALIDATION_ERROR_SERVER));
   }
 
   /* Error code : 401 (로그인 인증 실패시) */
   @ExceptionHandler(BadCredentialsException.class)
-  public ResponseEntity<ApiResponse<?>> handleUsernameNotFound(BadCredentialsException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleUsernameNotFound(BadCredentialsException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.UNAUTHORIZED_FAILURE;
 
@@ -215,12 +217,12 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.UNAUTHORIZED)
-        .body(ApiResponse.fail(ErrorCode.UNAUTHORIZED_FAILURE));
+        .body(ResponseApi.fail(ErrorCode.UNAUTHORIZED_FAILURE));
   }
 
   /* Error code : 403 (권한이 없을경우 @PreAuthorize) */
   @ExceptionHandler(AuthorizationDeniedException.class)
-  public ResponseEntity<ApiResponse<?>> handleAuthorizationDenied(AuthorizationDeniedException e,
+  public ResponseEntity<ResponseApi<?>> handleAuthorizationDenied(AuthorizationDeniedException e,
       HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.ACCESS_DENIED;
@@ -236,12 +238,12 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.FORBIDDEN)
-        .body(ApiResponse.fail(ErrorCode.ACCESS_DENIED));
+        .body(ResponseApi.fail(ErrorCode.ACCESS_DENIED));
   }
 
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
-  public ResponseEntity<ApiResponse<?>> handleResponseStatus(ResponseStatusException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleResponseStatus(ResponseStatusException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
@@ -256,12 +258,12 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
-        .body(ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND));
+        .body(ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND));
   }
 
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-  public ResponseEntity<ApiResponse<?>> handleHttpRequestMethodNotSupportedException(
+  public ResponseEntity<ResponseApi<?>> handleHttpRequestMethodNotSupportedException(
       HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
@@ -277,12 +279,12 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
-        .body(ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND));
+        .body(ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND));
   }
 
   /* Error code : 404 (페이지를 찾을 수 없음) : 사용자가 URL입력을 잘못한 경우 */
   @ExceptionHandler(NoHandlerFoundException.class)
-  public ResponseEntity<ApiResponse<?>> handleNoHandlerFound(NoHandlerFoundException e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleNoHandlerFound(NoHandlerFoundException e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 
@@ -297,12 +299,12 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
-        .body(ApiResponse.fail(ErrorCode.PAGE_NOT_FOUND));
+        .body(ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND));
   }
 
   /* Error code : 500 (서버 내부 오류) */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ApiResponse<?>> handleException(Exception e, HttpServletRequest request) {
+  public ResponseEntity<ResponseApi<?>> handleException(Exception e, HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.SERVER_ERROR;
 
@@ -317,7 +319,7 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(ApiResponse.fail(ErrorCode.SERVER_ERROR));
+        .body(ResponseApi.fail(ErrorCode.SERVER_ERROR));
   }
 
   // 로그 출력 형식(default)

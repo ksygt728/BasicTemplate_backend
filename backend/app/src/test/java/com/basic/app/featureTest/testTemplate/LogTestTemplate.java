@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
-import com.basic.app.api.ApiResponse;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.entity.LogApi;
 import com.basic.app.entity.LogError;
 import com.basic.app.featureTest.testcases.logApiError.LogApiTestCasesSearchAll;
@@ -147,7 +147,7 @@ public class LogTestTemplate {
         // String url = testCaseDetail.getUrl();
         // String testCaseName = testCaseDetail.getTestName();
         // Object testData = testCaseDetail.getTestData();
-        // ApiResponse<?> expected = testCaseDetail.getExpected();
+        // ResponseApi<?> expected = testCaseDetail.getExpected();
         // ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
 
         // /* 2. when */
@@ -178,7 +178,7 @@ public class LogTestTemplate {
                 String url = testCaseDetail.getUrl();
                 String testCaseName = testCaseDetail.getTestName();
                 Object testData = testCaseDetail.getTestData();
-                ApiResponse<?> expected = testCaseDetail.getExpected();
+                ResponseApi<?> expected = testCaseDetail.getExpected();
                 ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
                 PageRequest pageRequest = testCaseDetail.getPageRequest();
 
@@ -217,7 +217,7 @@ public class LogTestTemplate {
                 String url = testCaseDetail.getUrl();
                 String testCaseName = testCaseDetail.getTestName();
                 Object testData = testCaseDetail.getTestData();
-                ApiResponse<?> expected = testCaseDetail.getExpected();
+                ResponseApi<?> expected = testCaseDetail.getExpected();
                 ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
                 PageRequest pageRequest = testCaseDetail.getPageRequest();
 
