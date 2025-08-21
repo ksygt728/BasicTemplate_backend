@@ -120,7 +120,7 @@ public class LogServiceImpl implements LogService {
           - Message : %s
         """.formatted(
         errorCode.getCode(),
-        errorCode.getMessage(),
+        errorCode.getMessage() + additionalMessage,
         e.getClass(),
         e.getMessage(),
         e.getStackTrace());

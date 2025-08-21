@@ -244,9 +244,9 @@ public class SchedulerServiceImpl implements SchedulerService {
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 3. 엔티티 수정 & 저장(자동)
-    ScheM savedScheMEntity = schedulerRepository.save(scheMEntity);
+    init(scheMEntity); // 스케줄러 활성화 또는 비활성화 처리
 
-    init(savedScheMEntity); // 스케줄러 활성화 또는 비활성화 처리
+    ScheM savedScheMEntity = schedulerRepository.save(scheMEntity);
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환

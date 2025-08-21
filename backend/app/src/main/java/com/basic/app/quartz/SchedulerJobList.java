@@ -7,4 +7,6 @@ public interface SchedulerJobList {
   public void test2for10second();
 
   public void test3for1minute();
+
+  public void sendMailToBatch() throws Exception;
 }

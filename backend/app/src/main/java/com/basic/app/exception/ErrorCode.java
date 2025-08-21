@@ -8,8 +8,7 @@ import lombok.Setter;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
-  // 1000번대: 인증 및 사용자 관련
-
+  /* 1000번대: 인증 및 사용자 관련 */
   LOGIN_REQUIRED("1001", "로그인을 해주세요. (로그인페이지로 이동)"), // 401 CustomAuthenticationEntryPoint에서만 던짐
   UNAUTHORIZED_FAILURE("1002", "인증에 실패했습니다. 로그인정보가 올바르지 않습니다."), // 401 // 로그인시에만 던짐
   ACCESS_DENIED("1003", "접근 권한이 없습니다."), // 403 (JWT문제는 아니지만 권한이 없는경우)
@@ -26,31 +25,39 @@ public enum ErrorCode {
   JWT_ISSUE_REFRESH_TOKEN_NOT_VERIFIED("1009", "[Client] Refresh token을 검증할 수 없습니다. 로그인페이지로 이동시켜주세요."), // 403
   JWT_ISSUE_ATRT_EXSIT("1010", "[Client] Access Token과 Refresh Token이 모두 있습니다. 잘못된 요청입니다."), // 403
 
-  // 2000번대: 요청 및 페이지 관련
+  /* 2000번대: 요청 및 페이지 관련 */
   PAGE_NOT_FOUND("2001", "페이지를 찾을 수 없습니다."),
 
-  // 3000번대: 비즈니스 로직 관련
+  /* 3000번대: 비즈니스 로직 관련 */
   VALIDATION_ERROR("3001", "유효성 검사에 실패했습니다."),
   VALIDATION_ERROR_CLIENT("3002", "[@Validated] 클라이언트 유효성 검사에 실패했습니다."),
 
-  // 4000번대: 비즈니스 로직 관련(서비스단에서 던지는거)
+  /* 4000번대: 비즈니스 로직 관련(서비스단에서 던지는거) */
+  // common
   OBJECT_NOT_FOUND("4001", "데이터가 존재하지 않습니다."),
   OBJECT_IS_EXISTED("4002", "이미 존재하는 데이터입니다."),
   DEPARTMENT_NOT_WRITE("4003", "부서 정보는 HR에서 받아오는 정보로 추가/수정/삭제가 불가합니다. HR에 문의하세요."),
   DATEFORMAT_INVALID("4004", "날짜 형식이 올바르지 않습니다."),
 
+  // scheduler
   SCHEDULER_NOT_FOUND("4010", "스케줄러 정보가 존재하지 않습니다."),
   SCHEDULER_CREATE_FAILED("4011", "스케줄러 등록에 실패했습니다. cron표현식이 올바른지 확인해주세요."),
   SCHEDULER_EXCUTE_FAILED("4012", "스케줄러 실행에 실패했습니다."),
   SCHEDULER_IS_EXCUTING("4013", "스케줄러가 이미 실행중입니다."),
 
-  // 5000번대: 서버 및 외부 시스템 관련
+  // mail
+  MAIL_TEMPLATE_NOT_VALID("4020", "메일 템플릿 형식이 올바르지 않아 메일을 전송할 수 없습니다. 관리자에게 문의하세요."),
+  MAIL_SEND_ERROR("4020", "메일 전송에 실패했습니다. 관리자에게 문의하세요."),
+  MAIL_NOT_REGISTERD("4021", "해당 메일이 등록되어 있지 않습니다. 관리자에게 문의하여 메일을 먼저 등록해주세요."),
+  MAIL_FORMAT_INVALID("4022", "메일형식이 잘못되어 있습니다."),
+
+  /* 5000번대: 서버 및 외부 시스템 관련 */
   SERVER_ERROR("5001", "서버 에러가 발생했습니다. 관리자에게 문의하세요."),
   DATABASE_ERROR("5002", "데이터베이스 오류가 발생했습니다."),
   EXTERNAL_API_ERROR("5003", "외부 API 호출 오류가 발생했습니다."),
   VALIDATION_ERROR_SERVER("5004", "서버 유효성 검사에 실패했습니다."),
 
-  // 9000번대: 기타 및 예상치 못한 오류
+  /* 9000번대: 기타 및 예상치 못한 오류 */
   UNEXPECTED_ERROR("9001", "예상치 못한 오류가 발생했습니다.")
 
   ;

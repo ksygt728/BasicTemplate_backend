@@ -61,10 +61,10 @@ public class LogApi extends BaseEntity {
   @Column(name = "HTTP_METHOD", length = 45)
   private String httpMethod; // 메소드
 
-  @Column(name = "REQUEST_BODY", length = 65535)
+  @Column(name = "REQUEST_BODY", columnDefinition = "TEXT")
   private String requestBody; // 요청내용
 
-  @Column(name = "RESPONSE_BODY", length = 65535)
+  @Column(name = "RESPONSE_BODY", columnDefinition = "TEXT")
   private String responseBody; // 응답내용
 
   @Column(name = "STATUS_CODE", length = 45)

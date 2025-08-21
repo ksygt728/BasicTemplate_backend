@@ -1,10 +1,13 @@
 package com.basic.app.entity;
 
+import java.util.UUID;
+
 import com.basic.app.entity.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,25 +29,32 @@ public class MailH extends BaseEntity {
   @Column(name = "LOG_ID", length = 45)
   private String logId; // 사용자이력ID
 
+  @PrePersist
+  public void prePersist() {
+    if (logId == null) {
+      logId = UUID.randomUUID().toString();
+    }
+  }
+
   @Column(name = "MAIL_ID", length = 45)
   private String mailId; // 메일아이디
 
   @Column(name = "FROM_ADDR", length = 45)
   private String fromAddr; // 발신자
 
-  @Column(name = "TO_ADDR", length = 45)
+  @Column(name = "TO_ADDR", columnDefinition = "TEXT")
   private String toAddr; // 수신자
 
   @Column(name = "TITLE", length = 100)
   private String title; // 제목
 
-  @Column(name = "CONTENT", length = 2048)
+  @Column(name = "CONTENT", columnDefinition = "TEXT")
   private String content; // 내용
 
   @Column(name = "SUCCESS", length = 1)
   private String success; // 성공여부
 
-  @Column(name = "ERROR_MSG", length = 2048)
+  @Column(name = "ERROR_MSG", columnDefinition = "TEXT")
   private String errorMsg; // 실패사유
 
 }
