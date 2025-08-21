@@ -10,6 +10,8 @@ package com.basic.app.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +21,7 @@ import com.basic.app.entity.MailH;
 public interface MailHRepository extends JpaRepository<MailH, String> {
 
   List<MailH> findTop100ByStsAndSuccessOrderByCreateDateAsc(String sts, String success);
+
+  Page<MailH> findAllByMailIdAndSts(String mailId, String positive, Pageable pageable);
 
 }

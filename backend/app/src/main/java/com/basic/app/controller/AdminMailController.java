@@ -11,6 +11,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -51,11 +54,13 @@ public class AdminMailController {
   @Operation(summary = "[REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회]", description = "메일 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin() throws Exception {
-    // Map<String, Object> data = mailService.findAllMailForAdmin();
-    Map<String, Object> data = null;
-    mailService.mailSendTest2();
+  @GetMapping("/search")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin(MailMReqDto mailMReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "mailId", direction = Sort.Direction.ASC) Pageable pageable)
+      throws Exception {
+    Map<String, Object> data = mailService.findAllMailForAdmin(mailMReqDto, pageable);
+    // Map<String, Object> data = null;
+    // mailService.mailSendTest2();
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -76,8 +81,9 @@ public class AdminMailController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailHResDto.class)))
   @SwaggerCommonResponseApi
   @GetMapping("/history/{mailId}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId) {
-    Map<String, Object> data = mailService.findByMailHistoryForAdmin(mailId);
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId,
+      @PageableDefault(page = 0, size = 2000, sort = "mailId", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = mailService.findByMailHistoryForAdmin(mailId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
