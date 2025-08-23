@@ -31,6 +31,8 @@ public class ChaebunResDto {
 
   private String seqName; // 채번명
 
+  private String pattern; // 채번패턴
+
   private String prefix; // 채번고유번호
 
   private int currentValue; // 현재 채번값

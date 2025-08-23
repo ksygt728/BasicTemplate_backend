@@ -1,5 +1,5 @@
 /**
- * @파일명   : MailMRepository.java
+ * @파일명   : SmsMRepository.java
  * @설명     : 스케줄러 레포지토리
  * @작성자   : 김승연
  * @작성일   : 2025.08.19
