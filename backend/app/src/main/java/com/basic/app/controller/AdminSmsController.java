@@ -12,6 +12,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -52,9 +55,10 @@ public class AdminSmsController {
   @Operation(summary = "[REQ_ADM_067] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 리스트 조회]", description = "SMS 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsMResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSmsForAdmin() {
-    Map<String, Object> data = smsService.findAllSmsForAdmin();
+  @GetMapping("/search")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSmsForAdmin(SmsMReqDto smsMReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "smsId", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = smsService.findAllSmsForAdmin(smsMReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -108,8 +112,9 @@ public class AdminSmsController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsHResDto.class)))
   @SwaggerCommonResponseApi
   @GetMapping("/history/{smsId}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findBySmsHistoryForAdmin(@PathVariable String smsId) {
-    Map<String, Object> data = smsService.findBySmsHistoryForAdmin(smsId);
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findBySmsHistoryForAdmin(@PathVariable String smsId,
+      @PageableDefault(page = 0, size = 2000, sort = "smsId", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = smsService.findBySmsHistoryForAdmin(smsId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
