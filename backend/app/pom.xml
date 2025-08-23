@@ -156,6 +156,13 @@
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 
+		<!-- [SMS문자 발송 CoolSMS ver] -->
+		<dependency>
+			<groupId>net.nurigo</groupId>
+			<artifactId>sdk</artifactId>
+			<version>4.2.7</version>
+		</dependency>
+
 		<!-- [security] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

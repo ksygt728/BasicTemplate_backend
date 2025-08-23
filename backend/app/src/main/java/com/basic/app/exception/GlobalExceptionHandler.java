@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.basic.app.api.ResponseApi;
 import com.basic.app.exception.customException.BusinessException;
@@ -244,6 +245,27 @@ public class GlobalExceptionHandler {
   /* Error code : 404 (페이지를 찾을 수 없음) */
   @ExceptionHandler(ResponseStatusException.class)
   public ResponseEntity<ResponseApi<?>> handleResponseStatus(ResponseStatusException e, HttpServletRequest request) {
+
+    ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
+
+    showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+
+    return ResponseEntity
+        .status(HttpStatus.NOT_FOUND)
+        .body(ResponseApi.fail(ErrorCode.PAGE_NOT_FOUND));
+  }
+
+  /* Error code : 404 (페이지를 찾을 수 없음) */
+  @ExceptionHandler(NoResourceFoundException.class)
+  public ResponseEntity<ResponseApi<?>> handleNoResourceFoundException(NoResourceFoundException e,
+      HttpServletRequest request) {
 
     ErrorCode errorCode = ErrorCode.PAGE_NOT_FOUND;
 

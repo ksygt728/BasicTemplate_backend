@@ -166,7 +166,8 @@ public class SchedulerTestCasesForUpdate implements TestTemplateInvocationContex
                                 "cleanupTrigger",
                                 "INVALID_CRON_FORMAT", // 잘못된 Cron 표현식
                                 "Y");
-                ResponseApi<?> expected_order5 = ResponseApi.fail(ErrorCode.SCHEDULER_CREATE_FAILED);
+                ResponseApi<?> expected_order5 = ResponseApi.fail(ErrorCode.SCHEDULER_CREATE_FAILED,
+                                testData_order5.getScheId());
                 String url_order5 = BASE_URL;
                 ResultMatcher status_order5 = status().is4xxClientError();
 
