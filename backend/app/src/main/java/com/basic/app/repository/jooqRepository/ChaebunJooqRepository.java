@@ -56,9 +56,6 @@ public class ChaebunJooqRepository {
     if (reqDto.getPrefix() != null && !reqDto.getPrefix().isEmpty()) {
       conditions.add(TB_CHAEBUN.PREFIX.like("%" + reqDto.getPrefix() + "%"));
     }
-    if (reqDto.getCurrentValue() != 0) {
-      conditions.add(TB_CHAEBUN.CURRENT_VALUE.eq(reqDto.getCurrentValue()));
-    }
     if (reqDto.getStep() != 0) {
       conditions.add(TB_CHAEBUN.STEP.eq(reqDto.getStep()));
     }
