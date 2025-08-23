@@ -30,16 +30,19 @@ public class Chaebun extends BaseEntity {
   @Column(name = "SEQ_NAME", length = 100, nullable = false)
   private String seqName; // 채번명
 
+  @Column(name = "PATTERN", length = 45, nullable = false)
+  private String pattern; // 채번패턴
+
   @Column(name = "PREFIX", length = 45, nullable = false)
   private String prefix; // 채번고유번호
 
   @Column(name = "CURRENT_VALUE", nullable = false)
   private int currentValue; // 현재 채번값
 
-  @Column(name = "STEP", nullable = false)
+  @Column(name = "STEP", nullable = false, columnDefinition = "int default 1")
   private int step; // 증가량
 
-  @Column(name = "LENGTH", nullable = false)
+  @Column(name = "LENGTH", nullable = false, columnDefinition = "int default 4")
   private int length; // 채번길이
 
   @Column(name = "DATEFORMAT", length = 45)

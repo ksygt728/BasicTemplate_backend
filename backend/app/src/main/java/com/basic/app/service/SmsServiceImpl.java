@@ -59,21 +59,6 @@ public class SmsServiceImpl implements SmsService {
     data.put("data", pagedMailMDtoList);
 
     return data;
-    // String uesrname1 = "김승연1";
-    // int code1 = (int) (Math.random() * 900000) + 100000;
-
-    // String uesrname2 = "김승연2";
-    // int code2 = (int) (Math.random() * 900000) + 100000;
-
-    // smsProvider.sendSms("SMS-001", "01091360767", Map.of(
-    // "username", uesrname1,
-    // "code", code1));
-
-    // smsProvider.sendSms("SMS-001", "01091360767", Map.of(
-    // "username", uesrname2,
-    // "code", code2));
-
-    // return Map.of("message", "SMS 발송 성공");
 
   }
 
