@@ -70,8 +70,8 @@ public class SecurityConfig {
             .accessDeniedHandler(new CustomAccessDeniedHandler())) // 인가 커스텀 예외 처리 핸들러 설정
 
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/auth/signUp", "/api/auth/signIn", "/api/auth/signOut")
-            .permitAll() // 회원가입, 로그인, 로그아웃은 인증 없이 접근 허용
+            .requestMatchers("/api/auth/**")
+            .permitAll() // 인증관련 로직은 인증 없이 접근 허용
             .requestMatchers("/admin/**")
             .hasRole("ADMIN") // 관리자 (시스템 관리자)
             .requestMatchers("/manager/**")
