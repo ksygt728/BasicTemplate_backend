@@ -55,6 +55,10 @@ public enum ErrorCode {
   SMS_NOT_REGISTERD("4030", "문자 포맷이 등록되있지 않거나 템플릿형식이 올바르지 않습니다. 관리자에게 문의하세요."),
   SMS_SEND_ERROR("4031", "문자 전송에 실패했습니다. 관리자에게 문의하세요."),
 
+  // Chaebun
+  CHAEBUN_NOT_REGISTERD("4040", "채번정보가 등록되어 있지 않습니다. 관리자에게 문의하세요."),
+  CHAEBUN_OVERFLOW("4041", "채번정보가 최대값을 초과합니다. 관리자에게 문의하세요."),
+
   // OAuth
   KAKAO_AUTH_ERROR("4100", "카카오 인증에 실패했습니다. 관리자에게 문의하세요."),
 
