@@ -1,5 +1,6 @@
 package com.basic.app.util;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,8 @@ public class TestUtils {
 
   // MvcResult -> JsonNode
   public static JsonNode mvcResultToJsonNode(MvcResult actual) throws Exception {
-    String content = actual.getResponse().getContentAsString();
+    String content = actual.getResponse().getContentAsString(StandardCharsets.UTF_8); // UTF-8 명시
+    ObjectMapper objectMapper = new ObjectMapper();
     return objectMapper.readTree(content);
   }
 

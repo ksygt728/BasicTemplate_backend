@@ -1,10 +1,13 @@
 package com.basic.app.entity;
 
+import java.util.UUID;
+
 import com.basic.app.entity.baseEntity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +28,13 @@ public class SmsH extends BaseEntity {
   @Id
   @Column(name = "LOG_ID", length = 45)
   private String logId; // 사용자이력ID
+
+  @PrePersist
+  public void prePersist() {
+    if (logId == null) {
+      logId = UUID.randomUUID().toString(); // "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
 
   @Column(name = "SMS_ID", length = 45)
   private String smsId; // SMS아이디
