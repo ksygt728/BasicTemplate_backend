@@ -84,8 +84,6 @@ public class InterfaceJooqRepository {
     long total = dsl.selectCount()
         .from(INTERFACE)
         .where(conditions) // 동일한 조건으로 전체 카운트
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
     List<InterfaceResDto> data = dsl.selectFrom(INTERFACE)

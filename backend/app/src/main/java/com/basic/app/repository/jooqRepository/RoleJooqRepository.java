@@ -89,8 +89,6 @@ public class RoleJooqRepository {
     long total = dsl.selectCount()
         .from(TB_ROLE)
         .where(conditions) // 동일한 조건으로 전체 카운트
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
     List<RoleResDto> data = dsl.selectFrom(TB_ROLE)

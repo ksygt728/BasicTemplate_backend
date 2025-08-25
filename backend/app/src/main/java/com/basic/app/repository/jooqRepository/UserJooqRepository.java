@@ -92,8 +92,6 @@ public class UserJooqRepository {
         .innerJoin(TB_DEPARTMENT).on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE))
         .innerJoin(TB_COMPANY).on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE))
         .where(conditions) // 동일한 조건으로 전체 카운트
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
     List<UserResDto> data = dsl.select(
