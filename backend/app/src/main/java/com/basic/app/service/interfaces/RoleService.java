@@ -3,14 +3,18 @@ package com.basic.app.service.interfaces;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Pageable;
+
+import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
+import com.basic.app.dto.requestDto.UserReqDto;
 
 public interface RoleService {
 
-  Map<String, Object> findAllRoleForAdmin();
+  Map<String, Object> findAllRoleForAdmin(RoleReqDto roleReqDto, Pageable pageable);
 
-  Map<String, Object> findByRoleForAdmin(String roldCd);
+  Map<String, Object> findByRoleForAdmin(String roleCd);
 
   Map<String, Object> insertRoleForAdmin(RoleReqDto role);
 
@@ -18,16 +22,16 @@ public interface RoleService {
 
   Map<String, Object> deleteRoleForAdmin(String roleCd);
 
-  Map<String, Object> findByRoleMenuForAdmin(String roldCd);
+  Map<String, Object> findByRoleMenuForAdmin(String roleCd);
 
-  Map<String, Object> updateRoleMenuForAdmin(List<RoleReqDto> roleMenu);
+  Map<String, Object> updateRoleMenuForAdmin(List<RoleMenuReqDto> roleMenuReqDtoList);
 
-  Map<String, Object> findByRoleUserForAdmin(String uesrId);
+  Map<String, Object> findByRoleUserForAdmin(String userId, Pageable pageable);
 
-  Map<String, Object> findAllRoleUserForAdmin();
+  Map<String, Object> findAllRoleUserForAdmin(UserReqDto userReqDto, Pageable pageable);
 
-  Map<String, Object> insertRoleUserForAdmin(RoleUserReqDto roleUser);
+  Map<String, Object> insertRoleUserForAdmin(List<RoleUserReqDto> roleUserReqDtoList);
 
-  Map<String, Object> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUser);
+  Map<String, Object> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUserReqDtoList);
 
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.basic.app.entity.User;
+import com.basic.app.util.Status;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,13 +27,14 @@ public class CustomUserDetails implements UserDetails {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     Collection<GrantedAuthority> collect = new ArrayList<>();
-    collect.add(new GrantedAuthority() {
+    collect.add(() -> user.getRole());
 
-      @Override
-      public String getAuthority() {
-        return user.getRole();
-      }
-    });
+    user.getRoleUsers().stream()
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE) && entity.getUseYn().equals("Y"))
+        .toList()
+        .forEach(roleUser -> {
+          collect.add(() -> roleUser.getRole().getRoleCd());
+        });
 
     return collect;
   }

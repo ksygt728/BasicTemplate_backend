@@ -3,6 +3,7 @@ package com.basic.app.entity;
 import com.basic.app.dto.requestDto.ComCodeDReqDto;
 import com.basic.app.dto.responseDto.ComCodeMResDto;
 import com.basic.app.dto.responseDto.ComCodeTResDto;
+import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
 import com.basic.app.entity.baseEntity.BaseEntity;
 import com.basic.app.entity.compositeKey.ComCodeDId;
@@ -29,7 +30,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of = { "roleUserId.roleCd", "roleUserId.userId" })
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -57,8 +58,12 @@ public class RoleUser extends BaseEntity {
 
   public RoleUserResDto toDto(RoleUser entity) {
     return RoleUserResDto.builder()
-        .roleCd(entity.getRoleUserId().getRoleCd())
         .userId(entity.getRoleUserId().getUserId())
+        .role(RoleResDto.builder()
+            .roleCd(entity.getRole().getRoleCd())
+            .roleName(entity.getRole().getRoleName())
+            .roleDesc(entity.getRole().getRoleDesc())
+            .build())
         .useYn(entity.getUseYn())
         .build();
   }

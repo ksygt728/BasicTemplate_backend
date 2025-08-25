@@ -8,10 +8,6 @@
  */
 package com.basic.app.dto.responseDto;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,11 +24,11 @@ import lombok.ToString;
 public class RoleUserResDto {
 
   // RoleUser - Role (N:1) [Onwer]
-  private String roldCd;
 
   // RoleUser - User (N:1) [Onwer]
   private String userId;
 
   private String useYn; // 사용여부 (Y,N)
 
+  private RoleResDto role;
 }

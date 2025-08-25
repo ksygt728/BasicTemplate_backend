@@ -62,7 +62,7 @@ public class User extends BaseEntity {
   // User - Department (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "DEPT_CODE", nullable = false)
-  private Department deptCode; // 부서코드
+  private Department department; // 부서코드
 
   // User - Bbs (1:N)
   @OneToMany(mappedBy = "writor", fetch = FetchType.LAZY)

@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
 
     userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword())); // 비밀번호 암호화
     userEntity.setRole("ROLE_GUEST"); // 기본 역할 설정
-    userEntity.setDeptCode(department); // 기본 부서 설정
+    userEntity.setDepartment(department); // 기본 부서 설정
     User savedUserEntity = userRepository.save(userEntity);
 
     // 4. Entity -> DTO 변환
