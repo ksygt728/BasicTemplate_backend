@@ -86,7 +86,7 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertRoleForAdmin(
-      @RequestBody @Validated(CreateGroup.class) RoleReqDto roleReqDto) {
+      @Validated(CreateGroup.class) RoleReqDto roleReqDto) {
     Map<String, Object> data = roleService.insertRoleForAdmin(roleReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -97,7 +97,7 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateRoleForAdmin(
-      @RequestBody @Validated(UpdateGroup.class) RoleReqDto roleReqDto) {
+      @Validated(UpdateGroup.class) RoleReqDto roleReqDto) {
     Map<String, Object> data = roleService.updateRoleForAdmin(roleReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
