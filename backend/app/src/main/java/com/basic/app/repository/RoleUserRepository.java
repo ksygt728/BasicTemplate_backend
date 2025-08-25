@@ -8,6 +8,8 @@
  */
 package com.basic.app.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,5 +22,7 @@ import com.basic.app.entity.compositeKey.RoleUserId;
 public interface RoleUserRepository extends JpaRepository<RoleUser, RoleUserId> {
 
   Page<RoleUser> findByRoleUserIdUserIdAndSts(String userId, String sts, Pageable pageable);
+
+  List<RoleUser> findByRoleUserIdRoleCdAndSts(String roleCd, String sts);
 
 }

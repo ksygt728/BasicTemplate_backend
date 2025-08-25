@@ -152,6 +152,11 @@ public class RoleServiceImpl implements RoleService {
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
+    roleUserRepository.findByRoleUserIdRoleCdAndSts(roleCd, Status.POSITIVE)
+        .stream().forEach(entity -> {
+          entity.setSts(Status.NAGATIVE);
+        });
+
     roleEntity.setSts(Status.NAGATIVE);
 
     // RoleMenu, RoleUser 도 cascade로 같이 변경됨
@@ -229,11 +234,11 @@ public class RoleServiceImpl implements RoleService {
     roleUserEntityList.forEach(entity -> {
       User userEntity = userRepository.findById(entity.getRoleUserId().getUserId())
           .filter(user -> user.getSts().equals(Status.POSITIVE))
-          .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_IS_EXISTED, entity.getRoleUserId().getUserId()));
+          .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, entity.getRoleUserId().getUserId()));
 
       Role roleEntity = roleRepository.findById(entity.getRoleUserId().getRoleCd())
           .filter(role -> role.getSts().equals(Status.POSITIVE))
-          .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_IS_EXISTED, entity.getRoleUserId().getRoleCd()));
+          .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, entity.getRoleUserId().getRoleCd()));
 
       entity.setUser(userEntity);
       entity.setRole(roleEntity);
