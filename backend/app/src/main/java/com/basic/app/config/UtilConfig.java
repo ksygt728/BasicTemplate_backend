@@ -9,19 +9,19 @@
 package com.basic.app.config;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
-public class UtilConfig {
+public class UtilConfig implements WebMvcConfigurer {
 
 	@Bean
 	public ModelMapper modelMapper() {
@@ -38,5 +38,19 @@ public class UtilConfig {
 	@Bean
 	public SimpleDateFormat currentTimeFormat() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	}
+
+	/* 빈 문자열('') NULL로 처리 */
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(new Converter<String, String>() {
+			@Override
+			public String convert(String source) {
+				if (source != null && source.trim().isEmpty()) {
+					return null;
+				}
+				return source;
+			}
+		});
 	}
 }
