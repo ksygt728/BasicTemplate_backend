@@ -13,6 +13,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,9 +34,9 @@ public class RoleMenu extends BaseEntity {
   private RoleMenuId roleMenuId;
 
   // RoleMenu - Role (N:1) [Onwer]
-  @MapsId("roldCd")
+  @MapsId("roleCd")
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "ROLD_CD")
+  @JoinColumn(name = "ROLE_CD")
   private Role roleCd;
 
   // RoleMenu - Menu (N:1) [Onwer]

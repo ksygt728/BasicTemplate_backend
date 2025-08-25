@@ -18,8 +18,8 @@ import lombok.Setter;
 @EqualsAndHashCode // 복합키는 equals, hashcode 필수 생성
 public class RoleUserId implements Serializable {
 
-  @Column(name = "ROLD_CD", length = 45)
-  private String roldCd;
+  @Column(name = "ROLE_CD", length = 45)
+  private String roleCd;
 
   @Column(name = "USER_ID", length = 45)
   private String userId;

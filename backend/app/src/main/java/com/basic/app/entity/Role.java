@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -29,8 +31,8 @@ import lombok.ToString;
 public class Role extends BaseEntity {
 
   @Id
-  @Column(name = "ROLD_CD", length = 45)
-  private String roldCd; // 권한코드
+  @Column(name = "ROLE_CD", length = 45)
+  private String roleCd; // 권한코드
 
   @Column(name = "ROLE_NAME", length = 100, nullable = false)
   private String roleName; // 권한명
@@ -43,7 +45,7 @@ public class Role extends BaseEntity {
   private List<RoleMenu> roleMenus = new ArrayList<RoleMenu>(); // 권한이 가진 메뉴 리스트
 
   // Role - RoleUser (1:N)
-  @OneToMany(mappedBy = "roleCd", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
   private List<RoleUser> roleUsers = new ArrayList<RoleUser>(); // 권한이 가진 사용자 리스트
 
 }

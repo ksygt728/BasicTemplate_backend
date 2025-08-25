@@ -32,7 +32,7 @@ public class RoleMenuReqDto extends BaseReqDto {
   @Schema(description = "권한코드", example = "ROLE001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
   // RoleMenu - Role (N:1) [Onwer]
-  private String roldCd;
+  private String roleCd;
 
   @Schema(description = "메뉴코드", example = "MENU001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴코드는 필수입니다.")

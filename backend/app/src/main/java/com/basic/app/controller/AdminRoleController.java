@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +33,10 @@ import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
+import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
@@ -55,9 +61,12 @@ public class AdminRoleController {
   @Operation(summary = "[REQ_ADM_042] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 리스트 조회]", description = "권한 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllRoleForAdmin() {
-    Map<String, Object> data = roleService.findAllRoleForAdmin();
+  @GetMapping("/search")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllRoleForAdmin(
+      RoleReqDto roleReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "roleCd", direction = Sort.Direction.ASC) Pageable pageable) {
+
+    Map<String, Object> data = roleService.findAllRoleForAdmin(roleReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -65,9 +74,9 @@ public class AdminRoleController {
   @Operation(summary = "[REQ_ADM_042_2] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 조회]", description = "권한 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping("/{roldCd}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleForAdmin(@PathVariable String roldCd) {
-    Map<String, Object> data = roleService.findByRoleForAdmin(roldCd);
+  @GetMapping("/{roleCd}")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleForAdmin(@PathVariable String roleCd) {
+    Map<String, Object> data = roleService.findByRoleForAdmin(roleCd);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -77,8 +86,8 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertRoleForAdmin(
-      @Validated(CreateGroup.class) RoleReqDto role) {
-    Map<String, Object> data = roleService.insertRoleForAdmin(role);
+      @RequestBody @Validated(CreateGroup.class) RoleReqDto roleReqDto) {
+    Map<String, Object> data = roleService.insertRoleForAdmin(roleReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -88,8 +97,8 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateRoleForAdmin(
-      @Validated(UpdateGroup.class) RoleReqDto role) {
-    Map<String, Object> data = roleService.updateRoleForAdmin(role);
+      @RequestBody @Validated(UpdateGroup.class) RoleReqDto roleReqDto) {
+    Map<String, Object> data = roleService.updateRoleForAdmin(roleReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -98,7 +107,7 @@ public class AdminRoleController {
   @Parameter(name = "roleCd", description = "권한 코드", example = "ROLE_ADMIN")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
-  @DeleteMapping("/{roldCd}")
+  @DeleteMapping("/{roleCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteRoleForAdmin(@PathVariable String roleCd) {
     Map<String, Object> data = roleService.deleteRoleForAdmin(roleCd);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
@@ -106,12 +115,12 @@ public class AdminRoleController {
 
   /* [REQ_ADM_043] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 조회] */
   @Operation(summary = "[REQ_ADM_043] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 조회]", description = "권한별 메뉴 리스트 조회 기능 제공")
-  @Parameter(name = "roldCd", description = "권한 코드", example = "ROLE_ADMIN")
+  @Parameter(name = "roleCd", description = "권한 코드", example = "ROLE_ADMIN")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleMenuResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping("/role-menu/{roldCd}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleMenuForAdmin(@PathVariable String roldCd) {
-    Map<String, Object> data = roleService.findByRoleMenuForAdmin(roldCd);
+  @GetMapping("/role-menu/{roleCd}")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleMenuForAdmin(@PathVariable String roleCd) {
+    Map<String, Object> data = roleService.findByRoleMenuForAdmin(roleCd);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -121,7 +130,7 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PutMapping("/role-menu")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateRoleMenuForAdmin(
-      @Validated(UpdateGroup.class) List<RoleReqDto> roleMenu) {
+      @RequestBody @Validated(UpdateGroup.class) List<RoleMenuReqDto> roleMenu) {
     Map<String, Object> data = roleService.updateRoleMenuForAdmin(roleMenu);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -130,9 +139,10 @@ public class AdminRoleController {
   @Operation(summary = "[REQ_ADM_048] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자 리스트 조회]", description = "사용자별 권한 사용자 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleUserResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping("/role-user")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllRoleUserForAdmin() {
-    Map<String, Object> data = roleService.findAllRoleUserForAdmin();
+  @GetMapping("/user")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllRoleUserForAdmin(UserReqDto userReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = roleService.findAllRoleUserForAdmin(userReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -142,8 +152,9 @@ public class AdminRoleController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleUserResDto.class)))
   @SwaggerCommonResponseApi
   @GetMapping("/role-user/{userId}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleUserForAdmin(@PathVariable String userId) {
-    Map<String, Object> data = roleService.findByRoleUserForAdmin(userId);
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByRoleUserForAdmin(@PathVariable String userId,
+      @PageableDefault(page = 0, size = 2000, sort = "roleUserId.roleCd", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = roleService.findByRoleUserForAdmin(userId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -153,7 +164,7 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PostMapping("/role-user")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertRoleUserForAdmin(
-      @Validated(CreateGroup.class) RoleUserReqDto roleUser) {
+      @RequestBody @Validated(CreateGroup.class) List<RoleUserReqDto> roleUser) {
     Map<String, Object> data = roleService.insertRoleUserForAdmin(roleUser);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -162,8 +173,9 @@ public class AdminRoleController {
   @Operation(summary = "[REQ_ADM_052] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 삭제]", description = "사용자별 권한 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
-  @DeleteMapping("/user")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUser) {
+  @DeleteMapping("/role-user")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteRoleUserForAdmin(
+      @RequestBody List<RoleUserReqDto> roleUser) {
     Map<String, Object> data = roleService.deleteRoleUserForAdmin(roleUser);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

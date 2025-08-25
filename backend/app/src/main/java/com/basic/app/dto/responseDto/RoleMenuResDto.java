@@ -28,7 +28,7 @@ import lombok.ToString;
 public class RoleMenuResDto {
 
   // RoleMenu - Role (N:1) [Onwer]
-  private String roldCd;
+  private String roleCd;
 
   // RoleMenu - Menu (N:1) [Onwer]
   private String menuCd;
