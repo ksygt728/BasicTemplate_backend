@@ -16,7 +16,7 @@ import lombok.Getter;
 @Getter
 public class NotFoundException extends BaseException {
 
-    private String additionalMessage = "";
+    private String additionalMessage;
 
     public NotFoundException(ErrorCode errorCode) {
         super(errorCode);

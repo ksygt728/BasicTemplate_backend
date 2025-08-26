@@ -16,6 +16,7 @@ import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.dto.requestDto.UserReqDto;
+import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
 import com.basic.app.dto.responseDto.UserResDto;
@@ -31,6 +32,7 @@ import com.basic.app.repository.RoleRepository;
 import com.basic.app.repository.RoleUserRepository;
 import com.basic.app.repository.UserRepository;
 import com.basic.app.repository.jooqRepository.RoleJooqRepository;
+import com.basic.app.repository.jooqRepository.RoleMenuJooqRepository;
 import com.basic.app.repository.jooqRepository.UserJooqRepository;
 import com.basic.app.service.interfaces.RoleService;
 import com.basic.app.util.Status;
@@ -60,6 +62,9 @@ public class RoleServiceImpl implements RoleService {
 
   @Autowired
   private RoleJooqRepository roleJooqRepository;
+
+  @Autowired
+  private RoleMenuJooqRepository roleMenuJooqRepository;
 
   @Override
   public Map<String, Object> findAllRoleForAdmin(RoleReqDto roleReqDto, Pageable pageable) {
@@ -169,8 +174,22 @@ public class RoleServiceImpl implements RoleService {
 
   @Override
   public Map<String, Object> findByRoleMenuForAdmin(String roleCd) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findByRoleMenuForAdmin'");
+
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. ID로 기존 엔티티 조회
+    roleRepository.findById(roleCd)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, roleCd));
+
+    List<RoleMenuResDto> roleMenuResDtoList = roleMenuJooqRepository
+        .findByMenuTreeWithRole(roleCd);
+
+    // 결과를 Map에 담아 반환
+    data.put("data", roleMenuResDtoList);
+
+    return data;
+
   }
 
   @Override

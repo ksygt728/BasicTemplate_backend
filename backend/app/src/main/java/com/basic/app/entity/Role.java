@@ -41,7 +41,7 @@ public class Role extends BaseEntity {
   private String roleDesc; // 권한설명
 
   // Role - RoleMenu (1:N)
-  @OneToMany(mappedBy = "roleCd", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
   private List<RoleMenu> roleMenus = new ArrayList<RoleMenu>(); // 권한이 가진 메뉴 리스트
 
   // Role - RoleUser (1:N)

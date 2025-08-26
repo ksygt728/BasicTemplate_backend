@@ -27,11 +27,17 @@ import lombok.ToString;
 @Builder
 public class RoleMenuResDto {
 
-  // RoleMenu - Role (N:1) [Onwer]
-  private String roleCd;
+  private String menuCd; // 메뉴코드
 
-  // RoleMenu - Menu (N:1) [Onwer]
-  private String menuCd;
+  private String menuNm; // 메뉴명
+
+  private String upperMenuCd; // 상위메뉴코드
+
+  private int menuLv; // 메뉴레벨
+
+  private String menuUrl; // 메뉴 URL
+
+  private int orderNum; // 정렬순서
 
   private String menuRw; // 메뉴 접근 수준 (R,W)
 

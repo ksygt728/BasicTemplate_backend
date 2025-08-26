@@ -53,7 +53,7 @@ public class Menu extends BaseEntity {
   private int orderNum; // 정렬순서
 
   // Menu - RoleMenu (1:N)
-  @OneToMany(mappedBy = "menuCd", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
   private List<RoleMenu> roleMenus = new ArrayList<RoleMenu>(); // 메뉴가 가진 권한 리스트
 
 }

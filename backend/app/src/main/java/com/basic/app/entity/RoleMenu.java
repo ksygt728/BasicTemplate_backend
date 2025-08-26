@@ -37,13 +37,13 @@ public class RoleMenu extends BaseEntity {
   @MapsId("roleCd")
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "ROLE_CD")
-  private Role roleCd;
+  private Role role;
 
   // RoleMenu - Menu (N:1) [Onwer]
   @MapsId("menuCd")
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "MENU_CD")
-  private Menu menuCd;
+  private Menu menu;
 
   @Column(name = "MENU_RW", length = 45, nullable = false)
   private String menuRw; // 메뉴 접근 수준 (R,W)

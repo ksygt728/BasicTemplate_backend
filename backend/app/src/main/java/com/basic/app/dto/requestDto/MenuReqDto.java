@@ -12,14 +12,16 @@ import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -42,7 +44,7 @@ public class MenuReqDto extends BaseReqDto {
   private String upperMenuCd; // 상위메뉴코드
 
   @Schema(description = "메뉴레벨", example = "1")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴레벨은 필수입니다.")
+  @NotNull(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴레벨은 필수입니다.")
   private int menuLv; // 메뉴레벨
 
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
@@ -53,7 +55,8 @@ public class MenuReqDto extends BaseReqDto {
   private String menuUrl; // 메뉴 URL
 
   @Schema(description = "정렬순서", example = "1")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 필수입니다.")
+  @NotNull(groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 필수입니다.")
+  @Min(value = 1, groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 최소 1 이상이어야 합니다.")
   private int orderNum; // 정렬순서
 
 }

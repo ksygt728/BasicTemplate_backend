@@ -16,7 +16,7 @@ import lombok.Getter;
 @Getter
 public class SystemErrorException extends BaseException {
 
-    private String additionalMessage = "";
+    private String additionalMessage;
     private Exception e;
 
     public SystemErrorException(ErrorCode errorCode) {
