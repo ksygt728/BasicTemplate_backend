@@ -187,8 +187,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
       }
     }
 
-    log.warn("TEST LOG : ???");
-
   }
 
   public void showErrorLogFormat(HttpServletResponse response, Exception e, ErrorCode errorCode) throws Exception {

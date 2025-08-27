@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.SystemErrorException;
 import com.basic.app.service.interfaces.AuthService;
-import com.basic.app.sms.SmsProvider;
+import com.basic.app.sms.SmsSendManager;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
   private String KAKAO_ACCESS_TOKEN_URI;
 
   @Autowired
-  private SmsProvider smsProvider;
+  private SmsSendManager smsSendManager;
 
   private static final String SMS_AUTH_PREFIX = "smsAuth:";
   private static final long SMS_AUTH_EXPIRE_TIME = 180; // 3분
@@ -95,7 +95,7 @@ public class AuthServiceImpl implements AuthService {
 
     String code = String.valueOf((int) (Math.random() * 900000) + 100000);
 
-    smsProvider.sendSms("SMS_AUTH", phoneNum, Map.of("code", code)); // SMS 발송
+    smsSendManager.sendSms("SMS_AUTH", phoneNum, Map.of("code", code)); // SMS 발송
 
     // Redis에 저장 (3분 TTL)
     redisTemplate.opsForValue()

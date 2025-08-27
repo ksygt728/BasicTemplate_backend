@@ -1,11 +1,11 @@
 /**
- * @파일명   : UserJooqRepository.java
- * @설명     : JOOQ를 이용한 조회폼 조건별 동적 처리
- * @작성자   : 김승연
- * @작성일   : 2025.07.25
- * @변경이력 :
- *   2025.07.25     김승연       최초 생성
- */
+* @파일명 : RoleJooqRepository.java
+* @설명 : JOOQ를 이용한 조회폼 조건별 동적 처리
+* @작성자 : 김승연
+* @작성일 : 2025.08.24
+* @변경이력 :
+* 2025.08.24 김승연 최초 생성
+*/
 
 package com.basic.app.repository.jooqRepository;
 
@@ -23,40 +23,42 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.basic.app.dto.requestDto.InterfaceReqDto;
-import com.basic.app.dto.responseDto.InterfaceResDto;
-import com.basic.app.jooq.generated.tables.TbIf;
+import com.basic.app.dto.requestDto.RoleReqDto;
+import com.basic.app.dto.responseDto.RoleResDto;
+import com.basic.app.jooq.generated.tables.TbRole;
 
 @Repository
 @Transactional
-public class InterfaceJooqRepository {
+public class RoleJooqRepository {
 
   @Autowired
   private DSLContext dsl;
 
-  public Page<InterfaceResDto> findAllInterfaceWithConditions(InterfaceReqDto reqDto, Pageable pageable) {
+  public Page<RoleResDto> findAllRoleWithConditions(RoleReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 
-    TbIf INTERFACE = TbIf.TB_IF;
+    TbRole TB_ROLE = TbRole.TB_ROLE;
 
     /**
      * 1. 조건 추가 부분
-     * 
+     *
      */
-    if (reqDto.getIfId() != null && !reqDto.getIfId().isEmpty()) {
-      conditions.add(INTERFACE.IF_ID.like("%" + reqDto.getIfId() + "%"));
+    if (reqDto.getRoleCd() != null && !reqDto.getRoleCd().isEmpty()) {
+      conditions.add(TB_ROLE.ROLE_CD.like("%" + reqDto.getRoleCd() + "%"));
+    }
+    if (reqDto.getRoleName() != null && !reqDto.getRoleName().isEmpty()) {
+      conditions.add(TB_ROLE.ROLE_NAME.like("%" + reqDto.getRoleName() + "%"));
+    }
+    if (reqDto.getRoleDesc() != null && !reqDto.getRoleDesc().isEmpty()) {
+      conditions.add(TB_ROLE.ROLE_DESC.like("%" + reqDto.getRoleDesc() + "%"));
     }
 
-    if (reqDto.getIfName() != null && !reqDto.getIfName().isEmpty()) {
-      conditions.add(INTERFACE.IF_NAME.like("%" + reqDto.getIfName() + "%"));
-    }
     // 필요한 조건 추가
-
-    conditions.add(INTERFACE.STS.eq("C"));
+    conditions.add(TB_ROLE.STS.eq("C"));
 
     /**
      * 2. 정렬 처리
-     * 
+     *
      */
     Sort sort = pageable.getSort();
 
@@ -66,32 +68,35 @@ public class InterfaceJooqRepository {
       boolean isAsc = order.getDirection().isAscending();
 
       switch (property) {
-        case "ifId":
-          sortFields.add(isAsc ? INTERFACE.IF_ID.asc() : INTERFACE.IF_ID.desc());
+        case "roleCd":
+          sortFields.add(isAsc ? TB_ROLE.ROLE_CD.asc() : TB_ROLE.ROLE_CD.desc());
           break;
-        case "createDate":
-          sortFields.add(isAsc ? INTERFACE.CREATE_DATE.asc() : INTERFACE.CREATE_DATE.desc());
+        case "roleName":
+          sortFields.add(isAsc ? TB_ROLE.ROLE_NAME.asc() : TB_ROLE.ROLE_NAME.desc());
+          break;
+        case "roleDesc":
+          sortFields.add(isAsc ? TB_ROLE.ROLE_DESC.asc() : TB_ROLE.ROLE_DESC.desc());
           break;
         // 필요한 필드 추가
       }
     }
 
     /**
-     * 
+     *
      * 3. 쿼리 결과 및 카운트
      */
 
     long total = dsl.selectCount()
-        .from(INTERFACE)
+        .from(TB_ROLE)
         .where(conditions) // 동일한 조건으로 전체 카운트
         .fetchOne(0, Long.class);
 
-    List<InterfaceResDto> data = dsl.selectFrom(INTERFACE)
+    List<RoleResDto> data = dsl.selectFrom(TB_ROLE)
         .where(conditions) // 조건 추가
         .orderBy(sortFields) // 정렬 조건 적용
         .limit(pageable.getPageSize()) // 페이지 크기 적용
         .offset(pageable.getOffset()) // 페이지 오프셋 적용
-        .fetchInto(InterfaceResDto.class);
+        .fetchInto(RoleResDto.class);
 
     /* JOOQ의 쿼리결과는 List이고 Page객체를 return하는 기능이 없기떄문에 수동으로 Page객체 생성 */
     return new PageImpl<>(data, pageable, total);

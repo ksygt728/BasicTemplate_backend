@@ -120,8 +120,6 @@ public class CodeJooqRepository {
             .and(CD.ATTR_CD.eq(CT.ATTR_CD)))
         .and(CD.STS.eq(Status.POSITIVE).or(CD.STS.isNull()))
         .where(conditions) // 조건 추가
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
     List<CodeSearchFormResDto> data = dsl

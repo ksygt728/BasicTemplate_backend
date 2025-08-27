@@ -56,9 +56,6 @@ public class ChaebunJooqRepository {
     if (reqDto.getPrefix() != null && !reqDto.getPrefix().isEmpty()) {
       conditions.add(TB_CHAEBUN.PREFIX.like("%" + reqDto.getPrefix() + "%"));
     }
-    if (reqDto.getCurrentValue() != 0) {
-      conditions.add(TB_CHAEBUN.CURRENT_VALUE.eq(reqDto.getCurrentValue()));
-    }
     if (reqDto.getStep() != 0) {
       conditions.add(TB_CHAEBUN.STEP.eq(reqDto.getStep()));
     }
@@ -106,8 +103,6 @@ public class ChaebunJooqRepository {
     long total = dsl.selectCount()
         .from(TB_CHAEBUN)
         .where(conditions) // 동일한 조건으로 전체 카운트
-        .limit(pageable.getPageSize()) // 페이지 크기 적용
-        .offset(pageable.getOffset()) // 페이지 오프셋 적용
         .fetchOne(0, Long.class);
 
     List<ChaebunResDto> data = dsl.selectFrom(TB_CHAEBUN)

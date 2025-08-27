@@ -16,6 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -60,7 +62,7 @@ public class User extends BaseEntity {
   // User - Department (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "DEPT_CODE", nullable = false)
-  private Department deptCode; // 부서코드
+  private Department department; // 부서코드
 
   // User - Bbs (1:N)
   @OneToMany(mappedBy = "writor", fetch = FetchType.LAZY)
@@ -75,7 +77,7 @@ public class User extends BaseEntity {
   private List<Notice> noticeWritors = new ArrayList<Notice>(); // 작성한 공지 리스트
 
   // User - RoleUser (1:N)
-  @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
   private List<RoleUser> roleUsers = new ArrayList<RoleUser>(); // 사용자가 가진 권한 리스트
 
 }

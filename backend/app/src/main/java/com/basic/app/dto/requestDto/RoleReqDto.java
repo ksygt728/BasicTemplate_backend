@@ -10,7 +10,9 @@ package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -26,11 +27,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RoleReqDto {
+public class RoleReqDto extends BaseReqDto {
 
   @Schema(description = "권한코드", example = "ROLE001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
-  private String roldCd; // 권한코드
+  private String roleCd; // 권한코드
 
   @Schema(description = "권한명", example = "관리자")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한명은 필수입니다.")
