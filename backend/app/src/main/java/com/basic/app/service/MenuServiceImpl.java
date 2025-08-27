@@ -1,16 +1,16 @@
 package com.basic.app.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.basic.app.api.ModelMapperUtils;
-import com.basic.app.api.PageResponse;
 import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.dto.responseDto.MenuResDto;
 import com.basic.app.entity.Menu;
@@ -36,16 +36,35 @@ public class MenuServiceImpl implements MenuService {
   public Map<String, Object> findAllMenuForAdmin(MenuReqDto menuReqDto, Pageable pageable) {
 
     Map<String, Object> data = new HashMap<>();
-    // 1. 조건에 맞는 인터페이스 조회
-    Page<MenuResDto> menuDtoList = menuJooqRepository
-        .findAllMenuWithConditions(menuReqDto, pageable);
-    // 2. Page -> PageResponse 변환(이미 DTO로 변환된 상태이므로 추가 변환은 필요 없음)
 
-    PageResponse<MenuResDto> pagedmenuDtoList = ModelMapperUtils.map(menuDtoList,
-        MenuResDto.class);
+    List<Menu> menuEntityList = menuRepository.findAllByStsOrderByMenuLvAscOrderNumAsc(Status.POSITIVE);
+
+    // Entity -> DTO 변환
+    List<MenuResDto> menuResDtoList = menuEntityList.stream()
+        .map(entity -> entity.toDto(entity))
+        .toList();
+
+    // 메뉴코드 → Menu 매핑
+    Map<String, MenuResDto> menuMap = menuResDtoList.stream()
+        .collect(Collectors.toMap(MenuResDto::getMenuCd, m -> m));
+
+    // 최상위 메뉴 리스트
+    List<MenuResDto> menuTree = new ArrayList<>();
+
+    for (MenuResDto menu : menuResDtoList) {
+      if (menu.getUpperMenu() != null) {
+        MenuResDto parent = menuMap.get(menu.getUpperMenu());
+        if (parent != null) {
+          parent.getChildMenus().add(menu);
+        }
+      } else {
+        // 상위 메뉴 없으면 최상위 메뉴로 추가
+        menuTree.add(menu);
+      }
+    }
 
     // 3. 결과를 Map에 담아 반환
-    data.put("data", pagedmenuDtoList);
+    data.put("data", menuTree);
     return data;
   }
 
@@ -58,7 +77,7 @@ public class MenuServiceImpl implements MenuService {
     // 2. Entity -> DTO 변환
     MenuResDto menuResDto = menuRepository.findById(menuCd)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .map(entity -> entity.toDto(MenuResDto.class))
+        .map(entity -> entity.toDto(entity))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 3. 결과를 Map에 담아 반환
@@ -74,19 +93,26 @@ public class MenuServiceImpl implements MenuService {
     // 1. DTO -> Entity 변환
     Menu menuEntity = menuReqDto.toEntity(Menu.class);
 
-    // 2. ID로 기존 엔티티 조회
+    // 2. ID로 기존 엔티티 조회 & 부모키 조회
     menuRepository.findById(menuEntity.getMenuCd())
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .ifPresent(entity -> {
-          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
+          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED, menuEntity.getMenuCd());
         });
+
+    Menu parentMenu = menuRepository.findById(menuReqDto.getUpperMenu())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, menuReqDto.getUpperMenu()));
+
+    menuEntity.setMenuLv(parentMenu.getMenuLv() + 1);
+    menuEntity.setUpperMenu(parentMenu);
 
     // 3. DTO -> Entity 후 데이터 저장
     Menu savedMenuEntity = menuRepository.save(menuEntity);
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedMenuEntity.toDto(MenuResDto.class));
+    data.put("data", savedMenuEntity.toDto(savedMenuEntity));
     return data;
   }
 
@@ -101,14 +127,21 @@ public class MenuServiceImpl implements MenuService {
     // 2. ID로 기존 엔티티 조회
     menuRepository.findById(menuEntity.getMenuCd())
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, menuEntity.getMenuCd()));
+
+    Menu parentMenu = menuRepository.findById(menuReqDto.getUpperMenu())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, menuReqDto.getUpperMenu()));
 
     // 3. 엔티티 수정 & 저장(자동)
+    menuEntity.setMenuLv(parentMenu.getMenuLv() + 1);
+    menuEntity.setUpperMenu(parentMenu);
+
     Menu savedMenuEntity = menuRepository.save(menuEntity);
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedMenuEntity.toDto(MenuResDto.class));
+    data.put("data", savedMenuEntity.toDto(savedMenuEntity));
 
     return data;
   }
@@ -120,7 +153,7 @@ public class MenuServiceImpl implements MenuService {
     // 1. ID로 인터페이스 조회(만약 인터페이스가 존재하지 않으면 NotFoundException 발생)
     menuRepository.findById(menuCd)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, menuCd));
 
     // 하위메뉴 포함 삭제
     menuRepository.deleteMenuAndSubmenus(menuCd, Status.NAGATIVE);

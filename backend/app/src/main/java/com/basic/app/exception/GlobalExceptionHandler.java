@@ -33,6 +33,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -74,7 +75,7 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ResponseApi<?>> handleBusinessException(BusinessException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
-    String additionalMessage = e.getAdditionalMessage();
+    String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
 
     showErrorLogFormat(e, errorCode, additionalMessage);
 
@@ -95,7 +96,7 @@ public class GlobalExceptionHandler {
       HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
-    String additionalMessage = e.getAdditionalMessage();
+    String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
 
     showErrorLogFormat(e, errorCode, additionalMessage);
 
@@ -115,7 +116,7 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ResponseApi<?>> handleSystemErrorException(SystemErrorException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
-    String additionalMessage = e.getAdditionalMessage();
+    String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
 
     showErrorLogFormat(e.getE(), errorCode, additionalMessage);
 
@@ -136,7 +137,7 @@ public class GlobalExceptionHandler {
   public ResponseEntity<ResponseApi<?>> handleNotFoundException(NotFoundException e, HttpServletRequest request) {
 
     ErrorCode errorCode = e.getErrorCode();
-    String additionalMessage = e.getAdditionalMessage();
+    String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
 
     showErrorLogFormat(e, errorCode, additionalMessage);
 
@@ -180,6 +181,25 @@ public class GlobalExceptionHandler {
         .status(HttpStatus.BAD_REQUEST)
         .body(
             ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, validatorErrorMessage));
+  }
+
+  /* Error code : 400 (Json Body 오류) - 원인 : 클라이언트 책임 */
+  @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+  public ResponseEntity<ResponseApi<?>> handleInvalidDataAccessApiUsageException(InvalidDataAccessApiUsageException e,
+      HttpServletRequest request) {
+
+    ErrorCode errorCode = ErrorCode.VALIDATION_ERROR_JSON;
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(
+            ResponseApi.fail(ErrorCode.VALIDATION_ERROR_JSON, ""));
   }
 
   /* Error code : 400 (잘못된 요청 비즈로직 validation 실패 시) - 원인 : 게발자 실수 가능성 */

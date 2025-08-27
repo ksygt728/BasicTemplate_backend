@@ -41,7 +41,7 @@ public class MenuReqDto extends BaseReqDto {
 
   @Schema(description = "상위메뉴코드", example = "MENU000")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "상위메뉴코드는 필수입니다.")
-  private String upperMenuCd; // 상위메뉴코드
+  private String upperMenu; // 상위메뉴코드
 
   @Schema(description = "메뉴레벨", example = "1")
   @NotNull(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴레벨은 필수입니다.")

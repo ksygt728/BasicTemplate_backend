@@ -54,7 +54,7 @@ public class MenuJooqRepository {
             MENU.ORDER_NUM,
             MENU.STS) // STS 추가
             .from(MENU)
-            .where(MENU.UPPER_MENU_CD.eq("ROOT").and(MENU.STS.eq("C"))) // STS 조건 추가
+            .where(MENU.MENU_CD.eq("MENU00000").and(MENU.STS.eq("C"))) // STS 조건 추가
             .unionAll(
                 // 재귀 케이스
                 DSL.select(
@@ -94,8 +94,8 @@ public class MenuJooqRepository {
       condition.add(TB_CTE.field("USE_YN", String.class).eq(menuReqDto.getUseYn()));
     }
 
-    if (menuReqDto.getUpperMenuCd() != null && !menuReqDto.getUpperMenuCd().isEmpty()) {
-      condition.add(TB_CTE.field("UPPER_MENU_CD").like("%" + menuReqDto.getUpperMenuCd() + "%"));
+    if (menuReqDto.getUpperMenu() != null && !menuReqDto.getUpperMenu().isEmpty()) {
+      condition.add(TB_CTE.field("UPPER_MENU_CD").like("%" + menuReqDto.getUpperMenu() + "%"));
     }
 
     if (menuReqDto.getMenuUrl() != null && !menuReqDto.getMenuUrl().isEmpty()) {

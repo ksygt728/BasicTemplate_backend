@@ -1,5 +1,8 @@
 package com.basic.app.entity;
 
+import java.util.ArrayList;
+
+import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.entity.baseEntity.BaseEntity;
 import com.basic.app.entity.compositeKey.RoleMenuId;
 
@@ -50,5 +53,20 @@ public class RoleMenu extends BaseEntity {
 
   @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
+
+  public RoleMenuResDto toDto(RoleMenu entity) {
+
+    return RoleMenuResDto.builder()
+        .menuCd(entity.getRoleMenuId().getMenuCd())
+        .menuNm(entity.getMenu().getMenuNm())
+        .upperMenu(entity.getMenu().getUpperMenu() != null ? entity.getMenu().getUpperMenu().getMenuCd() : null)
+        .menuLv(entity.getMenu().getMenuLv())
+        .useYn(entity.getUseYn())
+        .menuUrl(entity.getMenu().getMenuUrl())
+        .orderNum(entity.getMenu().getOrderNum())
+        .menuRw(entity.getMenuRw())
+        .childMenus(new ArrayList<RoleMenuResDto>())
+        .build();
+  }
 
 }

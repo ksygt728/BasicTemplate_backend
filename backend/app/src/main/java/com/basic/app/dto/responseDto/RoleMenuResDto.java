@@ -9,6 +9,8 @@
 package com.basic.app.dto.responseDto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -31,9 +33,11 @@ public class RoleMenuResDto {
 
   private String menuNm; // 메뉴명
 
-  private String upperMenuCd; // 상위메뉴코드
+  private String upperMenu; // 상위메뉴코드
 
   private int menuLv; // 메뉴레벨
+
+  private String useYn; // 사용여부 (Y,N)
 
   private String menuUrl; // 메뉴 URL
 
@@ -41,6 +45,6 @@ public class RoleMenuResDto {
 
   private String menuRw; // 메뉴 접근 수준 (R,W)
 
-  private String useYn; // 사용여부 (Y,N)
+  private List<RoleMenuResDto> childMenus = new ArrayList<RoleMenuResDto>(); // 메뉴 하위 목록
 
 }

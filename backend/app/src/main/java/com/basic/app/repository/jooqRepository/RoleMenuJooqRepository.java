@@ -48,7 +48,9 @@ public class RoleMenuJooqRepository {
             MENU.ORDER_NUM,
             MENU.STS)
             .from(MENU)
-            .where(MENU.UPPER_MENU_CD.eq("ROOT").and(MENU.STS.eq("C")))
+            .where(MENU.MENU_CD.eq("MENU00000")
+                .and(MENU.MENU_LV.eq(0))
+                .and(MENU.STS.eq("C")))
             .unionAll(
                 // 재귀 케이스
                 DSL.select(
@@ -72,7 +74,7 @@ public class RoleMenuJooqRepository {
         .select(
             SUBMENUS_CTE.field("MENU_CD").as("menuCd"),
             SUBMENUS_CTE.field("MENU_NM").as("menuNm"),
-            SUBMENUS_CTE.field("UPPER_MENU_CD").as("upperMenuCd"),
+            SUBMENUS_CTE.field("UPPER_MENU_CD").as("upperMenu"),
             SUBMENUS_CTE.field("MENU_LV").as("menuLv"),
             SUBMENUS_CTE.field("MENU_URL").as("menuUrl"),
             SUBMENUS_CTE.field("ORDER_NUM").as("orderNum"),

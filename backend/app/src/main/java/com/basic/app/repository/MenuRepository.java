@@ -8,11 +8,13 @@
  */
 package com.basic.app.repository;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.entity.Menu;
 
@@ -36,4 +38,9 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
       SET t.STS = ?2
       """, nativeQuery = true)
   int deleteMenuAndSubmenus(String menuCd, String sts);
+
+  // @Query("SELECT m FROM Menu m LEFT JOIN FETCH m.subMenus WHERE m.upperMenu IS
+  // NULL")
+  // @EntityGraph(attributePaths = "subMenus")
+  List<Menu> findAllByStsOrderByMenuLvAscOrderNumAsc(String sts);
 }

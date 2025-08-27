@@ -1,9 +1,12 @@
 package com.basic.app.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +23,9 @@ import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
 import com.basic.app.dto.responseDto.UserResDto;
+import com.basic.app.entity.Menu;
 import com.basic.app.entity.Role;
+import com.basic.app.entity.RoleMenu;
 import com.basic.app.entity.RoleUser;
 import com.basic.app.entity.User;
 import com.basic.app.exception.ErrorCode;
@@ -185,17 +190,75 @@ public class RoleServiceImpl implements RoleService {
     List<RoleMenuResDto> roleMenuResDtoList = roleMenuJooqRepository
         .findByMenuTreeWithRole(roleCd);
 
+    // 메뉴코드 → Menu 매핑
+    Map<String, RoleMenuResDto> menuMap = roleMenuResDtoList.stream()
+        .collect(Collectors.toMap(RoleMenuResDto::getMenuCd, m -> m));
+
+    // 최상위 메뉴 리스트
+    List<RoleMenuResDto> menuTree = new ArrayList<>();
+
+    for (RoleMenuResDto menu : roleMenuResDtoList) {
+      if (menu.getUpperMenu() != null) {
+        RoleMenuResDto parent = menuMap.get(menu.getUpperMenu());
+        if (parent != null) {
+          parent.getChildMenus().add(menu);
+        }
+      } else {
+        // 상위 메뉴 없으면 최상위 메뉴로 추가
+        menuTree.add(menu);
+      }
+    }
+
     // 결과를 Map에 담아 반환
-    data.put("data", roleMenuResDtoList);
+    data.put("data", menuTree);
 
     return data;
 
   }
 
   @Override
-  public Map<String, Object> updateRoleMenuForAdmin(List<RoleMenuReqDto> roleMenu) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateRoleMenuForAdmin'");
+  public Map<String, Object> updateRoleMenuForAdmin(List<RoleMenuReqDto> roleMenuReqDtoList) {
+    Map<String, Object> data = new HashMap<>();
+
+    // 1. DTO -> Entity 변환
+    List<RoleMenu> roleMenuEntityList = roleMenuReqDtoList.stream()
+        .map(dto -> dto.toEntity(dto))
+        .toList();
+
+    /*
+     * [코드 주석 사유]
+     * - 실제 있는 데이터를 수정하는게 아니라 수정자체가 insert또는 update가 될 수 있음 -> 데이터가 있던 없던 무조건 insert
+     * - 기준정보테이블에는 데이터가 있는지 확인 / 본 테이블은 데이터 확인 X
+     */
+    // // 2. ID로 기존 엔티티 조회 --- IGNORE ---
+    // List<RoleMenu> validatedRoleUserEntityList =
+    // Validator.existsAll(roleMenuRepository, RoleMenu::getRoleMenuId,
+    // roleMenuEntityList.stream().map(RoleMenu::getRoleMenuId).toList())
+    // .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 2. ID로 기존 엔티티 조회
+    roleMenuEntityList.forEach(entity -> {
+
+      Role role = roleRepository.findById(entity.getRoleMenuId().getRoleCd())
+          .filter(e -> e.getSts().equals(Status.POSITIVE))
+          .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, entity.getRoleMenuId().getRoleCd()));
+
+      Menu menu = menuRepository.findById(entity.getRoleMenuId().getMenuCd())
+          .filter(e -> e.getSts().equals(Status.POSITIVE))
+          .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND, entity.getRoleMenuId().getMenuCd()));
+
+      // 3. 엔티티 수정 & 저장(자동)
+      entity.setRole(role);
+      entity.setMenu(menu);
+    });
+
+    List<RoleMenu> savedMenuEntity = roleMenuRepository.saveAll(roleMenuEntityList);
+
+    // 4. Entity -> DTO 변환
+    // 5. 결과를 Map에 담아 반환
+    data.put("data", savedMenuEntity.stream().map(entity -> entity.toDto(entity)).toList());
+
+    return data;
   }
 
   @Override
