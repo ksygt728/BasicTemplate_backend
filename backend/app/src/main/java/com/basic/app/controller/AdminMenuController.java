@@ -16,6 +16,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -55,9 +58,10 @@ public class AdminMenuController {
   @Operation(summary = "[REQ_ADM_038] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 리스트 조회]", description = "메뉴 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MenuResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMenuForAdmin() {
-    Map<String, Object> data = menuService.findAllMenuForAdmin();
+  @GetMapping("/search")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMenuForAdmin(MenuReqDto menuReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "deptCode", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = menuService.findAllMenuForAdmin(menuReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -78,8 +82,8 @@ public class AdminMenuController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertMenuForAdmin(
-      @Validated(CreateGroup.class) MenuReqDto menu) {
-    Map<String, Object> data = menuService.insertMenuForAdmin(menu);
+      @Validated(CreateGroup.class) MenuReqDto menuReqDto) {
+    Map<String, Object> data = menuService.insertMenuForAdmin(menuReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -89,8 +93,8 @@ public class AdminMenuController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateMenuForAdmin(
-      @Validated(UpdateGroup.class) MenuReqDto menu) {
-    Map<String, Object> data = menuService.updateMenuForAdmin(menu);
+      @Validated(UpdateGroup.class) MenuReqDto menuReqDto) {
+    Map<String, Object> data = menuService.updateMenuForAdmin(menuReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 

@@ -11,6 +11,8 @@ package com.basic.app.dto.requestDto;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
+import com.basic.app.entity.RoleMenu;
+import com.basic.app.entity.compositeKey.RoleMenuId;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ public class RoleMenuReqDto extends BaseReqDto {
   @Schema(description = "권한코드", example = "ROLE001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
   // RoleMenu - Role (N:1) [Onwer]
-  private String roldCd;
+  private String roleCd;
 
   @Schema(description = "메뉴코드", example = "MENU001")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴코드는 필수입니다.")
@@ -46,5 +48,19 @@ public class RoleMenuReqDto extends BaseReqDto {
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
+
+  public RoleMenu toEntity(RoleMenuReqDto dto) {
+
+    RoleMenuId roleMenuId = new RoleMenuId(dto.getRoleCd(), dto.getMenuCd());
+
+    RoleMenu roleMenu = RoleMenu.builder()
+        .roleMenuId(roleMenuId) // 복합키는 서비스 레이어에서 설정
+        .role(null) // 연관관계 매핑은 서비스 레이어에서 설정
+        .menu(null) // 연관관계 매핑은 서비스 레이어에서 설정
+        .menuRw(dto.getMenuRw())
+        .useYn(dto.getUseYn())
+        .build();
+    return roleMenu;
+  }
 
 }

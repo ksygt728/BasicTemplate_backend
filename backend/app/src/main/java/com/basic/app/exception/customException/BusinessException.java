@@ -16,7 +16,7 @@ import lombok.Getter;
 @Getter
 public class BusinessException extends BaseException {
 
-    private String additionalMessage = "";
+    private String additionalMessage;
 
     public BusinessException(ErrorCode errorCode) {
         super(errorCode);

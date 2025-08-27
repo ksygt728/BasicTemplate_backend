@@ -31,6 +31,7 @@ public enum ErrorCode {
   /* 3000번대: 비즈니스 로직 관련 */
   VALIDATION_ERROR("3001", "유효성 검사에 실패했습니다."),
   VALIDATION_ERROR_CLIENT("3002", "[@Validated] 클라이언트 유효성 검사에 실패했습니다."),
+  VALIDATION_ERROR_JSON("3003", "Json 데이터 바인딩에 실패했습니다. 요청 형식을 확인해주세요."),
 
   /* 4000번대: 비즈니스 로직 관련(서비스단에서 던지는거) */
   // common

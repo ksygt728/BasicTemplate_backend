@@ -22,6 +22,7 @@ import com.basic.app.entity.Department;
 import com.basic.app.entity.User;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
+import com.basic.app.exception.customException.NotFoundException;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.jwt.JwtProvider;
 import com.basic.app.repository.DepartmentRepository;
@@ -101,11 +102,11 @@ public class UserServiceImpl implements UserService {
     // 3. 데이터 저장
     Department department = departmentRepository.findById(deptCode)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_NOT_FOUND));
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword())); // 비밀번호 암호화
     userEntity.setRole("ROLE_GUEST"); // 기본 역할 설정
-    userEntity.setDeptCode(department); // 기본 부서 설정
+    userEntity.setDepartment(department); // 기본 부서 설정
     User savedUserEntity = userRepository.save(userEntity);
 
     // 4. Entity -> DTO 변환
@@ -139,7 +140,7 @@ public class UserServiceImpl implements UserService {
     // 4. 로그인 성공한 유저정보 가져오기
     User authenticatedUser = userRepository.findById(authentication.getName())
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_NOT_FOUND));
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 5. JWT 토큰 생성
     String accessTokenHeader = jwtProperties.getAccessTokenHeader();
