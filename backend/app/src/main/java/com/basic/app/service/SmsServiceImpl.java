@@ -23,7 +23,7 @@ import com.basic.app.repository.SmsHRepository;
 import com.basic.app.repository.SmsMRepository;
 import com.basic.app.repository.jooqRepository.SmsMJooqRepository;
 import com.basic.app.service.interfaces.SmsService;
-import com.basic.app.sms.SmsProvider;
+import com.basic.app.sms.SmsSendManager;
 import com.basic.app.util.Status;
 
 @Transactional
@@ -31,7 +31,7 @@ import com.basic.app.util.Status;
 public class SmsServiceImpl implements SmsService {
 
   @Autowired
-  private SmsProvider smsProvider;
+  private SmsSendManager smsSendManager;
 
   @Autowired
   private SmsMRepository smsMRepository;

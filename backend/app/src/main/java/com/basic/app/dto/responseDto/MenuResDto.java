@@ -12,8 +12,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.basic.app.entity.Menu;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,7 +36,7 @@ public class MenuResDto {
 
   private String menuNm; // 메뉴명
 
-  private String upperMenuCd; // 상위메뉴코드
+  private String upperMenu; // 상위메뉴코드
 
   private int menuLv; // 메뉴레벨
 
@@ -42,6 +45,8 @@ public class MenuResDto {
   private String menuUrl; // 메뉴 URL
 
   private int orderNum; // 정렬순서
+
+  private List<MenuResDto> childMenus = new ArrayList<MenuResDto>(); // 메뉴 하위 목록
 
   // Menu - RoleMenu (1:N)
   // private List<RoleMenuResDto> roleMenus = new ArrayList<RoleMenuResDto>(); //

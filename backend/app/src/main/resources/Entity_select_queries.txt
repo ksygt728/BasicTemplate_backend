@@ -257,7 +257,7 @@ FROM TB_NOTICE;
 
 -- TB_ROLE (권한 테이블)
 SELECT
-  ROLD_CD,
+  ROLE_CD,
   ROLE_NAME,
   ROLE_DESC,
   STS,
@@ -269,7 +269,7 @@ FROM TB_ROLE;
 
 -- TB_ROLE_MENU (권한-메뉴 매핑 테이블)
 SELECT
-  ROLD_CD,
+  ROLE_CD,
   MENU_CD,
   MENU_RW,
   USE_YN,
@@ -283,7 +283,7 @@ FROM TB_ROLE_MENU;
 -- TB_ROLE_USER (권한-사용자 매핑 테이블)
 SELECT
   USER_ID,
-  ROLD_CD,
+  ROLE_CD,
   USE_YN,
   STS,
   CREATE_USER,

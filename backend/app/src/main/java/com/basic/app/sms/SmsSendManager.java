@@ -26,7 +26,7 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Transactional
 @Component
-public class SmsProvider {
+public class SmsSendManager {
 
   @Value("${spring.sms.provider}")
   private String PROVIDER;
@@ -42,7 +42,7 @@ public class SmsProvider {
 
   private DefaultMessageService messageService;
 
-  public SmsProvider(
+  public SmsSendManager(
       @Value("${spring.sms.api-key}") String API_KEY,
       @Value("${spring.sms.api-secret-key}") String API_SECRET_KEY,
       @Value("${spring.sms.api-domain}") String API_DOMAIN) {

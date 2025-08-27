@@ -34,8 +34,6 @@ public class UserResDto {
 
   private String userId; // 사용자아이디
 
-  private String password; // 비밀번호
-
   private String name; // 이름
 
   private String phoneNum; // 전화번호
@@ -49,7 +47,7 @@ public class UserResDto {
   private String gender; // 성별 (M, F)
 
   // User - Department (N:1) [Onwer]
-  private DepartmentResDto deptCode; // 부서코드
+  private DepartmentResDto department; // 부서코드
 
   // User - Bbs (1:N)
   // private List<BbsReqDto> bbsWritors = new ArrayList<BbsReqDto>(); // 작성한 게시글

@@ -41,14 +41,14 @@ public class ChaebunServiceImpl implements ChaebunService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. 조건에 맞는 인터페이스 조회
-    Page<ChaebunResDto> smsMDtoList = chaebunJooqRepository.findAllChaebunMWithConditions(chaebunReqDto,
+    Page<ChaebunResDto> chaebunDtoList = chaebunJooqRepository.findAllChaebunMWithConditions(chaebunReqDto,
         pageable);
 
     // 2. Page -> PageResponse 변환(이미 DTO로 변환된 상태이므로 추가 변환은 필요 없음)
-    PageResponse<ChaebunResDto> pagedMailMDtoList = ModelMapperUtils.map(smsMDtoList);
+    PageResponse<ChaebunResDto> pagedChaebunDtoList = ModelMapperUtils.map(chaebunDtoList);
 
     // 3. 결과를 Map에 담아 반환
-    data.put("data", pagedMailMDtoList);
+    data.put("data", pagedChaebunDtoList);
 
     return data;
   }

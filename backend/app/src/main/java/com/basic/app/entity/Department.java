@@ -15,6 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -52,7 +54,7 @@ public class Department extends BaseEntity {
   private String useYn; // 사용여부 (Y,N)
 
   // Department - User (1:N)
-  @OneToMany(mappedBy = "deptCode", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
   private List<User> deptUsers = new ArrayList<User>(); // 부서 사원 리스트
 
 }
