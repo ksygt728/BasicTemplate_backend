@@ -9,6 +9,7 @@ import com.basic.app.dto.requestDto.LogApiReqDto;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.entity.LogApi;
 import com.basic.app.exception.ErrorCode;
+import com.basic.app.exception.customException.BusinessException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -23,6 +24,9 @@ public interface LogService {
   Map<String, Object> findByErrorLogForAdmin(String errId);
 
   int insertErrorLog(Exception e, HttpServletRequest request, ErrorCode errorCode,
+      String additionalMessage);
+
+  int insertErrorLog(Exception e, HttpServletRequest request, ErrorCode errorCode, String message,
       String additionalMessage);
 
   int insertApiLog(List<LogApi> logApi);

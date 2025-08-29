@@ -12,6 +12,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,12 +31,14 @@ import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.dto.requestDto.MulLangReqDto;
 import com.basic.app.dto.responseDto.MulLangResDto;
 import com.basic.app.service.interfaces.MultiLangService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -51,9 +56,10 @@ public class AdminMulLangController {
   @Operation(summary = "[REQ_ADM_033] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 조회]", description = "다국어 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMulLangForAdmin() {
-    Map<String, Object> data = multiLangService.findAllMulLangForAdmin();
+  @GetMapping("/search")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMulLangForAdmin(MulLangReqDto mulLangReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "langCd", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = multiLangService.findAllMulLangForAdmin(mulLangReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -62,9 +68,10 @@ public class AdminMulLangController {
   @Parameter(name = "langCd", description = "언어 코드", example = "LANG001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping("/{langCd}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMulLangForAdmin(@PathVariable String langCd) {
-    Map<String, Object> data = multiLangService.findByMulLangForAdmin(langCd);
+  @GetMapping("/{langGubun}/{langCd}")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findByMulLangForAdmin(@PathVariable String langGubun,
+      @PathVariable String langCd) {
+    Map<String, Object> data = multiLangService.findByMulLangForAdmin(langGubun, langCd);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -92,12 +99,34 @@ public class AdminMulLangController {
 
   /* [REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제] */
   @Operation(summary = "[REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제]", description = "다국어 삭제 기능 제공")
-  @Parameter(name = "langCd", description = "언어 코드", example = "LANG001")
+  @Parameters({
+      @Parameter(name = "langGubun", description = "구분코드", example = "err"),
+      @Parameter(name = "langCd", description = "언어코드", example = "1001")
+  })
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
-  @DeleteMapping("/{langCd}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMulLangForAdmin(@PathVariable String langCd) {
-    Map<String, Object> data = multiLangService.deleteMulLangForAdmin(langCd);
+  @DeleteMapping("/{langGubun}/{langCd}")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMulLangForAdmin(@PathVariable String langGubun,
+      @PathVariable String langCd) {
+    Map<String, Object> data = multiLangService.deleteMulLangForAdmin(langGubun, langCd);
+    return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
+  }
+
+  /* [REQ_ADM_037_2] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제 각 언어별 상세] */
+  @Operation(summary = "[REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제(각 언어별 상세)]", description = "다국어 삭제 기능 제공")
+  @Parameters({
+      @Parameter(name = "langType", description = "국가코드", example = "ko"),
+      @Parameter(name = "langGubun", description = "구분코드", example = "err"),
+      @Parameter(name = "langCd", description = "언어코드", example = "1001")
+  })
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
+  @SwaggerCommonResponseApi
+  @DeleteMapping("/{langType}/{langGubun}/{langCd}")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMulLangDetailForAdmin(
+      @PathVariable String langType,
+      @PathVariable String langGubun,
+      @PathVariable String langCd) {
+    Map<String, Object> data = multiLangService.deleteMulLangDetailForAdmin(langType, langGubun, langCd);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }
