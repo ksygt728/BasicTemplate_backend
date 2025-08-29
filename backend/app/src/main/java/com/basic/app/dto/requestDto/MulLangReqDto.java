@@ -11,6 +11,8 @@ package com.basic.app.dto.requestDto;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
+import com.basic.app.entity.MulLang;
+import com.basic.app.entity.compositeKey.MulLangId;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -48,5 +50,19 @@ public class MulLangReqDto extends BaseReqDto {
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
+
+  public MulLang toEntity(MulLangReqDto dto) {
+
+    return MulLang.builder()
+        .mulLangId(MulLangId.builder()
+            .langCd(dto.getLangCd())
+            .langType(dto.getLangType())
+            .langGubun(dto.getLangGubun())
+            .build()) // 기본키는 서비스 레이어에서 설정
+        .langNm(dto.getLangNm())
+        .useYn(dto.getUseYn())
+        .build();
+
+  }
 
 }

@@ -50,4 +50,13 @@ public class ResponseApi<T> {
         .data(null)
         .build();
   }
+
+  public static <T> ResponseApi<T> fail(ErrorCode errorCode, String multiLangMessage, String message) {
+    return ResponseApi.<T>builder()
+        .success(false)
+        .errorCode(errorCode.getCode())
+        .message(multiLangMessage + message)
+        .data(null)
+        .build();
+  }
 }

@@ -27,6 +27,6 @@ public class MulLangId implements Serializable {
   private String langType; // 언어유형
 
   @Column(name = "LANG_GUBUN", length = 45, nullable = false)
-  private String langGubun; // 언어구분(code, esg, label, etc)
+  private String langGubun; // 언어구분(code, msg, label, etc)
 
 }
