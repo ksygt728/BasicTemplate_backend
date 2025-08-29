@@ -21,6 +21,7 @@ import com.basic.app.dto.responseDto.LogErrorResDto;
 import com.basic.app.entity.LogApi;
 import com.basic.app.entity.LogError;
 import com.basic.app.exception.ErrorCode;
+import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.repository.LogApiRepository;
 import com.basic.app.repository.LogErrorRepository;
 import com.basic.app.repository.jooqRepository.LogApiJooqRepository;
@@ -105,12 +106,6 @@ public class LogServiceImpl implements LogService {
 
     UserRequestInfoManager urm = new UserRequestInfoManager(request);
 
-    // String errMsg = "[*** Response Error Message ***] : [errorCode : " +
-    // errorCode.getCode() + "] - [message : "
-    // + errorCode.getMessage() + additionalMessage + "] [*** Server Log ***] :
-    // [Class : " + e.getClass()
-    // + " - [Message : " + e.getMessage() + "]";
-
     String errMsg = """
           [*** Response Error Message ***]
           - ErrorCode : %s
@@ -140,6 +135,42 @@ public class LogServiceImpl implements LogService {
     logErrorRepository.save(logError);
     return 1;
 
+  }
+
+  @Override
+  public int insertErrorLog(BusinessException e, HttpServletRequest request, ErrorCode errorCode, String message,
+      String additionalMessage) {
+
+    UserRequestInfoManager urm = new UserRequestInfoManager(request);
+
+    String errMsg = """
+          [*** Response Error Message ***]
+          - ErrorCode : %s
+          - Message : %s
+          [*** Server Log ***]
+          - Class : %s
+          - Message : %s
+        """.formatted(
+        errorCode.getCode(),
+        message + additionalMessage,
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
+
+    String errStack = getStackTraceAsString(e);
+
+    LogError logError = LogError.builder()
+        .userId(urm.getUserId())
+        .ipAddr(urm.getIpAddr())
+        .userAgent(urm.getUserAgent())
+        .requestUri(urm.getRequestUri())
+        .httpMethod(urm.getHttpMethod())
+        .errMsg(errMsg) // application log와 동일하게 저장
+        .errStack(errStack)
+        .build();
+
+    logErrorRepository.save(logError);
+    return 1;
   }
 
   private String getStackTraceAsString(Exception e) {

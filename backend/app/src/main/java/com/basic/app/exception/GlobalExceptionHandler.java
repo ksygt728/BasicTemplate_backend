@@ -53,6 +53,7 @@ import com.basic.app.exception.customException.ClientActionException;
 import com.basic.app.exception.customException.NotFoundException;
 import com.basic.app.exception.customException.SystemErrorException;
 import com.basic.app.service.interfaces.LogService;
+import com.basic.app.service.specialService.MessageSource;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -63,6 +64,9 @@ public class GlobalExceptionHandler {
 
   @Autowired
   private LogService logService;
+
+  @Autowired
+  private MessageSource messageSource;
 
   /*
    * ====================================================================
@@ -76,18 +80,20 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
     String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
+    String locale = request.getHeader("X-Lang");
+    String message = messageSource.getMessage("err." + e.getErrorCode().getCode(), locale, null);
 
-    showErrorLogFormat(e, errorCode, additionalMessage);
+    showErrorLogFormat(e, errorCode, message, additionalMessage);
 
     try {
-      logService.insertErrorLog(e, request, errorCode, additionalMessage);
+      logService.insertErrorLog(e, request, errorCode, message, additionalMessage);
     } catch (Exception ex) {
       log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ResponseApi.fail(errorCode, additionalMessage));
+        .body(ResponseApi.fail(errorCode, message, additionalMessage));
   }
 
   /* Error code : 400 클라이언트의 잘못된 요청으로 인해 발생하는 예외를 처리하기 위한 커스텀 예외 클래스 */
@@ -97,18 +103,21 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
     String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
+    String locale = request.getHeader("X-Lang");
+    String message = messageSource.getMessage("err." + e.getErrorCode().getCode(), locale, null);
 
-    showErrorLogFormat(e, errorCode, additionalMessage);
+    showErrorLogFormat(e, errorCode, message, additionalMessage);
 
     try {
-      logService.insertErrorLog(e, request, errorCode, additionalMessage);
+      logService.insertErrorLog(e, request, errorCode, message, additionalMessage);
+
     } catch (Exception ex) {
       log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ResponseApi.fail(errorCode, additionalMessage));
+        .body(ResponseApi.fail(errorCode, message, additionalMessage));
   }
 
   /* Error code : 400 - try-catch나 관리자가 직접 에러메세지를보고 판단해야하는 경우 */
@@ -117,11 +126,14 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
     String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
+    String locale = request.getHeader("X-Lang");
+    String message = messageSource.getMessage("err." + e.getErrorCode().getCode(), locale, null);
 
-    showErrorLogFormat(e.getE(), errorCode, additionalMessage);
+    showErrorLogFormat(e, errorCode, message, additionalMessage);
 
     try {
       logService.insertErrorLog(e.getE(), request, errorCode, additionalMessage);
+
     } catch (Exception ex) {
       log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
@@ -129,7 +141,7 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ResponseApi.fail(errorCode, additionalMessage));
+        .body(ResponseApi.fail(errorCode, message, additionalMessage));
   }
 
   /* Error code : 400 - 커스텀 에러 클래스 서비스단에서 동적으로 에러코드 전달(이상한 상황..) */
@@ -138,8 +150,10 @@ public class GlobalExceptionHandler {
 
     ErrorCode errorCode = e.getErrorCode();
     String additionalMessage = e.getAdditionalMessage() == null ? "" : e.getAdditionalMessage();
+    String locale = request.getHeader("X-Lang");
+    String message = messageSource.getMessage("err." + e.getErrorCode().getCode(), locale, null);
 
-    showErrorLogFormat(e, errorCode, additionalMessage);
+    showErrorLogFormat(e, errorCode, message, additionalMessage);
 
     try {
       logService.insertErrorLog(e, request, errorCode, additionalMessage);
@@ -150,7 +164,7 @@ public class GlobalExceptionHandler {
 
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
-        .body(ResponseApi.fail(errorCode, additionalMessage));
+        .body(ResponseApi.fail(errorCode, message, additionalMessage));
   }
 
   /*
@@ -405,6 +419,27 @@ public class GlobalExceptionHandler {
         e.getClass(),
         e.getMessage(),
         e.getStackTrace());
+  }
+
+  private void showErrorLogFormat(Exception e, ErrorCode errorCode, String message, String additionalMessage) {
+    log.warn(
+        """
+
+              [*** Response Error Message ***]
+              - ErrorCode : {}
+              - Message : {}
+              [*** Server Log ***]
+              - Class : {}
+              - Message : {}
+              [*** Strace ***]
+              {}
+            """,
+        errorCode.getCode(),
+        message + additionalMessage,
+        e.getClass(),
+        e.getMessage(),
+        e.getStackTrace());
+
   }
 
 }
