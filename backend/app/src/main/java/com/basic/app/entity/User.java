@@ -47,7 +47,7 @@ public class User extends BaseEntity {
   @Column(name = "PHONE_NUM", length = 45, nullable = false)
   private String phoneNum; // 전화번호
 
-  @Column(name = "EMAIL", length = 45, nullable = false, unique = true)
+  @Column(name = "EMAIL", length = 45, nullable = false)
   private String email; // 이메일
 
   @Column(name = "ROLE", length = 45, nullable = false)

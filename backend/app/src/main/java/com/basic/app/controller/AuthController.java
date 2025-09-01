@@ -52,9 +52,6 @@ public class AuthController {
   private AuthService authService;
 
   @Autowired
-  private UserService userService;
-
-  @Autowired
   private SmsService smsService;
 
   @Autowired
@@ -70,7 +67,7 @@ public class AuthController {
   @PostMapping("/signUp")
   public ResponseEntity<ResponseApi<Map<String, Object>>> signUp(
       @Validated(CreateGroup.class) UserReqDto user) {
-    Map<String, Object> data = userService.signUp(user);
+    Map<String, Object> data = authService.signUp(user);
 
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -84,7 +81,7 @@ public class AuthController {
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
-    Map<String, Object> data = userService.signIn(user);
+    Map<String, Object> data = authService.signIn(user);
 
     // 헤더정보 가져오기
     String accessTokenHeader = jwtProperties.getAccessTokenHeader();
@@ -100,7 +97,7 @@ public class AuthController {
         .body(ResponseApi.success(null));
   }
 
-  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 프론트엔드 임시 기능] */
+  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 프론트엔드 임시 기능]- 직접 구현해본 코드고, 사용X */
   // 원래 프론트엔드 코드인데 없어서 임시로 만듦
   @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 프론트엔드 임시 기능]", description = "")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
@@ -118,7 +115,7 @@ public class AuthController {
 
   }
 
-  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] */
+  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] - 직접 구현해본 코드고, 사용X */
   @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 카카오 안중(성공)]", description = "사용자 로그인을 처리합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
@@ -142,9 +139,6 @@ public class AuthController {
 
   }
 
-  /* [REQ_CMN_006] [화면 : 로그인] [기능 : 구글 계정 로그인] */
-  /* [REQ_CMN_007] [화면 : 로그인] [기능 : 네이버 계정 로그인] */
-  /* [REQ_CMN_008] [화면 : 로그인] [기능 : 페이스북 계정 로그인] */
   /* [REQ_CMN_009] [화면 : 로그인] [기능 : 자동 로그인] */
   /* [REQ_CMN_010] [화면 : 로그인] [기능 : 아이디 저장] */
   /* [REQ_CMN_011] [화면 : 로그인] [기능 : 로그인 > 아이디 찾기] */
@@ -157,7 +151,7 @@ public class AuthController {
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
-    Map<String, Object> data = userService.signIn(user);
+    Map<String, Object> data = authService.signIn(user);
 
     String test = "응답하면 정상";
     data.put("data", test);
