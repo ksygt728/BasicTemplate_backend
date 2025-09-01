@@ -10,6 +10,7 @@
 
 package com.basic.app.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.service.interfaces.AuthService;
+import com.basic.app.service.interfaces.SmsService;
 import com.basic.app.service.interfaces.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,7 +52,7 @@ public class AuthController {
   private AuthService authService;
 
   @Autowired
-  private UserService userService;
+  private SmsService smsService;
 
   @Autowired
   private JwtProperties jwtProperties;
@@ -65,7 +67,7 @@ public class AuthController {
   @PostMapping("/signUp")
   public ResponseEntity<ResponseApi<Map<String, Object>>> signUp(
       @Validated(CreateGroup.class) UserReqDto user) {
-    Map<String, Object> data = userService.signUp(user);
+    Map<String, Object> data = authService.signUp(user);
 
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -79,7 +81,7 @@ public class AuthController {
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
-    Map<String, Object> data = userService.signIn(user);
+    Map<String, Object> data = authService.signIn(user);
 
     // 헤더정보 가져오기
     String accessTokenHeader = jwtProperties.getAccessTokenHeader();
@@ -95,24 +97,48 @@ public class AuthController {
         .body(ResponseApi.success(null));
   }
 
-  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] */
-  @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 카카오 안중(성공)]", description = "사용자 로그인을 처리합니다.")
+  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 프론트엔드 임시 기능]- 직접 구현해본 코드고, 사용X */
+  // 원래 프론트엔드 코드인데 없어서 임시로 만듦
+  @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 프론트엔드 임시 기능]", description = "")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping("/kakao")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> signInForKakao(String code) {
+  @GetMapping("/kakao-callback")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> kakaoCallback(String code, String state) {
 
-    log.info("Kakao Authentication Code :  " + code);
+    Map<String, Object> data = new HashMap<>();
 
-    Map<String, Object> data = authService.signInForKakao(code);
+    data.put("code", code);
+    data.put("state", state);
 
     return ResponseEntity.status(HttpStatus.OK)
         .body(ResponseApi.success(data));
+
   }
 
-  /* [REQ_CMN_006] [화면 : 로그인] [기능 : 구글 계정 로그인] */
-  /* [REQ_CMN_007] [화면 : 로그인] [기능 : 네이버 계정 로그인] */
-  /* [REQ_CMN_008] [화면 : 로그인] [기능 : 페이스북 계정 로그인] */
+  /* [REQ_CMN_005] [화면 : 로그인] [기능 : 카카오 계정 로그인] - 직접 구현해본 코드고, 사용X */
+  @Operation(summary = "[REQ_CMN_004] [화면 : 로그인] [기능 : 카카오 안중(성공)]", description = "사용자 로그인을 처리합니다.")
+  @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
+  @SwaggerCommonResponseApi
+  @PostMapping("/kakao-signIn")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> signInForKakao(String code, String state) {
+
+    Map<String, Object> data = authService.signInForKakao(code);
+
+    // // 헤더정보 가져오기
+    String accessTokenHeader = jwtProperties.getAccessTokenHeader();
+    String refreshTokenHeader = jwtProperties.getRefreshTokenHeader();
+
+    // // JWT 토큰 가져오기
+    String jwtAccessToken = data.get(accessTokenHeader).toString();
+    String jwtRefreshToken = data.get(refreshTokenHeader).toString();
+
+    return ResponseEntity.status(HttpStatus.OK)
+        .header(accessTokenHeader, jwtAccessToken)
+        .header(refreshTokenHeader, jwtRefreshToken)
+        .body(ResponseApi.success(null));
+
+  }
+
   /* [REQ_CMN_009] [화면 : 로그인] [기능 : 자동 로그인] */
   /* [REQ_CMN_010] [화면 : 로그인] [기능 : 아이디 저장] */
   /* [REQ_CMN_011] [화면 : 로그인] [기능 : 로그인 > 아이디 찾기] */
@@ -125,7 +151,7 @@ public class AuthController {
       @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
-    Map<String, Object> data = userService.signIn(user);
+    Map<String, Object> data = authService.signIn(user);
 
     String test = "응답하면 정상";
     data.put("data", test);
@@ -140,7 +166,7 @@ public class AuthController {
   @SwaggerCommonResponseApi
   @PostMapping("/smsAuth")
   public ResponseEntity<ResponseApi<Map<String, Object>>> smsAuth(String phoneNum) {
-    Map<String, Object> data = authService.smsAuth(phoneNum);
+    Map<String, Object> data = smsService.smsAuth(phoneNum);
     return ResponseEntity.status(HttpStatus.OK)
         .body(ResponseApi.success(data));
   }
@@ -151,7 +177,7 @@ public class AuthController {
   @SwaggerCommonResponseApi
   @PostMapping("/smsAuthValidation")
   public ResponseEntity<ResponseApi<Map<String, Object>>> smsAuthValidation(String phoneNum, String smsCode) {
-    Map<String, Object> data = authService.smsAuthValidation(phoneNum, smsCode);
+    Map<String, Object> data = smsService.smsAuthValidation(phoneNum, smsCode);
     return ResponseEntity.status(HttpStatus.OK)
         .body(ResponseApi.success(data));
   }

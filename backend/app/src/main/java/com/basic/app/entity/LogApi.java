@@ -54,7 +54,7 @@ public class LogApi extends BaseEntity {
   @Column(name = "IP_ADDR", length = 45)
   private String ipAddr; // 아이피주소
 
-  @Column(name = "USER_AGENT", length = 45)
+  @Column(name = "USER_AGENT", length = 200)
   private String userAgent; // 브라우저 정보
 
   @Column(name = "REQUEST_URI", length = 200)

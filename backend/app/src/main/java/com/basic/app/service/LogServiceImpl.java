@@ -138,7 +138,7 @@ public class LogServiceImpl implements LogService {
   }
 
   @Override
-  public int insertErrorLog(BusinessException e, HttpServletRequest request, ErrorCode errorCode, String message,
+  public int insertErrorLog(Exception e, HttpServletRequest request, ErrorCode errorCode, String message,
       String additionalMessage) {
 
     UserRequestInfoManager urm = new UserRequestInfoManager(request);

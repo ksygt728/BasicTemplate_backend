@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     log.info("[TRY LOGIN] --- [CLASS] CustomUserDetailsService --- [METHOD] loadUserByUsername ---");
 
     User user = userRepository.findById(username)
-        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE) && entity.getUserType().equals("CBMS"))
         .orElseThrow(() -> {
           throw new UsernameNotFoundException("");
         });

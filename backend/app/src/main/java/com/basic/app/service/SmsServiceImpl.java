@@ -2,10 +2,12 @@ package com.basic.app.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,16 +33,22 @@ import com.basic.app.util.Status;
 public class SmsServiceImpl implements SmsService {
 
   @Autowired
-  private SmsSendManager smsSendManager;
-
-  @Autowired
   private SmsMRepository smsMRepository;
 
   @Autowired
   private SmsMJooqRepository smsMJooqRepository;
 
   @Autowired
+  private RedisTemplate redisTemplate;
+
+  @Autowired
   private SmsHRepository smsHRepository;
+
+  @Autowired
+  private SmsSendManager smsSendManager;
+
+  private static final String SMS_AUTH_PREFIX = "smsAuth:";
+  private static final long SMS_AUTH_EXPIRE_TIME = 180; // 3분
 
   @Override
   public Map<String, Object> findAllSmsForAdmin(SmsMReqDto smsMReqDto,
@@ -158,6 +166,45 @@ public class SmsServiceImpl implements SmsService {
 
     // 3. 결과를 Map에 담아 반환
     data.put("data", "success");
+    return data;
+
+  }
+
+  @Override
+  public Map<String, Object> smsAuth(String phoneNum) {
+    Map<String, Object> data = new HashMap<>();
+
+    String code = String.valueOf((int) (Math.random() * 900000) + 100000);
+
+    smsSendManager.sendSms("SMS_AUTH", phoneNum, Map.of("code", code)); // SMS 발송
+
+    // Redis에 저장 (3분 TTL)
+    redisTemplate.opsForValue()
+        .set(SMS_AUTH_PREFIX + phoneNum, code, SMS_AUTH_EXPIRE_TIME, TimeUnit.SECONDS);
+
+    return data;
+
+  }
+
+  @Override
+  public Map<String, Object> smsAuthValidation(String phoneNum, String smsCode) {
+    Map<String, Object> data = new HashMap<>();
+
+    boolean isValid = false;
+    try {
+      String key = SMS_AUTH_PREFIX + phoneNum;
+      String savedCode = redisTemplate.opsForValue().get(key).toString();
+
+      if (savedCode != null && savedCode.equals(smsCode)) {
+        redisTemplate.delete(key); // 일회성 사용 후 삭제
+        isValid = true;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      isValid = false; // null인 경우 인증번호 만료
+    }
+    data.put("data", isValid);
+
     return data;
 
   }
