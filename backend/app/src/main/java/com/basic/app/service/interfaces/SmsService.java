@@ -20,4 +20,8 @@ public interface SmsService {
   Map<String, Object> updateSmsForAdmin(SmsMReqDto smsM);
 
   Map<String, Object> deleteSmsForAdmin(String smsId);
+
+  Map<String, Object> smsAuth(String phoneNum);
+
+  Map<String, Object> smsAuthValidation(String phoneNum, String smsCode);
 }

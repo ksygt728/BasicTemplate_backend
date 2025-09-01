@@ -16,8 +16,4 @@ public interface UserService {
 
   Map<String, Object> deleteUserForAdmin(String userId);
 
-  Map<String, Object> signUp(UserReqDto user);
-
-  Map<String, Object> signIn(AuthReqDto user);
-
 }

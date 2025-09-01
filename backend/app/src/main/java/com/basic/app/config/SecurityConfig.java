@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.basic.app.auth.CustomAccessDeniedHandler;
 import com.basic.app.auth.CustomAuthenticationEntryPoint;
+import com.basic.app.auth.CustomOAuth2SuccessHandler;
 import com.basic.app.auth.CustomUserDetailsService;
 import com.basic.app.jwt.JwtAuthorizationFilter;
 import com.basic.app.jwt.JwtProperties;
@@ -41,6 +42,9 @@ public class SecurityConfig {
 
   @Autowired
   private CustomUserDetailsService customUserDetailsService;
+
+  @Autowired
+  private CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
   @Autowired
   private StringRedisTemplate redisTemplate;
@@ -70,7 +74,7 @@ public class SecurityConfig {
             .accessDeniedHandler(new CustomAccessDeniedHandler())) // 인가 커스텀 예외 처리 핸들러 설정
 
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/auth/**")
+            .requestMatchers("/api/auth/**", "/login/oauth2/code/**")
             .permitAll() // 인증관련 로직은 인증 없이 접근 허용
             .requestMatchers("/admin/**")
             .hasRole("ADMIN") // 관리자 (시스템 관리자)
@@ -82,8 +86,17 @@ public class SecurityConfig {
             .hasAnyRole("GUEST", "HOST", "MANAGER", "ADMIN") // 게스트(서비스 이용자)
             .anyRequest()
             .permitAll())
-        .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-
+        .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+        .oauth2Login(oauth2 -> oauth2
+            /* OAuth2 인증 시작 URL뒤에 /{provider} 추가햐여 사용 */
+            .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/auth/oauth2"))
+            /*
+             * OAuth2 인증 완료시 redirect URL(security에서 자동으로 사용함 - 각 Provider의 사이트에서 이 패턴으로
+             * 등록해야함)
+             */
+            .redirectionEndpoint(endpoint -> endpoint.baseUri("/login/oauth2/code/*"))
+            /* 인증 및 인가 성공 후 처리되는 handler */
+            .successHandler(customOAuth2SuccessHandler));
     return http.build();
   }
 
