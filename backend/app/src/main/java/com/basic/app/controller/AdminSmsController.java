@@ -34,6 +34,7 @@ import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.SmsMReqDto;
 import com.basic.app.dto.responseDto.SmsHResDto;
 import com.basic.app.dto.responseDto.SmsMResDto;
+import com.basic.app.dto.responseDto.UserResDto;
 import com.basic.app.service.interfaces.SmsService;
 
 import io.swagger.v3.oas.annotations.Operation;

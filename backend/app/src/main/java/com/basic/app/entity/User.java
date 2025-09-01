@@ -47,7 +47,7 @@ public class User extends BaseEntity {
   @Column(name = "PHONE_NUM", length = 45, nullable = false)
   private String phoneNum; // 전화번호
 
-  @Column(name = "EMAIL", length = 45, nullable = false)
+  @Column(name = "EMAIL", length = 45, nullable = false, unique = true)
   private String email; // 이메일
 
   @Column(name = "ROLE", length = 45, nullable = false)
@@ -61,7 +61,7 @@ public class User extends BaseEntity {
 
   // User - Department (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "DEPT_CODE", nullable = false)
+  @JoinColumn(name = "DEPT_CODE")
   private Department department; // 부서코드
 
   // User - Bbs (1:N)

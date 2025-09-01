@@ -73,6 +73,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Map<String, Object> updateUserForAdmin(UserReqDto user) {
+
+    // Email, ID는 수정 불가
+
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'updateUserForAdmin'");
   }
@@ -93,10 +96,18 @@ public class UserServiceImpl implements UserService {
     User userEntity = userReqDto.toEntity(User.class);
 
     // 2. ID로 기존 엔티티 조회
+    // 2-1. ID 중복 확인
     userRepository.findById(userEntity.getUserId())
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .ifPresent(entity -> {
-          throw new BusinessException(ErrorCode.OBJECT_IS_EXISTED);
+          throw new BusinessException(ErrorCode.USER_DUPLICATE);
+        });
+
+    // 2-2. 이메일 중복 확인
+    userRepository.findByEmail(userEntity.getEmail())
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .ifPresent(entity -> {
+          throw new BusinessException(ErrorCode.EMAIL_DUPLICATE);
         });
 
     // 3. 데이터 저장
@@ -106,6 +117,7 @@ public class UserServiceImpl implements UserService {
 
     userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword())); // 비밀번호 암호화
     userEntity.setRole("ROLE_GUEST"); // 기본 역할 설정
+    userEntity.setUserType("CBMS"); // 기본 회원유형 설정
     userEntity.setDepartment(department); // 기본 부서 설정
     User savedUserEntity = userRepository.save(userEntity);
 
@@ -122,10 +134,15 @@ public class UserServiceImpl implements UserService {
     String userId = user.getUserId();
     String password = user.getPassword();
 
-    // 1. 인증토큰 생성
+    // 1. DB에 데이터가 있는지 조회
+    User authenticatedUser = userRepository.findById(userId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE) && entity.getUserType().equals("CBMS"))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+
+    // 2. 인증토큰 생성
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userId, password);
 
-    // 2. 로그인 시도
+    // 3. 로그인 시도
     /*
      * - CustomUserDetailsService loadUserbyUsername()이 실행
      * authentication이 정상적으로 return 되면 DB에 있는 ID와 password가 일치한 것 = 인증완료
@@ -134,13 +151,8 @@ public class UserServiceImpl implements UserService {
     Authentication authentication;
     authentication = authenticationManager.authenticate(token);
 
-    // 3. 인증 성공 후 SecurityContext에 인증객체 저장
+    // 4. 인증 성공 후 SecurityContext에 인증객체 저장
     SecurityContextHolder.getContext().setAuthentication(authentication);
-
-    // 4. 로그인 성공한 유저정보 가져오기
-    User authenticatedUser = userRepository.findById(authentication.getName())
-        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 5. JWT 토큰 생성
     String accessTokenHeader = jwtProperties.getAccessTokenHeader();
