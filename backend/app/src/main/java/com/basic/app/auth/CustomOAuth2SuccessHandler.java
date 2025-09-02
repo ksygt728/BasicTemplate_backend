@@ -152,7 +152,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             log.info("[Oauth Service] : 해당 이메일로 가입된 사용자가 없어 자동 회원가입처리합니다.");
             // 1. User 테이블에 INSERT
             userEntity = User.builder()
-                    .userId(provider + "|" + providerId)
+                    .userId(provider + "_" + providerId)
                     .password("N/A") // 카카오 로그인은 패스워드 없음
                     .email(email)
                     .name("N/A") // 이름 정보 없음
