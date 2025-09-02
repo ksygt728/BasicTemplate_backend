@@ -12,6 +12,9 @@ package com.basic.app.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,6 +29,7 @@ import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.UpdateGroup;
+import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
 import com.basic.app.service.interfaces.UserService;
@@ -49,9 +53,10 @@ public class AdminUserController {
   @Operation(summary = "[REQ_ADM_001] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 조회]", description = "사용자 정보 전체/조건부 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
-  @GetMapping // 전체 사용자 조회 또는 쿼리 파라미터로 조건부 조회
-  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllUserForAdmin() {
-    Map<String, Object> data = userService.findAllUserForAdmin();
+  @GetMapping("/search") // 전체 사용자 조회 또는 쿼리 파라미터로 조건부 조회
+  public ResponseEntity<ResponseApi<Map<String, Object>>> findAllUserForAdmin(UserReqDto userReqDto,
+      @PageableDefault(page = 0, size = 2000, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
+    Map<String, Object> data = userService.findAllUserForAdmin(userReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
