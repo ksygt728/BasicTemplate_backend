@@ -3,6 +3,9 @@ package com.basic.app.entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import com.basic.app.entity.baseEntity.BaseEntity;
 
@@ -13,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,8 +38,15 @@ import lombok.ToString;
 public class Bbs extends BaseEntity {
 
   @Id
-  @Column(name = "BBS_ID", length = 45)
+  @Column(name = "BBS_ID", length = 36)
   private String bbsId; // 게시판아이디
+
+  @PrePersist
+  public void prePersist() {
+    if (bbsId == null) {
+      bbsId = UUID.randomUUID().toString(); // "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    }
+  }
 
   @Column(name = "BBS_TYPE", length = 45, nullable = false)
   private String bbsType; // 게시판타입
@@ -48,14 +59,15 @@ public class Bbs extends BaseEntity {
 
   // Bbs - User (N:1) [Onwer]
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "WRITOR", nullable = false)
+  @JoinColumn(name = "WRITOR", nullable = false, updatable = false)
   private User writor; // 작성자
 
-  @Column(name = "WRITE_DATE", nullable = false, columnDefinition = "TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3)")
+  @CreatedDate
+  @Column(name = "WRITE_DATE", nullable = false, updatable = false, columnDefinition = "TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3)")
   private LocalDateTime writeDate; // 작성일
 
   // Bbs - BbsComment (1:N)
-  @OneToMany(mappedBy = "bbsId", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "bbs", fetch = FetchType.LAZY)
   private List<BbsComment> bbsComments = new ArrayList<BbsComment>(); // 게시글 댓글 리스트
 
 }

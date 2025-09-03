@@ -60,6 +60,14 @@ public enum ErrorCode {
   CHAEBUN_NOT_REGISTERD("4040", "채번정보가 등록되어 있지 않습니다. 관리자에게 문의하세요."),
   CHAEBUN_OVERFLOW("4041", "채번정보가 최대값을 초과합니다. 관리자에게 문의하세요."),
 
+  // User
+  EMAIL_NOT_UPDATE("4050", "이메일은 수정할 수 없습니다."),
+  USERTYPE_NOT_UPDATE("4050", "이메일은 수정할 수 없습니다."),
+
+  // Bbs
+  BBS_WRITOR_NOT_MATCH("4060", "게시글 작성자가 일치하지 않습니다."),
+  BBS_COMMENT_WRITOR_NOT_MATCH("4061", "댓글 작성자가 일치하지 않습니다."),
+
   // Auth, OAuth2.0
   KAKAO_AUTH_ERROR("4100", "카카오 인증에 실패했습니다. 관리자에게 문의하세요."),
   USER_DUPLICATE("4110", "아이디가 이미 존재합니다."),
