@@ -10,6 +10,7 @@ package com.basic.app.dto.responseDto;
 
 import java.time.LocalDateTime;
 
+import com.basic.app.entity.Bbs;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -30,12 +31,13 @@ public class BbsCommentResDto {
   private String commentId; // 댓글아이디
 
   // BbsComemnt - Bbs (N:1) [Onwer]
-  private String bbsId; // 게시판아이디
+  private BbsResDto bbs; // 게시판아이디
 
   private String content; // 내용
 
-  private String writor; // 작성자
+  private UserResDto writor; // 작성자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime writeDate; // 작성일
 
 }

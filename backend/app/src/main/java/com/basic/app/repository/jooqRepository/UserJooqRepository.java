@@ -110,8 +110,10 @@ public class UserJooqRepository {
         TB_COMPANY.COMPANY_CODE.as("department.company.companyCode"),
         TB_COMPANY.COMPANY_NAME.as("department.company.companyName"))
         .from(TB_USER)
-        .leftOuterJoin(TB_DEPARTMENT).on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE))
-        .leftOuterJoin(TB_COMPANY).on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE))
+        .leftOuterJoin(TB_DEPARTMENT)
+        .on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE).and(TB_DEPARTMENT.STS.eq("C")))
+        .leftOuterJoin(TB_COMPANY)
+        .on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE).and(TB_DEPARTMENT.STS.eq("C")))
         .where(conditions) // 조건 추가
         .orderBy(sortFields) // 정렬 조건 적용
         .limit(pageable.getPageSize()) // 페이지 크기 적용
