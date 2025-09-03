@@ -9,8 +9,6 @@
 package com.basic.app.dto.responseDto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -38,8 +36,9 @@ public class BbsResDto {
   private String content; // 내용
 
   // Bbs - User (N:1) [Onwer]
-  private String writor; // 작성자
+  private UserResDto writor; // 작성자
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime writeDate; // 작성일
 
   // Bbs - BbsComment (1:N)
