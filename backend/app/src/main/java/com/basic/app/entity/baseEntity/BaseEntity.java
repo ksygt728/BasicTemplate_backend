@@ -3,10 +3,13 @@ package com.basic.app.entity.baseEntity;
 import java.time.LocalDateTime;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -53,7 +56,12 @@ public abstract class BaseEntity {
   private LocalDateTime timestamp; // 수정일시
 
   public <T> T toDto(Class<T> targetClass) {
-    return new ModelMapper().map(this, targetClass);
+    ModelMapper modelMapper = new ModelMapper();
+    modelMapper.getConfiguration()
+        .setMatchingStrategy(MatchingStrategies.STRICT)
+        .setSkipNullEnabled(true); // null 값은 무시 (옵션)
+
+    return modelMapper.map(this, targetClass);
   }
 
 }
