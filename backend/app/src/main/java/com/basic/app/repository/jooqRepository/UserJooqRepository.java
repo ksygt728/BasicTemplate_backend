@@ -56,8 +56,6 @@ public class UserJooqRepository {
 
     // 필요한 조건 추가
     conditions.add(TB_USER.STS.eq("C"));
-    conditions.add(TB_DEPARTMENT.STS.eq("C"));
-    conditions.add(TB_COMPANY.STS.eq("C"));
 
     /**
      * 2. 정렬 처리
@@ -89,8 +87,9 @@ public class UserJooqRepository {
 
     long total = dsl.selectCount()
         .from(TB_USER)
-        .innerJoin(TB_DEPARTMENT).on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE))
-        .innerJoin(TB_COMPANY).on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE))
+        .leftOuterJoin(TB_DEPARTMENT).on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE).and(TB_DEPARTMENT.STS.eq("C")))
+        .leftOuterJoin(TB_COMPANY)
+        .on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE).and(TB_COMPANY.STS.eq("C")))
         .where(conditions) // 동일한 조건으로 전체 카운트
         .fetchOne(0, Long.class);
 
@@ -111,8 +110,10 @@ public class UserJooqRepository {
         TB_COMPANY.COMPANY_CODE.as("department.company.companyCode"),
         TB_COMPANY.COMPANY_NAME.as("department.company.companyName"))
         .from(TB_USER)
-        .innerJoin(TB_DEPARTMENT).on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE))
-        .innerJoin(TB_COMPANY).on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE))
+        .leftOuterJoin(TB_DEPARTMENT)
+        .on(TB_USER.DEPT_CODE.eq(TB_DEPARTMENT.DEPT_CODE).and(TB_DEPARTMENT.STS.eq("C")))
+        .leftOuterJoin(TB_COMPANY)
+        .on(TB_DEPARTMENT.COMPANY_CODE.eq(TB_COMPANY.COMPANY_CODE).and(TB_DEPARTMENT.STS.eq("C")))
         .where(conditions) // 조건 추가
         .orderBy(sortFields) // 정렬 조건 적용
         .limit(pageable.getPageSize()) // 페이지 크기 적용

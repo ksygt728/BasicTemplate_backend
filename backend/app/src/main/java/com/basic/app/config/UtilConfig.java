@@ -11,6 +11,7 @@ package com.basic.app.config;
 import java.text.SimpleDateFormat;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -25,7 +26,12 @@ public class UtilConfig implements WebMvcConfigurer {
 
 	@Bean
 	public ModelMapper modelMapper() {
-		return new ModelMapper();
+		ModelMapper modelMapper = new ModelMapper();
+		// 전역 매핑 전략을 STRICT로 설정
+		modelMapper.getConfiguration()
+				.setMatchingStrategy(MatchingStrategies.STRICT)
+				.setSkipNullEnabled(true); // null 값은 무시 (옵션)
+		return modelMapper;
 	}
 
 	@Bean

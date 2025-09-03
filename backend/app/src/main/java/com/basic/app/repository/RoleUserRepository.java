@@ -23,6 +23,8 @@ public interface RoleUserRepository extends JpaRepository<RoleUser, RoleUserId> 
 
   Page<RoleUser> findByRoleUserIdUserIdAndSts(String userId, String sts, Pageable pageable);
 
+  List<RoleUser> findByRoleUserIdUserIdAndSts(String userId, String sts);
+
   List<RoleUser> findByRoleUserIdRoleCdAndSts(String roleCd, String sts);
 
 }

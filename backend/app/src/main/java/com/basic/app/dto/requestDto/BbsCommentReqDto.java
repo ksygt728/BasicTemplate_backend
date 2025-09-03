@@ -44,14 +44,10 @@ public class BbsCommentReqDto extends BaseReqDto {
 
   @Schema(description = "댓글 내용", example = "좋은 글 감사합니다.")
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "댓글을 입력하세요.")
-  private String content; // 내용
+  private String commentContent; // 내용
 
   @Schema(description = "작성자", example = "user123")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "작성자는 필수 입니다.")
+  @NotBlank(groups = { UpdateGroup.class }, message = "작성자는 필수 입니다.") // insert할떄는 로그인한 사용자로 확인
   private String writor; // 작성자
-
-  @Schema(description = "작성일", example = "* 시스템에서 자동으로 주기때문에 별도 기입 불필요")
-  @Null(groups = { CreateGroup.class, UpdateGroup.class }, message = "작성일은 Null이어야 합니다.")
-  private LocalDateTime writeDate; // 작성일
 
 }

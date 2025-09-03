@@ -37,7 +37,7 @@ public class UserReqDto extends BaseReqDto {
   private String userId; // 사용자아이디
 
   @Schema(description = "비밀번호", example = "1234")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "비밀번호는 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class }, message = "비밀번호는 필수입니다.")
   private String password; // 이름
 
   @Schema(description = "이름", example = "홍길동")
@@ -67,7 +67,6 @@ public class UserReqDto extends BaseReqDto {
   private String gender; // 성별 (M, F)
 
   @Schema(description = "부서코드", example = "DEPT001")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "부서코드는 필수입니다.")
   private String deptCode; // 부서코드
 
 }
