@@ -1,11 +1,3 @@
-/**
- * @파일명   : ComCodeTReqDto.java
- * @설명     : 
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
@@ -25,6 +17,14 @@ import lombok.Setter;
 import lombok.ToString;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * @파일명 : ComCodeTReqDto.java
+ * @설명 : 공통코드 유형 요청 DTO
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -49,6 +49,11 @@ public class ComCodeTReqDto extends BaseReqDto {
   @Min(value = 1, groups = { CreateGroup.class, UpdateGroup.class }, message = "정렬순서는 1 이상 필수입니다.")
   private int orderNum; // 정렬순서
 
+  /**
+   * @기능 : DTO를 Entity로 변환
+   * @param dto 공통코드 유형 요청 DTO
+   * @return ComCodeT Entity
+   */
   public ComCodeT toEntity(ComCodeTReqDto dto) {
 
     ComCodeTId comCodeTId = new ComCodeTId();

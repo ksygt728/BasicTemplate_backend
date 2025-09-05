@@ -40,6 +40,14 @@ import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : AuthServiceImpl.java
+ * @설명 : 인증 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Transactional
 @Service
@@ -82,6 +90,11 @@ public class AuthServiceImpl implements AuthService {
   // @Value("${spring.OAuth.kakao.user-info-uri}")
   private String KAKAO_USER_INFO_URI;
 
+  /**
+   * @기능 : 회원가입 처리
+   * @param userReqDto 회원가입 요청 DTO
+   * @return 회원가입 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> signUp(UserReqDto userReqDto) {
 
@@ -123,6 +136,11 @@ public class AuthServiceImpl implements AuthService {
     return data;
   }
 
+  /**
+   * @기능 : 일반 로그인 처리
+   * @param user 로그인 요청 DTO
+   * @return 로그인 결과(Access/Refresh Token 등)가 담긴 Map
+   */
   @Override
   public Map<String, Object> signIn(AuthReqDto user) {
     Map<String, Object> data = new HashMap<>();
@@ -200,6 +218,11 @@ public class AuthServiceImpl implements AuthService {
    * 
    */
 
+  /**
+   * @기능 : 카카오 로그인 처리
+   * @param code 카카오 인증 코드
+   * @return 로그인 결과(Access/Refresh Token 등)가 담긴 Map
+   */
   @Override
   public Map<String, Object> signInForKakao(String code) {
 

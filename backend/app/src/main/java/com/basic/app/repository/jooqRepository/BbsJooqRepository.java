@@ -1,11 +1,3 @@
-/**
-* @파일명 : BbsJooqRespository.java
-* @설명 : JOOQ를 이용한 조회폼 조건별 동적 처리
-* @작성자 : 김승연
-* @작성일 : 2025.09.01
-* @변경이력 :
-* 2025.09.01 김승연 최초 생성
-*/
 
 package com.basic.app.repository.jooqRepository;
 
@@ -30,6 +22,14 @@ import com.basic.app.jooq.generated.tables.TbCompany;
 import com.basic.app.jooq.generated.tables.TbDepartment;
 import com.basic.app.jooq.generated.tables.TbUser;
 
+/**
+ * @파일명 : BbsJooqRepository.java
+ * @설명 : JOOQ를 이용한 게시판 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class BbsJooqRepository {
@@ -37,6 +37,12 @@ public class BbsJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 게시판 목록 조회 (조건별 동적 쿼리, 페이징)
+   * @param reqDto   게시판 검색 조건 DTO
+   * @param pageable 페이징 정보
+   * @return 게시판 목록 페이지
+   */
   public Page<BbsResDto> findAllBbsWithConditions(BbsReqDto reqDto,
       Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();

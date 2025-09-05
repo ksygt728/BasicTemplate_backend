@@ -1,12 +1,3 @@
-/**
- * @파일명   : SmsMJooqRepository.java
- * @설명     : JOOQ를 이용한 조회폼 조건별 동적 처리
- * @작성자   : 김승연
- * @작성일   : 2025.08.23
- * @변경이력 :
- *   2025.08.23     김승연       최초 생성
- */
-
 package com.basic.app.repository.jooqRepository;
 
 import java.util.ArrayList;
@@ -27,6 +18,14 @@ import com.basic.app.dto.requestDto.SmsMReqDto;
 import com.basic.app.dto.responseDto.SmsMResDto;
 import com.basic.app.jooq.generated.tables.TbSmsM;
 
+/**
+ * @파일명 : SmsMJooqRepository.java
+ * @설명 : SMS 템플릿 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.08.23
+ * @변경이력 :
+ *       2025.08.23 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class SmsMJooqRepository {
@@ -34,6 +33,12 @@ public class SmsMJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : SMS 템플릿 목록을 조건별로 동적 조회하여 페이징 처리된 결과 반환
+   * @param reqDto   : SMS 템플릿 검색 조건 DTO
+   * @param pageable : 페이징 정보
+   * @return : 조건에 맞는 SMS 템플릿 목록과 페이징 정보
+   */
   public Page<SmsMResDto> findAllSmsMWithConditions(SmsMReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 

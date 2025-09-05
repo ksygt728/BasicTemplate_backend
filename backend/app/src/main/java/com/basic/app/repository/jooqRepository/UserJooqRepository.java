@@ -1,12 +1,3 @@
-/**
-* @파일명 : UserJooqRepository.java
-* @설명 : JOOQ를 이용한 조회폼 조건별 동적 처리
-* @작성자 : 김승연
-* @작성일 : 2025.08.25
-* @변경이력 :
-* 2025.08.25 김승연 최초 생성
-*/
-
 package com.basic.app.repository.jooqRepository;
 
 import java.util.ArrayList;
@@ -29,6 +20,14 @@ import com.basic.app.jooq.generated.tables.TbCompany;
 import com.basic.app.jooq.generated.tables.TbDepartment;
 import com.basic.app.jooq.generated.tables.TbUser;
 
+/**
+ * @파일명 : UserJooqRepository.java
+ * @설명 : 사용자 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.08.25
+ * @변경이력 :
+ *       2025.08.25 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class UserJooqRepository {
@@ -36,6 +35,12 @@ public class UserJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 사용자 목록을 조건별로 동적 조회하여 부서 및 회사 정보와 함께 페이징 처리된 결과 반환
+   * @param reqDto   : 사용자 검색 조건 DTO
+   * @param pageable : 페이징 정보
+   * @return : 조건에 맞는 사용자 목록과 페이징 정보
+   */
   public Page<UserResDto> findAllUserWithConditions(UserReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 

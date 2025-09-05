@@ -43,6 +43,14 @@ import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : CodeServiceImpl.java
+ * @설명 : 공통코드 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Transactional
 @Service

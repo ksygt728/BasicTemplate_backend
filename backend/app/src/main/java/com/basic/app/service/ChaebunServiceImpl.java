@@ -25,6 +25,14 @@ import com.basic.app.repository.jooqRepository.ChaebunJooqRepository;
 import com.basic.app.service.interfaces.ChaebunService;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : ChaebunServiceImpl.java
+ * @설명 : 채번 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Transactional
 @Service
 public class ChaebunServiceImpl implements ChaebunService {
@@ -35,6 +43,12 @@ public class ChaebunServiceImpl implements ChaebunService {
   @Autowired
   private ChaebunJooqRepository chaebunJooqRepository;
 
+  /**
+   * @기능 : 관리자용 채번 전체 목록 조회 (페이징)
+   * @param chaebunReqDto 채번 검색 조건 DTO
+   * @param pageable      페이징 정보
+   * @return 채번 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllChaebunForAdmin(ChaebunReqDto chaebunReqDto, Pageable pageable) {
 
@@ -53,6 +67,11 @@ public class ChaebunServiceImpl implements ChaebunService {
     return data;
   }
 
+  /**
+   * @기능 : 채번 상세 조회
+   * @param seqId 채번 ID
+   * @return 채번 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByChaebunForAdmin(String seqId) {
     Map<String, Object> data = new HashMap<>();
@@ -69,6 +88,11 @@ public class ChaebunServiceImpl implements ChaebunService {
     return data;
   }
 
+  /**
+   * @기능 : 채번 등록
+   * @param chaebunReqDto 채번 등록 요청 DTO
+   * @return 등록 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertChaebunForAdmin(ChaebunReqDto chaebunReqDto) {
 
@@ -94,6 +118,11 @@ public class ChaebunServiceImpl implements ChaebunService {
     return data;
   }
 
+  /**
+   * @기능 : 채번 수정
+   * @param chaebunReqDto 채번 수정 요청 DTO
+   * @return 수정 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateChaebunForAdmin(ChaebunReqDto chaebunReqDto) {
 
@@ -119,6 +148,11 @@ public class ChaebunServiceImpl implements ChaebunService {
     return data;
   }
 
+  /**
+   * @기능 : 채번 삭제
+   * @param seqId 채번 ID
+   * @return 삭제 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteChaebunForAdmin(String seqId) {
     Map<String, Object> data = new HashMap<>();
@@ -137,6 +171,11 @@ public class ChaebunServiceImpl implements ChaebunService {
 
   }
 
+  /**
+   * @기능 : 채번 시퀀스 생성
+   * @param seqId 채번 ID
+   * @return 생성된 시퀀스 문자열
+   */
   @Override
   public String generateSeq(String seqId) {
 

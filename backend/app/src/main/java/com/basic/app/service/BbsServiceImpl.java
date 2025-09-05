@@ -32,6 +32,14 @@ import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : BbsServiceImpl.java
+ * @설명 : 게시판 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Service
 @Transactional
@@ -49,6 +57,12 @@ public class BbsServiceImpl implements BbsService {
   @Autowired
   private BbsCommentRepository bbsCommentRepository;
 
+  /**
+   * @기능 : 관리자용 게시글 전체 목록 조회 (페이징)
+   * @param bbsReqDto 게시글 검색 조건 DTO
+   * @param pageable  페이징 정보
+   * @return 게시글 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllBbsForAdmin(BbsReqDto bbsReqDto, Pageable pageable) {
 
@@ -67,6 +81,11 @@ public class BbsServiceImpl implements BbsService {
     return data;
   }
 
+  /**
+   * @기능 : 게시글 상세 조회
+   * @param bbsId 게시글 ID
+   * @return 게시글 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByBbsForAdmin(String bbsId) {
     Map<String, Object> data = new HashMap<>();
@@ -84,6 +103,12 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 등록
+   * @param bbsReqDto 게시글 등록 요청 DTO
+   * @param user      작성자 정보
+   * @return 등록 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertBbsForAdmin(BbsReqDto bbsReqDto, CustomUserDetails user) {
 
@@ -115,6 +140,11 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 수정
+   * @param bbsReqDto 게시글 수정 요청 DTO
+   * @return 수정 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateBbsForAdmin(BbsReqDto bbsReqDto) {
 
@@ -153,6 +183,11 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 삭제
+   * @param bbsId 게시글 ID
+   * @return 삭제 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteBbsForAdmin(String bbsId) {
     Map<String, Object> data = new HashMap<>();
@@ -178,6 +213,12 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 댓글 전체 목록 조회 (페이징)
+   * @param bbsId    게시글 ID
+   * @param pageable 페이징 정보
+   * @return 댓글 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllBbsCommentForAdmin(String bbsId, Pageable pageable) {
 
@@ -196,6 +237,11 @@ public class BbsServiceImpl implements BbsService {
     return data;
   }
 
+  /**
+   * @기능 : 게시글 댓글 상세 조회
+   * @param commentId 댓글 ID
+   * @return 댓글 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByBbsCommentForAdmin(String commentId) {
     Map<String, Object> data = new HashMap<>();
@@ -213,6 +259,12 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 댓글 등록
+   * @param bbsCommentReqDto 댓글 등록 요청 DTO
+   * @param user             작성자 정보
+   * @return 등록 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertBbsCommentForAdmin(BbsCommentReqDto bbsCommentReqDto, CustomUserDetails user) {
 
@@ -244,6 +296,12 @@ public class BbsServiceImpl implements BbsService {
 
   }
 
+  /**
+   * @기능 : 게시글 댓글 수정
+   * @param bbsCommentReqDto 댓글 수정 요청 DTO
+   * @param user             작성자 정보
+   * @return 수정 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateBbsCommentForAdmin(BbsCommentReqDto bbsCommentReqDto, CustomUserDetails user) {
 
@@ -281,6 +339,11 @@ public class BbsServiceImpl implements BbsService {
     return data;
   }
 
+  /**
+   * @기능 : 게시글 댓글 삭제
+   * @param commentId 댓글 ID
+   * @return 삭제 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteBbsCommentForAdmin(String commentId) {
     Map<String, Object> data = new HashMap<>();

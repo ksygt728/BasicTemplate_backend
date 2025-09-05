@@ -1,11 +1,3 @@
-/**
- * @파일명   : RoleUserReqDto.java
- * @설명     : 
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
@@ -25,6 +17,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : RoleUserReqDto.java
+ * @설명 : 사용자-역할 관계 요청 DTO
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -45,6 +45,11 @@ public class RoleUserReqDto extends BaseReqDto {
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 
+  /**
+   * @기능 : DTO를 Entity로 변환
+   * @param dto 사용자-역할 관계 요청 DTO
+   * @return RoleUser Entity
+   */
   public RoleUser toEntity(RoleUserReqDto dto) {
 
     RoleUserId roleUserId = new RoleUserId();

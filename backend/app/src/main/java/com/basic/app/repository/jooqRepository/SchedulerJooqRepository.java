@@ -1,12 +1,3 @@
-/**
- * @파일명   : UserJooqRepository.java
- * @설명     : JOOQ를 이용한 조회폼 조건별 동적 처리
- * @작성자   : 김승연
- * @작성일   : 2025.07.25
- * @변경이력 :
- *   2025.07.25     김승연       최초 생성
- */
-
 package com.basic.app.repository.jooqRepository;
 
 import java.util.ArrayList;
@@ -27,6 +18,14 @@ import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.dto.responseDto.ScheMResDto;
 import com.basic.app.jooq.generated.tables.TbScheM;
 
+/**
+ * @파일명 : SchedulerJooqRepository.java
+ * @설명 : 스케줄러 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.25
+ * @변경이력 :
+ *       2025.07.25 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class SchedulerJooqRepository {
@@ -34,6 +33,12 @@ public class SchedulerJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 스케줄러 목록을 조건별로 동적 조회하여 페이징 처리된 결과 반환
+   * @param reqDto   : 스케줄러 검색 조건 DTO
+   * @param pageable : 페이징 정보
+   * @return : 조건에 맞는 스케줄러 목록과 페이징 정보
+   */
   public Page<ScheMResDto> findAllScheMWithConditions(ScheMReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 

@@ -7,6 +7,14 @@ import org.springframework.data.domain.Page;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @파일명 : PageResponse.java
+ * @설명 : 페이징 응답 래퍼 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Getter
 @Setter
 public class PageResponse<T> {
@@ -18,6 +26,10 @@ public class PageResponse<T> {
   private boolean first;
   private boolean last;
 
+  /**
+   * @기능 : Spring Data Page 객체를 PageResponse로 변환하는 생성자
+   * @param page Spring Data Page 객체
+   */
   public PageResponse(Page<T> page) {
     this.content = page.getContent();
     this.page = page.getNumber();
@@ -28,5 +40,4 @@ public class PageResponse<T> {
     this.last = page.isLast();
   }
 
-  // getters, setters (or use Lombok @Getter)
 }

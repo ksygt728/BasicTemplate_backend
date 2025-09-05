@@ -33,6 +33,14 @@ import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : UserServiceImpl.java
+ * @설명 : 사용자 관련 서비스 구현체 (사용자 관리)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Transactional
 @Service
@@ -65,6 +73,12 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private RoleUserRepository roleUserRepository;
 
+  /**
+   * @기능 : 관리자용 사용자 전체 목록 조회 (페이징)
+   * @param userReqDto 사용자 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 사용자 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllUserForAdmin(UserReqDto userReqDto, Pageable pageable) {
 
@@ -83,6 +97,11 @@ public class UserServiceImpl implements UserService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 사용자 상세 조회
+   * @param userId 사용자 ID
+   * @return 사용자 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByUserForAdmin(String userId) {
 
@@ -100,6 +119,11 @@ public class UserServiceImpl implements UserService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 사용자 정보 수정 (이메일, 사용자 타입은 수정 불가)
+   * @param userReqDto 사용자 수정 요청 DTO
+   * @return 수정된 사용자 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateUserForAdmin(UserReqDto userReqDto) {
 
@@ -136,6 +160,11 @@ public class UserServiceImpl implements UserService {
 
   }
 
+  /**
+   * @기능 : 관리자용 사용자 삭제 (관련 역할도 함께 삭제)
+   * @param userId 삭제할 사용자 ID
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteUserForAdmin(String userId) {
     Map<String, Object> data = new HashMap<>();

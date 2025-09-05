@@ -28,6 +28,14 @@ import com.basic.app.util.XConverter;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : DynamicJob.java
+ * @설명 : 동적 스케줄러 작업 실행 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Log4j2
 @Component
 @DisallowConcurrentExecution
@@ -51,6 +59,10 @@ public class DynamicJob implements Job {
     @Autowired
     private SchedulerHistoryRepository schedulerHistoryRepository;
 
+    /**
+     * @기능 : 동적 스케줄러 작업 실행
+     * @param context 작업 실행 컨텍스트
+     */
     @Transactional
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -122,6 +134,11 @@ public class DynamicJob implements Job {
         }
     }
 
+    /**
+     * @기능 : 예외 스택 트레이스를 문자열로 변환
+     * @param e 예외
+     * @return 스택 트레이스 문자열
+     */
     private String getStackTraceAsString(Exception e) {
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));

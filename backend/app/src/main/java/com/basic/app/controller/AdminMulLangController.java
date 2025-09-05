@@ -1,11 +1,3 @@
-/**
- * @파일명   : AdminMulLangController.java
- * @설명     : 다국어 메시지 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 
 package com.basic.app.controller;
 
@@ -44,6 +36,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminMulLangController.java
+ * @설명 : 다국어 메시지 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminMulLangController", description = "다국어 API")
 @RestController
 @RequestMapping("/admin/lang")
@@ -52,7 +52,14 @@ public class AdminMulLangController {
   @Autowired
   private MultiLangService multiLangService;
 
-  /* [REQ_ADM_033] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_033
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 리스트 조회
+   * @param mulLangReqDto 다국어 검색 조건 DTO
+   * @param pageable      페이징 정보
+   * @return 다국어 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_033] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 조회]", description = "다국어 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
@@ -63,7 +70,14 @@ public class AdminMulLangController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_034] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 언어별 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_034
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 리스트 언어별 조회
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 다국어 리스트 언어별 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_034] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 언어별 조회]", description = "다국어 리스트 언어별 조회 기능 제공")
   @Parameter(name = "langCd", description = "언어 코드", example = "LANG001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
@@ -75,7 +89,13 @@ public class AdminMulLangController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_035
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 추가
+   * @param mulLang 다국어 정보 DTO
+   * @return 다국어 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가]", description = "다국어 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
@@ -86,7 +106,13 @@ public class AdminMulLangController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_036
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 수정
+   * @param mulLang 다국어 정보 DTO
+   * @return 다국어 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정]", description = "다국어 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
@@ -97,7 +123,14 @@ public class AdminMulLangController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_037
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 삭제
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 다국어 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제]", description = "다국어 삭제 기능 제공")
   @Parameters({
       @Parameter(name = "langGubun", description = "구분코드", example = "err"),
@@ -112,7 +145,15 @@ public class AdminMulLangController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_037_2] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제 각 언어별 상세] */
+  /**
+   * @REQ_ID : REQ_ADM_037_2
+   * @화면 : 기준 정보 > 다국어 관리
+   * @기능 : 다국어 삭제 각 언어별 상세
+   * @param langType  국가 코드
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 다국어 삭제 각 언어별 상세 결과
+   */
   @Operation(summary = "[REQ_ADM_037] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 삭제(각 언어별 상세)]", description = "다국어 삭제 기능 제공")
   @Parameters({
       @Parameter(name = "langType", description = "국가코드", example = "ko"),

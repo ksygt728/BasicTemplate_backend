@@ -1,11 +1,3 @@
-/**
- * @파일명   : NoticeReqDto.java
- * @설명     : 공지사항 관리를 위한 요청 데이터 전송 객체
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.dto.requestDto;
 
 import java.time.LocalDateTime;
@@ -25,6 +17,14 @@ import lombok.ToString;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * @파일명 : NoticeReqDto.java
+ * @설명 : 공지사항 관리를 위한 요청 데이터 전송 객체
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString

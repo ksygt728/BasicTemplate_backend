@@ -17,6 +17,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : SmsH.java
+ * @설명 : SMS 발송 이력 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -31,6 +39,9 @@ public class SmsH extends BaseEntity {
   @Column(name = "LOG_ID", length = 45)
   private String logId; // 사용자이력ID
 
+  /**
+   * @기능 : 엔티티 저장 전 ID 자동 생성
+   */
   @PrePersist
   public void prePersist() {
     if (logId == null) {

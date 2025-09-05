@@ -25,6 +25,14 @@ import com.basic.app.service.interfaces.MultiLangService;
 import com.basic.app.service.specialService.MessageSource;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : MultiLangServiceImpl.java
+ * @설명 : 다국어 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Transactional
 @Service
 public class MultiLangServiceImpl implements MultiLangService {
@@ -38,6 +46,12 @@ public class MultiLangServiceImpl implements MultiLangService {
   @Autowired
   MessageSource messageSource;
 
+  /**
+   * @기능 : 관리자용 다국어 전체 목록 조회 (페이징)
+   * @param mulLangReqDto 다국어 검색 조건 DTO
+   * @param pageable      페이징 정보
+   * @return 다국어 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllMulLangForAdmin(MulLangReqDto mulLangReqDto, Pageable pageable) {
 
@@ -56,6 +70,12 @@ public class MultiLangServiceImpl implements MultiLangService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 다국어 상세 조회
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 다국어 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByMulLangForAdmin(String langGubun, String langCd) {
     Map<String, Object> data = new HashMap<>();
@@ -73,6 +93,11 @@ public class MultiLangServiceImpl implements MultiLangService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 다국어 신규 등록
+   * @param mulLangReqDto 다국어 등록 요청 DTO
+   * @return 등록된 다국어 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertMulLangForAdmin(MulLangReqDto mulLangReqDto) {
 
@@ -99,6 +124,11 @@ public class MultiLangServiceImpl implements MultiLangService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 다국어 정보 수정
+   * @param mulLangReqDto 다국어 수정 요청 DTO
+   * @return 수정된 다국어 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateMulLangForAdmin(MulLangReqDto mulLangReqDto) {
 
@@ -124,6 +154,12 @@ public class MultiLangServiceImpl implements MultiLangService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 다국어 전체 삭제 (언어 구분별)
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteMulLangForAdmin(String langGubun, String langCd) {
 
@@ -148,6 +184,13 @@ public class MultiLangServiceImpl implements MultiLangService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 다국어 상세 삭제
+   * @param langType  언어 타입
+   * @param langGubun 언어 구분
+   * @param langCd    언어 코드
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteMulLangDetailForAdmin(String langType, String langGubun, String langCd) {
 

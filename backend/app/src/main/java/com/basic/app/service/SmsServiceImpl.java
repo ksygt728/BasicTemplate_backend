@@ -28,6 +28,14 @@ import com.basic.app.service.interfaces.SmsService;
 import com.basic.app.sms.SmsSendManager;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : SmsServiceImpl.java
+ * @설명 : SMS 관련 서비스 구현체 (SMS 발송, 인증, 이력 관리)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Transactional
 @Service
 public class SmsServiceImpl implements SmsService {
@@ -50,6 +58,12 @@ public class SmsServiceImpl implements SmsService {
   private static final String SMS_AUTH_PREFIX = "smsAuth:";
   private static final long SMS_AUTH_EXPIRE_TIME = 180; // 3분
 
+  /**
+   * @기능 : 관리자용 SMS 전체 목록 조회 (페이징)
+   * @param smsMReqDto SMS 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return SMS 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllSmsForAdmin(SmsMReqDto smsMReqDto,
       Pageable pageable) {
@@ -70,6 +84,11 @@ public class SmsServiceImpl implements SmsService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 SMS 상세 조회
+   * @param smsId SMS ID
+   * @return SMS 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findBySmsForAdmin(String smsId) {
     Map<String, Object> data = new HashMap<>();
@@ -86,6 +105,12 @@ public class SmsServiceImpl implements SmsService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 SMS의 발송 이력 조회 (페이징)
+   * @param smsId    SMS ID
+   * @param pageable 페이징 정보
+   * @return SMS 발송 이력 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findBySmsHistoryForAdmin(String smsId, Pageable pageable) {
 
@@ -105,6 +130,11 @@ public class SmsServiceImpl implements SmsService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 SMS 정보 신규 등록
+   * @param smsM SMS 등록 요청 DTO
+   * @return 등록된 SMS 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertSmsForAdmin(SmsMReqDto smsM) {
 
@@ -129,6 +159,11 @@ public class SmsServiceImpl implements SmsService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 SMS 정보 수정
+   * @param smsM SMS 수정 요청 DTO
+   * @return 수정된 SMS 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateSmsForAdmin(SmsMReqDto smsM) {
 
@@ -152,6 +187,11 @@ public class SmsServiceImpl implements SmsService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 SMS 정보 삭제 (상태 변경)
+   * @param smsId 삭제할 SMS ID
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteSmsForAdmin(String smsId) {
     Map<String, Object> data = new HashMap<>();
@@ -170,6 +210,11 @@ public class SmsServiceImpl implements SmsService {
 
   }
 
+  /**
+   * @기능 : SMS 인증번호 발송
+   * @param phoneNum 휴대폰 번호
+   * @return 발송 결과가 담긴 Map
+   */
   @Override
   public Map<String, Object> smsAuth(String phoneNum) {
     Map<String, Object> data = new HashMap<>();
@@ -186,6 +231,12 @@ public class SmsServiceImpl implements SmsService {
 
   }
 
+  /**
+   * @기능 : SMS 인증번호 검증
+   * @param phoneNum 휴대폰 번호
+   * @param smsCode  인증번호
+   * @return 검증 결과가 담긴 Map
+   */
   @Override
   public Map<String, Object> smsAuthValidation(String phoneNum, String smsCode) {
     Map<String, Object> data = new HashMap<>();

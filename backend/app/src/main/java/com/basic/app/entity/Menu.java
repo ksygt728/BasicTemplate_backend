@@ -22,6 +22,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : Menu.java
+ * @설명 : 메뉴 정보 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -64,6 +72,11 @@ public class Menu extends BaseEntity {
   @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
   private List<RoleMenu> roleMenus = new ArrayList<RoleMenu>(); // 메뉴가 가진 권한 리스트
 
+  /**
+   * @기능 : Entity를 DTO로 변환
+   * @param menu 변환할 Menu 엔티티
+   * @return 변환된 MenuResDto 객체
+   */
   public MenuResDto toDto(Menu menu) {
     return MenuResDto.builder()
         .menuCd(menu.getMenuCd())

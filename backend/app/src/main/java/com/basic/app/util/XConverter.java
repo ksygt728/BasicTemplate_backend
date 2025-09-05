@@ -1,11 +1,3 @@
-/**
- * @파일명   : XConverter.java
- * @설명     : XConverter 클래스는 다양한 Object <> JSON or 문자열등으로 변환하는 유틸리티 클래스
- * @작성자   : 김승연
- * @작성일   : 2025.08.08
- * @변경이력 :
- *   2025.08.08     김승연       최초 생성
- */
 
 package com.basic.app.util;
 
@@ -23,6 +15,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * @파일명 : XConverter.java
+ * @설명 : XConverter 클래스는 다양한 Object <> JSON or 문자열등으로 변환하는 유틸리티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.08.08
+ * @변경이력 :
+ *       2025.08.08 김승연 최초 생성
+ */
+
 @Component
 @Getter
 @Setter
@@ -32,7 +33,11 @@ public class XConverter {
   @Autowired
   private ObjectMapper objectMapper;
 
-  /* AOP에서만 사용하는 Args -> Json 변환 */
+  /**
+   * @기능 : AOP에서 사용하는 Args를 JSON으로 변환 (password 필드 마스킹 처리)
+   * @param args 변환할 메소드 인자 배열
+   * @return JSON 문자열
+   */
   public String convertArgsToJson(Object[] args) {
     try {
       Object[] maskedArgs = new Object[args.length];
@@ -82,7 +87,11 @@ public class XConverter {
     }
   }
 
-  /* AOP에서만 사용하는 Object -> Json 변환 */
+  /**
+   * @기능 : AOP에서 사용하는 Object를 JSON으로 변환
+   * @param obj 변환할 객체
+   * @return JSON 문자열
+   */
   public String convertObjectToJson(Object obj) {
     try {
       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
@@ -93,7 +102,9 @@ public class XConverter {
   }
 
   /**
-   * Pageable 객체를 읽기 쉬운 Map으로 변환
+   * @기능 : Pageable 객체를 읽기 쉬운 Map으로 변환
+   * @param pageableObj 변환할 Pageable 객체
+   * @return 페이징 정보가 담긴 Map
    */
   public Map<String, Object> convertPageableToMap(Object pageableObj) {
     Map<String, Object> pageableInfo = new HashMap<>();

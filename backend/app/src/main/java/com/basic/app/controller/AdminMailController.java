@@ -1,11 +1,4 @@
-/**
- * @파일명   : AdminMailController.java
- * @설명     : 메일 템플릿 및 발송 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
+
 package com.basic.app.controller;
 
 import java.util.Map;
@@ -42,6 +35,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminMailController.java
+ * @설명 : 메일 템플릿 및 발송 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminMailController", description = "메일 API")
 @RestController
 @RequestMapping("/admin/mail")
@@ -50,7 +51,15 @@ public class AdminMailController {
   @Autowired
   private MailService mailService;
 
-  /* [REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_057
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 리스트 조회
+   * @param mailMReqDto 메일 검색 조건 DTO
+   * @param pageable    페이징 정보
+   * @return 메일 리스트 조회 결과
+   * @throws Exception 처리 중 발생할 수 있는 예외
+   */
   @Operation(summary = "[REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회]", description = "메일 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
@@ -64,7 +73,13 @@ public class AdminMailController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_057_2] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_057_2
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 조회
+   * @param mailId 메일 아이디
+   * @return 메일 상세 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_057_2] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 조회]", description = "메일 조회 기능 제공")
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
@@ -75,7 +90,14 @@ public class AdminMailController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_058] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 이력 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_058
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 이력 조회
+   * @param mailId   메일 아이디
+   * @param pageable 페이징 정보
+   * @return 메일 이력 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_058] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 이력 조회]", description = "메일 이력 조회 기능 제공")
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailHResDto.class)))
@@ -87,7 +109,13 @@ public class AdminMailController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_061
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 추가
+   * @param mailM 메일 정보 DTO
+   * @return 메일 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가]", description = "메일 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
@@ -98,7 +126,13 @@ public class AdminMailController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_062
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 수정
+   * @param mailM 메일 정보 DTO
+   * @return 메일 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정]", description = "메일 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
@@ -109,7 +143,13 @@ public class AdminMailController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_063] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_063
+   * @화면 : 시스템 관리 > 메일 관리
+   * @기능 : 메일 삭제
+   * @param mailId 메일 아이디
+   * @return 메일 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_063] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 삭제]", description = "메일 삭제 기능 제공")
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))

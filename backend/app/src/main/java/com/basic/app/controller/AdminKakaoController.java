@@ -1,13 +1,4 @@
-/**
- * @파일명   : AdminKakaoController.java
- * @설명     : 카카오
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *     날짜           이름        변경내용
- *   ----------     --------    -------------------------------
- *   2025.07.23     김승연       최초 생성
- */
+
 package com.basic.app.controller;
 
 import java.util.Map;
@@ -27,6 +18,16 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : AdminKakaoController.java
+ * @설명 : 카카오
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       날짜 이름 변경내용
+ *       ---------- -------- -------------------------------
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminKakaoController", description = "결재 API")
 @RestController
 @Log4j2
@@ -36,7 +37,12 @@ public class AdminKakaoController {
   @Autowired
   private ApprovalService approvalService;
 
-  /* [REQ_ADM_086] [화면 : 시스템 관리 > 결재 관리] [기능 : 예정] */
+  /**
+   * @REQ_ID : REQ_ADM_086
+   * @화면 : 시스템 관리 > 결재 관리
+   * @기능 : 예정
+   * @return 결재 예정 기능 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_086] [화면 : 시스템 관리 > 결재 관리] [기능 : 예정]", description = "결재 관리의 예정된 기능을 조회합니다.")
   // @ApiResponse(responseCode = "200", description = "성공", content =
   // @Content(schema = @Schema(implementation = ApprovalResr.class)))

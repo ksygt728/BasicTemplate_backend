@@ -22,6 +22,14 @@ import com.basic.app.repository.jooqRepository.InterfaceJooqRepository;
 import com.basic.app.service.interfaces.InterfaceService;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : InterfaceServiceImpl.java
+ * @설명 : 인터페이스 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Service
 @Transactional
 public class InterfaceServiceImpl implements InterfaceService {
@@ -32,6 +40,11 @@ public class InterfaceServiceImpl implements InterfaceService {
   @Autowired
   private InterfaceJooqRepository interfaceJooqRepository;
 
+  /**
+   * @기능 : 관리자용 인터페이스 전체 목록 조회 (페이징)
+   * @param pageable 페이징 정보
+   * @return 인터페이스 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllInterfaceForAdmin(Pageable pageable) {
     Map<String, Object> data = new HashMap<>();
@@ -47,6 +60,12 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 조건별 인터페이스 목록 조회 (페이징)
+   * @param interfaceReqDto 인터페이스 검색 조건 DTO
+   * @param pageable        페이징 정보
+   * @return 인터페이스 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllInterfaceWithConditionsForAdmin(InterfaceReqDto interfaceReqDto,
       Pageable pageable) {
@@ -66,6 +85,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 특정 인터페이스 상세 조회
+   * @param ifId 인터페이스 ID
+   * @return 인터페이스 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByInterfaceForAdmin(String ifId) {
     Map<String, Object> data = new HashMap<>();
@@ -82,6 +106,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 인터페이스 실행
+   * @param ifc 인터페이스 실행 요청 DTO
+   * @return 실행 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> executeInterfaceForAdmin(InterfaceReqDto ifc) {
     Map<String, Object> data = new HashMap<>();
@@ -89,6 +118,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 인터페이스 실행 이력 조회
+   * @param ifId 인터페이스 ID
+   * @return 실행 이력 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByInterfaceHistoryForAdmin(String ifId) {
     Map<String, Object> data = new HashMap<>();
@@ -96,6 +130,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 인터페이스 등록
+   * @param ifc 인터페이스 등록 요청 DTO
+   * @return 등록 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertInterfaceForAdmin(InterfaceReqDto ifc) {
 
@@ -120,6 +159,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 인터페이스 수정
+   * @param ifc 인터페이스 수정 요청 DTO
+   * @return 수정 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateInterfaceForAdmin(InterfaceReqDto ifc) {
 
@@ -143,6 +187,11 @@ public class InterfaceServiceImpl implements InterfaceService {
     return data;
   }
 
+  /**
+   * @기능 : 인터페이스 삭제
+   * @param ifId 인터페이스 ID
+   * @return 삭제 결과 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteInterfaceForAdmin(String ifId) {
     Map<String, Object> data = new HashMap<>();

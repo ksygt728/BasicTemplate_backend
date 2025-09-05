@@ -32,6 +32,14 @@ import com.basic.app.util.Status;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : MailServiceImpl.java
+ * @설명 : 메일 관련 서비스 구현체 (메일 발송, 이력 관리)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Transactional
 @Service
@@ -49,6 +57,9 @@ public class MailServiceImpl implements MailService {
   @Autowired
   private MailHRepository mailHRepository;
 
+  /**
+   * @기능 : 메일 발송 테스트 1 (정상 메일 주소)
+   */
   @Override
   public void mailSendTest1() throws Exception {
     // 정상적으로 메일 아이디가 있는경우
@@ -68,6 +79,9 @@ public class MailServiceImpl implements MailService {
     mailSendManager.sendMail("MAIL-001", toEmails, Map.of("params", comCodes));
   }
 
+  /**
+   * @기능 : 메일 발송 테스트 2 (잘못된 메일 주소 포함)
+   */
   @Override
   public void mailSendTest2() throws Exception {
 
@@ -96,6 +110,12 @@ public class MailServiceImpl implements MailService {
 
   }
 
+  /**
+   * @기능 : 관리자용 메일 전체 목록 조회 (페이징)
+   * @param mailMReqDto 메일 검색 조건 DTO
+   * @param pageable    페이징 정보
+   * @return 메일 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllMailForAdmin(MailMReqDto mailMReqDto,
       Pageable pageable) throws Exception {
@@ -115,6 +135,11 @@ public class MailServiceImpl implements MailService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 메일 상세 조회
+   * @param mailId 메일 ID
+   * @return 메일 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByMailForAdmin(String mailId) {
     Map<String, Object> data = new HashMap<>();
@@ -132,6 +157,12 @@ public class MailServiceImpl implements MailService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 메일의 발송 이력 조회 (페이징)
+   * @param mailId   메일 ID
+   * @param pageable 페이징 정보
+   * @return 메일 발송 이력 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByMailHistoryForAdmin(String mailId, Pageable pageable) {
 
@@ -151,6 +182,11 @@ public class MailServiceImpl implements MailService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 메일 정보 신규 등록
+   * @param mailM 메일 등록 요청 DTO
+   * @return 등록된 메일 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertMailForAdmin(MailMReqDto mailM) {
 
@@ -176,6 +212,11 @@ public class MailServiceImpl implements MailService {
 
   }
 
+  /**
+   * @기능 : 관리자용 메일 정보 수정
+   * @param mailM 메일 수정 요청 DTO
+   * @return 수정된 메일 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateMailForAdmin(MailMReqDto mailM) {
 
@@ -200,6 +241,11 @@ public class MailServiceImpl implements MailService {
 
   }
 
+  /**
+   * @기능 : 관리자용 메일 정보 삭제 (상태 변경)
+   * @param mailId 삭제할 메일 ID
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteMailForAdmin(String mailId) {
     Map<String, Object> data = new HashMap<>();
