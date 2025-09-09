@@ -446,7 +446,7 @@ public class SchedulerTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                // assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(expectedToJson).isEqualTo(actualToJson);
 
                 // departmentRepository.findById(((InterfaceReqDto) testData).getIfId())
                 // .ifPresent(actualSts ->

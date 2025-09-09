@@ -341,7 +341,7 @@ public class CodeServiceImpl implements CodeService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedCodeTEntity.toDto(ComCodeTResDto.class));
+    data.put("data", savedCodeTEntity.toDto(savedCodeTEntity));
     return data;
 
   }
@@ -373,7 +373,7 @@ public class CodeServiceImpl implements CodeService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedCodeTEntity.toDto(ComCodeTResDto.class));
+    data.put("data", savedCodeTEntity.toDto(savedCodeTEntity));
 
     return data;
 
@@ -460,7 +460,7 @@ public class CodeServiceImpl implements CodeService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedCodeDEntity.toDto(ComCodeDResDto.class));
+    data.put("data", savedCodeDEntity.toDto(savedCodeDEntity));
     return data;
 
   }
@@ -498,7 +498,7 @@ public class CodeServiceImpl implements CodeService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", savedCodeDEntity.toDto(ComCodeDResDto.class));
+    data.put("data", savedCodeDEntity.toDto(savedCodeDEntity));
 
     return data;
   }

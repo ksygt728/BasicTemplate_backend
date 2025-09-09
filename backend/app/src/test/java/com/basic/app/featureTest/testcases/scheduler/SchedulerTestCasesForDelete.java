@@ -3,6 +3,7 @@ package com.basic.app.featureTest.testcases.scheduler;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.extension.Extension;
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.basic.app.api.ResponseApi;
-import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.dto.responseDto.CompanyResDto;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.util.TestCaseDetail;
@@ -37,7 +37,7 @@ public class SchedulerTestCasesForDelete implements TestTemplateInvocationContex
          */
         String testName_order1 = "정상 삭제";
         String testData_order1 = "sche-003_test"; // 비활성 상태인 로그 정리 스케줄러
-        ResponseApi<?> expected_order1 = ResponseApi.success(testData_order1);
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", "success"));
         String url_order1 = BASE_URL + "/" + testData_order1;
         ResultMatcher status_order1 = status().isOk();
 

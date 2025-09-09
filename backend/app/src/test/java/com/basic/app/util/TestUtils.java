@@ -3,6 +3,7 @@ package com.basic.app.util;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+import org.apache.kafka.common.annotation.InterfaceStability.Stable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
@@ -38,7 +39,9 @@ public class TestUtils {
     return mapper;
   }
 
-  // DTO -> MultiValueMap
+  /**
+   * @설명 : DTO -> MultiValueMap
+   */
   public static MultiValueMap<String, String> dtoToMultiValueMap(Object dto) {
     MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
     Map<String, String> paramMap = objectMapper.convertValue(dto, new TypeReference<Map<String, String>>() {
@@ -47,31 +50,48 @@ public class TestUtils {
     return multiValueMap;
   }
 
-  // ResponseApi -> JsonNode
+  /**
+   * @설명 : ResponseApi -> JsonNode
+   */
   public static JsonNode apiReponseToJsonNode(ResponseApi<?> expected) throws Exception {
     String expectedJson = objectMapper.writeValueAsString(expected);
     return objectMapper.readTree(expectedJson);
   }
 
-  // MvcResult -> JsonNode
+  /**
+   * @설명 : MvcResult -> JsonNode
+   */
   public static JsonNode mvcResultToJsonNode(MvcResult actual) throws Exception {
     String content = actual.getResponse().getContentAsString(StandardCharsets.UTF_8); // UTF-8 명시
     ObjectMapper objectMapper = new ObjectMapper();
     return objectMapper.readTree(content);
   }
 
-  // 테스트케이스별 시작로그 출력
+  /**
+   * @설명 : 테스트케이스별 시작로그 출력
+   */
   public static void showLogTestCaseStart(String testCaseName) throws Exception {
     // log.info("🔄 [CBSK-TEST] 테스트 시작: " + testCaseName);
 
   }
 
-  // 테스트케이스별 종료로그 출력
+  /**
+   * @설명 : 테스트케이스별 종료로그 출력
+   */
   public static void showLogTestCaseEnd(Object testData, JsonNode expectedToJson, JsonNode actualToJson)
       throws Exception {
     log.info("\n🧪 [CBSK-TEST] Test Data: {}", testData);
     log.info("\n☑️ [CBSK-TEST] Expected Response: {}", expectedToJson);
     log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actualToJson);
+  }
+
+  /**
+   * @설명 : 테스트케이스가 없는 경우 로그 출력
+   */
+  public static void showLogNoneTestCaseEnd(String testData, String expected, String actual) {
+    log.info("\n🧪 [CBSK-TEST] Test Data: {}", testData);
+    log.info("\n☑️ [CBSK-TEST] Expected Response: {}", expected);
+    log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actual);
   }
 
 }

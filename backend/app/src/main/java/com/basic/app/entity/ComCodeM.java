@@ -70,10 +70,12 @@ public class ComCodeM extends BaseEntity {
         .grpCdType(entity.getGrpCdType())
         .grpNm(entity.getGrpNm())
         .comCodeTs(
-            entity.getComCodeTs().stream()
-                .filter(target -> target.getSts().equals(Status.POSITIVE))
-                .map(target -> target.toDto(target))
-                .toList())
+            entity.getComCodeTs() != null
+                ? entity.getComCodeTs().stream()
+                    .filter(target -> target.getSts().equals(Status.POSITIVE))
+                    .map(target -> target.toDto(target))
+                    .toList()
+                : new ArrayList<>())
         .build();
   }
 

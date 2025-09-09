@@ -76,10 +76,12 @@ public class ComCodeT extends BaseEntity {
         .attrNm(entity.getAttrNm())
         .orderNum(entity.getOrderNum())
         .comCodeDs(
-            entity.getComCodeDs().stream()
-                .filter(target -> target.getSts().equals(Status.POSITIVE) && target.getUseYn().equals("Y"))
-                .map(target -> target.toDto(target))
-                .toList())
+            entity.getComCodeDs() != null
+                ? entity.getComCodeDs().stream()
+                    .filter(target -> target.getSts().equals(Status.POSITIVE) && target.getUseYn().equals("Y"))
+                    .map(target -> target.toDto(target))
+                    .toList()
+                : new ArrayList<>())
         .build();
   }
 
