@@ -171,6 +171,11 @@ public class MultiLangServiceImpl implements MultiLangService {
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .toList();
 
+    // 삭제할 데이터가 없는 경우 예외 발생
+    if (mulLangEntityList.isEmpty()) {
+      throw new NotFoundException(ErrorCode.OBJECT_NOT_FOUND);
+    }
+
     // 2. 상태를 'D'로 변경하여 삭제 처리(자동 save)
     mulLangEntityList.forEach(entity -> {
       entity.setSts(Status.NAGATIVE);
