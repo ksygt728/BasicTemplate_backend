@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,17 +28,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ResponseApi;
-import com.basic.app.dto.responseDto.ComCodeMResDto;
-import com.basic.app.featureTest.testcases.comCode.ComCodeFormatTestCasesSearchAll;
-import com.basic.app.featureTest.testcases.comCode.ComCodeTestCasesForDelete;
-import com.basic.app.featureTest.testcases.comCode.ComCodeTestCasesForInesrt;
-import com.basic.app.featureTest.testcases.comCode.ComCodeTestCasesForSearch;
-import com.basic.app.featureTest.testcases.comCode.ComCodeTestCasesForUpdate;
-import com.basic.app.repository.CodeDRepository;
-import com.basic.app.repository.CodeMRepository;
-import com.basic.app.repository.CodeTRepository;
-import com.basic.app.service.interfaces.CodeService;
-import com.basic.app.util.Status;
+import com.basic.app.featureTest.testcases.user.UserFormatTestCasesSearchAll;
+import com.basic.app.featureTest.testcases.user.UserTestCasesForDelete;
+import com.basic.app.featureTest.testcases.user.UserTestCasesForSearch;
+import com.basic.app.featureTest.testcases.user.UserTestCasesForUpdate;
 import com.basic.app.util.TestCaseDetail;
 import com.basic.app.util.TestCaseDetailSearchForm;
 import com.basic.app.util.TestUtils;
@@ -54,24 +45,10 @@ import lombok.extern.log4j.Log4j2;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
 @Transactional
 @Sql(scripts = {
-                "classpath:sql/test-data/comcode/comcode-m-data.sql",
-                "classpath:sql/test-data/comcode/comcode-t-data.sql",
-                "classpath:sql/test-data/comcode/comcode-d-data.sql"
+                "classpath:sql/test-data/user/user-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = "classpath:sql/test-data/comcode/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
-public class ComCodeTestTemplate {
-
-        @Autowired
-        private CodeMRepository codeMRepository;
-
-        @Autowired
-        private CodeTRepository codeTRepository;
-
-        @Autowired
-        private CodeDRepository codeDRepository;
-
-        @Autowired
-        private CodeService codeService;
+@Sql(scripts = "classpath:sql/test-data/user/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
+public class UserTestTemplate {
 
         @Autowired
         private MockMvc mockMvc;
@@ -111,9 +88,9 @@ public class ComCodeTestTemplate {
          * 
          *************************************/
         @TestTemplate
-        @ExtendWith(ComCodeTestCasesForSearch.class)
-        @DisplayName("1. 코드_단건_조회")
-        void 코드_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
+        @ExtendWith(UserTestCasesForSearch.class)
+        @DisplayName("1. 사용자_단건_조회")
+        void 사용자_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
 
                 if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -147,37 +124,76 @@ public class ComCodeTestTemplate {
                 }
         }
 
+        @TestTemplate
+        @ExtendWith(UserFormatTestCasesSearchAll.class)
+        @DisplayName("2. 사용자_N건_조회")
+        void 사용자_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
+
+                if (testCaseDetail.getUrl().equals("N/A")) {
+                        processNoneTestCase(testCaseDetail);
+
+                } else {
+
+                        /* 1. given */
+
+                        String url = testCaseDetail.getUrl();
+                        String testCaseName = testCaseDetail.getTestName();
+                        Object testData = testCaseDetail.getTestData();
+                        ResponseApi<?> expected = testCaseDetail.getExpected();
+                        ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
+                        PageRequest pageRequest = testCaseDetail.getPageRequest();
+
+                        /* 2. when */
+                        TestUtils.showLogTestCaseStart(testCaseName);
+
+                        // 파라미터 변환
+                        MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+                        multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
+                        multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
+                        multiValueMap.add("sort", pageRequest.getSort().toString());
+
+                        MvcResult actual = mockMvc.perform(get(url)
+                                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                        .header("test-token", true)
+                                        .params(multiValueMap))
+                                        .andExpect(httpStatus)
+                                        .andReturn();
+
+                        /* 3. then */
+                        JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
+                        JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
+
+                        TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
+
+                        assertThat(expectedToJson).isEqualTo(actualToJson);
+                }
+        }
+
         // @TestTemplate
-        // @ExtendWith(ComCodeFormatTestCasesSearchAll.class)
-        // @DisplayName("2. 코드_N건_조회")
-        // void 코드_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception
-        // {
+        // @ExtendWith(UserTestCasesForInesrt.class)
+        // @DisplayName("3. 사용자_추가")
+        // void 사용자_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
 
         // if (testCaseDetail.getUrl().equals("N/A")) {
-        // processNoneTestCase(testCaseDetail);
 
+        // processNoneTestCase(testCaseDetail);
         // } else {
 
         // /* 1. given */
-
         // String url = testCaseDetail.getUrl();
         // String testCaseName = testCaseDetail.getTestName();
         // Object testData = testCaseDetail.getTestData();
         // ResponseApi<?> expected = testCaseDetail.getExpected();
         // ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
-        // PageRequest pageRequest = testCaseDetail.getPageRequest();
 
         // /* 2. when */
         // TestUtils.showLogTestCaseStart(testCaseName);
 
-        // // 파라미터 변환
         // MultiValueMap<String, String> multiValueMap =
         // TestUtils.dtoToMultiValueMap(testData);
-        // multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
-        // multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
-        // multiValueMap.add("sort", pageRequest.getSort().toString());
 
-        // MvcResult actual = mockMvc.perform(get(url)
+        // MvcResult actual = mockMvc.perform(
+        // post(url)
         // .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         // .header("test-token", true)
         // .params(multiValueMap))
@@ -195,49 +211,9 @@ public class ComCodeTestTemplate {
         // }
 
         @TestTemplate
-        @ExtendWith(ComCodeTestCasesForInesrt.class)
-        @DisplayName("3. 코드_추가")
-        void 코드_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
-
-                if (testCaseDetail.getUrl().equals("N/A")) {
-
-                        processNoneTestCase(testCaseDetail);
-                } else {
-
-                        /* 1. given */
-                        String url = testCaseDetail.getUrl();
-                        String testCaseName = testCaseDetail.getTestName();
-                        Object testData = testCaseDetail.getTestData();
-                        ResponseApi<?> expected = testCaseDetail.getExpected();
-                        ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
-
-                        /* 2. when */
-                        TestUtils.showLogTestCaseStart(testCaseName);
-
-                        MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-
-                        MvcResult actual = mockMvc.perform(
-                                        post(url)
-                                                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                                                        .header("test-token", true)
-                                                        .params(multiValueMap))
-                                        .andExpect(httpStatus)
-                                        .andReturn();
-
-                        /* 3. then */
-                        JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
-                        JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
-
-                        TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
-
-                        assertThat(expectedToJson).isEqualTo(actualToJson);
-                }
-        }
-
-        @TestTemplate
-        @ExtendWith(ComCodeTestCasesForUpdate.class)
-        @DisplayName("4. 코드_수정")
-        void 코드_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
+        @ExtendWith(UserTestCasesForUpdate.class)
+        @DisplayName("4. 사용자_수정")
+        void 사용자_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
 
                 if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -275,9 +251,9 @@ public class ComCodeTestTemplate {
         }
 
         @TestTemplate
-        @ExtendWith(ComCodeTestCasesForDelete.class)
-        @DisplayName("5. 코드_삭제")
-        void 코드_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
+        @ExtendWith(UserTestCasesForDelete.class)
+        @DisplayName("5. 사용자_삭제")
+        void 사용자_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
 
                 if (testCaseDetail.getUrl().equals("N/A")) {
                         processNoneTestCase(testCaseDetail);
