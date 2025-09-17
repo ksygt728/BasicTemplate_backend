@@ -179,7 +179,7 @@ public class SmsTestCasesForInsert implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "문자 추가 : " + (testCase.getTestName());
       }
 
       @Override

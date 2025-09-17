@@ -85,7 +85,7 @@ public class MailTestCasesForSearch implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "메일 조회 : " + (testCase.getTestName());
       }
 
       @Override

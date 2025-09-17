@@ -43,7 +43,9 @@ public class SmsFormatTestCasesSearchAll implements
      * SMS 발송 로그] [기능 : SMS 리스트 조회] [테스트항목 : [N건] 정상 조회] [테스트 상세 : ]
      */
 
-    SmsMReqDto td1 = SmsMReqDto.builder().build();
+    SmsMReqDto td1 = SmsMReqDto.builder()
+        .smsId("SMS00")
+        .build();
     PageRequest pageRequest1 = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "smsId"));
 
     List<SmsMResDto> ed1List = List.of(
@@ -76,13 +78,6 @@ public class SmsFormatTestCasesSearchAll implements
             .description("[JUnit]결제 완료 시 발송되는 알림 SMS")
             .build(),
         SmsMResDto.builder()
-            .smsId("[JUnit]SMS005")
-            .langType("ko")
-            .smsName("[JUnit]주문확인")
-            .text("[JUnit]주문번호 {orderNo}의 주문이 확인되었습니다.")
-            .description("[JUnit]주문 확인 시 발송되는 SMS")
-            .build(),
-        SmsMResDto.builder()
             .smsId("[JUnit]SMS006")
             .langType("ko")
             .smsName("[JUnit]배송알림")
@@ -99,7 +94,7 @@ public class SmsFormatTestCasesSearchAll implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "문자 조회(N건) : " + (testCase.getTestName());
       }
 
       @Override

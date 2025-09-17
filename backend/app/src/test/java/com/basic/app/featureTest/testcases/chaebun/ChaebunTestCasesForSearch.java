@@ -88,7 +88,7 @@ public class ChaebunTestCasesForSearch implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "채번 조회(단건) : " + (testCase.getTestName());
       }
 
       @Override

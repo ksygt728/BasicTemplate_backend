@@ -96,7 +96,7 @@ public class SmsTestCasesForDelete implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "문자 삭제 : " + (testCase.getTestName());
       }
 
       @Override

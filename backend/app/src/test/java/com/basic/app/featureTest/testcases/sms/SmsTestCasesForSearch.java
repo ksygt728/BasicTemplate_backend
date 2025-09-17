@@ -103,7 +103,7 @@ public class SmsTestCasesForSearch implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "문자 조회 : " + (testCase.getTestName());
       }
 
       @Override

@@ -82,7 +82,7 @@ public class MailTestCasesForDelete implements
     return testCases.stream().map(testCase -> new TestTemplateInvocationContext() {
       @Override
       public String getDisplayName(int invocationIndex) {
-        return testCase.getTestName();
+        return "[" + invocationIndex + "] " + "메일 삭제 : " + (testCase.getTestName());
       }
 
       @Override
