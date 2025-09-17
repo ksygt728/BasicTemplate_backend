@@ -24,11 +24,14 @@ import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.DeleteGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.dto.requestDto.UserReqDto;
+import com.basic.app.dto.requestDto.wrapperDto.RoleMenuListReqDto;
+import com.basic.app.dto.requestDto.wrapperDto.RoleUserListReqDto;
 import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
@@ -165,7 +168,7 @@ public class AdminRoleController {
    * @REQ_ID : REQ_ADM_044
    * @화면 : 권한 관리 > 권한 관리(Role)
    * @기능 : 권한별 메뉴 리스트 수정
-   * @param roleMenu 권한별 메뉴 리스트 DTO
+   * @param roleMenus 권한별 메뉴 리스트 DTO
    * @return 권한별 메뉴 리스트 수정 결과
    */
   @Operation(summary = "[REQ_ADM_044] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 수정]", description = "권한별 메뉴 리스트 수정 기능 제공")
@@ -173,8 +176,8 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PutMapping("/role-menu")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateRoleMenuForAdmin(
-      @RequestBody @Validated(UpdateGroup.class) List<RoleMenuReqDto> roleMenu) {
-    Map<String, Object> data = roleService.updateRoleMenuForAdmin(roleMenu);
+      @RequestBody @Validated(UpdateGroup.class) RoleMenuListReqDto roleMenus) {
+    Map<String, Object> data = roleService.updateRoleMenuForAdmin(roleMenus.getRoleMenus());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -219,7 +222,7 @@ public class AdminRoleController {
    * @REQ_ID : REQ_ADM_050
    * @화면 : 권한 관리 > 사용자별 권한
    * @기능 : 사용자별 권한 추가
-   * @param request 사용자별 권한 추가 요청
+   * @param roleUsers 사용자별 권한 추가 요청
    * @return 사용자별 권한 추가 결과
    */
   @Operation(summary = "[REQ_ADM_050] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 추가]", description = "사용자별 권한 추가 기능 제공")
@@ -227,8 +230,8 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @PostMapping("/role-user")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertRoleUserForAdmin(
-      @RequestBody @Validated(CreateGroup.class) List<RoleUserReqDto> roleUser) {
-    Map<String, Object> data = roleService.insertRoleUserForAdmin(roleUser);
+      @RequestBody @Validated(CreateGroup.class) RoleUserListReqDto roleUsers) {
+    Map<String, Object> data = roleService.insertRoleUserForAdmin(roleUsers.getRoleUsers());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
@@ -244,8 +247,8 @@ public class AdminRoleController {
   @SwaggerCommonResponseApi
   @DeleteMapping("/role-user")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteRoleUserForAdmin(
-      @RequestBody List<RoleUserReqDto> roleUser) {
-    Map<String, Object> data = roleService.deleteRoleUserForAdmin(roleUser);
+      @RequestBody @Validated(DeleteGroup.class) RoleUserListReqDto roleUsers) {
+    Map<String, Object> data = roleService.deleteRoleUserForAdmin(roleUsers.getRoleUsers());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }

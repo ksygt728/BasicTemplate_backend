@@ -94,4 +94,11 @@ public class TestUtils {
     log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actual);
   }
 
+  /**
+   * @설명 : Object -> JSON String
+   */
+  public static String objectToJson(Object obj) throws Exception {
+    return objectMapper.writeValueAsString(obj);
+  }
+
 }

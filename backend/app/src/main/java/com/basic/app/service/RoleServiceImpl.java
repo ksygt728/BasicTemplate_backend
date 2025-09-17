@@ -10,6 +10,7 @@ import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,6 +56,8 @@ import com.basic.app.util.Validator;
 @Service
 public class RoleServiceImpl implements RoleService {
 
+  private final SecurityFilterChain securityFilterChain;
+
   @Autowired
   private RoleRepository roleRepository;
 
@@ -78,6 +81,10 @@ public class RoleServiceImpl implements RoleService {
 
   @Autowired
   private RoleMenuJooqRepository roleMenuJooqRepository;
+
+  RoleServiceImpl(SecurityFilterChain securityFilterChain) {
+    this.securityFilterChain = securityFilterChain;
+  }
 
   /**
    * @기능 : 관리자용 역할 전체 목록 조회 (페이징)
@@ -317,11 +324,15 @@ public class RoleServiceImpl implements RoleService {
     Map<String, Object> data = new HashMap<>();
 
     // 1. 조건에 맞는 인터페이스 조회
-    Page<RoleUser> roleUsers = roleUserRepository.findByRoleUserIdUserIdAndSts(userId, Status.POSITIVE, pageable);
+    Page<RoleUserResDto> roleUsers = roleUserRepository.findByRoleUserIdUserIdAndSts(userId, Status.POSITIVE, pageable)
+        .map(entity -> entity.toDto(entity));
 
-    // 2. Page -> PageResponse 변환(이미 DTO로 변환된 상태이므로 추가 변환은 필요 없음)
+    // 2. 복합키로 인한 toDto변환 + Page -> PageResponse 변환
+
     PageResponse<RoleUserResDto> pagedRoleUserDtoList = ModelMapperUtils.map(roleUsers,
         RoleUserResDto.class);
+
+    ;
 
     // 3. 결과를 Map에 담아 반환
     data.put("data", pagedRoleUserDtoList);
@@ -392,7 +403,7 @@ public class RoleServiceImpl implements RoleService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", ModelMapperUtils.map(savedRoleUserList, RoleUserResDto.class));
+    data.put("data", savedRoleUserList.stream().map(entity -> entity.toDto(entity)).toList());
     return data;
 
   }

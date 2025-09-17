@@ -1,11 +1,10 @@
 package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.DeleteGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
-import com.basic.app.entity.ComCodeT;
 import com.basic.app.entity.RoleUser;
-import com.basic.app.entity.compositeKey.ComCodeTId;
 import com.basic.app.entity.compositeKey.RoleUserId;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -34,15 +33,15 @@ import lombok.ToString;
 public class RoleUserReqDto extends BaseReqDto {
 
   @Schema(description = "권한코드", example = "ROLE001")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "권한코드는 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class, DeleteGroup.class }, message = "권한코드는 필수입니다.")
   private String roleCd;
 
   @Schema(description = "사용자아이디", example = "user123")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용자아이디는 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class, DeleteGroup.class }, message = "사용자아이디는 필수입니다.")
   private String userId;
 
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")
+  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class, DeleteGroup.class }, message = "사용여부는 필수입니다.")
   private String useYn; // 사용여부 (Y,N)
 
   /**
