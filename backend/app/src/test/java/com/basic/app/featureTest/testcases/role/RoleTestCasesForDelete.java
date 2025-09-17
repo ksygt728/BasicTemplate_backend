@@ -44,7 +44,7 @@ public class RoleTestCasesForDelete implements TestTemplateInvocationContextProv
      * [기능 : 권한 삭제] [테스트항목 : 정상 삭제] [테스트 상세 : ]
      */
     testCases.add(
-        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_USER", "정상 삭제", null,
+        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_USER", "정상 삭제", "[JUnit]ROLE_USER",
             ResponseApi.success(Map.of("data", "success")), status().isOk()));
 
     /*
@@ -53,7 +53,7 @@ public class RoleTestCasesForDelete implements TestTemplateInvocationContextProv
      * [기능 : 권한 삭제] [테스트항목 : 이미 삭제한 항목 삭제 시도] [테스트 상세 : ]
      */
     testCases.add(
-        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_SALES", "이미 삭제한 항목 삭제 시도", null,
+        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_SALES", "이미 삭제한 항목 삭제 시도", "[JUnit]ROLE_SALES",
             ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND),
             status().is4xxClientError()));
 
@@ -63,7 +63,7 @@ public class RoleTestCasesForDelete implements TestTemplateInvocationContextProv
      * [기능 : 권한 삭제] [테스트항목 : 존재하지 않는 ID 삭제 시도] [테스트 상세 : ]
      */
     testCases.add(
-        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_NOT_EXIST", "존재하지 않는 ID 삭제 시도", null,
+        new TestCaseDetail<>(BASE_URL + "/[JUnit]ROLE_NOT_EXIST", "존재하지 않는 ID 삭제 시도", "[JUnit]ROLE_NOT_EXIST",
             ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND),
             status().is4xxClientError()));
     /*
