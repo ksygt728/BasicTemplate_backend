@@ -129,7 +129,7 @@ public class MulLangTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -177,7 +177,7 @@ public class MulLangTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -220,7 +220,7 @@ public class MulLangTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -263,7 +263,7 @@ public class MulLangTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -299,7 +299,7 @@ public class MulLangTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 

@@ -136,7 +136,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -181,7 +181,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -221,7 +221,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -261,7 +261,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -297,7 +297,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -332,7 +332,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -371,7 +371,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -414,7 +414,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -457,7 +457,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -496,7 +496,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 
@@ -535,7 +535,7 @@ public class RoleTestTemplate {
 
       TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-      assertThat(expectedToJson).isEqualTo(actualToJson);
+      assertThat(actualToJson).isEqualTo(expectedToJson);
     }
   }
 

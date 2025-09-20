@@ -143,7 +143,7 @@ public class ComCodeTestTemplate {
 
                         TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                        assertThat(expectedToJson).isEqualTo(actualToJson);
+                        assertThat(actualToJson).isEqualTo(expectedToJson);
                 }
         }
 
@@ -190,7 +190,7 @@ public class ComCodeTestTemplate {
 
         // TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-        // assertThat(expectedToJson).isEqualTo(actualToJson);
+        // assertThat(actualToJson).isEqualTo(expectedToJson);
         // }
         // }
 
@@ -230,7 +230,7 @@ public class ComCodeTestTemplate {
 
                         TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                        assertThat(expectedToJson).isEqualTo(actualToJson);
+                        assertThat(actualToJson).isEqualTo(expectedToJson);
                 }
         }
 
@@ -270,7 +270,7 @@ public class ComCodeTestTemplate {
 
                         TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                        assertThat(expectedToJson).isEqualTo(actualToJson);
+                        assertThat(actualToJson).isEqualTo(expectedToJson);
                 }
         }
 
@@ -306,7 +306,7 @@ public class ComCodeTestTemplate {
 
                         TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                        assertThat(expectedToJson).isEqualTo(actualToJson);
+                        assertThat(actualToJson).isEqualTo(expectedToJson);
 
                         // departmentRepository.findById(((InterfaceReqDto) testData).getIfId())
                         // .ifPresent(actualSts ->
