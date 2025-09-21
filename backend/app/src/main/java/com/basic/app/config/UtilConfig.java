@@ -1,11 +1,3 @@
-/**
- * @파일명   : UtilConfig.java
- * @설명     : 유틸리티 설정
- * @작성자   : 김승연
- * @작성일   : 2025.07.24
- * @변경이력 :
- *   2025.07.24     김승연       최초 생성
- */
 package com.basic.app.config;
 
 import java.text.SimpleDateFormat;
@@ -21,9 +13,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+/**
+ * @파일명 : UtilConfig.java
+ * @설명 : 유틸리티 설정
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Configuration
 public class UtilConfig implements WebMvcConfigurer {
 
+	/**
+	 * @기능 : ModelMapper Bean 설정
+	 * @return ModelMapper 객체 매핑을 위한 ModelMapper 객체
+	 */
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
@@ -34,6 +38,10 @@ public class UtilConfig implements WebMvcConfigurer {
 		return modelMapper;
 	}
 
+	/**
+	 * @기능 : ObjectMapper Bean 설정
+	 * @return ObjectMapper JSON 객체 매핑을 위한 ObjectMapper 객체
+	 */
 	@Bean
 	public ObjectMapper objectMapper() {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -41,12 +49,19 @@ public class UtilConfig implements WebMvcConfigurer {
 		return objectMapper;
 	}
 
+	/**
+	 * @기능 : 현재 시간 포맷 설정
+	 * @return SimpleDateFormat 시간 포맷 객체
+	 */
 	@Bean
 	public SimpleDateFormat currentTimeFormat() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	}
 
-	/* 빈 문자열('') NULL로 처리 */
+	/**
+	 * @기능 : 빈 문자열('') NULL로 처리하는 포매터 등록
+	 * @param registry 포매터 레지스트리
+	 */
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(new Converter<String, String>() {

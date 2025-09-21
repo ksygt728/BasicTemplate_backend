@@ -27,6 +27,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : RoleUser.java
+ * @설명 : 역할-사용자 매핑 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -56,6 +64,11 @@ public class RoleUser extends BaseEntity {
   @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)
 
+  /**
+   * @기능 : 엔티티를 DTO로 변환
+   * @param entity RoleUser 엔티티
+   * @return RoleUserResDto 응답 DTO
+   */
   public RoleUserResDto toDto(RoleUser entity) {
     return RoleUserResDto.builder()
         .userId(entity.getRoleUserId().getUserId())

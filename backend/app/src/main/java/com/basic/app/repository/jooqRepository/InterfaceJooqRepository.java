@@ -1,11 +1,3 @@
-/**
- * @파일명   : UserJooqRepository.java
- * @설명     : JOOQ를 이용한 조회폼 조건별 동적 처리
- * @작성자   : 김승연
- * @작성일   : 2025.07.25
- * @변경이력 :
- *   2025.07.25     김승연       최초 생성
- */
 
 package com.basic.app.repository.jooqRepository;
 
@@ -27,6 +19,14 @@ import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.dto.responseDto.InterfaceResDto;
 import com.basic.app.jooq.generated.tables.TbIf;
 
+/**
+ * @파일명 : InterfaceJooqRepository.java
+ * @설명 : JOOQ를 이용한 인터페이스 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class InterfaceJooqRepository {
@@ -34,6 +34,12 @@ public class InterfaceJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 인터페이스 목록 조회 (조건별 동적 쿼리, 페이징)
+   * @param reqDto   인터페이스 검색 조건 DTO
+   * @param pageable 페이징 정보
+   * @return 인터페이스 목록 페이지
+   */
   public Page<InterfaceResDto> findAllInterfaceWithConditions(InterfaceReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 

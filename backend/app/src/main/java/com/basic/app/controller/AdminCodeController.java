@@ -1,12 +1,4 @@
 
-/**
- * @파일명   : AdminCodeController.java
- * @설명     : 공통 코드 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.controller;
 
 import java.util.Map;
@@ -47,6 +39,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminCodeController.java
+ * @설명 : 공통 코드 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminCodeController", description = "공통코드 API")
 @RestController
 @RequestMapping("/admin/code")
@@ -55,7 +55,14 @@ public class AdminCodeController {
   @Autowired
   private CodeService codeService;
 
-  /* [REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색] */
+  /**
+   * @REQ_ID : REQ_ADM_009_1
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 공통코드 검색
+   * @param reqDto   코드 검색 조건 DTO
+   * @param pageable 페이징 정보
+   * @return 공통코드 검색 결과
+   */
   @Operation(summary = "[REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색]", description = "공통코드 검색 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CodeSearchFormResDto.class)))
   @SwaggerCommonResponseApi
@@ -66,7 +73,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_009_2] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_009_2
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 그룹 코드 조회
+   * @param grpCd 그룹 코드
+   * @return 그룹 코드 상세 정보
+   */
   @Operation(summary = "[REQ_ADM_009_2] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 조회]", description = "그룹 코드 조회 기능 제공")
   @Parameter(name = "grpCd", description = "그뤂코드", example = "TestGroup")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
@@ -77,7 +90,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_010] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_010
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 그룹 코드 추가
+   * @param comCodeM 그룹 코드 정보 DTO
+   * @return 그룹 코드 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_010] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 추가]", description = "그룹 코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
   @SwaggerCommonResponseApi
@@ -88,7 +107,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_011] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_011
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 그룹 코드 수정
+   * @param comCodeM 그룹 코드 정보 DTO
+   * @return 그룹 코드 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_011] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 수정]", description = "그룹 코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
   @SwaggerCommonResponseApi
@@ -99,7 +124,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_012] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_012
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 그룹 코드 삭제
+   * @param grpCd 그룹 코드
+   * @return 그룹 코드 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_012] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 삭제]", description = "그룹 코드 삭제 기능 제공")
   @Parameter(name = "grpCd", description = "그뤂코드", example = "TestGroup")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
@@ -110,7 +141,12 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_013] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_013
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 속성 코드 리스트 조회
+   * @return 속성 코드 리스트 조회 결과
+   */
   // @GetMapping("/attribute")
   // public ResponseEntity<ResponseApi<Map<String, Object>>>
   // findAllAttrCodeForAdmin() {
@@ -118,7 +154,13 @@ public class AdminCodeController {
   // return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   // }
 
-  // /* [REQ_ADM_013_2] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_013_2
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 속성 코드 조회
+   * @param attrCd 속성 코드
+   * @return 속성 코드 상세 정보
+   */
   // @GetMapping("/attribute/{attrCd}")
   // public ResponseEntity<ResponseApi<Map<String, Object>>>
   // findByAttrCodeForAdmin(@PathVariable String attrCd) {
@@ -126,7 +168,13 @@ public class AdminCodeController {
   // return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   // }
 
-  /* [REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_014
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 속성 코드 추가
+   * @param comCodeT 속성 코드 정보 DTO
+   * @return 속성 코드 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가]", description = "속성 코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeTResDto.class)))
   @SwaggerCommonResponseApi
@@ -137,7 +185,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_015] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_015
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 속성 코드 수정
+   * @param comCodeT 속성 코드 정보 DTO
+   * @return 속성 코드 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_015] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 수정]", description = "속성 코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeTResDto.class)))
   @SwaggerCommonResponseApi
@@ -148,7 +202,14 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_016] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_016
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 속성 코드 삭제
+   * @param grpCd  그룹 코드
+   * @param attrCd 속성 코드
+   * @return 속성 코드 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_016] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 삭제]", description = "속성 코드 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
@@ -159,7 +220,12 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_017] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_017
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 상세코드 리스트 조회
+   * @return 상세코드 리스트 조회 결과
+   */
   // @GetMapping("/detail")
   // public ResponseEntity<ResponseApi<Map<String, Object>>>
   // findAllDetailCodeForAdmin() {
@@ -167,7 +233,13 @@ public class AdminCodeController {
   // return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   // }
 
-  // /* [REQ_ADM_017_2] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_017_2
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 상세코드 조회
+   * @param dtlCd 상세 코드
+   * @return 상세코드 상세 정보
+   */
   // @GetMapping("/detail/{dtlCd}")
   // public ResponseEntity<ResponseApi<Map<String, Object>>>
   // findByDetailCodeForAdmin(@PathVariable String dtlCd) {
@@ -175,7 +247,13 @@ public class AdminCodeController {
   // return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   // }
 
-  /* [REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_018
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 상세코드 추가
+   * @param comCodeD 상세코드 정보 DTO
+   * @return 상세코드 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가]", description = "상세코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeDResDto.class)))
   @SwaggerCommonResponseApi
@@ -186,7 +264,13 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_019] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_019
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 상세코드 수정
+   * @param comCodeD 상세코드 정보 DTO
+   * @return 상세코드 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_019] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 수정]", description = "상세코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeDResDto.class)))
   @SwaggerCommonResponseApi
@@ -197,7 +281,15 @@ public class AdminCodeController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_020] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_020
+   * @화면 : 기준 정보 > 코드 관리
+   * @기능 : 상세코드 삭제
+   * @param grpCd  그룹 코드
+   * @param attrCd 속성 코드
+   * @param dtlCd  상세 코드
+   * @return 상세코드 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_020] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 삭제]", description = "상세코드 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi

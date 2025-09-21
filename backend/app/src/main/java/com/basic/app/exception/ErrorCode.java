@@ -1,10 +1,16 @@
 package com.basic.app.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
+/**
+ * @파일명 : ErrorCode.java
+ * @설명 : 애플리케이션 전반에서 사용되는 에러 코드를 정의하는 Enum 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {

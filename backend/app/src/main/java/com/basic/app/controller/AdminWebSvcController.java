@@ -1,11 +1,3 @@
-/**
- * @파일명   : AdminWebSvcController.java
- * @설명     : 웹서비스 연동 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 
 package com.basic.app.controller;
 
@@ -39,6 +31,15 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminWebSvcController.java
+ * @설명 : 웹서비스 연동 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
+
 @Tag(name = "AdminWebSvcController", description = "웹서비스 API")
 @RestController
 @RequestMapping("/admin/webservice")
@@ -47,7 +48,14 @@ public class AdminWebSvcController {
   @Autowired
   private WebSvcService webSvcService;
 
-  /* [REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_027
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 기준정보 리스트 조회
+   * @param searchCondition 검색 조건
+   * @param pageable        페이징 정보
+   * @return 웹서비스 기준정보 목록
+   */
   @Operation(summary = "[REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회]", description = "웹서비스 기준정보 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
@@ -57,7 +65,13 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_027_2] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_027_2
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 기준정보 조회
+   * @param webSvcId 웹서비스 아이디
+   * @return 웹서비스 기준정보 상세
+   */
   @Operation(summary = "[REQ_ADM_027_2] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 조회]", description = "웹서비스 기준정보 조회 기능 제공")
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
@@ -68,7 +82,13 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_030
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 추가
+   * @param request 웹서비스 추가 요청
+   * @return 웹서비스 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가]", description = "웹서비스 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
@@ -79,7 +99,14 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_031
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 수정
+   * @param webSvcId 웹서비스 아이디
+   * @param request  웹서비스 수정 요청
+   * @return 웹서비스 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정]", description = "웹서비스 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
@@ -90,7 +117,13 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_032] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_032
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 삭제
+   * @param webSvcId 웹서비스 아이디
+   * @return 웹서비스 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_032] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 삭제]", description = "웹서비스 삭제 기능 제공")
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
@@ -101,7 +134,14 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_028] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 직접 실행] */
+  /**
+   * @REQ_ID : REQ_ADM_028
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 직접 실행
+   * @param webSvcId 웹서비스 아이디
+   * @param request  웹서비스 실행 요청
+   * @return 웹서비스 실행 결과
+   */
   @Operation(summary = "[REQ_ADM_028] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 직접 실행]", description = "웹서비스 직접 실행 기능 제공")
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
@@ -112,7 +152,14 @@ public class AdminWebSvcController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_029] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 이력조회] */
+  /**
+   * @REQ_ID : REQ_ADM_029
+   * @화면 : 기준 정보 > 웹서비스 관리
+   * @기능 : 웹서비스 이력조회
+   * @param searchCondition 검색 조건
+   * @param pageable        페이징 정보
+   * @return 웹서비스 이력 목록
+   */
   @Operation(summary = "[REQ_ADM_029] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 이력조회]", description = "웹서비스 이력조회 기능 제공")
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))

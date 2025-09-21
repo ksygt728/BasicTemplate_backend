@@ -24,6 +24,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : BaseEntity.java
+ * @설명 : 기본 엔티티 클래스 - 공통 필드 및 Auditing 기능 제공
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -55,6 +63,11 @@ public abstract class BaseEntity {
   @Column(name = "TIMESTAMP", columnDefinition = "TIMESTAMP(3)", nullable = false)
   private LocalDateTime timestamp; // 수정일시
 
+  /**
+   * @기능 : Entity를 DTO로 변환
+   * @param targetClass 변환할 대상 DTO 클래스
+   * @return 변환된 DTO 객체
+   */
   public <T> T toDto(Class<T> targetClass) {
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.getConfiguration()

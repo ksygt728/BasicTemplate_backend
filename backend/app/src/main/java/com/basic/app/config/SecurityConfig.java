@@ -25,6 +25,14 @@ import com.basic.app.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @파일명 : SecurityConfig.java
+ * @설명 : Spring Security 설정 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -50,7 +58,11 @@ public class SecurityConfig {
   private StringRedisTemplate redisTemplate;
 
   /**
-   * SecurityFilterChain 설정 (WebSecurityConfigurerAdapter 대체)
+   * @기능 : SecurityFilterChain 설정 (WebSecurityConfigurerAdapter 대체)
+   * @param http                  HttpSecurity 객체
+   * @param authenticationManager 인증 매니저
+   * @return SecurityFilterChain 보안 필터 체인 객체
+   * @throws Exception 설정 중 발생할 수 있는 예외
    */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager)
@@ -101,7 +113,8 @@ public class SecurityConfig {
   }
 
   /**
-   * 비밀번호 암호화에 사용할 인코더 Bean 등록(로그인시 자동으로 비교)
+   * @기능 : 비밀번호 암호화에 사용할 인코더 Bean 등록 (로그인시 자동으로 비교)
+   * @return BCryptPasswordEncoder 비밀번호 암호화 인코더 객체
    */
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
@@ -109,7 +122,10 @@ public class SecurityConfig {
   }
 
   /**
-   * AuthenticationManager 등록
+   * @기능 : AuthenticationManager 등록
+   * @param authenticationConfiguration 인증 설정 객체
+   * @return AuthenticationManager 인증 매니저 객체
+   * @throws Exception 설정 중 발생할 수 있는 예외
    */
   @Bean
   public AuthenticationManager authenticationManager(

@@ -25,8 +25,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
-/* 권한이나 인증이 필요한 특정주소를 요청했을때 BasicAuthenticationFilter를 탐.
-   권한이나 인증이 필요하지 않은 요청은 타지 않음 */
+/**
+ * @파일명 : JwtAuthorizationFilter.java
+ * @설명 : JWT 인증 필터 클래스
+ *     권한이나 인증이 필요한 특정주소를 요청했을때 BasicAuthenticationFilter를 탐.
+ *     권한이나 인증이 필요하지 않은 요청은 타지 않음
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Log4j2
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -37,6 +45,14 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
+  /**
+   * @기능 : JwtAuthorizationFilter 생성자
+   * @param authenticationManager    인증 매니저
+   * @param jwtProvider              JWT 프로바이더
+   * @param jwtProperties            JWT 설정
+   * @param customUserDetailsService 사용자 상세 서비스
+   * @param redisTemplate            Redis 템플릿
+   */
   public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtProvider jwtProvider,
       JwtProperties jwtProperties,
       CustomUserDetailsService customUserDetailsService, StringRedisTemplate redisTemplate) {
@@ -47,6 +63,12 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     this.redisTemplate = redisTemplate;
   }
 
+  /**
+   * @기능 : JWT 인증 필터 내부 처리
+   * @param request  HTTP 요청
+   * @param response HTTP 응답
+   * @param chain    필터 체인
+   */
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
       throws IOException, ServletException {
@@ -189,6 +211,12 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
   }
 
+  /**
+   * @기능 : 에러 로그 형식 출력 및 응답 처리
+   * @param response  HTTP 응답
+   * @param e         발생한 예외
+   * @param errorCode 에러 코드
+   */
   public void showErrorLogFormat(HttpServletResponse response, Exception e, ErrorCode errorCode) throws Exception {
 
     log.error(

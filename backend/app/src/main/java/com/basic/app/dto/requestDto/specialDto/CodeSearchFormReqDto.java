@@ -1,11 +1,4 @@
-/**
- * @파일명   : CodeSearchFormReqDto.java
- * @설명     : 
- * @작성자   : 김승연
- * @작성일   : 2025.08.15
- * @변경이력 :
- *   2025.08.15     김승연       최초 생성
- */
+
 package com.basic.app.dto.requestDto.specialDto;
 
 import com.basic.app.dto.requestDto.baseReqDto.BaseReqDto;
@@ -18,6 +11,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : CodeSearchFormReqDto.java
+ * @설명 : 코드 검색 폼 요청 DTO
+ * @작성자 : 김승연
+ * @작성일 : 2025.08.15
+ * @변경이력 :
+ *       2025.08.15 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString

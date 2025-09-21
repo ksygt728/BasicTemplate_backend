@@ -41,6 +41,14 @@ import com.basic.app.util.Status;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : SchedulerServiceImpl.java
+ * @설명 : 스케줄러 관련 서비스 구현체 (Quartz 스케줄러 관리)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Log4j2
 @Transactional
 @Service
@@ -58,6 +66,9 @@ public class SchedulerServiceImpl implements SchedulerService {
   @Autowired
   private SchedulerHistoryRepository schedulerHistoryRepository;
 
+  /**
+   * @기능 : 스케줄러 초기화 (애플리케이션 시작 시 활성화된 모든 스케줄러 등록)
+   */
   @PostConstruct
   public void init() {
 
@@ -87,6 +98,10 @@ public class SchedulerServiceImpl implements SchedulerService {
     }
   }
 
+  /**
+   * @기능 : 특정 스케줄러 초기화 및 등록
+   * @param scheM 스케줄러 마스터 정보
+   */
   @Override
   public void init(ScheM scheM) {
     try {
@@ -126,6 +141,12 @@ public class SchedulerServiceImpl implements SchedulerService {
     }
   }
 
+  /**
+   * @기능 : 관리자용 스케줄러 전체 목록 조회 (페이징)
+   * @param scheMReqDto 스케줄러 검색 조건 DTO
+   * @param pageable    페이징 정보
+   * @return 스케줄러 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
       Pageable pageable) {
@@ -145,6 +166,11 @@ public class SchedulerServiceImpl implements SchedulerService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 스케줄러 상세 조회
+   * @param scheId 스케줄러 ID
+   * @return 스케줄러 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findBySchedulerForAdmin(String scheId) {
 
@@ -162,6 +188,12 @@ public class SchedulerServiceImpl implements SchedulerService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 스케줄러의 실행 이력 조회 (페이징)
+   * @param scheId   스케줄러 ID
+   * @param pageable 페이징 정보
+   * @return 스케줄러 실행 이력 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findBySchedulerHistoryForAdmin(String scheId, Pageable pageable) {
 
@@ -181,6 +213,11 @@ public class SchedulerServiceImpl implements SchedulerService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 스케줄러 즉시 실행
+   * @param scheId 실행할 스케줄러 ID
+   * @return 실행 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> executeSchedulerForAdmin(String scheId) {
 
@@ -206,6 +243,11 @@ public class SchedulerServiceImpl implements SchedulerService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 스케줄러 신규 등록
+   * @param scheMDto 스케줄러 등록 요청 DTO
+   * @return 등록된 스케줄러 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertSchedulerForAdmin(ScheMReqDto scheMDto) {
     Map<String, Object> data = new HashMap<>();
@@ -231,6 +273,11 @@ public class SchedulerServiceImpl implements SchedulerService {
 
   }
 
+  /**
+   * @기능 : 관리자용 스케줄러 정보 수정 (스케줄러 재등록 포함)
+   * @param scheMDto 스케줄러 수정 요청 DTO
+   * @return 수정된 스케줄러 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateSchedulerForAdmin(ScheMReqDto scheMDto) {
     Map<String, Object> data = new HashMap<>();
@@ -255,6 +302,11 @@ public class SchedulerServiceImpl implements SchedulerService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 스케줄러 삭제 (스케줄러 비활성화 포함)
+   * @param scheId 삭제할 스케줄러 ID
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteSchedulerForAdmin(String scheId) {
     Map<String, Object> data = new HashMap<>();

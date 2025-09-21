@@ -1,3 +1,4 @@
+
 package com.basic.app.service.specialService;
 
 import java.text.MessageFormat;
@@ -9,6 +10,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import com.basic.app.repository.MulLangRepository;
@@ -16,6 +18,14 @@ import com.basic.app.util.Status;
 
 import jakarta.annotation.PostConstruct;
 
+/**
+ * @파일명 : MessageSource.java
+ * @설명 : 다국어 메시지 소스 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Component
 public class MessageSource extends AbstractMessageSource {
 
@@ -28,6 +38,10 @@ public class MessageSource extends AbstractMessageSource {
   private RedisTemplate<String, String> redisTemplate;
 
   // 초기 로딩
+  /**
+   * @기능 : 전체 다국어 메시지를 Redis 캐시에 로딩
+   * @return 없음
+   */
   @PostConstruct
   public void loadMessages() {
     // 1. 기존 Redis 캐시 삭제
@@ -48,14 +62,21 @@ public class MessageSource extends AbstractMessageSource {
   }
 
   // API 호출 시 캐시 갱신
+  /**
+   * @기능 : API 호출 시 Redis 캐시를 갱신
+   * @return 없음
+   */
   public void reloadCache() {
-
     loadMessages();
   }
 
   // Front End에서 실제 사용할 메세지 항목 대상
+  /**
+   * @기능 : 프론트엔드에서 사용할 다국어 메시지 목록 조회
+   * @param localeText 언어 구분 문자열 (예: ko, en, zh)
+   * @return code별 메시지 Map
+   */
   public Map<String, String> getMessageList(String localeText) {
-
     Map<String, String> messages = new LinkedHashMap<>();
     Set<String> keys = redisTemplate.keys(CACHE_PREFIX + localeText + "|*");
     if (keys != null) {
@@ -72,10 +93,15 @@ public class MessageSource extends AbstractMessageSource {
   }
 
   // Back End에서 사용할 메세지 대상
+  /**
+   * @기능 : 백엔드에서 사용할 다국어 메시지 조회
+   * @param code       메시지 코드
+   * @param localeText 언어 구분 문자열 (예: ko, en, zh)
+   * @param args       메시지 포맷팅에 사용할 파라미터
+   * @return 포맷팅된 메시지 문자열 (없으면 code 반환)
+   */
   public String getMessage(String code, String localeText, Object[] args) {
-
     Locale locale = null;
-
     if (localeText == null || localeText.isEmpty() || localeText.equals("ko"))
       locale = Locale.KOREAN;
     else if (localeText.equals("en"))
@@ -94,7 +120,7 @@ public class MessageSource extends AbstractMessageSource {
   }
 
   @Override
-  protected MessageFormat resolveCode(String code, Locale locale) {
+  protected MessageFormat resolveCode(@NonNull String code, @NonNull Locale locale) {
     String key = CACHE_PREFIX + locale.getLanguage() + "|" + code;
     String message = redisTemplate.opsForValue().get(key);
     return message != null ? new MessageFormat(message, locale) : null;

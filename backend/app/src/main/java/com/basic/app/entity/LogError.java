@@ -17,6 +17,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : LogError.java
+ * @설명 : 에러 로그 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -32,6 +40,9 @@ public class LogError extends BaseEntity {
   @Column(name = "ERR_ID", length = 36)
   private String errId;
 
+  /**
+   * @기능 : 엔티티 저장 전 ID 자동 생성
+   */
   @PrePersist
   public void prePersist() {
     if (errId == null) {

@@ -1,11 +1,4 @@
-/**
- * @파일명   : AdminBbsController.java
- * @설명     : 게시판 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
+
 package com.basic.app.controller;
 
 import java.util.Map;
@@ -46,6 +39,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminBbsController.java
+ * @설명 : 게시판 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminBbsController", description = "게시판 API")
 @RestController
 @RequestMapping("/admin/bbs")
@@ -54,7 +55,14 @@ public class AdminBbsController {
   @Autowired
   private BbsService bbsService;
 
-  /* [REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_081
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 게시판 리스트 조회
+   * @param bbsReqDto 게시판 검색 조건 DTO
+   * @param pageable  페이징 정보
+   * @return 게시판 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 리스트 조회]", description = "시스템 관리 > 게시판 관리의 게시판 리스트를 조회합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
@@ -65,7 +73,13 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_082] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 상세 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_082
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 게시판 상세 조회
+   * @param bbsId 게시판 아이디
+   * @return 게시판 상세 정보
+   */
   @Operation(summary = "[REQ_ADM_082] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 상세 조회]", description = "시스템 관리 > 게시판 관리의 게시판 상세 정보를 조회합니다.")
   @Parameter(name = "bbsId", description = "게시판 아이디", example = "bbs123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
@@ -76,7 +90,14 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_083
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 게시판 추가
+   * @param bbs  게시판 정보 DTO
+   * @param user 사용자 정보
+   * @return 게시판 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 추가]", description = "시스템 관리 > 게시판 관리에 게시판을 추가합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
@@ -88,7 +109,13 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_084
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 게시판 수정
+   * @param bbs 게시판 정보 DTO
+   * @return 게시판 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 수정]", description = "시스템 관리 > 게시판 관리의 게시판을 수정합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
@@ -100,7 +127,13 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_085] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_085
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 게시판 삭제
+   * @param bbsId 게시판 아이디
+   * @return 게시판 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_085] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 삭제]", description = "시스템 관리 > 게시판 관리의 게시판을 삭제합니다.")
   @Parameter(name = "bbsId", description = "게시판 아이디", example = "bbs123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
@@ -121,7 +154,14 @@ public class AdminBbsController {
   
   
    */
-  /* [REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_081
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 댓글 리스트 조회
+   * @param bbsId    게시판 아이디
+   * @param pageable 페이징 정보
+   * @return 댓글 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 리스트 조회]", description = "시스템 관리 > 게시글의 댓글리스트를 조회합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
@@ -132,7 +172,13 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_082] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 1건 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_082
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 댓글 1건 조회
+   * @param commentId 댓글 아이디
+   * @return 댓글 상세 정보
+   */
   @Operation(summary = "[REQ_ADM_082] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 1건 조회]", description = "시스템 관리 > 댓글 정보를 조회합니다.")
   @Parameter(name = "commentId", description = "댓글 아이디", example = "comment123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
@@ -143,7 +189,14 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_083
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 댓글 추가
+   * @param bbsCommentReqDto 댓글 정보 DTO
+   * @param user             사용자 정보
+   * @return 댓글 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 추가]", description = "시스템 관리 > 댓글을 추가합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
@@ -156,7 +209,14 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_084
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 댓글 수정
+   * @param bbsCommentReqDto 댓글 정보 DTO
+   * @param user             사용자 정보
+   * @return 댓글 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 수정]", description = "시스템 관리 > 댓글을 수정합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
@@ -169,7 +229,13 @@ public class AdminBbsController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_085] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_085
+   * @화면 : 시스템 관리 > 게시판 관리
+   * @기능 : 댓글 삭제
+   * @param commentId 댓글 아이디
+   * @return 댓글 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_085] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 삭제]", description = "시스템 관리 > 댓글을 삭제합니다.")
   @Parameter(name = "commentId", description = "댓글 아이디", example = "comment123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))

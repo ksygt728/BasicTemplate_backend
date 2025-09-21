@@ -1,11 +1,4 @@
-/**
- * @파일명   : AdminLogController.java
- * @설명     : 시스템 로그(접속, 오류 등) 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
+
 package com.basic.app.controller;
 
 import java.util.Map;
@@ -36,6 +29,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminLogController.java
+ * @설명 : 시스템 로그(접속, 오류 등) 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminLogController", description = "로그 API")
 @RestController
 @RequestMapping("/admin/log") // Logs 및 Errors는 admin 하위에 직접 배치
@@ -44,7 +45,14 @@ public class AdminLogController {
   @Autowired
   private LogService logService;
 
-  /* [REQ_ADM_064] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_064
+   * @화면 : 시스템 관리 > 사용자 접속 로그
+   * @기능 : 사용자 접속로그 리스트 조회
+   * @param logApiReqDto 접속 로그 검색 조건 DTO
+   * @param pageable     페이징 정보
+   * @return 사용자 접속로그 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_064] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 리스트 조회]", description = "사용자 접속로그 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogApiResDto.class)))
   @SwaggerCommonResponseApi
@@ -58,7 +66,13 @@ public class AdminLogController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_064_2] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_064_2
+   * @화면 : 시스템 관리 > 사용자 접속 로그
+   * @기능 : 사용자 접속로그 조회
+   * @param logId 접속 로그 아이디
+   * @return 사용자 접속로그 상세 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_064_2] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 조회]", description = "사용자 접속로그 조회 기능 제공")
   @Parameter(name = "logId", description = "접속 로그 아이디", example = "LOG0001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogApiResDto.class)))
@@ -69,7 +83,14 @@ public class AdminLogController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_065] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_065
+   * @화면 : 시스템 관리 > Error 관리
+   * @기능 : 에러 리스트 조회
+   * @param logErrorReqDto 에러 로그 검색 조건 DTO
+   * @param pageable       페이징 정보
+   * @return 에러 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_065] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 리스트 조회]", description = "에러 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogErrorResDto.class)))
   @SwaggerCommonResponseApi
@@ -82,7 +103,13 @@ public class AdminLogController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_066] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 상세정보 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_066
+   * @화면 : 시스템 관리 > Error 관리
+   * @기능 : 에러 상세정보 조회
+   * @param errId 에러 아이디
+   * @return 에러 상세정보 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_066] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 상세정보 조회]", description = "에러 상세정보 조회 기능 제공")
   @Parameter(name = "errId", description = "에러 아이디", example = "ERR0001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogErrorResDto.class)))

@@ -15,8 +15,12 @@ import lombok.extern.log4j.Log4j2;
 @Component
 public class Validator {
 
-  /*
-   * 모두 존재하는 경우 (List형식의 update, delete에서 사용)
+  /**
+   * @기능 : 모든 엔티티가 존재하는지 검증 (List형식의 update, delete에서 사용)
+   * @param jpaRepository JPA 레포지토리
+   * @param idExtractor   ID 추출 함수
+   * @param keys          검증할 키 목록
+   * @return 모든 엔티티가 존재하면 엔티티 목록, 없으면 빈 Optional
    */
   public static <S extends BaseEntity, K> Optional<List<S>> existsAll(JpaRepository<S, K> jpaRepository,
       Function<S, K> idExtractor, List<K> keys) {
@@ -31,8 +35,11 @@ public class Validator {
         : Optional.empty();
   }
 
-  /*
-   * 하나라도 존재하는 경우 (List형식의 insert에서 사용)
+  /**
+   * @기능 : 하나라도 존재하는지 검증 (List형식의 insert에서 사용)
+   * @param jpaRepository JPA 레포지토리
+   * @param keys          검증할 키 목록
+   * @return 하나라도 존재하면 엔티티 목록, 없으면 빈 Optional
    */
   public static <S extends BaseEntity, K> Optional<List<S>> existsOne(JpaRepository<S, K> jpaRepository,
       List<K> keys) {

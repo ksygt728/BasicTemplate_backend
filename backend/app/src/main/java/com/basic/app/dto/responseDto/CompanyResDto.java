@@ -1,11 +1,3 @@
-/**
- * @파일명   : CompanyResDto.java
- * @설명     : 
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.dto.responseDto;
 
 import java.time.LocalDateTime;
@@ -21,6 +13,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : CompanyResDto.java
+ * @설명 : 회사 정보 응답 데이터 전송 객체
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -34,5 +34,6 @@ public class CompanyResDto {
   private String companyName; // 회사명
 
   // Company - Department (1:N)
-  // private List<DepartmentResDto> dpets = new ArrayList<DepartmentResDto>(); // 부서 리스트
+  // private List<DepartmentResDto> dpets = new ArrayList<DepartmentResDto>(); //
+  // 부서 리스트
 }

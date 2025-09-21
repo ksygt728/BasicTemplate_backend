@@ -1,11 +1,3 @@
-/**
- * @파일명   : MenuJooqRepository.java
- * @설명     : JOOQ를 이용한 메뉴 조회폼 조건별 동적 처리
- * @작성자   : 김승연
- * @작성일   : 2025.08.25
- * @변경이력 :
- *   2025.08.25     김승연       최초 생성
- */
 
 package com.basic.app.repository.jooqRepository;
 
@@ -29,6 +21,14 @@ import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.dto.responseDto.MenuResDto;
 import com.basic.app.jooq.generated.tables.TbMenu;
 
+/**
+ * @파일명 : MenuJooqRepository.java
+ * @설명 : JOOQ를 이용한 메뉴 조회폼 조건별 동적 처리 (재귀 CTE 사용)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class MenuJooqRepository {
@@ -36,6 +36,12 @@ public class MenuJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 메뉴 목록 조회 (조건별 동적 쿼리, 재귀 CTE, 페이징)
+   * @param menuReqDto 메뉴 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 메뉴 목록 페이지
+   */
   public Page<MenuResDto> findAllMenuWithConditions(MenuReqDto menuReqDto, Pageable pageable) {
 
     TbMenu MENU = TbMenu.TB_MENU;

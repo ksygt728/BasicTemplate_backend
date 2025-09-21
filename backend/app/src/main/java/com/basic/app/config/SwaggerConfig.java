@@ -14,12 +14,24 @@ import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
+/**
+ * @파일명 : SwaggerConfig.java
+ * @설명 : Swagger OpenAPI 설정 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Configuration
 public class SwaggerConfig {
 
         @Value("${jwt.access-token-header}")
         private String headerName;
 
+        /**
+         * @기능 : 커스텀 OpenAPI 설정 생성
+         * @return OpenAPI Swagger 문서 설정 객체
+         */
         @Bean
         public OpenAPI customOpenAPI() {
                 return new OpenAPI()

@@ -160,7 +160,7 @@ public class InterfaceTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(actualToJson).isEqualTo(expectedToJson);
 
         }
 
@@ -199,7 +199,7 @@ public class InterfaceTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(actualToJson).isEqualTo(expectedToJson);
 
         }
 
@@ -234,7 +234,7 @@ public class InterfaceTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(actualToJson).isEqualTo(expectedToJson);
 
         }
 
@@ -269,7 +269,7 @@ public class InterfaceTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(actualToJson).isEqualTo(expectedToJson);
 
         }
 
@@ -301,7 +301,7 @@ public class InterfaceTestTemplate {
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 
-                assertThat(expectedToJson).isEqualTo(actualToJson);
+                assertThat(actualToJson).isEqualTo(expectedToJson);
 
                 interfaceRepository.findById(((InterfaceReqDto) testData).getIfId())
                                 .ifPresent(actualSts -> assertThat(Status.NAGATIVE).isEqualTo(actualSts.getSts()));

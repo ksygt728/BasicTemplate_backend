@@ -1,11 +1,3 @@
-/**
- * @파일명   : AdminRoleController.java
- * @설명     : 사용자 권한 및 역할 관리 기능 제공 컨트롤러
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 
 package com.basic.app.controller;
 
@@ -32,11 +24,14 @@ import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
 import com.basic.app.dto.group.CreateGroup;
+import com.basic.app.dto.group.DeleteGroup;
 import com.basic.app.dto.group.UpdateGroup;
 import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
 import com.basic.app.dto.requestDto.UserReqDto;
+import com.basic.app.dto.requestDto.wrapperDto.RoleMenuListReqDto;
+import com.basic.app.dto.requestDto.wrapperDto.RoleUserListReqDto;
 import com.basic.app.dto.responseDto.RoleMenuResDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.dto.responseDto.RoleUserResDto;
@@ -49,6 +44,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * @파일명 : AdminRoleController.java
+ * @설명 : 사용자 권한 및 역할 관리 기능 제공 컨트롤러
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Tag(name = "AdminRoleController", description = "권한 API")
 @RestController
 @RequestMapping("/admin/role")
@@ -57,7 +60,14 @@ public class AdminRoleController {
   @Autowired
   private RoleService roleService;
 
-  /* [REQ_ADM_042] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_042
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한 리스트 조회
+   * @param roleReqDto 권한 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 권한 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_042] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 리스트 조회]", description = "권한 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
@@ -70,7 +80,13 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_042_2] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_042_2
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한 조회
+   * @param roleCd 권한 코드
+   * @return 권한 상세 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_042_2] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 조회]", description = "권한 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
@@ -80,7 +96,13 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_045] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_045
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한 추가
+   * @param roleReqDto 권한 정보 DTO
+   * @return 권한 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_045] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 추가]", description = "권한 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
@@ -91,7 +113,13 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_046] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_046
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한 수정
+   * @param roleReqDto 권한 정보 DTO
+   * @return 권한 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_046] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 수정]", description = "권한 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleResDto.class)))
   @SwaggerCommonResponseApi
@@ -102,7 +130,13 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_047] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_047
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한 삭제
+   * @param roleCd 권한 코드
+   * @return 권한 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_047] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한 삭제]", description = "권한 삭제 기능 제공")
   @Parameter(name = "roleCd", description = "권한 코드", example = "ROLE_ADMIN")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
@@ -113,7 +147,13 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_043] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_043
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한별 메뉴 리스트 조회
+   * @param roleCd 권한 코드
+   * @return 권한별 메뉴 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_043] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 조회]", description = "권한별 메뉴 리스트 조회 기능 제공")
   @Parameter(name = "roleCd", description = "권한 코드", example = "ROLE_ADMIN")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleMenuResDto.class)))
@@ -124,18 +164,31 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_044] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 수정] */
+  /**
+   * @REQ_ID : REQ_ADM_044
+   * @화면 : 권한 관리 > 권한 관리(Role)
+   * @기능 : 권한별 메뉴 리스트 수정
+   * @param roleMenus 권한별 메뉴 리스트 DTO
+   * @return 권한별 메뉴 리스트 수정 결과
+   */
   @Operation(summary = "[REQ_ADM_044] [화면 : 권한 관리 > 권한 관리(Role)] [기능 : 권한별 메뉴 리스트 수정]", description = "권한별 메뉴 리스트 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleMenuResDto.class)))
   @SwaggerCommonResponseApi
   @PutMapping("/role-menu")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateRoleMenuForAdmin(
-      @RequestBody @Validated(UpdateGroup.class) List<RoleMenuReqDto> roleMenu) {
-    Map<String, Object> data = roleService.updateRoleMenuForAdmin(roleMenu);
+      @RequestBody @Validated(UpdateGroup.class) RoleMenuListReqDto roleMenus) {
+    Map<String, Object> data = roleService.updateRoleMenuForAdmin(roleMenus.getRoleMenus());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_048] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자 리스트 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_048
+   * @화면 : 권한 관리 > 사용자별 권한
+   * @기능 : 사용자 리스트 조회
+   * @param userReqDto 사용자 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 사용자별 권한 사용자 리스트 조회 결과
+   */
   @Operation(summary = "[REQ_ADM_048] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자 리스트 조회]", description = "사용자별 권한 사용자 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleUserResDto.class)))
   @SwaggerCommonResponseApi
@@ -146,7 +199,14 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_049] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 조회] */
+  /**
+   * @REQ_ID : REQ_ADM_049
+   * @화면 : 권한 관리 > 사용자별 권한
+   * @기능 : 사용자별 권한 조회
+   * @param searchCondition 검색 조건
+   * @param pageable        페이징 정보
+   * @return 사용자별 권한 목록
+   */
   @Operation(summary = "[REQ_ADM_049] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 조회]", description = "사용자별 권한 조회 기능 제공")
   @Parameter(name = "userId", description = "사용자 아이디", example = "user123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleUserResDto.class)))
@@ -158,25 +218,37 @@ public class AdminRoleController {
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_050] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 추가] */
+  /**
+   * @REQ_ID : REQ_ADM_050
+   * @화면 : 권한 관리 > 사용자별 권한
+   * @기능 : 사용자별 권한 추가
+   * @param roleUsers 사용자별 권한 추가 요청
+   * @return 사용자별 권한 추가 결과
+   */
   @Operation(summary = "[REQ_ADM_050] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 추가]", description = "사용자별 권한 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = RoleUserResDto.class)))
   @SwaggerCommonResponseApi
   @PostMapping("/role-user")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertRoleUserForAdmin(
-      @RequestBody @Validated(CreateGroup.class) List<RoleUserReqDto> roleUser) {
-    Map<String, Object> data = roleService.insertRoleUserForAdmin(roleUser);
+      @RequestBody @Validated(CreateGroup.class) RoleUserListReqDto roleUsers) {
+    Map<String, Object> data = roleService.insertRoleUserForAdmin(roleUsers.getRoleUsers());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 
-  /* [REQ_ADM_052] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 삭제] */
+  /**
+   * @REQ_ID : REQ_ADM_052
+   * @화면 : 권한 관리 > 사용자별 권한
+   * @기능 : 사용자별 권한 삭제
+   * @param userRoleId 사용자별 권한 아이디
+   * @return 사용자별 권한 삭제 결과
+   */
   @Operation(summary = "[REQ_ADM_052] [화면 : 권한 관리 > 사용자별 권한] [기능 : 사용자별 권한 삭제]", description = "사용자별 권한 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
   @DeleteMapping("/role-user")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteRoleUserForAdmin(
-      @RequestBody List<RoleUserReqDto> roleUser) {
-    Map<String, Object> data = roleService.deleteRoleUserForAdmin(roleUser);
+      @RequestBody @Validated(DeleteGroup.class) RoleUserListReqDto roleUsers) {
+    Map<String, Object> data = roleService.deleteRoleUserForAdmin(roleUsers.getRoleUsers());
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
 }

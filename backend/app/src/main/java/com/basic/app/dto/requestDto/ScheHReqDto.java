@@ -1,11 +1,3 @@
-/**
- * @파일명   : ScheHReqDto.java
- * @설명     : 
- * @작성자   : 김승연
- * @작성일   : 2025.07.23
- * @변경이력 :
- *   2025.07.23     김승연       최초 생성
- */
 package com.basic.app.dto.requestDto;
 
 import com.basic.app.dto.group.CreateGroup;
@@ -22,6 +14,14 @@ import lombok.Setter;
 import lombok.ToString;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * @파일명 : ScheHReqDto.java
+ * @설명 : 스케줄 이력 요청 DTO
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString

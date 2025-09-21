@@ -26,6 +26,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : ComCodeT.java
+ * @설명 : 공통코드 속성 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -57,16 +65,23 @@ public class ComCodeT extends BaseEntity {
   @OneToMany(mappedBy = "comCodeT", fetch = FetchType.LAZY)
   private List<ComCodeD> comCodeDs = new ArrayList<ComCodeD>(); // 속성코드에 포함된 상세코드 리스트
 
+  /**
+   * @기능 : Entity를 DTO로 변환
+   * @param entity 변환할 ComCodeT 엔티티
+   * @return 변환된 ComCodeTResDto 객체
+   */
   public ComCodeTResDto toDto(ComCodeT entity) {
     return ComCodeTResDto.builder()
         .attrCd(entity.getComCodeTId().getAttrCd())
         .attrNm(entity.getAttrNm())
         .orderNum(entity.getOrderNum())
         .comCodeDs(
-            entity.getComCodeDs().stream()
-                .filter(target -> target.getSts().equals(Status.POSITIVE) && target.getUseYn().equals("Y"))
-                .map(target -> target.toDto(target))
-                .toList())
+            entity.getComCodeDs() != null
+                ? entity.getComCodeDs().stream()
+                    .filter(target -> target.getSts().equals(Status.POSITIVE) && target.getUseYn().equals("Y"))
+                    .map(target -> target.toDto(target))
+                    .toList()
+                : new ArrayList<>())
         .build();
   }
 
