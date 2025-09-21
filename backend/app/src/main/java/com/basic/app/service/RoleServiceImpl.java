@@ -10,6 +10,7 @@ import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +44,19 @@ import com.basic.app.service.interfaces.RoleService;
 import com.basic.app.util.Status;
 import com.basic.app.util.Validator;
 
+/**
+ * @파일명 : RoleServiceImpl.java
+ * @설명 : 역할 관련 서비스 구현체 (역할, 역할-메뉴, 역할-사용자 관리)
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Transactional
 @Service
 public class RoleServiceImpl implements RoleService {
+
+  private final SecurityFilterChain securityFilterChain;
 
   @Autowired
   private RoleRepository roleRepository;
@@ -71,6 +82,16 @@ public class RoleServiceImpl implements RoleService {
   @Autowired
   private RoleMenuJooqRepository roleMenuJooqRepository;
 
+  RoleServiceImpl(SecurityFilterChain securityFilterChain) {
+    this.securityFilterChain = securityFilterChain;
+  }
+
+  /**
+   * @기능 : 관리자용 역할 전체 목록 조회 (페이징)
+   * @param roleReqDto 역할 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 역할 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllRoleForAdmin(RoleReqDto roleReqDto, Pageable pageable) {
 
@@ -89,6 +110,11 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 역할 상세 조회
+   * @param roleCd 역할 코드
+   * @return 역할 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByRoleForAdmin(String roleCd) {
     Map<String, Object> data = new HashMap<>();
@@ -105,6 +131,11 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 역할 신규 등록
+   * @param roleReqDto 역할 등록 요청 DTO
+   * @return 등록된 역할 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertRoleForAdmin(RoleReqDto roleReqDto) {
 
@@ -129,6 +160,11 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 역할 정보 수정
+   * @param roleReqDto 역할 수정 요청 DTO
+   * @return 수정된 역할 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateRoleForAdmin(RoleReqDto roleReqDto) {
 
@@ -152,6 +188,11 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 역할 삭제 (관련 역할-사용자도 함께 삭제)
+   * @param roleCd 삭제할 역할 코드
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteRoleForAdmin(String roleCd) {
     Map<String, Object> data = new HashMap<>();
@@ -177,6 +218,11 @@ public class RoleServiceImpl implements RoleService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 역할의 메뉴 권한 조회 (트리 구조)
+   * @param roleCd 역할 코드
+   * @return 역할별 메뉴 권한 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByRoleMenuForAdmin(String roleCd) {
 
@@ -216,6 +262,11 @@ public class RoleServiceImpl implements RoleService {
 
   }
 
+  /**
+   * @기능 : 관리자용 특정 역할의 메뉴 권한 수정
+   * @param roleMenuReqDtoList 역할-메뉴 수정 요청 DTO 목록
+   * @return 수정된 역할-메뉴 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateRoleMenuForAdmin(List<RoleMenuReqDto> roleMenuReqDtoList) {
     Map<String, Object> data = new HashMap<>();
@@ -261,17 +312,27 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 사용자의 역할 조회 (페이징)
+   * @param userId   사용자 ID
+   * @param pageable 페이징 정보
+   * @return 사용자별 역할 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByRoleUserForAdmin(String userId, Pageable pageable) {
 
     Map<String, Object> data = new HashMap<>();
 
     // 1. 조건에 맞는 인터페이스 조회
-    Page<RoleUser> roleUsers = roleUserRepository.findByRoleUserIdUserIdAndSts(userId, Status.POSITIVE, pageable);
+    Page<RoleUserResDto> roleUsers = roleUserRepository.findByRoleUserIdUserIdAndSts(userId, Status.POSITIVE, pageable)
+        .map(entity -> entity.toDto(entity));
 
-    // 2. Page -> PageResponse 변환(이미 DTO로 변환된 상태이므로 추가 변환은 필요 없음)
+    // 2. 복합키로 인한 toDto변환 + Page -> PageResponse 변환
+
     PageResponse<RoleUserResDto> pagedRoleUserDtoList = ModelMapperUtils.map(roleUsers,
         RoleUserResDto.class);
+
+    ;
 
     // 3. 결과를 Map에 담아 반환
     data.put("data", pagedRoleUserDtoList);
@@ -279,6 +340,12 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 역할-사용자 전체 목록 조회 (페이징)
+   * @param userReqDto 사용자 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 사용자 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllRoleUserForAdmin(UserReqDto userReqDto, Pageable pageable) {
     Map<String, Object> data = new HashMap<>();
@@ -295,6 +362,11 @@ public class RoleServiceImpl implements RoleService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 역할-사용자 관계 신규 등록
+   * @param roleUserReqDtoList 역할-사용자 등록 요청 DTO 목록
+   * @return 등록된 역할-사용자 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertRoleUserForAdmin(List<RoleUserReqDto> roleUserReqDtoList) {
 
@@ -331,11 +403,16 @@ public class RoleServiceImpl implements RoleService {
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
-    data.put("data", ModelMapperUtils.map(savedRoleUserList, RoleUserResDto.class));
+    data.put("data", savedRoleUserList.stream().map(entity -> entity.toDto(entity)).toList());
     return data;
 
   }
 
+  /**
+   * @기능 : 관리자용 역할-사용자 관계 삭제
+   * @param roleUserReqDtoList 역할-사용자 삭제 요청 DTO 목록
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUserReqDtoList) {
     Map<String, Object> data = new HashMap<>();

@@ -1,16 +1,12 @@
-// import java.util.List;
 
-// import org.jooq.Condition;
-// import org.jooq.DSLContext;
-// import org.jooq.DatePart;
-// import org.jooq.Field;
-// import org.jooq.impl.DSL;
-// import org.springframework.stereotype.Service;
-// import org.springframework.transaction.annotation.Transactional;
-
-// import lombok.RequiredArgsConstructor;
-// import lombok.extern.slf4j.Slf4j;
-
+// /**
+// * @파일명 : DataPurgeServiceImpl.java
+// * @설명 : 데이터 백업 및 삭제 서비스 구현체
+// * @작성자 : 김승연
+// * @작성일 : 2025.09.05
+// * @변경이력 :
+// * 2025.09.05 김승연 최초 생성
+// */
 // @Service
 // @RequiredArgsConstructor
 // @Slf4j

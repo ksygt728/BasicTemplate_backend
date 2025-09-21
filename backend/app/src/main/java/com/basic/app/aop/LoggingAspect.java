@@ -28,6 +28,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @파일명 : LoggingAspect.java
+ * @설명 : 컨트롤러 메서드 실행 로깅을 위한 AOP 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Aspect
 @Component
 @Slf4j
@@ -42,11 +50,19 @@ public class LoggingAspect {
   @Autowired
   private KafkaTemplate<String, Object> kafkaTemplate;
 
-  // Pointcut: com.basic.app.controller 이하의 모든 메서드
+  /**
+   * @기능 : com.basic.app.controller 이하의 모든 메서드를 대상으로 하는 Pointcut 정의
+   */
   @Pointcut("execution(* com.basic.app.controller..*(..))")
   public void controllerMethods() {
   }
 
+  /**
+   * @기능 : 컨트롤러 메서드 실행 시 로깅 처리
+   * @param joinPoint 실행될 메서드의 정보
+   * @return 메서드 실행 결과
+   * @throws Throwable 메서드 실행 중 발생할 수 있는 예외
+   */
   @Around("controllerMethods()")
   public Object logExecutionInfo(ProceedingJoinPoint joinPoint) throws Throwable {
     LocalDateTime startTime = LocalDateTime.now();

@@ -22,6 +22,14 @@ import com.basic.app.repository.jooqRepository.DepartmentJooqRepository;
 import com.basic.app.service.interfaces.DepartmentService;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : DepartmentServiceImpl.java
+ * @설명 : 부서 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Service
 @Transactional
 public class DepartmentServiceImpl implements DepartmentService {
@@ -32,6 +40,12 @@ public class DepartmentServiceImpl implements DepartmentService {
   @Autowired
   private DepartmentJooqRepository departmentJooqRepository;
 
+  /**
+   * @기능 : 관리자용 부서 전체 목록 조회 (페이징)
+   * @param departmentReqDto 부서 검색 조건 DTO
+   * @param pageable         페이징 정보
+   * @return 부서 목록 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllDepartmentForAdmin(DepartmentReqDto departmentReqDto, Pageable pageable) {
 
@@ -49,6 +63,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 부서 상세 조회
+   * @param deptCode 부서 코드
+   * @return 부서 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByDepartmentForAdmin(String deptCode) {
 
@@ -66,6 +85,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 부서 등록 (HR에서 받아오는 정보로 추가 불가)
+   * @param department 부서 등록 요청 DTO
+   * @return 예외 발생 (등록 불가)
+   */
   @Override
   public Map<String, Object> insertDepartmentForAdmin(DepartmentReqDto department) {
 
@@ -94,6 +118,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     // return data;
   }
 
+  /**
+   * @기능 : 관리자용 부서 수정 (HR에서 받아오는 정보로 수정 불가)
+   * @param department 부서 수정 요청 DTO
+   * @return 예외 발생 (수정 불가)
+   */
   @Override
   public Map<String, Object> updateDepartmentForAdmin(DepartmentReqDto department) {
 
@@ -121,6 +150,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     // return data;
   }
 
+  /**
+   * @기능 : 관리자용 부서 삭제 (HR에서 받아오는 정보로 삭제 불가)
+   * @param deptCode 부서 코드
+   * @return 예외 발생 (삭제 불가)
+   */
   @Override
   public Map<String, Object> deleteDepartmentForAdmin(String deptCode) {
 

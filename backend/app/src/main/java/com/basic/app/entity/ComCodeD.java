@@ -21,6 +21,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : ComCodeD.java
+ * @설명 : 공통코드 상세 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -53,6 +61,11 @@ public class ComCodeD extends BaseEntity {
   @Column(name = "ORDER_NUM", nullable = false)
   private int orderNum; // 정렬순서
 
+  /**
+   * @기능 : Entity를 DTO로 변환
+   * @param entity 변환할 ComCodeD 엔티티
+   * @return 변환된 ComCodeDResDto 객체
+   */
   public ComCodeDResDto toDto(ComCodeD entity) {
     return ComCodeDResDto.builder()
         .dtlCd(entity.getComCodeDId().getDtlCd())

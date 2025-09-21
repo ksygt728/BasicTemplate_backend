@@ -22,6 +22,14 @@ import com.basic.app.repository.jooqRepository.MenuJooqRepository;
 import com.basic.app.service.interfaces.MenuService;
 import com.basic.app.util.Status;
 
+/**
+ * @파일명 : MenuServiceImpl.java
+ * @설명 : 메뉴 관련 서비스 구현체
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.05
+ * @변경이력 :
+ *       2025.09.05 김승연 최초 생성
+ */
 @Transactional
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -32,6 +40,12 @@ public class MenuServiceImpl implements MenuService {
   @Autowired
   private MenuJooqRepository menuJooqRepository;
 
+  /**
+   * @기능 : 관리자용 메뉴 전체 목록 조회 (트리 구조)
+   * @param menuReqDto 메뉴 검색 조건 DTO
+   * @param pageable   페이징 정보
+   * @return 메뉴 트리 구조가 담긴 Map
+   */
   @Override
   public Map<String, Object> findAllMenuForAdmin(MenuReqDto menuReqDto, Pageable pageable) {
 
@@ -68,6 +82,11 @@ public class MenuServiceImpl implements MenuService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 특정 메뉴 상세 조회
+   * @param menuCd 메뉴 코드
+   * @return 메뉴 상세 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> findByMenuForAdmin(String menuCd) {
 
@@ -85,6 +104,11 @@ public class MenuServiceImpl implements MenuService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 메뉴 신규 등록
+   * @param menuReqDto 메뉴 등록 요청 DTO
+   * @return 등록된 메뉴 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> insertMenuForAdmin(MenuReqDto menuReqDto) {
 
@@ -116,6 +140,11 @@ public class MenuServiceImpl implements MenuService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 메뉴 정보 수정
+   * @param menuReqDto 메뉴 수정 요청 DTO
+   * @return 수정된 메뉴 정보가 담긴 Map
+   */
   @Override
   public Map<String, Object> updateMenuForAdmin(MenuReqDto menuReqDto) {
 
@@ -146,6 +175,11 @@ public class MenuServiceImpl implements MenuService {
     return data;
   }
 
+  /**
+   * @기능 : 관리자용 메뉴 삭제 (하위 메뉴 포함)
+   * @param menuCd 삭제할 메뉴 코드
+   * @return 삭제 성공 메시지가 담긴 Map
+   */
   @Override
   public Map<String, Object> deleteMenuForAdmin(String menuCd) {
     Map<String, Object> data = new HashMap<>();

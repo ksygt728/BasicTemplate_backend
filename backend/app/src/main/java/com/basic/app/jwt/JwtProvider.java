@@ -25,6 +25,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : JwtProvider.java
+ * @설명 : JWT 토큰 생성 및 검증을 담당하는 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Component
 @RequiredArgsConstructor
 @Transactional
@@ -37,7 +45,11 @@ public class JwtProvider {
   @Autowired
   private JwtProperties jwtProperties;
 
-  /* Create Access Token */
+  /**
+   * @기능 : Access Token 생성
+   * @param user 사용자 정보
+   * @return 생성된 Access Token
+   */
   public String createAccessToken(User user) {
     return jwtProperties.getBearerType() + " " + JWT.create()
         .withSubject(jwtProperties.getSubject().getFirst())
@@ -49,7 +61,11 @@ public class JwtProvider {
         .sign(Algorithm.HMAC512(jwtProperties.getSecretKey()));
   }
 
-  /* Create Refresh Token */
+  /**
+   * @기능 : Refresh Token 생성
+   * @param user 사용자 정보
+   * @return 생성된 Refresh Token
+   */
   @Transactional
   public String createRefreshToken(User user) {
     return jwtProperties.getBearerType() + " " + JWT.create()
@@ -63,7 +79,11 @@ public class JwtProvider {
         .sign(Algorithm.HMAC512(jwtProperties.getSecretKey()));
   }
 
-  /* Header에서 Access Token 가져오기 */
+  /**
+   * @기능 : Header에서 Access Token 가져오기
+   * @param request HTTP 요청
+   * @return Access Token 또는 null
+   */
   public String resolveAccessToken(HttpServletRequest request) {
     String jwtAccessToken = request.getHeader(jwtProperties.getAccessTokenHeader());
 
@@ -73,7 +93,11 @@ public class JwtProvider {
 
   }
 
-  /* Header에서 Refresh Token 가져오기 */
+  /**
+   * @기능 : Header에서 Refresh Token 가져오기
+   * @param request HTTP 요청
+   * @return Refresh Token 또는 null
+   */
   public String resolveRefreshToken(HttpServletRequest request) {
     String jwtRefreshToken = request.getHeader(jwtProperties.getRefreshTokenHeader());
 
@@ -83,7 +107,11 @@ public class JwtProvider {
 
   }
 
-  /* Access Token 만료되었는지 확인 */
+  /**
+   * @기능 : Access Token 만료되었는지 확인
+   * @param jwtToken JWT 토큰
+   * @return 유효성 검증 결과
+   */
   public boolean isVaildAccessToken(String jwtToken) {
     DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(jwtProperties.getSecretKey())).build().verify(jwtToken);
 
@@ -91,7 +119,11 @@ public class JwtProvider {
 
   }
 
-  /* Refresh Token 만료되었는지 확인 */
+  /**
+   * @기능 : Refresh Token 만료되었는지 확인
+   * @param jwtToken JWT 토큰
+   * @return 유효성 검증 결과
+   */
   public boolean isVaildRefreshToken(String jwtToken) {
     DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(jwtProperties.getSecretKey())).build().verify(jwtToken);
 
@@ -99,7 +131,11 @@ public class JwtProvider {
 
   }
 
-  /* 서명을 통해 Token 의 ID 가져오기 */
+  /**
+   * @기능 : 서명을 통해 Token 의 ID 가져오기
+   * @param jwtToken JWT 토큰
+   * @return 사용자 ID
+   */
   public String getClaimId(String jwtToken) {
     String result = null;
     try {
@@ -113,7 +149,11 @@ public class JwtProvider {
     }
   }
 
-  /* 인증 정보 가져오기 */
+  /**
+   * @기능 : 인증 정보 가져오기
+   * @param userId 사용자 ID
+   * @return 인증 토큰
+   */
   public UsernamePasswordAuthenticationToken getAuthentication(String userId) {
 
     User user = userRepository.findById(userId)
@@ -127,6 +167,11 @@ public class JwtProvider {
         userDetails.getAuthorities());
   }
 
+  /**
+   * @기능 : CustomUserDetails 생성
+   * @param userId 사용자 ID
+   * @return CustomUserDetails 객체
+   */
   public CustomUserDetails createCustomUserDetails(String userId) {
     User user = userRepository.findById(userId)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
@@ -134,6 +179,11 @@ public class JwtProvider {
     return new CustomUserDetails(user);
   }
 
+  /**
+   * @기능 : User 엔티티 생성
+   * @param userId 사용자 ID
+   * @return User 엔티티
+   */
   public User createUser(String userId) {
     User user = userRepository.findById(userId)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))

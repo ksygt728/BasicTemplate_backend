@@ -7,6 +7,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @파일명 : KafkaConsumerConfig.java
+ * @설명 : Kafka Consumer 설정 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.24
+ * @변경이력 :
+ *       2025.07.24 김승연 최초 생성
+ */
 @Configuration
 public class KafkaConsumerConfig {
 
@@ -25,6 +33,10 @@ public class KafkaConsumerConfig {
   @Value("${spring.kafka.consumer.value-deserializer}")
   private String valueDeserializer;
 
+  /**
+   * @기능 : Kafka Consumer 설정 Properties 생성
+   * @return Properties Kafka Consumer 설정 정보
+   */
   @Bean
   public Properties kafkaConsumerProperties() {
     Properties props = new Properties();

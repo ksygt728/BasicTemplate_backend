@@ -23,6 +23,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : BbsComment.java
+ * @설명 : 게시판 댓글 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -38,6 +46,9 @@ public class BbsComment extends BaseEntity {
   @Column(name = "COMMENT_ID", length = 36)
   private String commentId; // 댓글아이디
 
+  /**
+   * @기능 : 엔티티 저장 전 ID 자동 생성
+   */
   @PrePersist
   public void prePersist() {
     if (commentId == null) {

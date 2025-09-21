@@ -22,6 +22,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @파일명 : ComCodeM.java
+ * @설명 : 공통코드 마스터 엔티티 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.07.23
+ * @변경이력 :
+ *       2025.07.23 김승연 최초 생성
+ */
 @Getter
 @Setter
 @ToString
@@ -51,16 +59,23 @@ public class ComCodeM extends BaseEntity {
   @OneToMany(mappedBy = "grpCd", fetch = FetchType.LAZY)
   private List<ComCodeDPivot> ComCodeDPivotList = new ArrayList<ComCodeDPivot>(); // 그뤂코드에 포함된 그뤂코드속성 리스트
 
+  /**
+   * @기능 : Entity를 DTO로 변환
+   * @param entity 변환할 ComCodeM 엔티티
+   * @return 변환된 ComCodeMResDto 객체
+   */
   public ComCodeMResDto toDto(ComCodeM entity) {
     return ComCodeMResDto.builder()
         .grpCd(entity.getGrpCd())
         .grpCdType(entity.getGrpCdType())
         .grpNm(entity.getGrpNm())
         .comCodeTs(
-            entity.getComCodeTs().stream()
-                .filter(target -> target.getSts().equals(Status.POSITIVE))
-                .map(target -> target.toDto(target))
-                .toList())
+            entity.getComCodeTs() != null
+                ? entity.getComCodeTs().stream()
+                    .filter(target -> target.getSts().equals(Status.POSITIVE))
+                    .map(target -> target.toDto(target))
+                    .toList()
+                : new ArrayList<>())
         .build();
   }
 

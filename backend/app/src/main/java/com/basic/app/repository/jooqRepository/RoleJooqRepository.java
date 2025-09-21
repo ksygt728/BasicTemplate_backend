@@ -1,12 +1,3 @@
-/**
-* @파일명 : RoleJooqRepository.java
-* @설명 : JOOQ를 이용한 조회폼 조건별 동적 처리
-* @작성자 : 김승연
-* @작성일 : 2025.08.24
-* @변경이력 :
-* 2025.08.24 김승연 최초 생성
-*/
-
 package com.basic.app.repository.jooqRepository;
 
 import java.util.ArrayList;
@@ -27,6 +18,14 @@ import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.responseDto.RoleResDto;
 import com.basic.app.jooq.generated.tables.TbRole;
 
+/**
+ * @파일명 : RoleJooqRepository.java
+ * @설명 : 권한 조회폼 조건별 동적 처리
+ * @작성자 : 김승연
+ * @작성일 : 2025.08.24
+ * @변경이력 :
+ *       2025.08.24 김승연 최초 생성
+ */
 @Repository
 @Transactional
 public class RoleJooqRepository {
@@ -34,6 +33,12 @@ public class RoleJooqRepository {
   @Autowired
   private DSLContext dsl;
 
+  /**
+   * @기능 : 권한 목록을 조건별로 동적 조회하여 페이징 처리된 결과 반환
+   * @param reqDto   : 권한 검색 조건 DTO
+   * @param pageable : 페이징 정보
+   * @return : 조건에 맞는 권한 목록과 페이징 정보
+   */
   public Page<RoleResDto> findAllRoleWithConditions(RoleReqDto reqDto, Pageable pageable) {
     List<Condition> conditions = new ArrayList<>();
 
