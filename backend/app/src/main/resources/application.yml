@@ -5,7 +5,7 @@ spring:
     active: dev # 디폴트 활성 프로필(dev)
   jpa:
     database: mysql # 사용할 데이터베이스 종류 지정 (mysql, h2 등)
-    database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
+    database-platform: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQLDialect로 변경)
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # 실제 DB에 적용될 물리적 네이밍 전략 지정
