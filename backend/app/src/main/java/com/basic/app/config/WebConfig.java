@@ -21,7 +21,7 @@ public class WebConfig {
 
   @Value("${front-end.url}")
   private String FRONT_END_URL;
-  
+
   /**
    * @기능 : CORS 필터 설정
    * @return CorsFilter CORS 설정이 적용된 필터 객체
@@ -29,21 +29,21 @@ public class WebConfig {
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
-    
+
     // 자격 증명 허용 설정
     config.setAllowCredentials(true);
-    
+
     // 허용할 원본 URL 설정 (localhost:3000에서 오는 요청 허용)
     config.addAllowedOriginPattern(FRONT_END_URL);
     config.addAllowedHeader("*");
-    config.addAllowedMethod("*"); 
-    
+    config.addAllowedMethod("*");
+
     // 노출할 헤더 설정
     config.addExposedHeader("Authorization");
-    
+
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);
-    
+
     return new CorsFilter(source);
   }
 }
