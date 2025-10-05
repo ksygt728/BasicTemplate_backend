@@ -13,7 +13,7 @@ spring:
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQL8Dialect로 변경)
+    database-platform: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQLDialect로 변경)
     hibernate:
       ddl-auto: none # 운영에서는 보통 DDL 자동 변경을 막음
     properties:

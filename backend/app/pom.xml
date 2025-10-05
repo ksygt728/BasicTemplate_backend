@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.6</version>
+		<version>3.5.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.basic</groupId>
@@ -32,6 +32,12 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!--
 		================== [SpringBoot기본] : 프로젝트 생성시 기본 세팅되는 항목 ==================
 		-->
@@ -73,7 +79,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
-			<version>3.5.3</version>
 		</dependency>
 
 		<!-- [jasper] : JSP 페이지를 사용할때 필요(RestAPI 구현할때는 필요없음) -->
