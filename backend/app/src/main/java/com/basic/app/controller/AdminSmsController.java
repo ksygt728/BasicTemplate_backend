@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -99,7 +100,7 @@ public class AdminSmsController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertSmsForAdmin(
-      @Validated(CreateGroup.class) SmsMReqDto smsM) {
+      @RequestBody @Validated(CreateGroup.class) SmsMReqDto smsM) {
     Map<String, Object> data = smsService.insertSmsForAdmin(smsM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -116,7 +117,7 @@ public class AdminSmsController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateSmsForAdmin(
-      @Validated(UpdateGroup.class) SmsMReqDto smsM) {
+      @RequestBody @Validated(UpdateGroup.class) SmsMReqDto smsM) {
     Map<String, Object> data = smsService.updateSmsForAdmin(smsM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

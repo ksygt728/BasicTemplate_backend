@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -104,7 +105,7 @@ public class AdminBbsController {
   @PreAuthorize("isAuthenticated()")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertBbsForAdmin(
-      @Validated(CreateGroup.class) BbsReqDto bbs, @AuthenticationPrincipal CustomUserDetails user) {
+      @RequestBody @Validated(CreateGroup.class) BbsReqDto bbs, @AuthenticationPrincipal CustomUserDetails user) {
     Map<String, Object> data = bbsService.insertBbsForAdmin(bbs, user);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -122,7 +123,7 @@ public class AdminBbsController {
   @PreAuthorize("isAuthenticated() and (#bbs.writor == authentication.name or hasRole('ADMIN'))")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateBbsForAdmin(
-      @Validated(UpdateGroup.class) BbsReqDto bbs) {
+      @RequestBody @Validated(UpdateGroup.class) BbsReqDto bbs) {
     Map<String, Object> data = bbsService.updateBbsForAdmin(bbs);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

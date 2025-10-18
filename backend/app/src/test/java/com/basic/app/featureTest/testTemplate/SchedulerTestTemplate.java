@@ -31,6 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ResponseApi;
+import com.basic.app.dto.requestDto.ScheMReqDto;
+import com.basic.app.dto.responseDto.ScheMResDto;
 import com.basic.app.entity.ScheH;
 import com.basic.app.entity.ScheM;
 import com.basic.app.featureTest.testcases.scheduler.SchedulerTestCasesForDelete;
@@ -363,13 +365,13 @@ public class SchedulerTestTemplate {
                 /* 2. when */
                 TestUtils.showLogTestCaseStart(testCaseName);
 
-                MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+                String jsonContent = TestUtils.objectToJson(testData);
 
                 MvcResult actual = mockMvc.perform(
                                 post(url)
-                                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                                .contentType(MediaType.APPLICATION_JSON)
                                                 .header("test-token", true)
-                                                .params(multiValueMap))
+                                                .content(jsonContent))
                                 .andExpect(httpStatus)
                                 .andReturn();
 
@@ -398,13 +400,37 @@ public class SchedulerTestTemplate {
                 /* 2. when */
                 TestUtils.showLogTestCaseStart(testCaseName);
 
-                MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+                // Handle both ScheMReqDto and ScheMResDto test data types
+                ScheMReqDto reqDto;
+                if (testData instanceof ScheMReqDto) {
+                        // Test data is already ScheMReqDto, use directly
+                        reqDto = (ScheMReqDto) testData;
+                } else if (testData instanceof ScheMResDto) {
+                        // Convert ScheMResDto to ScheMReqDto for JSON serialization (excluding
+                        // lastExecTime, nextExecTime)
+                        ScheMResDto resDto = (ScheMResDto) testData;
+                        reqDto = ScheMReqDto.builder()
+                                        .scheId(resDto.getScheId())
+                                        .scheName(resDto.getScheName())
+                                        .description(resDto.getDescription())
+                                        .scheGroup(resDto.getScheGroup())
+                                        .className(resDto.getClassName())
+                                        .methodName(resDto.getMethodName())
+                                        .triggerName(resDto.getTriggerName())
+                                        .cronExp(resDto.getCronExp())
+                                        .useYn(resDto.getUseYn())
+                                        .build();
+                } else {
+                        throw new IllegalArgumentException("Unsupported test data type: " + testData.getClass());
+                }
+
+                String jsonContent = TestUtils.objectToJson(reqDto);
 
                 MvcResult actual = mockMvc.perform(
                                 put(url)
-                                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                                .contentType(MediaType.APPLICATION_JSON)
                                                 .header("test-token", true)
-                                                .params(multiValueMap))
+                                                .content(jsonContent))
                                 .andExpect(httpStatus)
                                 .andReturn();
 

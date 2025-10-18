@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -79,7 +80,7 @@ public class AuthController {
   @SwaggerCommonResponseApi
   @PostMapping("/signUp")
   public ResponseEntity<ResponseApi<Map<String, Object>>> signUp(
-      @Validated(CreateGroup.class) UserReqDto user) {
+      @RequestBody @Validated(CreateGroup.class) UserReqDto user) {
     Map<String, Object> data = authService.signUp(user);
 
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
@@ -97,7 +98,7 @@ public class AuthController {
   @SwaggerCommonResponseApi
   @PostMapping("/signIn")
   public ResponseEntity<ResponseApi<Map<String, Object>>> signIn(
-      @Validated(CreateGroup.class) AuthReqDto user) {
+      @RequestBody @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
     Map<String, Object> data = authService.signIn(user);
@@ -201,7 +202,7 @@ public class AuthController {
   @PreAuthorize("isAuthenticated() and (#user.userId == authentication.name or hasRole('ADMIN'))")
   @PostMapping("/test")
   public ResponseEntity<ResponseApi<Map<String, Object>>> test(
-      @Validated(CreateGroup.class) AuthReqDto user) {
+      @RequestBody @Validated(CreateGroup.class) AuthReqDto user) {
 
     // 로그인 처리
     Map<String, Object> data = authService.signIn(user);

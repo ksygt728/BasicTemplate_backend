@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -105,7 +106,7 @@ public class AdminMenuController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertMenuForAdmin(
-      @Validated(CreateGroup.class) MenuReqDto menuReqDto) {
+      @RequestBody @Validated(CreateGroup.class) MenuReqDto menuReqDto) {
     Map<String, Object> data = menuService.insertMenuForAdmin(menuReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -122,7 +123,7 @@ public class AdminMenuController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateMenuForAdmin(
-      @Validated(UpdateGroup.class) MenuReqDto menuReqDto) {
+      @RequestBody @Validated(UpdateGroup.class) MenuReqDto menuReqDto) {
     Map<String, Object> data = menuService.updateMenuForAdmin(menuReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

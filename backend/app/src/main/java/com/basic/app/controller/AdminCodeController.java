@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -102,7 +103,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PostMapping("/group")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertGroupCodeForAdmin(
-      @Validated(CreateGroup.class) ComCodeMReqDto comCodeM) {
+      @RequestBody @Validated(CreateGroup.class) ComCodeMReqDto comCodeM) {
     Map<String, Object> data = codeService.insertGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -119,7 +120,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PutMapping("/group")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateGroupCodeForAdmin(
-      @Validated(UpdateGroup.class) ComCodeMReqDto comCodeM) {
+      @RequestBody @Validated(UpdateGroup.class) ComCodeMReqDto comCodeM) {
     Map<String, Object> data = codeService.updateGroupCodeForAdmin(comCodeM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -180,7 +181,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PostMapping("/attribute")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertAttrCodeForAdmin(
-      @Validated(CreateGroup.class) ComCodeTReqDto comCodeT) {
+      @RequestBody @Validated(CreateGroup.class) ComCodeTReqDto comCodeT) {
     Map<String, Object> data = codeService.insertAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -197,7 +198,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PutMapping("/attribute")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateAttrCodeForAdmin(
-      @Validated(UpdateGroup.class) ComCodeTReqDto comCodeT) {
+      @RequestBody @Validated(UpdateGroup.class) ComCodeTReqDto comCodeT) {
     Map<String, Object> data = codeService.updateAttrCodeForAdmin(comCodeT);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -259,7 +260,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PostMapping("/detail")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertDetailCodeForAdmin(
-      @Validated(CreateGroup.class) ComCodeDReqDto comCodeD) {
+      @RequestBody @Validated(CreateGroup.class) ComCodeDReqDto comCodeD) {
     Map<String, Object> data = codeService.insertDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -276,7 +277,7 @@ public class AdminCodeController {
   @SwaggerCommonResponseApi
   @PutMapping("/detail")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateDetailCodeForAdmin(
-      @Validated(UpdateGroup.class) ComCodeDReqDto comCodeD) {
+      @RequestBody @Validated(UpdateGroup.class) ComCodeDReqDto comCodeD) {
     Map<String, Object> data = codeService.updateDetailCodeForAdmin(comCodeD);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
