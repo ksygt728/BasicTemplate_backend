@@ -201,16 +201,13 @@ public class MulLangTestTemplate {
       /* 2. when */
       TestUtils.showLogTestCaseStart(testCaseName);
 
-      MultiValueMap<String, String> multiValueMap = new org.springframework.util.LinkedMultiValueMap<>();
-      if (testData != null) {
-        multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-      }
+      String jsonContent = TestUtils.objectToJson(testData);
 
       MvcResult actual = mockMvc.perform(
           post(url)
-              .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+              .contentType(MediaType.APPLICATION_JSON)
               .header("test-token", true)
-              .params(multiValueMap))
+              .content(jsonContent))
           .andExpect(httpStatus)
           .andReturn();
 
@@ -244,16 +241,13 @@ public class MulLangTestTemplate {
       /* 2. when */
       TestUtils.showLogTestCaseStart(testCaseName);
 
-      MultiValueMap<String, String> multiValueMap = new org.springframework.util.LinkedMultiValueMap<>();
-      if (testData != null) {
-        multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-      }
+      String jsonContent = TestUtils.objectToJson(testData);
 
       MvcResult actual = mockMvc.perform(
           put(url)
-              .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+              .contentType(MediaType.APPLICATION_JSON)
               .header("test-token", true)
-              .params(multiValueMap))
+              .content(jsonContent))
           .andExpect(httpStatus)
           .andReturn();
 

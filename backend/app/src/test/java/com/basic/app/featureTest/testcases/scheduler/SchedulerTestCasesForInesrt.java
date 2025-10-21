@@ -16,9 +16,9 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.basic.app.api.ResponseApi;
+import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.dto.responseDto.CompanyResDto;
 import com.basic.app.dto.responseDto.ScheMResDto;
-import com.basic.app.entity.ScheM;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.util.TestCaseDetail;
 
@@ -40,7 +40,17 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
          * 관리] [기능 : 스케줄러 추가] [테스트항목 : 정상 등록] [테스트 상세 : ]
          */
         String testName_order1 = "정상 등록 |";
-        ScheMResDto testData_order1 = new ScheMResDto(
+        ScheMReqDto testData_order1 = new ScheMReqDto(
+                "sche-888_test",
+                "리포트 생성",
+                "매월 1일 새벽 2시 리포트 생성",
+                "REPORT_GROUP",
+                "com.basic.app.job.ReportJob",
+                "generateReport",
+                "reportTrigger",
+                "0 0 2 1 * ?",
+                "N");
+        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", new ScheMResDto(
                 "sche-888_test",
                 "리포트 생성",
                 "매월 1일 새벽 2시 리포트 생성",
@@ -51,8 +61,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 "0 0 2 1 * ?",
                 null,
                 null,
-                "N");
-        ResponseApi<?> expected_order1 = ResponseApi.success(Map.of("data", testData_order1));
+                "N")));
         String url_order1 = BASE_URL;
         ResultMatcher status_order1 = status().isOk();
 
@@ -61,7 +70,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
          * 관리] [기능 : 스케줄러 추가] [테스트항목 : 필수값 누락] [테스트 상세 : ]
          */
         String testName_order2 = "필수값 누락 | scheId 누락";
-        ScheMResDto testData_order2 = new ScheMResDto(null,
+        ScheMReqDto testData_order2 = new ScheMReqDto(null,
                 "로그 정리",
                 "매주 일요일 새벽 3시 로그 삭제",
                 "CLEANUP_GROUP",
@@ -69,8 +78,6 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 "cleanLogs",
                 "cleanupTrigger",
                 "0 0 3 ? * SUN",
-                LocalDateTime.of(2025, 8, 3, 3, 0, 0, 0),
-                LocalDateTime.of(2025, 8, 10, 3, 0, 0, 0),
                 "N");
         ResponseApi<?> expected_order2 = ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "스케줄아이디는 필수입니다.");
         String url_order2 = BASE_URL;
@@ -81,7 +88,7 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
          * 관리] [기능 : 스케줄러 추가] [테스트항목 : 존재하는 ID 등록 시도] [테스트 상세 : ]
          */
         String testName_order3 = "존재하는 ID 등록 시도 | 중복 scheId";
-        ScheMResDto testData_order3 = new ScheMResDto("sche-004_test",
+        ScheMReqDto testData_order3 = new ScheMReqDto("sche-004_test",
                 "로그 정리",
                 "매주 일요일 새벽 3시 로그 삭제",
                 "CLEANUP_GROUP",
@@ -89,8 +96,6 @@ public class SchedulerTestCasesForInesrt implements TestTemplateInvocationContex
                 "cleanLogs",
                 "cleanupTrigger",
                 "0 0 3 ? * SUN",
-                LocalDateTime.of(2025, 8, 3, 3, 0, 0, 0),
-                LocalDateTime.of(2025, 8, 10, 3, 0, 0, 0),
                 "N");
         ResponseApi<?> expected_order3 = ResponseApi.fail(ErrorCode.OBJECT_IS_EXISTED);
         String url_order3 = BASE_URL;

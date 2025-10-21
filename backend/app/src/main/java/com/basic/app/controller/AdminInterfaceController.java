@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -120,7 +121,7 @@ public class AdminInterfaceController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = InterfaceResDto.class)))
   @SwaggerCommonResponseApi
   @PostMapping("/execute/{ifc}")
-  public ResponseEntity<ResponseApi<Map<String, Object>>> executeInterfaceForAdmin(InterfaceReqDto ifc) {
+  public ResponseEntity<ResponseApi<Map<String, Object>>> executeInterfaceForAdmin(@RequestBody InterfaceReqDto ifc) {
     Map<String, Object> data = interfaceService.executeInterfaceForAdmin(ifc);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -153,7 +154,7 @@ public class AdminInterfaceController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertInterfaceForAdmin(
-      @Validated(CreateGroup.class) InterfaceReqDto ifc) {
+      @RequestBody @Validated(CreateGroup.class) InterfaceReqDto ifc) {
     Map<String, Object> data = interfaceService.insertInterfaceForAdmin(ifc);
 
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
@@ -171,7 +172,7 @@ public class AdminInterfaceController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateInterfaceForAdmin(
-      @Validated(UpdateGroup.class) InterfaceReqDto ifc) {
+      @RequestBody @Validated(UpdateGroup.class) InterfaceReqDto ifc) {
 
     Map<String, Object> data = interfaceService.updateInterfaceForAdmin(ifc);
 

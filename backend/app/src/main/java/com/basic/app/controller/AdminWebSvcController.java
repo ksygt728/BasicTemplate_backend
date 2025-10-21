@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -94,7 +95,7 @@ public class AdminWebSvcController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> inesrtWebserviceForAdmin(
-      @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
+      @RequestBody @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> data = webSvcService.inesrtWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -112,7 +113,7 @@ public class AdminWebSvcController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateWebserviceForAdmin(
-      @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
+      @RequestBody @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
     Map<String, Object> data = webSvcService.updateWebserviceForAdmin(webSvc);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

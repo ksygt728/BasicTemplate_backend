@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -124,7 +125,7 @@ public class CodeServiceImpl implements CodeService {
 
       if (row.getDtlCd() != null) {
         comCodeInfo = comCodeList.stream()
-            .filter(info -> info.getDtlCd().equals(row.getDtlCd()))
+            .filter(info -> Objects.equals(info.getDtlCd(), row.getDtlCd()))
             .findFirst()
             .orElse(null);
       }
@@ -144,6 +145,7 @@ public class CodeServiceImpl implements CodeService {
           .attrCd(row.getAttrCd())
           .attrNm(row.getAttrNm())
           .dtlNm(row.getDtlNm())
+          .attrOrderNum(row.getCodeTOrderNum())
           .build();
 
       comCodeInfo.getCodeAttributes().add(comCodeAttributes);
@@ -474,11 +476,11 @@ public class CodeServiceImpl implements CodeService {
     ComCodeD codeDEntity = comCodeD.toEntity(comCodeD);
 
     // 2. ID로 기존 엔티티 조회
-    // 그룹코드가 존재하는지 확인
     String grpCd = codeDEntity.getComCodeDId().getComCodeTId().getGrpCd(); // 그뤂코드 Key
     ComCodeTId comCodeTId = codeDEntity.getComCodeDId().getComCodeTId(); // 속성코드 Key
     ComCodeDId comCodeDId = codeDEntity.getComCodeDId(); // 상세코드 Key
 
+    // 그룹코드가 존재하는지 확인
     codeMRepository.findById(grpCd)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
@@ -488,10 +490,10 @@ public class CodeServiceImpl implements CodeService {
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
-    // 상세코드가 존재하는지 확인
-    codeDRepository.findById(comCodeDId)
-        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+    // 상세코드가 존재하는지 확인(다른 Row에서 업데이트 되기 떄문에)
+    // codeDRepository.findById(comCodeDId)
+    // .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+    // .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 3. 엔티티 수정 & 저장(자동)
     ComCodeD savedCodeDEntity = codeDRepository.save(codeDEntity);
