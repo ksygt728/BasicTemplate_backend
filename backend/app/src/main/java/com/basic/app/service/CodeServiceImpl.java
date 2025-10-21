@@ -486,16 +486,21 @@ public class CodeServiceImpl implements CodeService {
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
     // 속성코드가 존재하는지 확인
-    codeTRepository.findById(comCodeTId)
+    ComCodeT comCodeT = codeTRepository.findById(comCodeTId)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
 
-    // 상세코드가 존재하는지 확인(다른 Row에서 업데이트 되기 떄문에)
+    // 상세코드가 존재하는지 확인
     // codeDRepository.findById(comCodeDId)
     // .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-    // .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+    // .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND))
+    // ;
 
     // 3. 엔티티 수정 & 저장(자동)
+
+    // 연관관계 설정
+    codeDEntity.setComCodeT(comCodeT);
+
     ComCodeD savedCodeDEntity = codeDRepository.save(codeDEntity);
 
     // 4. Entity -> DTO 변환
