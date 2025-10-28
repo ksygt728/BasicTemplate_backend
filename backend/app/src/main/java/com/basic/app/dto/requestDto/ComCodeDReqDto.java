@@ -48,7 +48,8 @@ public class ComCodeDReqDto extends BaseReqDto {
   private String dtlCd; // 상세코드
 
   @Schema(description = "상세코드명", example = "상세코드이름")
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "상세코드명 필수입니다.")
+  // @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "상세코드명
+  // 필수입니다.")
   private String dtlNm; // 상세코드명
 
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })

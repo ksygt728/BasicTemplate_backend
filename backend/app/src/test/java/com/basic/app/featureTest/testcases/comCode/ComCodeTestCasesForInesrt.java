@@ -369,10 +369,15 @@ public class ComCodeTestCasesForInesrt implements TestTemplateInvocationContextP
                                 .useYn("Y")
                                 .orderNum(1)
                                 .build();
+
+                ComCodeDResDto ed15 = ComCodeDResDto.builder()
+                                .dtlCd("[JUnit]APPROVED_NEW")
+                                .useYn("Y")
+                                .orderNum(1)
+                                .build();
                 testCases.add(
-                                new TestCaseDetail<>(BASE_URL + "/detail", "[상세코드] 필수값 누락 | dtlNm 누락", td15,
-                                                ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "상세코드명 필수입니다."),
-                                                status().is4xxClientError()));
+                                new TestCaseDetail<>(BASE_URL + "/detail", "[상세코드] 필수값 누락 | dtlNm 누락(정상등록됨)", td15,
+                                                ResponseApi.success(Map.of("data", ed15)), status().isOk()));
 
                 // 5. useYn 누락
                 ComCodeDReqDto td16 = ComCodeDReqDto.builder()
