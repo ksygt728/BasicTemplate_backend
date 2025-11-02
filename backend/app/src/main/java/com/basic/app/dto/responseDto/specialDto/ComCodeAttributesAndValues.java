@@ -25,5 +25,6 @@ public class ComCodeAttributesAndValues {
   private String attrCd; // 속성코드
   private String attrNm; // 속성명
   private String dtlNm; // 상세코드명
+  private int attrOrderNum; // 속성 정렬순서
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -101,7 +102,7 @@ public class AdminDepartmentController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertDepartmentForAdmin(
-      @Validated(CreateGroup.class) DepartmentReqDto department) {
+      @RequestBody @Validated(CreateGroup.class) DepartmentReqDto department) {
     Map<String, Object> data = departmentService.insertDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -118,7 +119,7 @@ public class AdminDepartmentController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateDepartmentForAdmin(
-      @Validated(UpdateGroup.class) DepartmentReqDto department) {
+      @RequestBody @Validated(UpdateGroup.class) DepartmentReqDto department) {
     Map<String, Object> data = departmentService.updateDepartmentForAdmin(department);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

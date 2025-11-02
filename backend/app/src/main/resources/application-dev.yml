@@ -2,6 +2,9 @@
 server:
   port: 8080 # 개발 서버 포트
 
+front-end:
+  url: http://localhost:3000
+
 spring:
   profiles:
     group:
