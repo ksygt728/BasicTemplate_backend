@@ -460,7 +460,7 @@ public class ComCodeTestCasesForInesrt implements TestTemplateInvocationContextP
                 testCases.add(
                                 new TestCaseDetail<>(BASE_URL + "/detail", "[상세코드] 비즈니스로직 케이스 | 속성코드가 없는데 등록하는 경우",
                                                 td27,
-                                                ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND),
+                                                ResponseApi.fail(ErrorCode.ATTR_CD_NOT_EXSIT),
                                                 status().is4xxClientError()));
                 /*
                  * /*

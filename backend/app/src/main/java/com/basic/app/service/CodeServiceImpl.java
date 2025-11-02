@@ -445,7 +445,7 @@ public class CodeServiceImpl implements CodeService {
     // 속성코드가 존재하는지 확인
     ComCodeT comCodeT = codeTRepository.findById(comCodeTId)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
-        .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
+        .orElseThrow(() -> new BusinessException(ErrorCode.ATTR_CD_NOT_EXSIT));
 
     // 상세코드가 존재하는지 않는지 확인
     codeDRepository.findById(comCodeDId)
