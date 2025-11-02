@@ -320,16 +320,21 @@ public class ComCodeTestCasesForUpdate implements TestTemplateInvocationContextP
 
                 // 4. dtlNm 누락
                 ComCodeDReqDto td19 = ComCodeDReqDto.builder()
-                                .grpCd("[JUnit]ASSET_STATUS")
-                                .attrCd("[JUnit]CONDITION")
-                                .dtlCd("[JUnit]NEW")
+                                .grpCd("[JUnit]CUSTOMER_TYPE")
+                                .attrCd("[JUnit]REGION")
+                                .dtlCd("[JUnit]INCHEON")
+                                .useYn("N") // 수정
+                                .orderNum(2) // 수정
+                                .build();
+
+                ComCodeDResDto ed19 = ComCodeDResDto.builder()
+                                .dtlCd("[JUnit]INCHEON")
                                 .useYn("N") // 수정
                                 .orderNum(2) // 수정
                                 .build();
                 testCases.add(
-                                new TestCaseDetail<>(BASE_URL + "/detail", "[상세코드] 필수값 누락 | dtlNm 누락", td19,
-                                                ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "상세코드명 필수입니다."),
-                                                status().is4xxClientError()));
+                                new TestCaseDetail<>(BASE_URL + "/detail", "[상세코드] 필수값 누락 | dtlNm 누락(정상수정)", td19,
+                                                ResponseApi.success(Map.of("data", ed19)), status().isOk()));
 
                 // 5. useYn 누락
                 ComCodeDReqDto td20 = ComCodeDReqDto.builder()

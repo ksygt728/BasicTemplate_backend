@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -91,7 +92,7 @@ public class AdminSequenceController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertSequenceForAdmin(
-      @Validated(CreateGroup.class) ChaebunReqDto chaebun) {
+      @RequestBody @Validated(CreateGroup.class) ChaebunReqDto chaebun) {
     Map<String, Object> data = sequenceService.insertSequenceForAdmin(chaebun);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -108,7 +109,7 @@ public class AdminSequenceController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateSequenceForAdmin(
-      @Validated(UpdateGroup.class) ChaebunReqDto chaebun) {
+      @RequestBody @Validated(UpdateGroup.class) ChaebunReqDto chaebun) {
     Map<String, Object> data = sequenceService.updateSequenceForAdmin(chaebun);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

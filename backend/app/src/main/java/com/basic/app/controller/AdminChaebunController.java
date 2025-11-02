@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -97,7 +98,7 @@ public class AdminChaebunController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertChaebunForAdmin(
-      @Validated(CreateGroup.class) ChaebunReqDto chaebunReqDto) {
+      @RequestBody @Validated(CreateGroup.class) ChaebunReqDto chaebunReqDto) {
     Map<String, Object> data = chaebunService.insertChaebunForAdmin(chaebunReqDto);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -114,7 +115,7 @@ public class AdminChaebunController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateChaebunForAdmin(
-      @Validated(UpdateGroup.class) ChaebunReqDto smsM) {
+      @RequestBody @Validated(UpdateGroup.class) ChaebunReqDto smsM) {
     Map<String, Object> data = chaebunService.updateChaebunForAdmin(smsM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

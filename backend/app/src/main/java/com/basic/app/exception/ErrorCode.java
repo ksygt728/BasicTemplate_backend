@@ -74,6 +74,9 @@ public enum ErrorCode {
   BBS_WRITOR_NOT_MATCH("4060", "게시글 작성자가 일치하지 않습니다."),
   BBS_COMMENT_WRITOR_NOT_MATCH("4061", "댓글 작성자가 일치하지 않습니다."),
 
+  // code
+  ATTR_CD_NOT_EXSIT("4070", "속성코드를 먼저 등록해주세요."),
+
   // Auth, OAuth2.0
   KAKAO_AUTH_ERROR("4100", "카카오 인증에 실패했습니다. 관리자에게 문의하세요."),
   USER_DUPLICATE("4110", "아이디가 이미 존재합니다."),

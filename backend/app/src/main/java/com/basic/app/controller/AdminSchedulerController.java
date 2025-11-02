@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -134,7 +135,7 @@ public class AdminSchedulerController {
   @SwaggerCommonResponseApi
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertSchedulerForAdmin(
-      @Validated(CreateGroup.class) ScheMReqDto scheM) {
+      @RequestBody @Validated(CreateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> data = schedulerService.insertSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -151,7 +152,7 @@ public class AdminSchedulerController {
   @SwaggerCommonResponseApi
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateSchedulerForAdmin(
-      @Validated(UpdateGroup.class) ScheMReqDto scheM) {
+      @RequestBody @Validated(UpdateGroup.class) ScheMReqDto scheM) {
     Map<String, Object> data = schedulerService.updateSchedulerForAdmin(scheM);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

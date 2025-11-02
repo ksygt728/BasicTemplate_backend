@@ -223,13 +223,13 @@ public class BbsTestTemplate {
       /* 2. when */
       TestUtils.showLogTestCaseStart(testCaseName);
 
-      MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+      String jsonContent = TestUtils.objectToJson(testData);
 
       MvcResult actual = mockMvc.perform(
           post(url)
-              .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+              .contentType(MediaType.APPLICATION_JSON)
               .header("test-token", true)
-              .params(multiValueMap))
+              .content(jsonContent))
           .andExpect(httpStatus)
           .andReturn();
 
@@ -272,13 +272,13 @@ public class BbsTestTemplate {
       /* 2. when */
       TestUtils.showLogTestCaseStart(testCaseName);
 
-      MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+      String jsonContent = TestUtils.objectToJson(testData);
 
       MvcResult actual = mockMvc.perform(
           put(url)
-              .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+              .contentType(MediaType.APPLICATION_JSON)
               .header("test-token", true)
-              .params(multiValueMap))
+              .content(jsonContent))
           .andExpect(httpStatus)
           .andReturn();
 
