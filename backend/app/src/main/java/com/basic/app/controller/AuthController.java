@@ -111,10 +111,14 @@ public class AuthController {
     String jwtAccessToken = data.get(accessTokenHeader).toString();
     String jwtRefreshToken = data.get(refreshTokenHeader).toString();
 
+    // Header에 실은 토큰을 Body에서 제거
+    data.remove(accessTokenHeader);
+    data.remove(refreshTokenHeader);
+
     return ResponseEntity.status(HttpStatus.OK)
         .header(accessTokenHeader, jwtAccessToken)
         .header(refreshTokenHeader, jwtRefreshToken)
-        .body(ResponseApi.success(null));
+        .body(ResponseApi.success(data));
   }
 
   /**
@@ -166,10 +170,14 @@ public class AuthController {
     String jwtAccessToken = data.get(accessTokenHeader).toString();
     String jwtRefreshToken = data.get(refreshTokenHeader).toString();
 
+    // Header에 실은 토큰을 Body에서 제거
+    data.remove(accessTokenHeader);
+    data.remove(refreshTokenHeader);
+
     return ResponseEntity.status(HttpStatus.OK)
         .header(accessTokenHeader, jwtAccessToken)
         .header(refreshTokenHeader, jwtRefreshToken)
-        .body(ResponseApi.success(null));
+        .body(ResponseApi.success(data));
 
   }
 

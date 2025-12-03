@@ -6,7 +6,7 @@ INSERT INTO TB_MENU (
     MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD
 ) VALUES (
     'ADM10000', NOW(3), 'SYSTEM', 'C', NOW(3), 'SYSTEM',
-    1, '관리자', '/main/admin', 1, 'Y', 'MENU00000'
+    1, '관리자', '/main/admin', 11, 'Y', 'MENU00000'
 );
 
 ============================================================

@@ -22,9 +22,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
+import com.basic.app.dto.responseDto.specialDto.AuthResDto;
 import com.basic.app.entity.Department;
 import com.basic.app.entity.User;
 import com.basic.app.exception.ErrorCode;
@@ -183,6 +185,9 @@ public class AuthServiceImpl implements AuthService {
     ;
 
     // 7. 로그인 성공한 유저정보를 Map에 담아 반환
+    AuthResDto authenticatedUserInfo = ModelMapperUtils.map(authenticatedUser, AuthResDto.class);
+    data.put("data", authenticatedUserInfo);
+
     data.put(accessTokenHeader, accessToken);
     data.put(refreshTokenHeader, refreshToken);
 
@@ -338,6 +343,9 @@ public class AuthServiceImpl implements AuthService {
         ;
 
         /* Step 6. 로그인 성공한 유저정보를 Map에 담아 반환 */
+        AuthResDto authenticatedUserInfo = ModelMapperUtils.map(userEntity, AuthResDto.class);
+        data.put("data", authenticatedUserInfo);
+
         data.put(accessTokenHeader, accessToken);
         data.put(refreshTokenHeader, refreshToken);
 
