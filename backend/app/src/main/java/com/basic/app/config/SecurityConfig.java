@@ -77,6 +77,7 @@ public class SecurityConfig {
 
     http
         .csrf(AbstractHttpConfigurer::disable)
+        .cors(cors -> cors.configure(http)) // CORS 설정 활성화
         .formLogin(AbstractHttpConfigurer::disable) // Rest API 사용으로 폼 로그인 비활성화
         .httpBasic(AbstractHttpConfigurer::disable)
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // JWT 사용으로 세션사용안함
@@ -88,8 +89,10 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/auth/**", "/login/oauth2/code/**")
             .permitAll() // 인증관련 로직은 인증 없이 접근 허용
-            // .requestMatchers("/admin/**")
-            // .hasRole("ADMIN") // 관리자 (시스템 관리자)
+            .requestMatchers("/admin/menu/search")
+            .permitAll() // 메뉴조회 API는 인증 없이 접근 허용
+            .requestMatchers("/admin/**")
+            .hasRole("ADMIN") // 관리자 (시스템 관리자)
             .requestMatchers("/manager/**")
             .hasAnyRole("MANAGER", "ADMIN") // 매니저(서비스제공자 - 관리자)
             .requestMatchers("/host/**")

@@ -22,10 +22,17 @@ public class WebConfig {
   @Value("${front-end.url}")
   private String FRONT_END_URL;
 
+  @Value("${jwt.access-token-header}")
+  private String accessTokenHeader;
+
+  @Value("${jwt.refresh-token-header}")
+  private String refreshTokenHeader;
+
   /**
    * @기능 : CORS 필터 설정
    * @return CorsFilter CORS 설정이 적용된 필터 객체
    */
+  @SuppressWarnings("null")
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration config = new CorsConfiguration();
@@ -39,7 +46,8 @@ public class WebConfig {
     config.addAllowedMethod("*");
 
     // 노출할 헤더 설정
-    config.addExposedHeader("Authorization");
+    config.addExposedHeader(accessTokenHeader);
+    config.addExposedHeader(refreshTokenHeader);
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);

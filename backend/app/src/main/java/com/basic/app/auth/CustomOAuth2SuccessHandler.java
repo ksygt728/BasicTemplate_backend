@@ -15,7 +15,9 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.ResponseApi;
+import com.basic.app.dto.responseDto.specialDto.AuthResDto;
 import com.basic.app.entity.User;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
@@ -53,6 +55,7 @@ import lombok.extern.log4j.Log4j2;
  *       - 6-2. 있으면 계정 연동 처리
  *       7. 사용자정보로 JWT 토큰 발급 및 SevurityContext에 등록
  *       8. 시스템에서 발급한 Access&Refresh Token 헤더 응답 + (redis에 refresh token 저장)
+ *       9. 로그인 성공한 유저정보를 Map에 담아 반환
  * 
  * @작성자 : 김승연
  * @작성일 : 2025.07.31
@@ -186,7 +189,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         /*
-         * Step 5. 시스템에서 발급한 Access&Refresh Token 헤더 응답
+         * Step 8. 시스템에서 발급한 Access&Refresh Token 헤더 응답 + (redis에 refresh token 저장)
          * (카카오 accesstoken은 일회성)
          */
 
@@ -202,7 +205,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 jwtProperties.getExpireTime().getRefreshToken().toMillis(), TimeUnit.MILLISECONDS) // 만료시간 설정(자동삭제)
         ;
 
-        /* Step 8. 로그인 성공한 유저정보를 Map에 담아 반환 */
+        /* Step 9. 로그인 성공한 유저정보를 Map에 담아 반환 */
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
@@ -210,7 +214,12 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         response.setHeader(accessTokenHeader, accessToken);
         response.setHeader(refreshTokenHeader, refreshToken);
 
-        new ObjectMapper().writeValue(response.getWriter(), ResponseApi.success(null));
+        Map<String, Object> data = null;
+        AuthResDto authResDto = ModelMapperUtils.map(userEntity, AuthResDto.class);
+
+        data = Map.of("data", authResDto);
+
+        new ObjectMapper().writeValue(response.getWriter(), ResponseApi.success(data));
 
     }
 }

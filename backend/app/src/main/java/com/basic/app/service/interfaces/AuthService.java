@@ -37,4 +37,12 @@ public interface AuthService {
    */
   Map<String, Object> signIn(AuthReqDto user);
 
+  /**
+   * @기능 : 사용자정보 조회
+   * @설명 : SecurityContext에서 인증된 사용자 정보 조회해서 반환(프론트엔드 새로고침 or 페이지 이동 시 Redux의 사용자
+   *     정보가 날아가는 문제 대응)
+   * @return 로그인 결과 정보가 담긴 Map
+   */
+  Map<String, Object> getCurrentUser();
+
 }
