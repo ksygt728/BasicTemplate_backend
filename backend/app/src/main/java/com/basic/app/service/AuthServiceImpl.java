@@ -15,6 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +23,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.basic.app.api.ModelMapperUtils;
+import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
+import com.basic.app.dto.responseDto.specialDto.AuthResDto;
 import com.basic.app.entity.Department;
 import com.basic.app.entity.User;
 import com.basic.app.exception.ErrorCode;
@@ -183,6 +187,9 @@ public class AuthServiceImpl implements AuthService {
     ;
 
     // 7. 로그인 성공한 유저정보를 Map에 담아 반환
+    AuthResDto authenticatedUserInfo = ModelMapperUtils.map(authenticatedUser, AuthResDto.class);
+    data.put("data", authenticatedUserInfo);
+
     data.put(accessTokenHeader, accessToken);
     data.put(refreshTokenHeader, refreshToken);
 
@@ -338,6 +345,9 @@ public class AuthServiceImpl implements AuthService {
         ;
 
         /* Step 6. 로그인 성공한 유저정보를 Map에 담아 반환 */
+        AuthResDto authenticatedUserInfo = ModelMapperUtils.map(userEntity, AuthResDto.class);
+        data.put("data", authenticatedUserInfo);
+
         data.put(accessTokenHeader, accessToken);
         data.put(refreshTokenHeader, refreshToken);
 
@@ -346,6 +356,38 @@ public class AuthServiceImpl implements AuthService {
     } catch (Exception e) {
       throw new SystemErrorException(e, ErrorCode.KAKAO_AUTH_ERROR, "");
     }
+
+    return data;
+  }
+
+  /**
+   * @기능 : 사용자정보 조회
+   * @설명 : SecurityContext에서 인증된 사용자 정보 조회해서 반환(프론트엔드 새로고침 or 페이지 이동 시 Redux의 사용자
+   *     정보가 날아가는 문제 대응)
+   * @return 로그인 결과 정보가 담긴 Map
+   */
+  @Override
+  public Map<String, Object> getCurrentUser() {
+
+    Map<String, Object> data = new HashMap<>();
+
+    // SecurityContext에서 인증된 사용자 정보 가져오기
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    if (authentication == null || !authentication.isAuthenticated()) {
+      throw new BusinessException(ErrorCode.LOGIN_REQUIRED);
+    }
+
+    String userId = authentication.getName(); // JWT에서 추출한 userId
+
+    // DB에서 사용자 정보 조회
+    User user = userRepository.findById(userId)
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new NotFoundException(ErrorCode.LOGIN_REQUIRED));
+
+    UserResDto userDto = ModelMapperUtils.map(user, UserResDto.class);
+
+    data.put("data", userDto);
 
     return data;
   }

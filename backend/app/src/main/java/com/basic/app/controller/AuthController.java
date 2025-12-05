@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
+import com.basic.app.auth.CustomUserDetailsService;
 import com.basic.app.dto.group.CreateGroup;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
+import com.basic.app.entity.User;
+import com.basic.app.exception.ErrorCode;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.service.interfaces.AuthService;
 import com.basic.app.service.interfaces.SmsService;
-import com.basic.app.service.interfaces.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -111,10 +115,14 @@ public class AuthController {
     String jwtAccessToken = data.get(accessTokenHeader).toString();
     String jwtRefreshToken = data.get(refreshTokenHeader).toString();
 
+    // Header에 실은 토큰을 Body에서 제거
+    data.remove(accessTokenHeader);
+    data.remove(refreshTokenHeader);
+
     return ResponseEntity.status(HttpStatus.OK)
         .header(accessTokenHeader, jwtAccessToken)
         .header(refreshTokenHeader, jwtRefreshToken)
-        .body(ResponseApi.success(null));
+        .body(ResponseApi.success(data));
   }
 
   /**
@@ -166,10 +174,14 @@ public class AuthController {
     String jwtAccessToken = data.get(accessTokenHeader).toString();
     String jwtRefreshToken = data.get(refreshTokenHeader).toString();
 
+    // Header에 실은 토큰을 Body에서 제거
+    data.remove(accessTokenHeader);
+    data.remove(refreshTokenHeader);
+
     return ResponseEntity.status(HttpStatus.OK)
         .header(accessTokenHeader, jwtAccessToken)
         .header(refreshTokenHeader, jwtRefreshToken)
-        .body(ResponseApi.success(null));
+        .body(ResponseApi.success(data));
 
   }
 
@@ -247,6 +259,20 @@ public class AuthController {
     Map<String, Object> data = smsService.smsAuthValidation(phoneNum, smsCode);
     return ResponseEntity.status(HttpStatus.OK)
         .body(ResponseApi.success(data));
+  }
+
+  /**
+   * @기능 : 사용자정보 조회
+   * @설명 : SecurityContext에서 인증된 사용자 정보 조회해서 반환(프론트엔드 새로고침 or 페이지 이동 시 Redux의 사용자
+   *     정보가 날아가는 문제 대응)
+   * @return 로그인 결과 정보가 담긴 Map
+   */
+  @GetMapping("/me")
+  public ResponseEntity<ResponseApi<Map<String, Object>>> getCurrentUser() {
+    Map<String, Object> data = authService.getCurrentUser();
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(ResponseApi.success(data));
+
   }
 
 }
