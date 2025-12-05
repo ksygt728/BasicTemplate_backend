@@ -112,7 +112,8 @@ public class LoggingAspect {
 
     // Kafka에 로그 전송(Admin 로그 조회는 Kafka에 전송하지 않음)
     if (!(request.getRequestURI().contains("/admin/log/api-log/search") ||
-        request.getRequestURI().contains("/admin/log/error-log/search"))) {
+        request.getRequestURI().contains("/admin/log/error-log/search") ||
+        request.getRequestURI().contains("api/auth/me"))) {
 
       UserRequestInfoManager userRequestInfoManager = new UserRequestInfoManager(request);
 
