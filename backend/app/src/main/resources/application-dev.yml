@@ -95,7 +95,7 @@ spring:
             client-secret: K5PHcStiFJhdhx1nlu4Bgrzx2jewx6iz # 필요 시 카카오 앱 시크릿
             client-name: kakao
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - profile_nickname
               - profile_image
@@ -108,7 +108,7 @@ spring:
             client-secret: t96zRG_Fdk # 네이버 개발자센터에서 발급받은 Client Secret
             client-name: naver
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - name
               - email
@@ -120,7 +120,7 @@ spring:
             client-secret: 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 # 구글 Client Secret
             client-name: google
             authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - profile
               - email
