@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.responseDto.specialDto.AuthResDto;
 import com.basic.app.entity.User;
@@ -36,6 +36,9 @@ import lombok.extern.log4j.Log4j2;
  * @파일명 : CustomOAuth2SuccessHandler.java
  * @설명 : OAuth2 로그인 성공 핸들러
  * @Url :
+ *      [중요!!] 시크릿탭에서 아래 URL을 브라우저(front-end)에서 호출하여 OAuth2 로그인 시작해야한다.
+ *      이후, 인증까지 모두 Spring Security가 처리하고 성공 시 해당 success handler가 호출된다.
+ * 
  *      kakao : http://localhost:8080/oauth2/authorization/kakao
  *      google : http://localhost:8080/oauth2/authorization/google
  *      naver : http://localhost:8080/oauth2/authorization/naver
@@ -55,12 +58,15 @@ import lombok.extern.log4j.Log4j2;
  *       - 6-2. 있으면 계정 연동 처리
  *       7. 사용자정보로 JWT 토큰 발급 및 SevurityContext에 등록
  *       8. 시스템에서 발급한 Access&Refresh Token 헤더 응답 + (redis에 refresh token 저장)
- *       9. 로그인 성공한 유저정보를 Map에 담아 반환
+ *       9. 로그인 성공한 유저정보를 Map에 담아 반환 + 프론트엔드 콜백 URL로 리다이렉트
  * 
  * @작성자 : 김승연
  * @작성일 : 2025.07.31
  * @변경이력 :
  *       2025.07.31 김승연 최초 생성
+ *       2025.12.01 김승연 Step 6-1, 6-2 세부기능 구현 및 주석 보완
+ *       2025.12.06 김승연 Step 9 프론트엔드 콜백 URL 리다이렉트 기능 구현
+ * 
  * @테스트케이스 : Step 6에 대한 테스트 케이스
  * 
  *         [[Case1 일반]]
@@ -95,6 +101,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Component
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
+
+    @Value("${front-end.url}")
+    private String frontEndUrl;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -205,21 +214,39 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 jwtProperties.getExpireTime().getRefreshToken().toMillis(), TimeUnit.MILLISECONDS) // 만료시간 설정(자동삭제)
         ;
 
-        /* Step 9. 로그인 성공한 유저정보를 Map에 담아 반환 */
+        /* Step 9. 로그인 성공한 유저정보를 Map에 담아 반환 + 프론트엔드 콜백 URL로 리다이렉트 */
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+        // ModelMapper 대신 직접 DTO 생성 (LAZY 로딩 문제 방지)
+        AuthResDto authResDto = AuthResDto.builder()
+                .userId(userEntity.getUserId())
+                .name(userEntity.getName())
+                .phoneNum(userEntity.getPhoneNum())
+                .email(userEntity.getEmail())
+                .role(userEntity.getRole())
+                .userType(userEntity.getUserType())
+                .gender(userEntity.getGender())
+                .department(null) // OAuth2 로그인 시에는 department 정보 제외
+                .build();
 
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.setHeader(accessTokenHeader, accessToken);
-        response.setHeader(refreshTokenHeader, refreshToken);
+        ResponseApi<AuthResDto> responseApi = ResponseApi.success(authResDto);
 
-        Map<String, Object> data = null;
-        AuthResDto authResDto = ModelMapperUtils.map(userEntity, AuthResDto.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String userDataJson = objectMapper.writeValueAsString(responseApi);
+        String encodedUserData = java.net.URLEncoder.encode(userDataJson, "UTF-8");
 
-        data = Map.of("data", authResDto);
+        // 프론트엔드 콜백 URL로 리다이렉트 (토큰과 사용자 정보 모두 URL 파라미터로 전달)
+        String redirectUrl = frontEndUrl + "/auth/callback?success=true" +
+                "&accessToken=" + java.net.URLEncoder.encode(accessToken, "UTF-8") +
+                "&refreshToken=" + java.net.URLEncoder.encode(refreshToken, "UTF-8") +
+                "&userData=" + encodedUserData;
 
-        new ObjectMapper().writeValue(response.getWriter(), ResponseApi.success(data));
+        // log.info("[OAuth2 Success] Redirecting to: {}", frontEndUrl +
+        // "/auth/callback?success=true");
+        // log.info("[OAuth2 Success] Access Token: {}", accessToken);
+        // log.info("[OAuth2 Success] Refresh Token: {}", refreshToken);
+        // log.info("[OAuth2 Success] User Data: {}", userDataJson);
+
+        response.sendRedirect(redirectUrl);
 
     }
 }
