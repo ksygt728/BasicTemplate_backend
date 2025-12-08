@@ -210,10 +210,10 @@ jwt:
     second: userId
     third: phoneNum
   expire-time:
-    access-token: 1m # 10분 = 1000 * 60 * 10
-    refresh-token: 2m
+    access-token: 10m # 10분 = 1000 * 60 * 10
+    refresh-token: 1d
   dead-time-for-server: 10s # 10초
-  secret-key: CBSK-DEV-SECRET-KEY # JWT 서명에 사용할 비밀 키
+  secret-key: CBSK-DEV-SECRET-KEY-KSYGT728-ORI-IS-THE-BEST-ANIMAL # JWT 서명에 사용할 비밀 키
 
 springdoc:
   swagger-ui:
