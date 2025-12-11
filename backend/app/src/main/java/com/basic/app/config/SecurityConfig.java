@@ -86,8 +86,6 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/auth/**", "/oauth2/**", "/login/oauth2/code/**")
             .permitAll() // 인증관련 로직은 인증 없이 접근 허용
-            .requestMatchers("/admin/menu/search", "/admin/code/search")
-            .permitAll() // 메뉴조회 API는 인증 없이 접근 허용
             .requestMatchers("/admin/**")
             .hasRole("ADMIN") // 관리자 (시스템 관리자)
             .requestMatchers("/manager/**")
