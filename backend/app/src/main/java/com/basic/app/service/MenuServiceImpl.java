@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,15 +52,18 @@ public class MenuServiceImpl implements MenuService {
 
     Map<String, Object> data = new HashMap<>();
 
-    List<Menu> menuEntityList = menuRepository.findAllByStsOrderByMenuLvAscOrderNumAsc(Status.POSITIVE);
+    // List<Menu> menuEntityList =
+    // menuRepository.findAllByStsOrderByMenuLvAscOrderNumAsc(Status.POSITIVE);
 
-    // Entity -> DTO 변환
-    List<MenuResDto> menuResDtoList = menuEntityList.stream()
-        .map(entity -> entity.toDto(entity))
-        .toList();
+    // // Entity -> DTO 변환
+    // List<MenuResDto> menuResDtoList = menuEntityList.stream()
+    // .map(entity -> entity.toDto(entity))
+    // .toList();
+
+    Page<MenuResDto> menuResDtoList = menuJooqRepository.findAllMenuWithConditions(menuReqDto, pageable);
 
     // 메뉴코드 → Menu 매핑
-    Map<String, MenuResDto> menuMap = menuResDtoList.stream()
+    Map<String, MenuResDto> menuMap = menuResDtoList.getContent().stream()
         .collect(Collectors.toMap(MenuResDto::getMenuCd, m -> m));
 
     // 최상위 메뉴 리스트
