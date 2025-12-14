@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -14,6 +15,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.basic.app.api.ResponseApi;
+import com.basic.app.auth.CustomUserDetails;
 import com.basic.app.auth.CustomUserDetailsService;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.JwtExeption;
@@ -34,6 +36,7 @@ import lombok.extern.log4j.Log4j2;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
  */
 @Log4j2
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
@@ -79,7 +82,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     if (testToken && jwtProperties.getEnv().equals("dev")) {
       log.info("[TEST LOG] : 테스트용 토큰 사용 여부(환경 : {} 아이디 : {})", jwtProperties.getEnv(), jwtProperties.getTestId());
-      Authentication authentication = jwtProvider.getAuthentication(jwtProperties.getTestId());
+      // Test mode: create authentication using test user ID directly
+      CustomUserDetails userDetails = jwtProvider.createUserCustomUserDetails(jwtProperties.getTestId());
+      Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+          userDetails.getAuthorities());
       SecurityContextHolder.getContext().setAuthentication(authentication);
       chain.doFilter(request, response);
       return;
@@ -120,8 +126,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
           // 나중에 로그아웃이랑 같이 추가
 
           // 2-1. JWT 토큰 서명을 통해서 서명이 정상이면 Authentication 객체생성
-          String userId = jwtProvider.getClaimId(jwtAccessToken);
-          Authentication authentication = jwtProvider.getAuthentication(userId);
+          Authentication authentication = jwtProvider.getAuthentication(jwtAccessToken);
 
           // 2-2. 강제로 시큐리티의 세션에 접근하여 Authentication 객체를 저장(권한 처리)
           SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -170,8 +175,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
           if (redisRefreshToken.equals(jwtRefreshToken)) {
             log.warn("TEST LOG : refresh Token redis에 존재합니다 ");
             // 해당 유저의 AccessToken, RefreshToken 재발급
-            String newAccessToken = jwtProvider.createAccessToken(jwtProvider.createUser(userId));
-            String newRefreshToken = jwtProvider.createRefreshToken(jwtProvider.createUser(userId));
+            String newAccessToken = jwtProvider.createAccessToken(jwtProvider.createUserCustomUserDetails(userId));
+            String newRefreshToken = jwtProvider.createRefreshToken(jwtProvider.createUserCustomUserDetails(userId));
 
             // RefreshToken 갱신(Sliding Expiration) + Redis 업데이트
             redisTemplate.opsForValue().set(

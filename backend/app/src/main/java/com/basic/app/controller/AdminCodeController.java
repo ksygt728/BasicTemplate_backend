@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -67,6 +68,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색]", description = "공통코드 검색 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CodeSearchFormResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions({ "ADM30201_READ" })
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllCodeMWithConditions(CodeSearchFormReqDto reqDto,
       @PageableDefault(page = 0, size = 2000) Pageable pageable) {

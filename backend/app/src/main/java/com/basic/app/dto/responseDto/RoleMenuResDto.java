@@ -20,6 +20,7 @@ import lombok.ToString;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 menuRw 필드 RW에서 CRUD로 변경
  */
 @Getter
 @Setter
@@ -43,7 +44,7 @@ public class RoleMenuResDto {
 
   private int orderNum; // 정렬순서
 
-  private String menuRw; // 메뉴 접근 수준 (R,W)
+  private String menuRw; // 메뉴 접근 수준 (C,R,U,D)
 
   private List<RoleMenuResDto> childMenus = new ArrayList<RoleMenuResDto>(); // 메뉴 하위 목록
 

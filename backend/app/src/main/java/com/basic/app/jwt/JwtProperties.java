@@ -15,6 +15,7 @@ import lombok.Setter;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
  */
 @Getter
 @Setter
@@ -38,6 +39,8 @@ public class JwtProperties {
     private String first;
     private String second;
     private String third;
+    private String fourth;
+    private String fifth;
   }
 
   @Getter
