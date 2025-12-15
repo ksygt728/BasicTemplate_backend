@@ -3,8 +3,10 @@ package com.basic.app.jwt;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,6 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.basic.app.auth.CustomUserDetails;
 import com.basic.app.auth.rbac.PermissionKey;
-import com.basic.app.controller.AdminApprovalController;
 import com.basic.app.entity.RoleMenu;
 import com.basic.app.entity.RoleUser;
 import com.basic.app.entity.User;
@@ -38,6 +39,9 @@ import lombok.extern.log4j.Log4j2;
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
  *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
+ *       2025.12.15 김승연 JWT Token에 Permission 정보를 가지고 있는 방식에서 Redis에 저장한 방식으로
+ *       변경(Permission이 많아 지면 헤더길이 초과 및 보안적으로 좋지 않은 설계구조라 변경함)
+ * 
  */
 @Component
 @RequiredArgsConstructor
@@ -50,6 +54,9 @@ public class JwtProvider {
 
   @Autowired
   private JwtProperties jwtProperties;
+
+  @Autowired
+  private RedisTemplate redisTemplate;
 
   /**
    * @기능 : Access Token 생성
@@ -65,7 +72,6 @@ public class JwtProvider {
         .withClaim(jwtProperties.getSubject().getSecond(), user.getUser().getUserId())
         .withClaim(jwtProperties.getSubject().getThird(), user.getUser().getPhoneNum())
         .withClaim(jwtProperties.getSubject().getFourth(), user.getRoles())
-        .withClaim(jwtProperties.getSubject().getFifth(), user.getPermissions())
         .sign(Algorithm.HMAC512(jwtProperties.getSecretKey()));
   }
 
@@ -85,7 +91,6 @@ public class JwtProvider {
         .withClaim(jwtProperties.getSubject().getSecond(), user.getUser().getUserId())
         .withClaim(jwtProperties.getSubject().getThird(), user.getUser().getPhoneNum())
         .withClaim(jwtProperties.getSubject().getFourth(), user.getRoles())
-        .withClaim(jwtProperties.getSubject().getFifth(), user.getPermissions())
         .sign(Algorithm.HMAC512(jwtProperties.getSecretKey()));
   }
 
@@ -182,9 +187,17 @@ public class JwtProvider {
       roles = JWT.require(Algorithm.HMAC512(jwtProperties.getSecretKey())).build().verify(jwtToken).getClaim("roles")
           .asList(String.class);
 
-      permissions = JWT.require(Algorithm.HMAC512(jwtProperties.getSecretKey())).build().verify(jwtToken)
-          .getClaim("permissions")
-          .asList(String.class);
+      // permissions =
+      // JWT.require(Algorithm.HMAC512(jwtProperties.getSecretKey())).build().verify(jwtToken)
+      // .getClaim("permissions")
+      // .asList(String.class);
+
+      permissions = (List<String>) redisTemplate.opsForSet()
+          .union(
+              roles.stream()
+                  .map(role -> "auth:role:" + role + ":perms")
+                  .toList())
+          .stream().distinct().toList();
 
     } catch (TokenExpiredException e) {
       throw new JwtExeption(ErrorCode.JWT_ISSUE_ACCESS_TOKEN_EXPIRED); // 토큰 만료
@@ -223,30 +236,30 @@ public class JwtProvider {
     roles.add(user.getRole()); // 기본 권한도 추가
     roles = roles.stream().distinct().collect(java.util.stream.Collectors.toList());
 
-    // [3. 권한 설정]
+    // [3. 권한 설정] > Redis로 이동
     List<String> permissions = new ArrayList<>();
 
-    // /* Step 3-1 : User가 가지고 있는 Role List 가져오기 */
-    List<RoleUser> roleUserList = user.getRoleUsers().stream()
-        .filter(entity -> entity.getSts().equals(Status.POSITIVE) &&
-            entity.getUseYn().equals("Y"))
-        // .map(entity -> entity.getRoleUserId().getRoleCd())
-        .toList();
+    // // /* Step 3-1 : User가 가지고 있는 Role List 가져오기 */
+    // List<RoleUser> roleUserList = user.getRoleUsers().stream()
+    // .filter(entity -> entity.getSts().equals(Status.POSITIVE) &&
+    // entity.getUseYn().equals("Y"))
+    // // .map(entity -> entity.getRoleUserId().getRoleCd())
+    // .toList();
 
-    /* Step 3-2 : Role List가 가지고 있는 메뉴별 권한 가져오기(겹칠 수 있으니 중복제거) */
-    List<RoleMenu> roleMenuList = roleUserList.stream()
-        .flatMap(roleUser -> roleUser.getRole().getRoleMenus().stream())
-        .filter(roleMenu -> roleMenu.getSts().equals(Status.POSITIVE) &&
-            roleMenu.getUseYn().equals("Y"))
-        // .map(roleMenu -> roleMenu.getMenu().getMenuCd())
-        .distinct()
-        .toList();
+    // /* Step 3-2 : Role List가 가지고 있는 메뉴별 권한 가져오기(겹칠 수 있으니 중복제거) */
+    // List<RoleMenu> roleMenuList = roleUserList.stream()
+    // .flatMap(roleUser -> roleUser.getRole().getRoleMenus().stream())
+    // .filter(roleMenu -> roleMenu.getSts().equals(Status.POSITIVE) &&
+    // roleMenu.getUseYn().equals("Y"))
+    // // .map(roleMenu -> roleMenu.getMenu().getMenuCd())
+    // .distinct()
+    // .toList();
 
-    /* Step 3-3 : 메뉴별 권한 리스트를 가지고 PermissionKey생성(JWT사용) */
-    permissions = roleMenuList.stream()
-        .flatMap(roleMenu -> PermissionKey.of(roleMenu.getRoleMenuId().getMenuCd(),
-            roleMenu.getMenuRw()).stream())
-        .toList();
+    // /* Step 3-3 : 메뉴별 권한 리스트를 가지고 PermissionKey생성(JWT사용) */
+    // permissions = roleMenuList.stream()
+    // .flatMap(roleMenu -> PermissionKey.of(roleMenu.getRoleMenuId().getMenuCd(),
+    // roleMenu.getMenuRw()).stream())
+    // .toList();
 
     return new CustomUserDetails(user, roles, permissions);
   }
