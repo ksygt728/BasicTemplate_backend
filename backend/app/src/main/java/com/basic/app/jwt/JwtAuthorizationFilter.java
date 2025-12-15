@@ -37,6 +37,8 @@ import lombok.extern.log4j.Log4j2;
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
  *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
+ *       2025.12.15 김승연 JWT Token에 Permission 정보를 가지고 있는 방식에서 Redis에 저장한 방식으로
+ *       변경(Permission이 많아 지면 헤더길이 초과 및 보안적으로 좋지 않은 설계구조라 변경함)
  */
 @Log4j2
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
@@ -84,8 +86,8 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
       log.info("[TEST LOG] : 테스트용 토큰 사용 여부(환경 : {} 아이디 : {})", jwtProperties.getEnv(), jwtProperties.getTestId());
       // Test mode: create authentication using test user ID directly
       CustomUserDetails userDetails = jwtProvider.createUserCustomUserDetails(jwtProperties.getTestId());
-      Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-          userDetails.getAuthorities());
+      String token = jwtProvider.createAccessToken(userDetails).replace(jwtProperties.getBearerType() + " ", "");
+      Authentication authentication = jwtProvider.getAuthentication(token);
       SecurityContextHolder.getContext().setAuthentication(authentication);
       chain.doFilter(request, response);
       return;
