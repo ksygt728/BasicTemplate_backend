@@ -18,11 +18,16 @@ import org.springframework.stereotype.Component;
 
 import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.responseDto.specialDto.AuthResDto;
+import com.basic.app.entity.Role;
+import com.basic.app.entity.RoleUser;
 import com.basic.app.entity.User;
+import com.basic.app.entity.compositeKey.RoleUserId;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.jwt.JwtProvider;
+import com.basic.app.repository.RoleRepository;
+import com.basic.app.repository.RoleUserRepository;
 import com.basic.app.repository.UserRepository;
 import com.basic.app.util.Status;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -66,6 +71,7 @@ import lombok.extern.log4j.Log4j2;
  *       2025.07.31 김승연 최초 생성
  *       2025.12.01 김승연 Step 6-1, 6-2 세부기능 구현 및 주석 보완
  *       2025.12.06 김승연 Step 9 프론트엔드 콜백 URL 리다이렉트 기능 구현
+ *       2025.12.14 김승연 Step 6-1, 6-2 RoleUser 매핑처리 리팩토링(RBAC방식 반영)
  * 
  * @테스트케이스 : Step 6에 대한 테스트 케이스
  * 
@@ -113,6 +119,12 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private RoleUserRepository roleUserRepository;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -176,6 +188,22 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                     .build();
 
             userRepository.save(userEntity);
+
+            // // 2. RoleUser 테이블에 INSERT (기본 권한 USER 부여)
+            Role basicRole = roleRepository.findById("ROLE_GUEST")
+                    .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+                    .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_NOT_FOUND,
+                            "ROLE_GUEST"));
+
+            RoleUser roleUser = RoleUser.builder()
+                    .roleUserId(new RoleUserId(basicRole.getRoleCd(), userEntity.getUserId()))
+                    .user(userEntity)
+                    .role(basicRole)
+                    .useYn("Y")
+                    .build();
+
+            roleUserRepository.save(roleUser);
+
         } else {
             // Step 3-2. 있으면 계정 연동 처리
             if (!userEntity.getUserType().equals(provider)) {
@@ -205,8 +233,10 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         // -- Redis에 Refresh Token 저장
         String accessTokenHeader = jwtProperties.getAccessTokenHeader();
         String refreshTokenHeader = jwtProperties.getRefreshTokenHeader();
-        String accessToken = jwtProvider.createAccessToken(userEntity);
-        String refreshToken = jwtProvider.createRefreshToken(userEntity);
+        String accessToken = jwtProvider
+                .createAccessToken(jwtProvider.createUserCustomUserDetails(userEntity.getUserId()));
+        String refreshToken = jwtProvider
+                .createRefreshToken(jwtProvider.createUserCustomUserDetails(userEntity.getUserId()));
 
         redisTemplate.opsForValue().set(
                 refreshTokenHeader + ":" + userEntity.getUserId(), // Redis Key

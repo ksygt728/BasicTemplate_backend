@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -60,6 +61,7 @@ public class AdminWebSvcController {
   @Operation(summary = "[REQ_ADM_027] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 기준정보 리스트 조회]", description = "웹서비스 기준정보 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_READ")
   @GetMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllWebserviceForAdmin() {
     Map<String, Object> data = webSvcService.findAllWebserviceForAdmin();
@@ -77,6 +79,7 @@ public class AdminWebSvcController {
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_READ")
   @GetMapping("/{svcId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.findByWebserviceForAdmin(svcId);
@@ -93,6 +96,7 @@ public class AdminWebSvcController {
   @Operation(summary = "[REQ_ADM_030] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 추가]", description = "웹서비스 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> inesrtWebserviceForAdmin(
       @RequestBody @Validated(CreateGroup.class) WebSvcReqDto webSvc) {
@@ -111,6 +115,7 @@ public class AdminWebSvcController {
   @Operation(summary = "[REQ_ADM_031] [화면 : 기준 정보 > 웹서비스 관리] [기능 : 웹서비스 수정]", description = "웹서비스 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateWebserviceForAdmin(
       @RequestBody @Validated(UpdateGroup.class) WebSvcReqDto webSvc) {
@@ -129,6 +134,7 @@ public class AdminWebSvcController {
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_DELETE")
   @DeleteMapping("/{svcId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.deleteWebserviceForAdmin(svcId);
@@ -147,6 +153,7 @@ public class AdminWebSvcController {
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_CREATE")
   @PostMapping("/execute/{svcId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> executeWebserviceForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.executeWebserviceForAdmin(svcId);
@@ -165,6 +172,7 @@ public class AdminWebSvcController {
   @Parameter(name = "svcId", description = "웹서비스 아이디", example = "WEB001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = WebSvcResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30203_READ")
   @GetMapping("/history/{svcId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByWebserviceHistoryForAdmin(@PathVariable String svcId) {
     Map<String, Object> data = webSvcService.findByWebserviceHistoryForAdmin(svcId);

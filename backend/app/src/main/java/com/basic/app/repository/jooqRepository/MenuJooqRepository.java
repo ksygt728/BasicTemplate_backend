@@ -158,7 +158,7 @@ public class MenuJooqRepository {
         .select(
             TB_CTE.field("MENU_CD").as("menuCd"),
             TB_CTE.field("MENU_NM").as("menuNm"),
-            TB_CTE.field("UPPER_MENU_CD").as("upperMenuCd"),
+            TB_CTE.field("UPPER_MENU_CD").as("upperMenu"),
             TB_CTE.field("MENU_LV").as("menuLv"),
             TB_CTE.field("USE_YN").as("useYn"),
             TB_CTE.field("MENU_URL").as("menuUrl"),

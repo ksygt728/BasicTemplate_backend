@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -64,6 +65,7 @@ public class AdminMailController {
   @Operation(summary = "[REQ_ADM_057] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 리스트 조회]", description = "메일 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMailForAdmin(MailMReqDto mailMReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "mailId", direction = Sort.Direction.ASC) Pageable pageable)
@@ -85,6 +87,7 @@ public class AdminMailController {
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_READ")
   @GetMapping("/{mailId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailForAdmin(@PathVariable String mailId) {
     Map<String, Object> data = mailService.findByMailForAdmin(mailId);
@@ -103,6 +106,7 @@ public class AdminMailController {
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailHResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_READ")
   @GetMapping("/history/{mailId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId,
       @PageableDefault(page = 0, size = 2000, sort = "mailId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -120,6 +124,7 @@ public class AdminMailController {
   @Operation(summary = "[REQ_ADM_061] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 추가]", description = "메일 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertMailForAdmin(
       @RequestBody @Validated(CreateGroup.class) MailMReqDto mailM) {
@@ -137,6 +142,7 @@ public class AdminMailController {
   @Operation(summary = "[REQ_ADM_062] [화면 : 시스템 관리 > 메일 관리] [기능 : 메일 수정]", description = "메일 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateMailForAdmin(
       @RequestBody @Validated(UpdateGroup.class) MailMReqDto mailM) {
@@ -155,6 +161,7 @@ public class AdminMailController {
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30402_DELETE")
   @DeleteMapping("/{mailId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMailForAdmin(@PathVariable String mailId) {
     Map<String, Object> data = mailService.deleteMailForAdmin(mailId);

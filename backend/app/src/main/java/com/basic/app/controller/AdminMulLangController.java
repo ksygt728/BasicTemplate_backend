@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -64,6 +65,7 @@ public class AdminMulLangController {
   @Operation(summary = "[REQ_ADM_033] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 리스트 조회]", description = "다국어 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMulLangForAdmin(MulLangReqDto mulLangReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "langCd", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -83,6 +85,7 @@ public class AdminMulLangController {
   @Parameter(name = "langCd", description = "언어 코드", example = "LANG001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_READ")
   @GetMapping("/{langGubun}/{langCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByMulLangForAdmin(@PathVariable String langGubun,
       @PathVariable String langCd) {
@@ -100,6 +103,7 @@ public class AdminMulLangController {
   @Operation(summary = "[REQ_ADM_035] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 추가]", description = "다국어 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertMulLangForAdmin(
       @RequestBody @Validated(CreateGroup.class) MulLangReqDto mulLang) {
@@ -117,6 +121,7 @@ public class AdminMulLangController {
   @Operation(summary = "[REQ_ADM_036] [화면 : 기준 정보 > 다국어 관리] [기능 : 다국어 수정]", description = "다국어 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MulLangResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateMulLangForAdmin(
       @RequestBody @Validated(UpdateGroup.class) MulLangReqDto mulLang) {
@@ -139,6 +144,7 @@ public class AdminMulLangController {
   })
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_DELETE")
   @DeleteMapping("/{langGubun}/{langCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMulLangForAdmin(@PathVariable String langGubun,
       @PathVariable String langCd) {
@@ -163,6 +169,7 @@ public class AdminMulLangController {
   })
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30204_DELETE")
   @DeleteMapping("/{langType}/{langGubun}/{langCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMulLangDetailForAdmin(
       @PathVariable String langType,

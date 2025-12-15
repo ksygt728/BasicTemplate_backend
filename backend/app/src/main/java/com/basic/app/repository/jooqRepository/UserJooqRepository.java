@@ -58,6 +58,9 @@ public class UserJooqRepository {
     if (reqDto.getName() != null && !reqDto.getName().isEmpty()) {
       conditions.add(TB_USER.NAME.like("%" + reqDto.getName() + "%"));
     }
+    if (reqDto.getPhoneNum() != null && !reqDto.getPhoneNum().isEmpty()) {
+      conditions.add(TB_USER.PHONE_NUM.like("%" + reqDto.getPhoneNum() + "%"));
+    }
 
     // 필요한 조건 추가
     conditions.add(TB_USER.STS.eq("C"));

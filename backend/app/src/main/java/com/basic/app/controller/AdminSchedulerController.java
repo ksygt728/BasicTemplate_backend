@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -63,6 +64,7 @@ public class AdminSchedulerController {
   @Operation(summary = "[REQ_ADM_074] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 리스트 조회]", description = "스케줄러 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
       @PageableDefault(page = 0, size = 200, sort = "scheId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -81,6 +83,7 @@ public class AdminSchedulerController {
   @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_READ")
   @GetMapping("/{scheId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findBySchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.findBySchedulerForAdmin(scheId);
@@ -99,6 +102,7 @@ public class AdminSchedulerController {
   @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheHResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_READ")
   @GetMapping("/history/{scheId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
       @PageableDefault(page = 0, size = 200, sort = "startDate", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -117,6 +121,7 @@ public class AdminSchedulerController {
   @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_CREATE")
   @PostMapping("/execute/{scheId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> executeSchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.executeSchedulerForAdmin(scheId);
@@ -133,6 +138,7 @@ public class AdminSchedulerController {
   @Operation(summary = "[REQ_ADM_078] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 추가]", description = "스케줄러 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertSchedulerForAdmin(
       @RequestBody @Validated(CreateGroup.class) ScheMReqDto scheM) {
@@ -150,6 +156,7 @@ public class AdminSchedulerController {
   @Operation(summary = "[REQ_ADM_079] [화면 : 시스템 관리 > 스케줄러 관리] [기능 : 스케줄러 수정]", description = "스케줄러 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ScheMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateSchedulerForAdmin(
       @RequestBody @Validated(UpdateGroup.class) ScheMReqDto scheM) {
@@ -168,6 +175,7 @@ public class AdminSchedulerController {
   @Parameter(name = "scheId", description = "스케줄러 ID", example = "SCHED001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30406_DELETE")
   @DeleteMapping("/{scheId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteSchedulerForAdmin(@PathVariable String scheId) {
     Map<String, Object> data = schedulerService.deleteSchedulerForAdmin(scheId);

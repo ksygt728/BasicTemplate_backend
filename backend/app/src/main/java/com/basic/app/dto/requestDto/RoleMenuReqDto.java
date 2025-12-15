@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 menuRw 필드 RW에서 CRUD로 변경
  */
 @Getter
 @Setter
@@ -41,9 +42,10 @@ public class RoleMenuReqDto extends BaseReqDto {
   // RoleMenu - Menu (N:1) [Onwer]
   private String menuCd;
 
-  @Schema(description = "메뉴 접근 수준", example = "R", allowableValues = { "R", "W" })
-  @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴 접근 수준은 필수입니다.")
-  private String menuRw; // 메뉴 접근 수준 (R,W)
+  @Schema(description = "메뉴 접근 수준", example = "R", allowableValues = { "C", "R", "U", "D" })
+  // @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "메뉴 접근
+  // 수준은 필수입니다.")
+  private String menuRw; // 메뉴 접근 수준 (C,R,U,D)
 
   @Schema(description = "사용여부", example = "Y", allowableValues = { "Y", "N" })
   @NotBlank(groups = { CreateGroup.class, UpdateGroup.class }, message = "사용여부는 필수입니다.")

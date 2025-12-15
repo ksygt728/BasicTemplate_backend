@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -67,6 +68,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_009_1] [화면 : 기준 정보 > 코드 관리] [기능 : 공통코드 검색]", description = "공통코드 검색 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = CodeSearchFormResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions({ "ADM30201_READ" })
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllCodeMWithConditions(CodeSearchFormReqDto reqDto,
       @PageableDefault(page = 0, size = 2000) Pageable pageable) {
@@ -85,6 +87,7 @@ public class AdminCodeController {
   @Parameter(name = "grpCd", description = "그뤂코드", example = "TestGroup")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_READ")
   @GetMapping("/group/{grpCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByGroupCodeForAdmin(@PathVariable String grpCd) {
     Map<String, Object> data = codeService.findByGroupCodeForAdmin(grpCd);
@@ -101,6 +104,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_010] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 추가]", description = "그룹 코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_CREATE")
   @PostMapping("/group")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertGroupCodeForAdmin(
       @RequestBody @Validated(CreateGroup.class) ComCodeMReqDto comCodeM) {
@@ -118,6 +122,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_011] [화면 : 기준 정보 > 코드 관리] [기능 : 그뤂 코드 수정]", description = "그룹 코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_UPDATE")
   @PutMapping("/group")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateGroupCodeForAdmin(
       @RequestBody @Validated(UpdateGroup.class) ComCodeMReqDto comCodeM) {
@@ -136,6 +141,7 @@ public class AdminCodeController {
   @Parameter(name = "grpCd", description = "그뤂코드", example = "TestGroup")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_DELETE")
   @DeleteMapping("/group/{grpCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteGroupCodeForAdmin(@PathVariable String grpCd) {
     Map<String, Object> data = codeService.deleteGroupCodeForAdmin(grpCd);
@@ -179,6 +185,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_014] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 추가]", description = "속성 코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeTResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_CREATE")
   @PostMapping("/attribute")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertAttrCodeForAdmin(
       @RequestBody @Validated(CreateGroup.class) ComCodeTReqDto comCodeT) {
@@ -196,6 +203,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_015] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 수정]", description = "속성 코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeTResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_UPDATE")
   @PutMapping("/attribute")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateAttrCodeForAdmin(
       @RequestBody @Validated(UpdateGroup.class) ComCodeTReqDto comCodeT) {
@@ -214,6 +222,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_016] [화면 : 기준 정보 > 코드 관리] [기능 : 속성 코드 삭제]", description = "속성 코드 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_DELETE")
   @DeleteMapping("/attribute/{grpCd}/{attrCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteAttrCodeForAdmin(@PathVariable String grpCd,
       @PathVariable String attrCd) {
@@ -258,6 +267,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_018] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 추가]", description = "상세코드 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeDResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_CREATE")
   @PostMapping("/detail")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertDetailCodeForAdmin(
       @RequestBody @Validated(CreateGroup.class) ComCodeDReqDto comCodeD) {
@@ -275,6 +285,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_019] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 수정]", description = "상세코드 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ComCodeDResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_UPDATE")
   @PutMapping("/detail")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateDetailCodeForAdmin(
       @RequestBody @Validated(UpdateGroup.class) ComCodeDReqDto comCodeD) {
@@ -294,6 +305,7 @@ public class AdminCodeController {
   @Operation(summary = "[REQ_ADM_020] [화면 : 기준 정보 > 코드 관리] [기능 : 상세코드 삭제]", description = "상세코드 삭제 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30201_DELETE")
   @DeleteMapping("/detail/{grpCd}/{attrCd}/{dtlCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteDetailCodeForAdmin(@PathVariable String grpCd,
       @PathVariable String attrCd, @PathVariable String dtlCd) {
