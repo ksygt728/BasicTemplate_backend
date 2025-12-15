@@ -17,6 +17,8 @@ import com.basic.app.auth.CustomUserDetails;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.RbacAccessDeniedException;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * @파일명 : PermissionCheckAspect.java
  * @설명 : 권한 체크 AOP 클래스
@@ -28,6 +30,7 @@ import com.basic.app.exception.customException.RbacAccessDeniedException;
 
 @Aspect
 @Component
+@Log4j2
 @Order(1)
 public class PermissionCheckAspect {
 
@@ -36,12 +39,14 @@ public class PermissionCheckAspect {
       ProceedingJoinPoint joinPoint,
       CheckPermissions checkPermissions) throws Throwable {
 
+    log.info("===[AOP] PermissionsCheckAspect 접근===");
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
 
     List<String> userPermissions = userDetails.getPermissions();
 
+    log.info("사용자 권한 목록: " + userPermissions);
     boolean allowed = Arrays.stream(checkPermissions.value())
         .anyMatch(userPermissions::contains);
 

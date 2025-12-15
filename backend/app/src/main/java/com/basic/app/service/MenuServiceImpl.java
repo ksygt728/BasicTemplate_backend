@@ -4,21 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.basic.app.auth.rbac.PermissionKey;
 import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.dto.responseDto.MenuResDto;
 import com.basic.app.entity.Menu;
+import com.basic.app.entity.RoleMenu;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.exception.customException.NotFoundException;
 import com.basic.app.repository.MenuRepository;
+import com.basic.app.repository.RoleMenuRepository;
+import com.basic.app.repository.RoleUserRepository;
 import com.basic.app.repository.jooqRepository.MenuJooqRepository;
 import com.basic.app.service.interfaces.MenuService;
 import com.basic.app.util.Status;
@@ -30,6 +36,7 @@ import com.basic.app.util.Status;
  * @작성일 : 2025.09.05
  * @변경이력 :
  *       2025.09.05 김승연 최초 생성
+ *       2025.12.15 김승연 RBAC방식의 권한 체크로 인한 리팩토링 Redis에 권한 캐시 로드 기능 추가
  */
 @Transactional
 @Service
@@ -39,7 +46,13 @@ public class MenuServiceImpl implements MenuService {
   private MenuRepository menuRepository;
 
   @Autowired
+  private RoleMenuRepository roleMenuRepository;
+
+  @Autowired
   private MenuJooqRepository menuJooqRepository;
+
+  @Autowired
+  private RedisTemplate redisTemplate;
 
   /**
    * @기능 : 관리자용 메뉴 전체 목록 조회 (트리 구조)
@@ -141,6 +154,9 @@ public class MenuServiceImpl implements MenuService {
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
     data.put("data", savedMenuEntity.toDto(savedMenuEntity));
+
+    reloadPermissionsCache();
+
     return data;
   }
 
@@ -176,6 +192,8 @@ public class MenuServiceImpl implements MenuService {
     // 5. 결과를 Map에 담아 반환
     data.put("data", savedMenuEntity.toDto(savedMenuEntity));
 
+    reloadPermissionsCache();
+
     return data;
   }
 
@@ -196,10 +214,55 @@ public class MenuServiceImpl implements MenuService {
     // 하위메뉴 포함 삭제
     menuRepository.deleteMenuAndSubmenus(menuCd, Status.NAGATIVE);
 
+    // 해당 메뉴에 포함되어 있는 권한 삭제
+    roleMenuRepository.deleteRoleMenuListContainsMenuCd(menuCd);
+
     // 3. 결과를 Map에 담아 반환
     data.put("data", "success");
+
+    reloadPermissionsCache();
+
     return data;
 
+  }
+
+  /**
+   * @기능 : 권한 캐시 재생성(Redis)
+   * @param -
+   * @return -
+   */
+
+  private void reloadPermissionsCache() {
+
+    List<RoleMenu> roleMenuList = roleMenuRepository.findAll().stream()
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE) &&
+            entity.getUseYn().equals("Y"))
+        .toList();
+
+    // 모든 권한 캐시 삭제
+    Set<String> keys = redisTemplate.keys("auth:role:*");
+
+    if (keys != null && !keys.isEmpty()) {
+      redisTemplate.delete(keys);
+    }
+
+    // roleKey별로 권한 그룹화
+    Map<String, List<String>> rolePermissionsMap = new HashMap<>();
+
+    for (RoleMenu roleMenu : roleMenuList) {
+      String roleKey = "auth:role:" + roleMenu.getRole().getRoleCd() + ":perms";
+      List<String> permissions = PermissionKey.of(roleMenu.getRoleMenuId().getMenuCd(), roleMenu.getMenuRw());
+
+      // 동일한 roleKey에 대해 권한들을 누적
+      rolePermissionsMap.computeIfAbsent(roleKey, k -> new ArrayList<>()).addAll(permissions);
+    }
+
+    // 권한 캐시 재생성 (roleKey별로 한 번만 저장)
+    for (Map.Entry<String, List<String>> entry : rolePermissionsMap.entrySet()) {
+      String roleKey = entry.getKey();
+      List<String> allPermissions = entry.getValue();
+      redisTemplate.opsForSet().add(roleKey, allPermissions.toArray(new String[0]));
+    }
   }
 
 }

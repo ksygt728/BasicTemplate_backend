@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.PageResponse;
+import com.basic.app.auth.rbac.PermissionKey;
 import com.basic.app.dto.requestDto.RoleMenuReqDto;
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.requestDto.RoleUserReqDto;
@@ -44,6 +46,9 @@ import com.basic.app.service.interfaces.RoleService;
 import com.basic.app.util.Status;
 import com.basic.app.util.Validator;
 
+import jakarta.annotation.PostConstruct;
+import lombok.extern.log4j.Log4j2;
+
 /**
  * @파일명 : RoleServiceImpl.java
  * @설명 : 역할 관련 서비스 구현체 (역할, 역할-메뉴, 역할-사용자 관리)
@@ -51,7 +56,9 @@ import com.basic.app.util.Validator;
  * @작성일 : 2025.09.05
  * @변경이력 :
  *       2025.09.05 김승연 최초 생성
+ *       2025.12.15 김승연 RBAC방식의 권한 체크로 인한 리팩토링 Redis에 권한 캐시 로드 기능 추가
  */
+@Log4j2
 @Transactional
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -82,8 +89,20 @@ public class RoleServiceImpl implements RoleService {
   @Autowired
   private RoleMenuJooqRepository roleMenuJooqRepository;
 
+  @Autowired
+  RedisTemplate redisTemplate;
+
   RoleServiceImpl(SecurityFilterChain securityFilterChain) {
     this.securityFilterChain = securityFilterChain;
+  }
+
+  /**
+   * @기능 : permission 초기화 (애플리케이션 시작 시 Redis에 권한 캐시 로드 / 최초 한번 실행)
+   */
+  @PostConstruct
+  public void init() {
+    log.info("[CBMS] reloadPermissionsCache 실행 Redis로 업로드");
+    reloadPermissionsCache();
   }
 
   /**
@@ -211,9 +230,14 @@ public class RoleServiceImpl implements RoleService {
     roleEntity.setSts(Status.NAGATIVE);
 
     // RoleMenu, RoleUser 도 cascade로 같이 변경됨
+    roleMenuRepository.deleteRoleMenuListContainsRoleCd(roleCd);
+    roleUserRepository.deleteRoleUserListContainsRoleCd(roleCd);
 
     // 3. 결과를 Map에 담아 반환
     data.put("data", "success");
+
+    reloadPermissionsCache();
+
     return data;
 
   }
@@ -308,6 +332,8 @@ public class RoleServiceImpl implements RoleService {
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
     data.put("data", savedMenuEntity.stream().map(entity -> entity.toDto(entity)).toList());
+
+    reloadPermissionsCache();
 
     return data;
   }
@@ -433,6 +459,44 @@ public class RoleServiceImpl implements RoleService {
     // 4. 결과를 Map에 담아 반환
     data.put("data", "success");
     return data;
+  }
+
+  /**
+   * @기능 : 권한 캐시 재생성(Redis)
+   * @param -
+   * @return -
+   */
+  private void reloadPermissionsCache() {
+
+    List<RoleMenu> roleMenuList = roleMenuRepository.findAll().stream()
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE) &&
+            entity.getUseYn().equals("Y"))
+        .toList();
+
+    // 모든 권한 캐시 삭제
+    Set<String> keys = redisTemplate.keys("auth:role:*");
+
+    if (keys != null && !keys.isEmpty()) {
+      redisTemplate.delete(keys);
+    }
+
+    // roleKey별로 권한 그룹화
+    Map<String, List<String>> rolePermissionsMap = new HashMap<>();
+
+    for (RoleMenu roleMenu : roleMenuList) {
+      String roleKey = "auth:role:" + roleMenu.getRole().getRoleCd() + ":perms";
+      List<String> permissions = PermissionKey.of(roleMenu.getRoleMenuId().getMenuCd(), roleMenu.getMenuRw());
+
+      // 동일한 roleKey에 대해 권한들을 누적
+      rolePermissionsMap.computeIfAbsent(roleKey, k -> new ArrayList<>()).addAll(permissions);
+    }
+
+    // 권한 캐시 재생성 (roleKey별로 한 번만 저장)
+    for (Map.Entry<String, List<String>> entry : rolePermissionsMap.entrySet()) {
+      String roleKey = entry.getKey();
+      List<String> allPermissions = entry.getValue();
+      redisTemplate.opsForSet().add(roleKey, allPermissions.toArray(new String[0]));
+    }
   }
 
 }
