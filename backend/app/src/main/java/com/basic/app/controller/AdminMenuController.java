@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -70,6 +71,7 @@ public class AdminMenuController {
   @Operation(summary = "[REQ_ADM_038] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 리스트 조회]", description = "메뉴 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MenuResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30301_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllMenuForAdmin(MenuReqDto menuReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "deptCode", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -88,6 +90,7 @@ public class AdminMenuController {
   @Parameter(name = "menuCd", description = "메뉴 코드", example = "menu123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MenuResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30301_READ")
   @GetMapping("/{menuCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByMenuForAdmin(@PathVariable String menuCd) {
     Map<String, Object> data = menuService.findByMenuForAdmin(menuCd);
@@ -104,6 +107,7 @@ public class AdminMenuController {
   @Operation(summary = "[REQ_ADM_039] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 추가]", description = "메뉴 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MenuResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30301_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertMenuForAdmin(
       @RequestBody @Validated(CreateGroup.class) MenuReqDto menuReqDto) {
@@ -121,6 +125,7 @@ public class AdminMenuController {
   @Operation(summary = "[REQ_ADM_040] [화면 : 권한 관리 > 메뉴 관리] [기능 : 메뉴 수정]", description = "메뉴 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MenuResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30301_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateMenuForAdmin(
       @RequestBody @Validated(UpdateGroup.class) MenuReqDto menuReqDto) {
@@ -139,6 +144,7 @@ public class AdminMenuController {
   @Parameter(name = "menuCd", description = "메뉴 코드", example = "menu123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30301_DELETE")
   @DeleteMapping("/{menuCd}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteMenuForAdmin(@PathVariable String menuCd) {
     Map<String, Object> data = menuService.deleteMenuForAdmin(menuCd);

@@ -29,6 +29,7 @@ import lombok.ToString;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 menuRw 필드 RW에서 CRUD로 변경(주석만 변경)
  */
 @Getter
 @Setter
@@ -57,7 +58,7 @@ public class RoleMenu extends BaseEntity {
   private Menu menu;
 
   @Column(name = "MENU_RW", length = 45, nullable = false)
-  private String menuRw; // 메뉴 접근 수준 (R,W)
+  private String menuRw; // 메뉴 접근 수준 (C,R,U,D)
 
   @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")
   private String useYn; // 사용여부 (Y,N)

@@ -25,12 +25,16 @@ import org.springframework.web.client.RestTemplate;
 
 import com.basic.app.api.ModelMapperUtils;
 import com.basic.app.api.ResponseApi;
+import com.basic.app.auth.CustomUserDetails;
 import com.basic.app.dto.requestDto.UserReqDto;
 import com.basic.app.dto.requestDto.specialDto.AuthReqDto;
 import com.basic.app.dto.responseDto.UserResDto;
 import com.basic.app.dto.responseDto.specialDto.AuthResDto;
 import com.basic.app.entity.Department;
+import com.basic.app.entity.Role;
+import com.basic.app.entity.RoleUser;
 import com.basic.app.entity.User;
+import com.basic.app.entity.compositeKey.RoleUserId;
 import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.exception.customException.NotFoundException;
@@ -38,6 +42,8 @@ import com.basic.app.exception.customException.SystemErrorException;
 import com.basic.app.jwt.JwtProperties;
 import com.basic.app.jwt.JwtProvider;
 import com.basic.app.repository.DepartmentRepository;
+import com.basic.app.repository.RoleRepository;
+import com.basic.app.repository.RoleUserRepository;
 import com.basic.app.repository.UserRepository;
 import com.basic.app.service.interfaces.AuthService;
 import com.basic.app.util.Status;
@@ -51,6 +57,7 @@ import lombok.extern.log4j.Log4j2;
  * @작성일 : 2025.09.05
  * @변경이력 :
  *       2025.09.05 김승연 최초 생성
+ *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
  */
 @Log4j2
 @Transactional
@@ -74,6 +81,12 @@ public class AuthServiceImpl implements AuthService {
 
   @Autowired
   UserRepository userRepository;
+
+  @Autowired
+  RoleRepository roleRepository;
+
+  @Autowired
+  RoleUserRepository roleUserRepository;
 
   @Autowired
   DepartmentRepository departmentRepository;
@@ -124,6 +137,7 @@ public class AuthServiceImpl implements AuthService {
         });
 
     // 3. 데이터 저장
+
     Department department = departmentRepository.findById(deptCode)
         .filter(entity -> entity.getSts().equals(Status.POSITIVE))
         .orElseThrow(() -> new NotFoundException(ErrorCode.OBJECT_NOT_FOUND));
@@ -133,6 +147,20 @@ public class AuthServiceImpl implements AuthService {
     userEntity.setUserType("CBMS"); // 기본 회원유형 설정
     userEntity.setDepartment(department); // 기본 부서 설정
     User savedUserEntity = userRepository.save(userEntity);
+
+    Role basicRole = roleRepository.findById("ROLE_GUEST")
+        .filter(entity -> entity.getSts().equals(Status.POSITIVE))
+        .orElseThrow(() -> new BusinessException(ErrorCode.OBJECT_NOT_FOUND,
+            "ROLE_GUEST"));
+
+    RoleUser roleUser = RoleUser.builder()
+        .roleUserId(new RoleUserId(basicRole.getRoleCd(), userEntity.getUserId()))
+        .user(userEntity)
+        .role(basicRole)
+        .useYn("Y")
+        .build();
+
+    roleUserRepository.save(roleUser);
 
     // 4. Entity -> DTO 변환
     // 5. 결과를 Map에 담아 반환
@@ -176,8 +204,8 @@ public class AuthServiceImpl implements AuthService {
     String accessTokenHeader = jwtProperties.getAccessTokenHeader();
     String refreshTokenHeader = jwtProperties.getRefreshTokenHeader();
 
-    String accessToken = jwtProvider.createAccessToken(authenticatedUser);
-    String refreshToken = jwtProvider.createRefreshToken(authenticatedUser);
+    String accessToken = jwtProvider.createAccessToken(jwtProvider.createUserCustomUserDetails(userId));
+    String refreshToken = jwtProvider.createRefreshToken(jwtProvider.createUserCustomUserDetails(userId));
 
     // 6. Redis에 Refresh Token 저장
     redisTemplate.opsForValue().set(
@@ -334,8 +362,10 @@ public class AuthServiceImpl implements AuthService {
         // -- Redis에 Refresh Token 저장
         String accessTokenHeader = jwtProperties.getAccessTokenHeader();
         String refreshTokenHeader = jwtProperties.getRefreshTokenHeader();
-        String accessToken = jwtProvider.createAccessToken(userEntity);
-        String refreshToken = jwtProvider.createRefreshToken(userEntity);
+        String accessToken = jwtProvider
+            .createAccessToken(jwtProvider.createUserCustomUserDetails(userEntity.getUserId()));
+        String refreshToken = jwtProvider
+            .createRefreshToken(jwtProvider.createUserCustomUserDetails(userEntity.getUserId()));
 
         redisTemplate.opsForValue().set(
             refreshTokenHeader + ":" + userEntity.getUserId(), // Redis Key

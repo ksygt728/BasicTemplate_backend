@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -62,6 +63,7 @@ public class AdminChaebunController {
   @Operation(summary = "[REQ_ADM_053] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 리스트 조회]", description = "채번 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30401_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllChaebunForAdmin(ChaebunReqDto ChaebunReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "seqId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -80,6 +82,7 @@ public class AdminChaebunController {
   @Parameter(name = "seqId", description = "채번 아이디", example = "SMS001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30401_READ")
   @GetMapping("/{seqId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByChaebunForAdmin(@PathVariable String seqId) {
     Map<String, Object> data = chaebunService.findByChaebunForAdmin(seqId);
@@ -96,6 +99,7 @@ public class AdminChaebunController {
   @Operation(summary = "[REQ_ADM_054] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 추가]", description = "채번 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30401_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertChaebunForAdmin(
       @RequestBody @Validated(CreateGroup.class) ChaebunReqDto chaebunReqDto) {
@@ -113,6 +117,7 @@ public class AdminChaebunController {
   @Operation(summary = "[REQ_ADM_055] [화면 : 시스템 관리 > 채번관리] [기능 : 채번 수정]", description = "채번 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ChaebunResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30401_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateChaebunForAdmin(
       @RequestBody @Validated(UpdateGroup.class) ChaebunReqDto smsM) {
@@ -131,6 +136,7 @@ public class AdminChaebunController {
   @Parameter(name = "seqId", description = "채번 아이디", example = "CHAEBUN001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30401_DELETE")
   @DeleteMapping("/{seqId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteChaebunForAdmin(@PathVariable String seqId) {
     Map<String, Object> data = chaebunService.deleteChaebunForAdmin(seqId);

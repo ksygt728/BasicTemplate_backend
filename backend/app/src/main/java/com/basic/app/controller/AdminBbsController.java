@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -67,6 +68,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 리스트 조회]", description = "시스템 관리 > 게시판 관리의 게시판 리스트를 조회합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllBbsForAdmin(BbsReqDto bbsReqDto,
       @PageableDefault(page = 0, size = 100, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -85,6 +87,7 @@ public class AdminBbsController {
   @Parameter(name = "bbsId", description = "게시판 아이디", example = "bbs123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_READ")
   @GetMapping("/{bbsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByBbsForAdmin(@PathVariable String bbsId) {
     Map<String, Object> data = bbsService.findByBbsForAdmin(bbsId);
@@ -102,6 +105,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 추가]", description = "시스템 관리 > 게시판 관리에 게시판을 추가합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_CREATE")
   @PreAuthorize("isAuthenticated()")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertBbsForAdmin(
@@ -120,6 +124,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 게시판 수정]", description = "시스템 관리 > 게시판 관리의 게시판을 수정합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_UPDATE")
   @PreAuthorize("isAuthenticated() and (#bbs.writor == authentication.name or hasRole('ADMIN'))")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateBbsForAdmin(
@@ -139,6 +144,7 @@ public class AdminBbsController {
   @Parameter(name = "bbsId", description = "게시판 아이디", example = "bbs123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_DELETE")
   @DeleteMapping("/{bbsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteBbsForAdmin(@PathVariable String bbsId) {
     Map<String, Object> data = bbsService.deleteBbsForAdmin(bbsId);
@@ -166,6 +172,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_081] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 리스트 조회]", description = "시스템 관리 > 게시글의 댓글리스트를 조회합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_READ")
   @GetMapping("/comment/search/{bbsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllBbsCommentForAdmin(@PathVariable String bbsId,
       @PageableDefault(page = 0, size = 100, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -184,6 +191,7 @@ public class AdminBbsController {
   @Parameter(name = "commentId", description = "댓글 아이디", example = "comment123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_READ")
   @GetMapping("/comment/{commentId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByBbsCommentForAdmin(@PathVariable String commentId) {
     Map<String, Object> data = bbsService.findByBbsCommentForAdmin(commentId);
@@ -201,6 +209,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_083] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 추가]", description = "시스템 관리 > 댓글을 추가합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_CREATE")
   @PreAuthorize("isAuthenticated()")
   @PostMapping("/comment")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertBbsCommentForAdmin(
@@ -221,6 +230,7 @@ public class AdminBbsController {
   @Operation(summary = "[REQ_ADM_084] [화면 : 시스템 관리 > 게시판 관리] [기능 : 댓글 수정]", description = "시스템 관리 > 댓글을 수정합니다.")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = BbsCommentResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_UPDATE")
   @PreAuthorize("isAuthenticated() and (#bbsCommentReqDto.writor == authentication.name or hasRole('ADMIN'))")
   @PutMapping("/comment")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateBbsCommentForAdmin(
@@ -241,6 +251,7 @@ public class AdminBbsController {
   @Parameter(name = "commentId", description = "댓글 아이디", example = "comment123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30407_DELETE")
   @DeleteMapping("/comment/{commentId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteBbsCommentForAdmin(@PathVariable String commentId) {
     Map<String, Object> data = bbsService.deleteBbsCommentForAdmin(commentId);

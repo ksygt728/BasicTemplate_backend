@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -62,6 +63,7 @@ public class AdminUserController {
   @Operation(summary = "[REQ_ADM_001] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 조회]", description = "사용자 정보 전체/조건부 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30101_READ")
   @GetMapping("/search") // 전체 사용자 조회 또는 쿼리 파라미터로 조건부 조회
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllUserForAdmin(UserReqDto userReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -80,6 +82,7 @@ public class AdminUserController {
   @Parameter(name = "userId", description = "사용자 아이디", example = "user1234")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30101_READ")
   @GetMapping("/{userId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByUserForAdmin(@PathVariable String userId) {
     Map<String, Object> data = userService.findByUserForAdmin(userId);
@@ -97,6 +100,7 @@ public class AdminUserController {
   @Operation(summary = "[REQ_ADM_003] [화면 : 조직 관리 > 사용자 관리] [기능 : 사용자 정보 수정]", description = "사용자 정보 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = UserResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30101_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateUserForAdmin(
       @RequestBody @Validated(UpdateGroup.class) UserReqDto user) {
@@ -115,6 +119,7 @@ public class AdminUserController {
   @Parameter(name = "userId", description = "사용자 아이디", example = "user1234")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30101_DELETE")
   @DeleteMapping("/{userId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteUserForAdmin(@PathVariable String userId) {
     Map<String, Object> data = userService.deleteUserForAdmin(userId);

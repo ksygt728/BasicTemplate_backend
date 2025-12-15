@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -35,10 +36,12 @@ import lombok.extern.slf4j.Slf4j;
  * @작성일 : 2025.07.24
  * @변경이력 :
  *       2025.07.24 김승연 최초 생성
+ *       2025.12.14 PermissionCheckAspect추가로 order 2로 설정
  */
 @Aspect
 @Component
 @Slf4j
+@Order(2)
 public class LoggingAspect {
 
   @Autowired

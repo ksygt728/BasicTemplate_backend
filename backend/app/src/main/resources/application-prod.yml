@@ -199,6 +199,8 @@ jwt:
     first: CBSK JWT TOKEN
     second: userId
     third: phoneNum
+    fourth: roles
+    fifth: permissions
   expire-time:
     access-token: 10m # 10분 = 1000 * 60 * 10
     refresh-token: 60d

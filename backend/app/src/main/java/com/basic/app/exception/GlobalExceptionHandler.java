@@ -24,6 +24,7 @@ import com.basic.app.api.ResponseApi;
 import com.basic.app.exception.customException.BusinessException;
 import com.basic.app.exception.customException.ClientActionException;
 import com.basic.app.exception.customException.NotFoundException;
+import com.basic.app.exception.customException.RbacAccessDeniedException;
 import com.basic.app.exception.customException.SystemErrorException;
 import com.basic.app.service.interfaces.LogService;
 import com.basic.app.service.specialService.MessageSource;
@@ -58,6 +59,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
  *       2025.07.24 김승연 커스텀 에러 클래스 추가
+ *       2025.12.14 김승연 RbacAccessDeniedException 핸들러 추가
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -276,6 +278,27 @@ public class GlobalExceptionHandler {
     return ResponseEntity
         .status(HttpStatus.FORBIDDEN)
         .body(ResponseApi.fail(ErrorCode.ACCESS_DENIED));
+  }
+
+  /* Error code : 403 (권한이 없을경우 AOP에서 RBAC권한이 없는 경우만 사용) */
+  @ExceptionHandler(RbacAccessDeniedException.class)
+  public ResponseEntity<ResponseApi<?>> handleRbacAccessDeniedException(RbacAccessDeniedException e,
+      HttpServletRequest request) {
+
+    ErrorCode errorCode = ErrorCode.RBAC_ACCESS_DENIED;
+
+    showErrorLogFormat(e, errorCode);
+
+    try {
+      logService.insertErrorLog(e, request, errorCode, "");
+    } catch (Exception ex) {
+      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      ex.printStackTrace();
+    }
+
+    return ResponseEntity
+        .status(HttpStatus.FORBIDDEN)
+        .body(ResponseApi.fail(ErrorCode.RBAC_ACCESS_DENIED));
   }
 
   /* Error code : 404 (페이지를 찾을 수 없음) */

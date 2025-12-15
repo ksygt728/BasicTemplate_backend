@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.14 김승연 RBAC방식의 별도 에러코드 추가 RBAC_ACCESS_DENIED
  */
 @Getter
 @RequiredArgsConstructor
@@ -18,6 +19,7 @@ public enum ErrorCode {
   LOGIN_REQUIRED("1001", "로그인을 해주세요. (로그인페이지로 이동)"), // 401 CustomAuthenticationEntryPoint에서만 던짐
   UNAUTHORIZED_FAILURE("1002", "인증에 실패했습니다. 로그인정보가 올바르지 않습니다."), // 401 // 로그인시에만 던짐
   ACCESS_DENIED("1003", "접근 권한이 없습니다."), // 403 (JWT문제는 아니지만 권한이 없는경우)
+  RBAC_ACCESS_DENIED("1011", "권한이 없습니다. 권한신청을 진행해주세요."), // 403 (RBAC 인가 실패)
 
   // 사용 X
   JWT_ISSUE_ACCESS_TOKEN_NOT_EXIST("1004", "Access token이 없습니다. 헤더에 실어주세요."), // 403
@@ -90,7 +92,7 @@ public enum ErrorCode {
   VALIDATION_ERROR_SERVER("5004", "서버 유효성 검사에 실패했습니다."),
 
   /* 9000번대: 기타 및 예상치 못한 오류 */
-  UNEXPECTED_ERROR("9001", "예상치 못한 오류가 발생했습니다.")
+  UNEXPECTED_ERROR("9001", "예상치 못한 오류가 발생했습니다."),
 
   ;
 
