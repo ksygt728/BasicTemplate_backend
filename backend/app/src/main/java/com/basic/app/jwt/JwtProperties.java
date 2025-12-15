@@ -16,6 +16,8 @@ import lombok.Setter;
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
  *       2025.12.14 김승연 RBAC방식의 권한 체크로 인한 리팩토링
+ *       2025.12.15 김승연 JWT Token에 Permission 정보를 가지고 있는 방식에서 Redis에 저장한 방식으로
+ *       변경(Permission이 많아 지면 헤더길이 초과 및 보안적으로 좋지 않은 설계구조라 변경함)
  */
 @Getter
 @Setter
@@ -40,7 +42,6 @@ public class JwtProperties {
     private String second;
     private String third;
     private String fourth;
-    private String fifth;
   }
 
   @Getter

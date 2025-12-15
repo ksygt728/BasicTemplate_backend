@@ -1,6 +1,7 @@
 package com.basic.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.basic.app.entity.RoleMenu;
@@ -13,9 +14,27 @@ import com.basic.app.entity.compositeKey.RoleMenuId;
  * @작성일 : 2025.08.24
  * @변경이력 :
  *       2025.08.24 김승연 최초 생성
+ *       2025.12.15 deleteRoleMenuListContainsMenuCd,
+ *       deleteRoleMenuListContainsRoleCd 메서드 추가(특정 권한을 가진 모든 사용자 권한논리 삭제)
  */
 @Repository
 public interface RoleMenuRepository extends JpaRepository<RoleMenu, RoleMenuId> {
+
+    /**
+     * @기능 : 특정 메뉴에 해당하는 모든 권한 메뉴를 논리 삭제
+     * @param menuCd : 권한 코드
+     */
+
+    @Query("UPDATE RoleMenu rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleMenuId.menuCd = ?1")
+    void deleteRoleMenuListContainsMenuCd(String menuCd);
+
+    /**
+     * @기능 : 특정 권한에 해당하는 모든 권한 메뉴를 논리 삭제
+     * @param roleCd : 권한 코드
+     */
+
+    @Query("UPDATE RoleMenu rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleMenuId.roleCd = ?1")
+    void deleteRoleMenuListContainsRoleCd(String roleCd);
 
     // public interface RoleMenuResDto {
     // String getMenuCd();

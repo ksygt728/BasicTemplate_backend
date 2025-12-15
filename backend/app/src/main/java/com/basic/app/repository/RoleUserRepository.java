@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.basic.app.entity.RoleUser;
@@ -17,6 +18,8 @@ import com.basic.app.entity.compositeKey.RoleUserId;
  * @작성일 : 2025.08.24
  * @변경이력 :
  *       2025.08.24 김승연 최초 생성
+ *       2025.12.15 deleteRoleUserListContainsRoleCd 메서드 추가(특정 권한을 가진 모든 사용자 권한
+ *       논리 삭제)
  */
 @Repository
 public interface RoleUserRepository extends JpaRepository<RoleUser, RoleUserId> {
@@ -45,5 +48,12 @@ public interface RoleUserRepository extends JpaRepository<RoleUser, RoleUserId> 
    * @return : 권한별 사용자 목록
    */
   List<RoleUser> findByRoleUserIdRoleCdAndSts(String roleCd, String sts);
+
+  /**
+   * @기능 : 특정 권한을 가지고 있는 모든 사용자 권한을 논리 삭제
+   * @param roleCd : 권한 코드
+   */
+  @Query("UPDATE RoleUser rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleUserId.roleCd = ?1")
+  void deleteRoleUserListContainsRoleCd(String roleCd);
 
 }
