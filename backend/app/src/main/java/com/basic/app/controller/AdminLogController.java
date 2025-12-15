@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.LogApiReqDto;
@@ -56,6 +57,7 @@ public class AdminLogController {
   @Operation(summary = "[REQ_ADM_064] [화면 : 시스템 관리 > 사용자 접속 로그] [기능 : 사용자 접속로그 리스트 조회]", description = "사용자 접속로그 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogApiResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30403_READ")
   @GetMapping("/api-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllAccessLogForAdmin(
       LogApiReqDto logApiReqDto,
@@ -77,6 +79,7 @@ public class AdminLogController {
   @Parameter(name = "logId", description = "접속 로그 아이디", example = "LOG0001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogApiResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30403_READ")
   @GetMapping("/api-log/{logId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByAccessLogForAdmin(@PathVariable String logId) {
     Map<String, Object> data = logService.findByAccessLogForAdmin(logId);
@@ -94,6 +97,7 @@ public class AdminLogController {
   @Operation(summary = "[REQ_ADM_065] [화면 : 시스템 관리 > Error 관리] [기능 : 에러 리스트 조회]", description = "에러 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogErrorResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30404_READ")
   @GetMapping("/error-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllErrorLogForAdmin(LogErrorReqDto logErrorReqDto,
       @PageableDefault(page = 0, size = 100, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable) {
@@ -114,6 +118,7 @@ public class AdminLogController {
   @Parameter(name = "errId", description = "에러 아이디", example = "ERR0001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogErrorResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30404_READ")
   @GetMapping("/error-log/{errId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByErrorLogForAdmin(@PathVariable String errId) {
     Map<String, Object> data = logService.findByErrorLogForAdmin(errId);

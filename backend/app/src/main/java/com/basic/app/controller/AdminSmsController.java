@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.CheckPermissions;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -64,6 +65,7 @@ public class AdminSmsController {
   @Operation(summary = "[REQ_ADM_067] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 리스트 조회]", description = "SMS 리스트 조회 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSmsForAdmin(SmsMReqDto smsMReqDto,
       @PageableDefault(page = 0, size = 2000, sort = "smsId", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -82,6 +84,7 @@ public class AdminSmsController {
   @Parameter(name = "smsId", description = "SMS 아이디", example = "SMS001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_READ")
   @GetMapping("/{smsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findBySmsForAdmin(@PathVariable String smsId) {
     Map<String, Object> data = smsService.findBySmsForAdmin(smsId);
@@ -98,6 +101,7 @@ public class AdminSmsController {
   @Operation(summary = "[REQ_ADM_071] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 추가]", description = "SMS 추가 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_CREATE")
   @PostMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertSmsForAdmin(
       @RequestBody @Validated(CreateGroup.class) SmsMReqDto smsM) {
@@ -115,6 +119,7 @@ public class AdminSmsController {
   @Operation(summary = "[REQ_ADM_072] [화면 : 시스템 관리 > SMS 발송 로그] [기능 : SMS 수정]", description = "SMS 수정 기능 제공")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsMResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_UPDATE")
   @PutMapping
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateSmsForAdmin(
       @RequestBody @Validated(UpdateGroup.class) SmsMReqDto smsM) {
@@ -133,6 +138,7 @@ public class AdminSmsController {
   @Parameter(name = "smsId", description = "SMS 아이디", example = "SMS001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = ResponseApiSuccessForSwagger.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_DELETE")
   @DeleteMapping("/{smsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> deleteSmsForAdmin(@PathVariable String smsId) {
     Map<String, Object> data = smsService.deleteSmsForAdmin(smsId);
@@ -151,6 +157,7 @@ public class AdminSmsController {
   @Parameter(name = "smsId", description = "SMS 아이디", example = "SMS001")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = SmsHResDto.class)))
   @SwaggerCommonResponseApi
+  @CheckPermissions("ADM30405_READ")
   @GetMapping("/history/{smsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findBySmsHistoryForAdmin(@PathVariable String smsId,
       @PageableDefault(page = 0, size = 2000, sort = "smsId", direction = Sort.Direction.ASC) Pageable pageable) {
