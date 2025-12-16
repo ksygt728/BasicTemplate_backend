@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.basic.app.annotation.NoKafkaLogging;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.auth.CustomUserDetailsService;
@@ -267,6 +268,7 @@ public class AuthController {
    *     정보가 날아가는 문제 대응)
    * @return 로그인 결과 정보가 담긴 Map
    */
+  @NoKafkaLogging
   @GetMapping("/me")
   public ResponseEntity<ResponseApi<Map<String, Object>>> getCurrentUser() {
     Map<String, Object> data = authService.getCurrentUser();
