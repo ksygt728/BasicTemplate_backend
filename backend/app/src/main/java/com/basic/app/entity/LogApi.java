@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "TB_LOG_API") // API 호출 로그 테이블
+@Table(name = "TB_LOG_API", indexes = {
+    @Index(name = "idx_access_log_end_date", columnList = "END_DATE"),
+    @Index(name = "idx_access_log_user_end_date", columnList = "USER_ID, END_DATE"),
+    @Index(name = "idx_access_log_uri_end_date", columnList = "REQUEST_URI, END_DATE"),
+    @Index(name = "idx_access_log_ip_end_date", columnList = "IP_ADDR, END_DATE")
+}) // API 호출 로그 테이블
 public class LogApi extends BaseEntity {
   @Id
   @Column(name = "LOG_ID", length = 36)

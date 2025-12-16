@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.annotation.CheckPermissions;
+import com.basic.app.annotation.NoAopLogging;
+import com.basic.app.annotation.NoKafkaLogging;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.api.ResponseApiSuccessForSwagger;
@@ -106,6 +108,8 @@ public class AdminMailController {
   @Parameter(name = "mailId", description = "메일 아이디", example = "mail123")
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = MailHResDto.class)))
   @SwaggerCommonResponseApi
+  @NoAopLogging
+  @NoKafkaLogging
   @CheckPermissions("ADM30402_READ")
   @GetMapping("/history/{mailId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findByMailHistoryForAdmin(@PathVariable String mailId,

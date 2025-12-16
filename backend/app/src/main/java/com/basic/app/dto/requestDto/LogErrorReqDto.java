@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.16 김승연 createDate 필드 추가
  */
 @Getter
 @Setter
@@ -52,5 +53,8 @@ public class LogErrorReqDto extends BaseReqDto {
 
   @Schema(description = "에러내용상세", example = "java.lang.NullPointerException at ...")
   private String errStack; // 에러내용상세
+
+  @Schema(description = "시작시간", example = "2025-08-18 09:00:00")
+  private String createDate; // 시작시간
 
 }
