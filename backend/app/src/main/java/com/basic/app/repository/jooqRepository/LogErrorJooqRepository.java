@@ -1,6 +1,7 @@
 
 package com.basic.app.repository.jooqRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.dto.responseDto.LogErrorResDto;
 import com.basic.app.jooq.generated.tables.TbLogError;
+import com.basic.app.util.TimeKeeper;
 
 /**
  * @파일명 : LogErrorJooqRepository.java
@@ -26,6 +28,7 @@ import com.basic.app.jooq.generated.tables.TbLogError;
  * @작성일 : 2025.09.05
  * @변경이력 :
  *       2025.09.05 김승연 최초 생성
+ *       2025.12.16 김승연 createDate 필드 추가
  */
 @Repository
 @Transactional
@@ -33,6 +36,9 @@ public class LogErrorJooqRepository {
 
   @Autowired
   private DSLContext dsl;
+
+  @Autowired
+  private TimeKeeper timeKeeper;
 
   /**
    * @기능 : 에러 로그 목록 조회 (조건별 동적 쿼리, 페이징)
@@ -75,6 +81,13 @@ public class LogErrorJooqRepository {
 
     if (reqDto.getErrStack() != null && !reqDto.getErrStack().isEmpty()) {
       conditions.add(TB_LOG_ERROR.ERR_STACK.like("%" + reqDto.getErrStack() + "%"));
+    }
+
+    // "2025-08-07~2025-08-08" 형식의 기간 조건 처리
+    if (reqDto.getCreateDate() != null && reqDto.getCreateDate().contains("~")) {
+      LocalDateTime from = timeKeeper.convertStringToLocalDateTimeAtStart(reqDto.getCreateDate());
+      LocalDateTime to = timeKeeper.convertStringToLocalDateTimeAtEnd(reqDto.getCreateDate());
+      conditions.add(TB_LOG_ERROR.CREATE_DATE.between(from, to));
     }
 
     // 필요한 조건 추가
