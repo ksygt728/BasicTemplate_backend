@@ -31,6 +31,7 @@ import lombok.ToString;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.16 김승연 날짜 포맷 수정
  */
 @Getter
 @Setter
@@ -50,7 +51,7 @@ public abstract class BaseEntity {
   private String createUser; // 생성자
 
   @CreatedDate
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   @Column(name = "CREATE_DATE", columnDefinition = "TIMESTAMP(3)", nullable = false, updatable = false) // update할때 들어가면
   private LocalDateTime createDate; // 생성일시
 
@@ -59,7 +60,7 @@ public abstract class BaseEntity {
   private String updateUser; // 수정자
 
   @LastModifiedDate
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
   @Column(name = "TIMESTAMP", columnDefinition = "TIMESTAMP(3)", nullable = false)
   private LocalDateTime timestamp; // 수정일시
 

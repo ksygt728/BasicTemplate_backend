@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.app.annotation.CheckPermissions;
+import com.basic.app.annotation.NoAopLogging;
+import com.basic.app.annotation.NoKafkaLogging;
 import com.basic.app.annotation.SwaggerCommonResponseApi;
 import com.basic.app.api.ResponseApi;
 import com.basic.app.dto.requestDto.LogApiReqDto;
@@ -58,6 +60,8 @@ public class AdminLogController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogApiResDto.class)))
   @SwaggerCommonResponseApi
   @CheckPermissions("ADM30403_READ")
+  @NoAopLogging
+  @NoKafkaLogging
   @GetMapping("/api-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllAccessLogForAdmin(
       LogApiReqDto logApiReqDto,
@@ -98,6 +102,8 @@ public class AdminLogController {
   @ApiResponse(responseCode = "200", description = "성공", content = @Content(schema = @Schema(implementation = LogErrorResDto.class)))
   @SwaggerCommonResponseApi
   @CheckPermissions("ADM30404_READ")
+  @NoAopLogging
+  @NoKafkaLogging
   @GetMapping("/error-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllErrorLogForAdmin(LogErrorReqDto logErrorReqDto,
       @PageableDefault(page = 0, size = 100, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable) {

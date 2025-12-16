@@ -18,6 +18,7 @@ import lombok.ToString;
  * @작성일 : 2025.07.23
  * @변경이력 :
  *       2025.07.23 김승연 최초 생성
+ *       2025.12.16 김승연 createDate 조회조건 추가
  */
 @Getter
 @Setter
@@ -42,5 +43,8 @@ public class LogErrorResDto {
   private String errMsg; // 에러내용
 
   private String errStack; // 에러내용상세
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  private String createDate; // 생성일시
 
 }
