@@ -2,7 +2,7 @@ spring:
   application:
     name: CBSK # 서비스명
   profiles:
-    active: dev # 디폴트 활성 프로필(dev)
+    active: dev # 디폴트 활성 프로필(dev) 개발 후 로컬에서 테스트 시에는 test로 변경
   jpa:
     database: mysql # 사용할 데이터베이스 종류 지정 (mysql, h2 등)
     database-platform: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQLDialect로 변경)

@@ -101,11 +101,17 @@
 			<version>1</version>
 		</dependency>
 
-		<!-- [DB] DB종류 및 DB Connection을 위한 라이브러리 -->
+		<!-- [DB] DB종류 및 DB Connection을 위한 라이브러리와 H2 testDB-->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<version>8.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>

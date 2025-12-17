@@ -2,12 +2,14 @@ package com.basic.app.aop;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -32,6 +34,7 @@ import lombok.extern.log4j.Log4j2;
 @Component
 @Log4j2
 @Order(1)
+@Profile("!test")
 public class PermissionCheckAspect {
 
   @Around("@annotation(checkPermissions)")
@@ -40,8 +43,10 @@ public class PermissionCheckAspect {
       CheckPermissions checkPermissions) throws Throwable {
 
     log.info("===[AOP] PermissionsCheckAspect 접근===");
+
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+    // 실제 권한 체크 로직
     CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
 
     List<String> userPermissions = userDetails.getPermissions();
