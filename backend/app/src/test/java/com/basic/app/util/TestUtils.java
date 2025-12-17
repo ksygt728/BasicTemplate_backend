@@ -1,6 +1,7 @@
 package com.basic.app.util;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 
 import org.apache.kafka.common.annotation.InterfaceStability.Stable;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import lombok.extern.log4j.Log4j2;
@@ -99,6 +101,34 @@ public class TestUtils {
    */
   public static String objectToJson(Object obj) throws Exception {
     return objectMapper.writeValueAsString(obj);
+  }
+
+  /**
+   * @설명 : Test 시 제외할 필드 설정
+   */
+  public static JsonNode ignoreFields(JsonNode testData, String... ignoreFields) {
+
+    // 페이징된 목록 조회의 경우 content가 배열이므로 각 요소의 writeDate를 제거
+    if (testData.has("data") && testData.get("data").has("data")
+        && testData.get("data").get("data").has("content")) {
+
+      JsonNode testDataContent = testData.get("data").get("data").get("content");
+
+      // content가 배열인지 확인
+      if (testDataContent.isArray()) {
+        Arrays.stream(ignoreFields).forEach(filed -> {
+          for (JsonNode item : testDataContent) {
+            if (item.isObject()) {
+              ((ObjectNode) item).remove(filed);
+            }
+          }
+
+        });
+      }
+    }
+
+    return testData;
+
   }
 
 }

@@ -121,7 +121,8 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "/api/test-error", // requestUri
                 "POST", // httpMethod
                 "NullPointerException 발생", // errMsg
-                "java.lang.NullPointerException\n\tat com.basic.app..." // errStack
+                "java.lang.NullPointerException\n\tat com.basic.app...", // errStack
+                null
         );
         ResponseApi<?> expected4 = ResponseApi.success(Map.of("data", testData4));
         String url4 = BASE_URL + "/error-log/" + testData4.getErrId();
@@ -150,7 +151,8 @@ public class LogApiErrorTestCasesForSearch implements TestTemplateInvocationCont
                 "/api/test-error", // requestUri
                 "POST", // httpMethod
                 "NullPointerException 발생", // errMsg
-                "java.lang.NullPointerException\n\tat com.basic.app..." // errStack
+                "java.lang.NullPointerException\n\tat com.basic.app...",
+                null // errStack
         );
         ResponseApi<?> expected5 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url5 = BASE_URL + "/error-log/" + testData5.getErrId();

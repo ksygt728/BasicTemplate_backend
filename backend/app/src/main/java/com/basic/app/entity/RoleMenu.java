@@ -57,7 +57,7 @@ public class RoleMenu extends BaseEntity {
   @JoinColumn(name = "MENU_CD")
   private Menu menu;
 
-  @Column(name = "MENU_RW", length = 45, nullable = false)
+  @Column(name = "MENU_RW", length = 45)
   private String menuRw; // 메뉴 접근 수준 (C,R,U,D)
 
   @Column(name = "USE_YN", length = 1, nullable = false, columnDefinition = "VARCHAR(1) DEFAULT 'N'")

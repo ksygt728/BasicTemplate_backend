@@ -20,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -40,6 +41,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
@@ -48,7 +50,7 @@ import lombok.extern.log4j.Log4j2;
                 "classpath:sql/test-data/user/user-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @Sql(scripts = "classpath:sql/test-data/user/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
-public class UserTestTemplate {
+public class UserTestTemplateTest {
 
         @Autowired
         private MockMvc mockMvc;

@@ -51,7 +51,7 @@ public class RoleMenuTestCasesForUpdate implements TestTemplateInvocationContext
         RoleMenuReqDto.builder()
             .roleCd("[JUnit]ROLE_USER")
             .menuCd("[JUnit]MENU005")
-            .menuRw("W") // R에서 W로 권한 변경
+            .menuRw("C") // R에서 W로 권한 변경
             .useYn("Y")
             .build(),
         RoleMenuReqDto.builder()
@@ -70,7 +70,7 @@ public class RoleMenuTestCasesForUpdate implements TestTemplateInvocationContext
             .useYn("Y")
             .menuUrl("/dashboard")
             .orderNum(2)
-            .menuRw("W")
+            .menuRw("C")
             .childMenus(new ArrayList<RoleMenuResDto>())
             .build(),
         RoleMenuResDto.builder()
@@ -98,7 +98,7 @@ public class RoleMenuTestCasesForUpdate implements TestTemplateInvocationContext
         RoleMenuReqDto.builder()
             // roleCd 누락
             .menuCd("[JUnit]MENU005")
-            .menuRw("W")
+            .menuRw("C")
             .useYn("Y")
             .build());
 
@@ -110,25 +110,13 @@ public class RoleMenuTestCasesForUpdate implements TestTemplateInvocationContext
         RoleMenuReqDto.builder()
             .roleCd("[JUnit]ROLE_USER")
             // menuCd 누락
-            .menuRw("W")
+            .menuRw("C")
             .useYn("Y")
             .build());
 
     testCases.add(
         new TestCaseDetail<>(BASE_URL, "필수값 누락 - menuCd", Map.of("roleMenus", td3),
             ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "메뉴코드는 필수입니다."), status().is4xxClientError()));
-
-    List<RoleMenuReqDto> td4 = List.of(
-        RoleMenuReqDto.builder()
-            .roleCd("[JUnit]ROLE_USER")
-            .menuCd("[JUnit]MENU005")
-            // menuRw 누락
-            .useYn("Y")
-            .build());
-
-    testCases.add(
-        new TestCaseDetail<>(BASE_URL, "필수값 누락 - menuRw", Map.of("roleMenus", td4),
-            ResponseApi.fail(ErrorCode.VALIDATION_ERROR_CLIENT, "메뉴 접근 수준은 필수입니다."), status().is4xxClientError()));
 
     /*
      * [TC_ID : TC-046] [TC명 : 권한별 메뉴 수정3] [REQ_ID : REQ_ADM_044] [화면 : 권한 관리 >
@@ -138,7 +126,7 @@ public class RoleMenuTestCasesForUpdate implements TestTemplateInvocationContext
         RoleMenuReqDto.builder()
             .roleCd("[JUnit]ROLE_NOT_EXIST") // 존재하지 않는 권한
             .menuCd("[JUnit]MENU005")
-            .menuRw("W")
+            .menuRw("C")
             .useYn("Y")
             .build());
 

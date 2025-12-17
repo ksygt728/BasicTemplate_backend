@@ -1,6 +1,7 @@
 package com.basic.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,7 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenu, RoleMenuId> 
      * @param menuCd : 권한 코드
      */
 
+    @Modifying
     @Query("UPDATE RoleMenu rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleMenuId.menuCd = ?1")
     void deleteRoleMenuListContainsMenuCd(String menuCd);
 
@@ -33,6 +35,7 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenu, RoleMenuId> 
      * @param roleCd : 권한 코드
      */
 
+    @Modifying
     @Query("UPDATE RoleMenu rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleMenuId.roleCd = ?1")
     void deleteRoleMenuListContainsRoleCd(String roleCd);
 
