@@ -102,4 +102,11 @@ public interface RoleService {
    */
   Map<String, Object> deleteRoleUserForAdmin(List<RoleUserReqDto> roleUserReqDtoList);
 
+  /**
+   * @기능 : 권한 캐시 재로드
+   * @param -
+   * @return -
+   */
+  void reloadPermissionsCache();
+
 }

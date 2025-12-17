@@ -65,7 +65,7 @@ public class AdminLogController {
   @GetMapping("/api-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllAccessLogForAdmin(
       LogApiReqDto logApiReqDto,
-      @PageableDefault(page = 0, size = 100, sort = "endDate", direction = Sort.Direction.DESC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "endDate", direction = Sort.Direction.DESC) Pageable pageable) {
 
     Map<String, Object> data = logService.findAllApiLogForAdmin(logApiReqDto, pageable);
 
@@ -106,7 +106,7 @@ public class AdminLogController {
   @NoKafkaLogging
   @GetMapping("/error-log/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllErrorLogForAdmin(LogErrorReqDto logErrorReqDto,
-      @PageableDefault(page = 0, size = 100, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "createDate", direction = Sort.Direction.DESC) Pageable pageable) {
 
     Map<String, Object> data = logService.findAllErrorLogForAdmin(logErrorReqDto, pageable);
 

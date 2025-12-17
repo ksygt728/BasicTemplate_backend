@@ -3,11 +3,9 @@ package com.basic.app.jwt;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -21,6 +19,7 @@ import com.basic.app.exception.ErrorCode;
 import com.basic.app.exception.customException.JwtExeption;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.lettuce.core.dynamic.annotation.Value;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -79,10 +78,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
       throws IOException, ServletException {
     log.info("[ACCESS] START JwtAthorizationFilter");
 
-    /* 테스트 용 */
+    /* [TestMode Start] : Spring Test 진행 시 AOP 권한 체크 로직 skip */
     boolean testToken = Boolean.parseBoolean(request.getHeader("test-token"));
 
-    if (testToken && jwtProperties.getEnv().equals("dev")) {
+    if (testToken && (jwtProperties.getEnv().equals("dev") || jwtProperties.getEnv().equals("test"))) {
       log.info("[TEST LOG] : 테스트용 토큰 사용 여부(환경 : {} 아이디 : {})", jwtProperties.getEnv(), jwtProperties.getTestId());
       // Test mode: create authentication using test user ID directly
       CustomUserDetails userDetails = jwtProvider.createUserCustomUserDetails(jwtProperties.getTestId());
@@ -92,6 +91,9 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
       chain.doFilter(request, response);
       return;
     }
+    /*
+     * [TestMode END]: ==========================================================
+     */
 
     // 1. Access Token을 들고 왔는지 확인
     String jwtAccessToken = jwtProvider.resolveAccessToken(request);

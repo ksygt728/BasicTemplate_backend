@@ -20,21 +20,20 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ResponseApi;
-import com.basic.app.featureTest.testcases.sms.SmsFormatTestCasesSearchAll;
-import com.basic.app.featureTest.testcases.sms.SmsTestCasesForDelete;
-import com.basic.app.featureTest.testcases.sms.SmsTestCasesForHistory;
-import com.basic.app.featureTest.testcases.sms.SmsTestCasesForInsert;
-import com.basic.app.featureTest.testcases.sms.SmsTestCasesForSearch;
-import com.basic.app.featureTest.testcases.sms.SmsTestCasesForUpdate;
+import com.basic.app.featureTest.testcases.mulLang.MulLangTestCasesForDelete;
+import com.basic.app.featureTest.testcases.mulLang.MulLangTestCasesForInsert;
+import com.basic.app.featureTest.testcases.mulLang.MulLangTestCasesForSearch;
+import com.basic.app.featureTest.testcases.mulLang.MulLangTestCasesForSearchAll;
+import com.basic.app.featureTest.testcases.mulLang.MulLangTestCasesForUpdate;
 import com.basic.app.util.TestCaseDetail;
 import com.basic.app.util.TestCaseDetailSearchForm;
 import com.basic.app.util.TestUtils;
@@ -42,16 +41,25 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @파일명 : MulLangTestTemplate.java
+ * @설명 : 다국어 정보 테스트 템플릿 클래스
+ * @작성자 : 김승연
+ * @작성일 : 2025.09.10
+ * @변경이력 :
+ *       2025.09.10 김승연 최초 생성
+ */
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
 @Transactional
 @Sql(scripts = {
-    "classpath:sql/test-data/sms/sms-test-data.sql"
+    "classpath:sql/test-data/mulLang/mullang-test-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = "classpath:sql/test-data/sms/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
-public class SmsTestTemplate {
+@Sql(scripts = "classpath:sql/test-data/mulLang/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
+public class MulLangTestTemplateTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -91,9 +99,9 @@ public class SmsTestTemplate {
    * 
    *************************************/
   @TestTemplate
-  @ExtendWith(SmsTestCasesForSearch.class)
-  @DisplayName("1. SMS_단건_조회")
-  void SMS_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(MulLangTestCasesForSearch.class)
+  @DisplayName("1. 다국어_단건_조회")
+  void 다국어_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -101,6 +109,7 @@ public class SmsTestTemplate {
     } else {
 
       /* 1. given */
+
       String url = testCaseDetail.getUrl();
       String testCaseName = testCaseDetail.getTestName();
       Object testData = testCaseDetail.getTestData();
@@ -127,9 +136,9 @@ public class SmsTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(SmsTestCasesForHistory.class)
-  @DisplayName("2. SMS_히스토리_조회")
-  void SMS_히스토리_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
+  @ExtendWith(MulLangTestCasesForSearchAll.class)
+  @DisplayName("2. 다국어_N건_조회")
+  void 다국어_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
       processNoneTestCase(testCaseDetail);
@@ -149,16 +158,13 @@ public class SmsTestTemplate {
       TestUtils.showLogTestCaseStart(testCaseName);
 
       // 파라미터 변환
-      MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+      MultiValueMap<String, String> multiValueMap = new org.springframework.util.LinkedMultiValueMap<>();
+      if (testData != null) {
+        multiValueMap = TestUtils.dtoToMultiValueMap(testData);
+      }
       multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
       multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
-
-      // Sort 파라미터를 개별적으로 처리
-      if (pageRequest.getSort().isSorted()) {
-        pageRequest.getSort().forEach(order -> {
-          multiValueMap.add("sort", order.getProperty() + "," + order.getDirection().name().toLowerCase());
-        });
-      }
+      multiValueMap.add("sort", pageRequest.getSort().toString());
 
       MvcResult actual = mockMvc.perform(get(url)
           .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -178,60 +184,9 @@ public class SmsTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(SmsFormatTestCasesSearchAll.class)
-  @DisplayName("3. SMS_N건_조회")
-  void SMS_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
-
-    if (testCaseDetail.getUrl().equals("N/A")) {
-      processNoneTestCase(testCaseDetail);
-
-    } else {
-
-      /* 1. given */
-
-      String url = testCaseDetail.getUrl();
-      String testCaseName = testCaseDetail.getTestName();
-      Object testData = testCaseDetail.getTestData();
-      ResponseApi<?> expected = testCaseDetail.getExpected();
-      ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
-      PageRequest pageRequest = testCaseDetail.getPageRequest();
-
-      /* 2. when */
-      TestUtils.showLogTestCaseStart(testCaseName);
-
-      // 파라미터 변환
-      MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-      multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
-      multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
-
-      // Sort 파라미터를 개별적으로 처리
-      if (pageRequest.getSort().isSorted()) {
-        pageRequest.getSort().forEach(order -> {
-          multiValueMap.add("sort", order.getProperty() + "," + order.getDirection().name().toLowerCase());
-        });
-      }
-
-      MvcResult actual = mockMvc.perform(get(url)
-          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-          .header("test-token", true)
-          .params(multiValueMap))
-          .andExpect(httpStatus)
-          .andReturn();
-
-      /* 3. then */
-      JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
-      JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
-
-      TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
-
-      assertThat(actualToJson).isEqualTo(expectedToJson);
-    }
-  }
-
-  @TestTemplate
-  @ExtendWith(SmsTestCasesForInsert.class)
-  @DisplayName("4. SMS_추가")
-  void SMS_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(MulLangTestCasesForInsert.class)
+  @DisplayName("3. 다국어_추가")
+  void 다국어_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -269,9 +224,9 @@ public class SmsTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(SmsTestCasesForUpdate.class)
-  @DisplayName("5. SMS_수정")
-  void SMS_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(MulLangTestCasesForUpdate.class)
+  @DisplayName("4. 다국어_수정")
+  void 다국어_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -309,9 +264,9 @@ public class SmsTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(SmsTestCasesForDelete.class)
-  @DisplayName("6. SMS_삭제")
-  void SMS_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(MulLangTestCasesForDelete.class)
+  @DisplayName("5. 다국어_삭제")
+  void 다국어_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
       processNoneTestCase(testCaseDetail);
@@ -345,8 +300,10 @@ public class SmsTestTemplate {
   }
 
   void processNoneTestCase(TestCaseDetail<?> testCaseDetail) throws Exception {
-    assertThat(testCaseDetail.getUrl()).isEqualTo("N/A");
+    if (testCaseDetail != null) {
+      assertThat(testCaseDetail.getUrl()).isEqualTo("N/A");
+    }
     TestUtils.showLogNoneTestCaseEnd("N/A", "N/A", "N/A");
-
   }
+
 }

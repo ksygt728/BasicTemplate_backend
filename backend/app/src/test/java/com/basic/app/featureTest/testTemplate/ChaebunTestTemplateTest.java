@@ -20,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,12 +29,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.MultiValueMap;
 
 import com.basic.app.api.ResponseApi;
-import com.basic.app.featureTest.testcases.mail.MailFormatTestCasesSearchAll;
-import com.basic.app.featureTest.testcases.mail.MailTestCasesForDelete;
-import com.basic.app.featureTest.testcases.mail.MailTestCasesForHistory;
-import com.basic.app.featureTest.testcases.mail.MailTestCasesForInsert;
-import com.basic.app.featureTest.testcases.mail.MailTestCasesForSearch;
-import com.basic.app.featureTest.testcases.mail.MailTestCasesForUpdate;
+import com.basic.app.featureTest.testcases.chaebun.ChaebunFormatTestCasesSearchAll;
+import com.basic.app.featureTest.testcases.chaebun.ChaebunTestCasesForDelete;
+import com.basic.app.featureTest.testcases.chaebun.ChaebunTestCasesForInsert;
+import com.basic.app.featureTest.testcases.chaebun.ChaebunTestCasesForSearch;
+import com.basic.app.featureTest.testcases.chaebun.ChaebunTestCasesForUpdate;
 import com.basic.app.util.TestCaseDetail;
 import com.basic.app.util.TestCaseDetailSearchForm;
 import com.basic.app.util.TestUtils;
@@ -42,15 +42,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
 @Transactional
 @Sql(scripts = {
-    "classpath:sql/test-data/mail/mail-test-data.sql"
+    "classpath:sql/test-data/chaebun/chaebun-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = "classpath:sql/test-data/mail/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
-public class MailTestTemplate {
+@Sql(scripts = "classpath:sql/test-data/chaebun/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
+public class ChaebunTestTemplateTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -90,9 +91,9 @@ public class MailTestTemplate {
    * 
    *************************************/
   @TestTemplate
-  @ExtendWith(MailTestCasesForSearch.class)
-  @DisplayName("1. 메일_단건_조회")
-  void 메일_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(ChaebunTestCasesForSearch.class)
+  @DisplayName("1. 채번_단건_조회")
+  void 채번_단건_조회(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -126,58 +127,9 @@ public class MailTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(MailTestCasesForHistory.class)
-  @DisplayName("2. 메일_히스토리_조회")
-  void 메일_히스토리_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
-
-    if (testCaseDetail.getUrl().equals("N/A")) {
-      processNoneTestCase(testCaseDetail);
-
-    } else {
-
-      /* 1. given */
-
-      String url = testCaseDetail.getUrl();
-      String testCaseName = testCaseDetail.getTestName();
-      Object testData = testCaseDetail.getTestData();
-      ResponseApi<?> expected = testCaseDetail.getExpected();
-      ResultMatcher httpStatus = testCaseDetail.getHttpStatus();
-      PageRequest pageRequest = testCaseDetail.getPageRequest();
-
-      /* 2. when */
-      TestUtils.showLogTestCaseStart(testCaseName);
-
-      // 파라미터 변환
-      MultiValueMap<String, String> multiValueMap = TestUtils.dtoToMultiValueMap(testData);
-      multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
-      multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
-      if (pageRequest.getSort().isSorted()) {
-        pageRequest.getSort().forEach(order -> {
-          multiValueMap.add("sort", order.getProperty() + "," + order.getDirection().name().toLowerCase());
-        });
-      }
-
-      MvcResult actual = mockMvc.perform(get(url)
-          .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-          .header("test-token", true)
-          .params(multiValueMap))
-          .andExpect(httpStatus)
-          .andReturn();
-
-      /* 3. then */
-      JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
-      JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
-
-      TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
-
-      assertThat(actualToJson).isEqualTo(expectedToJson);
-    }
-  }
-
-  @TestTemplate
-  @ExtendWith(MailFormatTestCasesSearchAll.class)
-  @DisplayName("3. 메일_N건_조회")
-  void 메일_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
+  @ExtendWith(ChaebunFormatTestCasesSearchAll.class)
+  @DisplayName("2. 채번_N건_조회")
+  void 채번_N건_조회(TestCaseDetailSearchForm<?, ?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
       processNoneTestCase(testCaseDetail);
@@ -201,13 +153,6 @@ public class MailTestTemplate {
       multiValueMap.add("page", String.valueOf(pageRequest.getPageNumber()));
       multiValueMap.add("size", String.valueOf(pageRequest.getPageSize()));
 
-      // Sort 파라미터를 개별적으로 처리
-      if (pageRequest.getSort().isSorted()) {
-        pageRequest.getSort().forEach(order -> {
-          multiValueMap.add("sort", order.getProperty() + "," + order.getDirection().name().toLowerCase());
-        });
-      }
-
       MvcResult actual = mockMvc.perform(get(url)
           .contentType(MediaType.APPLICATION_FORM_URLENCODED)
           .header("test-token", true)
@@ -226,9 +171,9 @@ public class MailTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(MailTestCasesForInsert.class)
-  @DisplayName("4. 메일_추가")
-  void 메일_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(ChaebunTestCasesForInsert.class)
+  @DisplayName("3. 채번_추가")
+  void 채번_추가(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -266,9 +211,9 @@ public class MailTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(MailTestCasesForUpdate.class)
-  @DisplayName("5. 메일_수정")
-  void 메일_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(ChaebunTestCasesForUpdate.class)
+  @DisplayName("4. 채번_수정")
+  void 채번_수정(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
 
@@ -306,9 +251,9 @@ public class MailTestTemplate {
   }
 
   @TestTemplate
-  @ExtendWith(MailTestCasesForDelete.class)
-  @DisplayName("6. 메일_삭제")
-  void 메일_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
+  @ExtendWith(ChaebunTestCasesForDelete.class)
+  @DisplayName("5. 채번_삭제")
+  void 채번_삭제(TestCaseDetail<?> testCaseDetail) throws Exception {
 
     if (testCaseDetail.getUrl().equals("N/A")) {
       processNoneTestCase(testCaseDetail);
