@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -53,6 +54,7 @@ public interface RoleUserRepository extends JpaRepository<RoleUser, RoleUserId> 
    * @기능 : 특정 권한을 가지고 있는 모든 사용자 권한을 논리 삭제
    * @param roleCd : 권한 코드
    */
+  @Modifying
   @Query("UPDATE RoleUser rm SET rm.sts = 'D', rm.useYn = 'N' WHERE rm.roleUserId.roleCd = ?1")
   void deleteRoleUserListContainsRoleCd(String roleCd);
 

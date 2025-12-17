@@ -466,7 +466,9 @@ public class RoleServiceImpl implements RoleService {
    * @param -
    * @return -
    */
-  private void reloadPermissionsCache() {
+  @Override
+  public void reloadPermissionsCache() {
+    log.info("[CBMS] reloadPermissionsCache 실행 Redis로 업로드");
 
     List<RoleMenu> roleMenuList = roleMenuRepository.findAll().stream()
         .filter(entity -> entity.getSts().equals(Status.POSITIVE) &&

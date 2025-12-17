@@ -67,7 +67,7 @@ public class AdminInterfaceController {
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllInterfaceWithConditionsForAdmin(
       InterfaceReqDto interfaceReqDto,
-      @PageableDefault(page = 0, size = 5, sort = "ifId", direction = Sort.Direction.ASC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "ifId", direction = Sort.Direction.ASC) Pageable pageable) {
 
     Map<String, Object> data = interfaceService.findAllInterfaceWithConditionsForAdmin(interfaceReqDto, pageable);
 

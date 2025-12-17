@@ -53,20 +53,20 @@ INSERT INTO TB_ROLE_MENU (
     CREATE_DATE, CREATE_USER, TIMESTAMP, UPDATE_USER, STS
 ) VALUES 
 -- ADMIN은 모든 메뉴에 쓰기 권한
-('[JUnit]ROLE_ADMIN', '[JUnit]MENU001', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_ADMIN', '[JUnit]MENU002', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_ADMIN', '[JUnit]MENU003', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_ADMIN', '[JUnit]MENU004', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_ADMIN', '[JUnit]MENU005', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_ADMIN', '[JUnit]MENU001', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_ADMIN', '[JUnit]MENU002', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_ADMIN', '[JUnit]MENU003', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_ADMIN', '[JUnit]MENU004', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_ADMIN', '[JUnit]MENU005', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
 
 -- USER는 대시보드만 읽기 권한
 ('[JUnit]ROLE_USER', '[JUnit]MENU005', 'R', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_USER', '[JUnit]MENU004', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_USER', '[JUnit]MENU003', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_USER', '[JUnit]MENU004', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_USER', '[JUnit]MENU003', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
 
 -- MANAGER는 사용자관리와 대시보드에 쓰기 권한
-('[JUnit]ROLE_MANAGER', '[JUnit]MENU002', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
-('[JUnit]ROLE_MANAGER', '[JUnit]MENU005', 'W', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C')
+('[JUnit]ROLE_MANAGER', '[JUnit]MENU002', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C'),
+('[JUnit]ROLE_MANAGER', '[JUnit]MENU005', 'C', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM', 'C')
 ;
 
 -- User 테스트 데이터 (User-Role 관계 테스트용)

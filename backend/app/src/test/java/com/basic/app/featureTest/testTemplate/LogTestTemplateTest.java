@@ -20,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -41,11 +42,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
+@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 전역으로 테스트데이터를 사용하기 위해 생성
 @Transactional
-public class LogTestTemplate {
+public class LogTestTemplateTest {
 
         @Autowired
         private MockMvc mockMvc;
@@ -240,6 +242,9 @@ public class LogTestTemplate {
                 /* 3. then */
                 JsonNode expectedToJson = TestUtils.apiReponseToJsonNode(expected);
                 JsonNode actualToJson = TestUtils.mvcResultToJsonNode(actual);
+
+                expectedToJson = TestUtils.ignoreFields(expectedToJson, "createDate");
+                actualToJson = TestUtils.ignoreFields(actualToJson, "createDate");
 
                 TestUtils.showLogTestCaseEnd(testData, expectedToJson, actualToJson);
 

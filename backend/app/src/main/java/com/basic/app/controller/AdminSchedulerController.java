@@ -67,7 +67,7 @@ public class AdminSchedulerController {
   @CheckPermissions("ADM30406_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllSchedulerForAdmin(ScheMReqDto scheMReqDto,
-      @PageableDefault(page = 0, size = 200, sort = "scheId", direction = Sort.Direction.ASC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "scheId", direction = Sort.Direction.ASC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findAllSchedulerForAdmin(scheMReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }

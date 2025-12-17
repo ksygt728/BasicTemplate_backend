@@ -62,7 +62,7 @@ public class LogErrorTestCasesSearchAll implements
                         "POST", // httpMethod
                         "NullPointerException 발생", // errMsg
                         "java.lang.NullPointerException\n\tat com.basic.app..." // errStack
-                ));
+                        , null));
         // Response
 
         PageResponse<LogErrorResDto> pageResponse_order1 = new PageResponse<>(new PageImpl<>(
