@@ -71,7 +71,7 @@ public class AdminBbsController {
   @CheckPermissions("ADM30407_READ")
   @GetMapping("/search")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllBbsForAdmin(BbsReqDto bbsReqDto,
-      @PageableDefault(page = 0, size = 100, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
     Map<String, Object> data = bbsService.findAllBbsForAdmin(bbsReqDto, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
@@ -175,7 +175,7 @@ public class AdminBbsController {
   @CheckPermissions("ADM30407_READ")
   @GetMapping("/comment/search/{bbsId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findAllBbsCommentForAdmin(@PathVariable String bbsId,
-      @PageableDefault(page = 0, size = 100, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 2000, sort = "writeDate", direction = Sort.Direction.DESC) Pageable pageable) {
     Map<String, Object> data = bbsService.findAllBbsCommentForAdmin(bbsId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
