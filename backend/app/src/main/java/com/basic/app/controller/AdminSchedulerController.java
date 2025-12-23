@@ -105,7 +105,7 @@ public class AdminSchedulerController {
   @CheckPermissions("ADM30406_READ")
   @GetMapping("/history/{scheId}")
   public ResponseEntity<ResponseApi<Map<String, Object>>> findBySchedulerHistoryForAdmin(@PathVariable String scheId,
-      @PageableDefault(page = 0, size = 200, sort = "startDate", direction = Sort.Direction.DESC) Pageable pageable) {
+      @PageableDefault(page = 0, size = 200, sort = "startTime", direction = Sort.Direction.DESC) Pageable pageable) {
     Map<String, Object> data = schedulerService.findBySchedulerHistoryForAdmin(scheId, pageable);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
   }
