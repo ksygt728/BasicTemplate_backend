@@ -51,7 +51,7 @@ INSERT INTO TB_MENU VALUES
 ('ADM30402', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'메일 관리','/main/admin/system/mail',2,'Y','ADM20004'),
 ('ADM30403', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'사용자 접속 로그','/main/admin/system/login-log',3,'Y','ADM20004'),
 ('ADM30404', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'Error 관리','/main/admin/system/error',4,'Y','ADM20004'),
-('ADM30405', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'SMS 발송 로그','/main/admin/system/sms-log',5,'Y','ADM20004'),
+('ADM30405', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'SMS 발송 로그','/main/admin/system/sms',5,'Y','ADM20004'),
 ('ADM30406', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'스케쥴러 관리','/main/admin/system/scheduler',6,'Y','ADM20004'),
 ('ADM30407', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'메뉴얼 관리','/main/admin/system/manual',7,'Y','ADM20004'),
 ('ADM30408', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'결재 관리','/main/admin/system/approval',8,'Y','ADM20004');

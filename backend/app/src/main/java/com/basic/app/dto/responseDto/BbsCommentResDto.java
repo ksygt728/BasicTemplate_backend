@@ -33,7 +33,7 @@ public class BbsCommentResDto {
   // BbsComemnt - Bbs (N:1) [Onwer]
   private BbsResDto bbs; // 게시판아이디
 
-  private String content; // 내용
+  private String commentContent; // 내용
 
   private UserResDto writor; // 작성자
 

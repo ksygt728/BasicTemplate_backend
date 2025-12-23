@@ -213,7 +213,7 @@ public class AdminBbsController {
   @PreAuthorize("isAuthenticated()")
   @PostMapping("/comment")
   public ResponseEntity<ResponseApi<Map<String, Object>>> insertBbsCommentForAdmin(
-      @Validated(CreateGroup.class) BbsCommentReqDto bbsCommentReqDto,
+      @Validated(CreateGroup.class) @RequestBody BbsCommentReqDto bbsCommentReqDto,
       @AuthenticationPrincipal CustomUserDetails user) {
     Map<String, Object> data = bbsService.insertBbsCommentForAdmin(bbsCommentReqDto, user);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
@@ -234,7 +234,7 @@ public class AdminBbsController {
   @PreAuthorize("isAuthenticated() and (#bbsCommentReqDto.writor == authentication.name or hasRole('ADMIN'))")
   @PutMapping("/comment")
   public ResponseEntity<ResponseApi<Map<String, Object>>> updateBbsCommentForAdmin(
-      @Validated(UpdateGroup.class) BbsCommentReqDto bbsCommentReqDto,
+      @Validated(UpdateGroup.class) @RequestBody BbsCommentReqDto bbsCommentReqDto,
       @AuthenticationPrincipal CustomUserDetails user) {
     Map<String, Object> data = bbsService.updateBbsCommentForAdmin(bbsCommentReqDto, user);
     return ResponseEntity.status(HttpStatus.OK).body(ResponseApi.success(data));
