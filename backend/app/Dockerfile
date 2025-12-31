@@ -1,30 +1,35 @@
 ############################################
-# 1단계: Maven 빌드
+# 1단계: Maven Wrapper 빌드 (JDK 21)
 ############################################
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
+FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /build
 
-# 의존성 캐시
+# Maven Wrapper 관련 파일 먼저 복사 (캐시 최적화)
+COPY mvnw .
+COPY .mvn .mvn
 COPY pom.xml .
-RUN mvn dependency:go-offline
 
-# 소스 복사 후 빌드
+# mvnw 실행 권한
+RUN chmod +x mvnw
+
+# 의존성 캐시
+RUN ./mvnw -B dependency:go-offline
+
+# 소스 복사 후 테스트 + 빌드
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN ./mvnw clean package -DskipTests
 
 
 ############################################
-# 2단계: 실행
+# 2단계: 실행 (JRE 21)
 ############################################
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# 빌드된 jar만 복사
 COPY --from=builder /build/target/*.jar app.jar
 
-# Spring Boot 기본 포트 (문서용)
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

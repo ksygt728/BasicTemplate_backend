@@ -66,13 +66,12 @@ pipeline {
       }
     }
 
-    /* 🔥 추가된 Stage */
     stage('Maven Test') {
       steps {
         echo "================ [TEST] Maven Test ================="
         sh """
-          cd ${COMPOSE_FILE_PATH}
-          mvn clean test -Dspring.profiles.active=test
+          cd ${WORKSPACE}/${COMPOSE_FILE_PATH}
+          ./mvnw clean test -Dspring.profiles.active=test
         """
         echo "================ ✅ TEST PASSED ================="
       }
@@ -82,7 +81,7 @@ pipeline {
       steps {
         echo "================ [DOCKER] Build ================="
         sh """
-          cd ${COMPOSE_FILE_PATH}
+          cd ${WORKSPACE}/${COMPOSE_FILE_PATH}
           docker build -t ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG} .
         """
         echo "================ ✅ DOCKER BUILD DONE ================="
