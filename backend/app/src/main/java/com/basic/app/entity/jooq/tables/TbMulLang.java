@@ -68,7 +68,7 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MUL_LANG.CREATE_DATE</code>.
      */
-    public final TableField<TbMulLangRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMulLangRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MUL_LANG.CREATE_USER</code>.
@@ -83,7 +83,7 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MUL_LANG.TIMESTAMP</code>.
      */
-    public final TableField<TbMulLangRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMulLangRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MUL_LANG.UPDATE_USER</code>.

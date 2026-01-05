@@ -66,7 +66,7 @@ public class TbBbs extends TableImpl<TbBbsRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS.CREATE_DATE</code>.
      */
-    public final TableField<TbBbsRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbBbsRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS.CREATE_USER</code>.
@@ -81,7 +81,7 @@ public class TbBbs extends TableImpl<TbBbsRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS.TIMESTAMP</code>.
      */
-    public final TableField<TbBbsRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbBbsRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS.UPDATE_USER</code>.
@@ -106,7 +106,7 @@ public class TbBbs extends TableImpl<TbBbsRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS.WRITE_DATE</code>.
      */
-    public final TableField<TbBbsRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(3)"), SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<TbBbsRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP(3)"), SQLDataType.LOCALDATETIME)), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS.WRITOR</code>.

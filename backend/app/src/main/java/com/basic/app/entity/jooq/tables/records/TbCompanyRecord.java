@@ -23,9 +23,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.CREATE_DATE</code>.
      */
-    public TbCompanyRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.TIMESTAMP</code>.
      */
-    public TbCompanyRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.COMPANY_CODE</code>.
      */
-    public TbCompanyRecord setCompanyCode(String value) {
+    public void setCompanyCode(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.CREATE_USER</code>.
      */
-    public TbCompanyRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.UPDATE_USER</code>.
      */
-    public TbCompanyRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.COMPANY_NAME</code>.
      */
-    public TbCompanyRecord setCompanyName(String value) {
+    public void setCompanyName(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COMPANY.STS</code>.
      */
-    public TbCompanyRecord setSts(String value) {
+    public void setSts(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -159,23 +152,5 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
         setCompanyName(companyName);
         setSts(sts);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbCompanyRecord
-     */
-    public TbCompanyRecord(com.basic.app.entity.jooq.tables.pojos.TbCompany value) {
-        super(TbCompany.TB_COMPANY);
-
-        if (value != null) {
-            setCreateDate(value.getCreateDate());
-            setTimestamp(value.getTimestamp());
-            setCompanyCode(value.getCompanyCode());
-            setCreateUser(value.getCreateUser());
-            setUpdateUser(value.getUpdateUser());
-            setCompanyName(value.getCompanyName());
-            setSts(value.getSts());
-            resetChangedOnNotNull();
-        }
     }
 }

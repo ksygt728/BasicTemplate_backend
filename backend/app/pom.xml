@@ -310,69 +310,38 @@
 				</configuration>
 			</plugin>
 
-			<!-- jOOQ 코드 생성기 플러그인 -->
 			<plugin>
 				<groupId>org.jooq</groupId>
 				<artifactId>jooq-codegen-maven</artifactId>
-				<executions>
-					<execution>
-						<id>generate-jooq-sources</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<skip>${skip.jooq.codegen}</skip>
-							<jdbc>
-								<driver>${jooq.db.driver}</driver>
-								<url>${jooq.db.url}</url>
-								<user>${jooq.db.username}</user>
-								<password>${jooq.db.password}</password>
-							</jdbc>
-							<generator>
-								<database>
-									<name>${jooq.db.dialect}</name>
-									<includes>.*</includes>
-									<inputSchema>${jooq.db.schema}</inputSchema>
-									<forcedTypes>
-										<!-- DATE를 LocalDate로 매핑 -->
-										<forcedType>
-											<name>LOCALDATE</name>
-											<includeTypes>DATE</includeTypes>
-										</forcedType>
-										<!-- TIMESTAMP를 LocalDateTime으로 매핑 -->
-										<forcedType>
-											<name>LOCALDATETIME</name>
-											<includeTypes>TIMESTAMP</includeTypes>
-										</forcedType>
-									</forcedTypes>
-								</database>
-								<target>
-								<packageName>com.basic.app.entity.jooq</packageName>
-								<directory>src/main/java</directory>
-								</target>
-								<generate>
-									<deprecated>false</deprecated>
-									<records>true</records>
-									<immutablePojos>true</immutablePojos>
-									<fluentSetters>true</fluentSetters>
-								</generate>
-							</generator>
-						</configuration>
-					</execution>
-				</executions>
+				<version>3.19.15</version>
+
+				<configuration>
+					<jdbc>
+						<driver>${jooq.db.driver}</driver>
+						<url>${jooq.db.url}</url>
+						<user>${jooq.db.username}</user>
+						<password>${jooq.db.password}</password>
+					</jdbc>
+
+					<generator>
+						<database>
+							<name>${jooq.db.dialect}</name>
+							<inputSchema>${jooq.db.schema}</inputSchema>
+							<includes>.*</includes>
+						</database>
+
+						<target>
+							<packageName>com.basic.app.entity.jooq</packageName>
+							<directory>src/main/java</directory>
+						</target>
+					</generator>
+				</configuration>
+
 				<dependencies>
-					<!-- MySQL 드라이버 -->
 					<dependency>
 						<groupId>com.mysql</groupId>
 						<artifactId>mysql-connector-j</artifactId>
 						<version>8.3.0</version>
-					</dependency>
-					<!-- H2 드라이버 (test 프로파일용) -->
-					<dependency>
-						<groupId>com.h2database</groupId>
-						<artifactId>h2</artifactId>
-						<version>2.2.224</version>
 					</dependency>
 				</dependencies>
 			</plugin>

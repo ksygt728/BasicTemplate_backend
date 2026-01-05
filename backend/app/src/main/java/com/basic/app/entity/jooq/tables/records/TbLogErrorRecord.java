@@ -23,9 +23,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_DATE</code>.
      */
-    public TbLogErrorRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.TIMESTAMP</code>.
      */
-    public TbLogErrorRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_ID</code>.
      */
-    public TbLogErrorRecord setErrId(String value) {
+    public void setErrId(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_USER</code>.
      */
-    public TbLogErrorRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.HTTP_METHOD</code>.
      */
-    public TbLogErrorRecord setHttpMethod(String value) {
+    public void setHttpMethod(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.IP_ADDR</code>.
      */
-    public TbLogErrorRecord setIpAddr(String value) {
+    public void setIpAddr(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.UPDATE_USER</code>.
      */
-    public TbLogErrorRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.USER_AGENT</code>.
      */
-    public TbLogErrorRecord setUserAgent(String value) {
+    public void setUserAgent(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.USER_ID</code>.
      */
-    public TbLogErrorRecord setUserId(String value) {
+    public void setUserId(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.REQUEST_URI</code>.
      */
-    public TbLogErrorRecord setRequestUri(String value) {
+    public void setRequestUri(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_MSG</code>.
      */
-    public TbLogErrorRecord setErrMsg(String value) {
+    public void setErrMsg(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.STS</code>.
      */
-    public TbLogErrorRecord setSts(String value) {
+    public void setSts(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_STACK</code>.
      */
-    public TbLogErrorRecord setErrStack(String value) {
+    public void setErrStack(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -255,29 +242,5 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
         setSts(sts);
         setErrStack(errStack);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbLogErrorRecord
-     */
-    public TbLogErrorRecord(com.basic.app.entity.jooq.tables.pojos.TbLogError value) {
-        super(TbLogError.TB_LOG_ERROR);
-
-        if (value != null) {
-            setCreateDate(value.getCreateDate());
-            setTimestamp(value.getTimestamp());
-            setErrId(value.getErrId());
-            setCreateUser(value.getCreateUser());
-            setHttpMethod(value.getHttpMethod());
-            setIpAddr(value.getIpAddr());
-            setUpdateUser(value.getUpdateUser());
-            setUserAgent(value.getUserAgent());
-            setUserId(value.getUserId());
-            setRequestUri(value.getRequestUri());
-            setErrMsg(value.getErrMsg());
-            setSts(value.getSts());
-            setErrStack(value.getErrStack());
-            resetChangedOnNotNull();
-        }
     }
 }

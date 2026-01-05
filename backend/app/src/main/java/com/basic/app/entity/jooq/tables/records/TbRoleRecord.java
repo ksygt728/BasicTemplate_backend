@@ -23,9 +23,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_CD</code>.
      */
-    public TbRoleRecord setRoleCd(String value) {
+    public void setRoleCd(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.CREATE_DATE</code>.
      */
-    public TbRoleRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.CREATE_USER</code>.
      */
-    public TbRoleRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.STS</code>.
      */
-    public TbRoleRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.TIMESTAMP</code>.
      */
-    public TbRoleRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.UPDATE_USER</code>.
      */
-    public TbRoleRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_DESC</code>.
      */
-    public TbRoleRecord setRoleDesc(String value) {
+    public void setRoleDesc(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_NAME</code>.
      */
-    public TbRoleRecord setRoleName(String value) {
+    public void setRoleName(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -175,24 +167,5 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
         setRoleDesc(roleDesc);
         setRoleName(roleName);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbRoleRecord
-     */
-    public TbRoleRecord(com.basic.app.entity.jooq.tables.pojos.TbRole value) {
-        super(TbRole.TB_ROLE);
-
-        if (value != null) {
-            setRoleCd(value.getRoleCd());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setRoleDesc(value.getRoleDesc());
-            setRoleName(value.getRoleName());
-            resetChangedOnNotNull();
-        }
     }
 }

@@ -70,7 +70,7 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
      */
-    public final TableField<TbComCodeDPivotRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbComCodeDPivotRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
@@ -85,7 +85,7 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
      */
-    public final TableField<TbComCodeDPivotRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbComCodeDPivotRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.

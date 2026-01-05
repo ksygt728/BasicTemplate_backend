@@ -23,9 +23,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.CREATE_DATE</code>.
      */
-    public TbLogApiRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.END_DATE</code>.
      */
-    public TbLogApiRecord setEndDate(LocalDateTime value) {
+    public void setEndDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.EXEC_TIME</code>.
      */
-    public TbLogApiRecord setExecTime(Long value) {
+    public void setExecTime(Long value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.START_DATE</code>.
      */
-    public TbLogApiRecord setStartDate(LocalDateTime value) {
+    public void setStartDate(LocalDateTime value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.TIMESTAMP</code>.
      */
-    public TbLogApiRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.LOG_ID</code>.
      */
-    public TbLogApiRecord setLogId(String value) {
+    public void setLogId(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.CREATE_USER</code>.
      */
-    public TbLogApiRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.HTTP_METHOD</code>.
      */
-    public TbLogApiRecord setHttpMethod(String value) {
+    public void setHttpMethod(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.IP_ADDR</code>.
      */
-    public TbLogApiRecord setIpAddr(String value) {
+    public void setIpAddr(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.STATUS_CODE</code>.
      */
-    public TbLogApiRecord setStatusCode(String value) {
+    public void setStatusCode(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.UPDATE_USER</code>.
      */
-    public TbLogApiRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.USER_AGENT</code>.
      */
-    public TbLogApiRecord setUserAgent(String value) {
+    public void setUserAgent(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.USER_ID</code>.
      */
-    public TbLogApiRecord setUserId(String value) {
+    public void setUserId(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -218,9 +205,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.REQUEST_URI</code>.
      */
-    public TbLogApiRecord setRequestUri(String value) {
+    public void setRequestUri(String value) {
         set(13, value);
-        return this;
     }
 
     /**
@@ -233,9 +219,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.STS</code>.
      */
-    public TbLogApiRecord setSts(String value) {
+    public void setSts(String value) {
         set(14, value);
-        return this;
     }
 
     /**
@@ -248,9 +233,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.REQUEST_BODY</code>.
      */
-    public TbLogApiRecord setRequestBody(String value) {
+    public void setRequestBody(String value) {
         set(15, value);
-        return this;
     }
 
     /**
@@ -263,9 +247,8 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_API.RESPONSE_BODY</code>.
      */
-    public TbLogApiRecord setResponseBody(String value) {
+    public void setResponseBody(String value) {
         set(16, value);
-        return this;
     }
 
     /**
@@ -319,33 +302,5 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
         setRequestBody(requestBody);
         setResponseBody(responseBody);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbLogApiRecord
-     */
-    public TbLogApiRecord(com.basic.app.entity.jooq.tables.pojos.TbLogApi value) {
-        super(TbLogApi.TB_LOG_API);
-
-        if (value != null) {
-            setCreateDate(value.getCreateDate());
-            setEndDate(value.getEndDate());
-            setExecTime(value.getExecTime());
-            setStartDate(value.getStartDate());
-            setTimestamp(value.getTimestamp());
-            setLogId(value.getLogId());
-            setCreateUser(value.getCreateUser());
-            setHttpMethod(value.getHttpMethod());
-            setIpAddr(value.getIpAddr());
-            setStatusCode(value.getStatusCode());
-            setUpdateUser(value.getUpdateUser());
-            setUserAgent(value.getUserAgent());
-            setUserId(value.getUserId());
-            setRequestUri(value.getRequestUri());
-            setSts(value.getSts());
-            setRequestBody(value.getRequestBody());
-            setResponseBody(value.getResponseBody());
-            resetChangedOnNotNull();
-        }
     }
 }

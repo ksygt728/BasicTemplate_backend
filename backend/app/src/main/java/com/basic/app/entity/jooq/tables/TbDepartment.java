@@ -71,12 +71,12 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     /**
      * The column <code>CBSK-DEV.TB_DEPARTMENT.CREATE_DATE</code>.
      */
-    public final TableField<TbDepartmentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbDepartmentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_DEPARTMENT.TIMESTAMP</code>.
      */
-    public final TableField<TbDepartmentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbDepartmentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_DEPARTMENT.COMPANY_CODE</code>.

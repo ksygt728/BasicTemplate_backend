@@ -66,7 +66,7 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_T.CREATE_DATE</code>.
      */
-    public final TableField<TbComCodeTRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbComCodeTRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_T.CREATE_USER</code>.
@@ -81,7 +81,7 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_T.TIMESTAMP</code>.
      */
-    public final TableField<TbComCodeTRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbComCodeTRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COM_CODE_T.UPDATE_USER</code>.

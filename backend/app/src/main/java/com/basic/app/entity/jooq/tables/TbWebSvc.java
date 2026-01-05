@@ -58,7 +58,7 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
     /**
      * The column <code>CBSK-DEV.TB_WEB_SVC.CREATE_DATE</code>.
      */
-    public final TableField<TbWebSvcRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbWebSvcRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_WEB_SVC.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
     /**
      * The column <code>CBSK-DEV.TB_WEB_SVC.TIMESTAMP</code>.
      */
-    public final TableField<TbWebSvcRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbWebSvcRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_WEB_SVC.UPDATE_USER</code>.

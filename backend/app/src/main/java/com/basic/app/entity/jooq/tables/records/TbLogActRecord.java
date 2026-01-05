@@ -23,9 +23,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.LOG_ID</code>.
      */
-    public TbLogActRecord setLogId(String value) {
+    public void setLogId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.CREATE_DATE</code>.
      */
-    public TbLogActRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.CREATE_USER</code>.
      */
-    public TbLogActRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.STS</code>.
      */
-    public TbLogActRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.TIMESTAMP</code>.
      */
-    public TbLogActRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.UPDATE_USER</code>.
      */
-    public TbLogActRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.ACTION_TYPE</code>.
      */
-    public TbLogActRecord setActionType(String value) {
+    public void setActionType(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.ACTION_TYPE_DETAIL</code>.
      */
-    public TbLogActRecord setActionTypeDetail(String value) {
+    public void setActionTypeDetail(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.IP_ADDR</code>.
      */
-    public TbLogActRecord setIpAddr(String value) {
+    public void setIpAddr(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.PAGE_URL</code>.
      */
-    public TbLogActRecord setPageUrl(String value) {
+    public void setPageUrl(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_LOG_ACT.USER_ID</code>.
      */
-    public TbLogActRecord setUserId(String value) {
+    public void setUserId(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -223,27 +212,5 @@ public class TbLogActRecord extends UpdatableRecordImpl<TbLogActRecord> {
         setPageUrl(pageUrl);
         setUserId(userId);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbLogActRecord
-     */
-    public TbLogActRecord(com.basic.app.entity.jooq.tables.pojos.TbLogAct value) {
-        super(TbLogAct.TB_LOG_ACT);
-
-        if (value != null) {
-            setLogId(value.getLogId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setActionType(value.getActionType());
-            setActionTypeDetail(value.getActionTypeDetail());
-            setIpAddr(value.getIpAddr());
-            setPageUrl(value.getPageUrl());
-            setUserId(value.getUserId());
-            resetChangedOnNotNull();
-        }
     }
 }

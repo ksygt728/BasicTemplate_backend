@@ -58,7 +58,7 @@ public class TbSmsM extends TableImpl<TbSmsMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SMS_M.CREATE_DATE</code>.
      */
-    public final TableField<TbSmsMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbSmsMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SMS_M.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbSmsM extends TableImpl<TbSmsMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SMS_M.TIMESTAMP</code>.
      */
-    public final TableField<TbSmsMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbSmsMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SMS_M.UPDATE_USER</code>.

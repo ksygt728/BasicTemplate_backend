@@ -23,9 +23,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.USER_ID</code>.
      */
-    public TbUserRecord setUserId(String value) {
+    public void setUserId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.CREATE_DATE</code>.
      */
-    public TbUserRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.CREATE_USER</code>.
      */
-    public TbUserRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.STS</code>.
      */
-    public TbUserRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.TIMESTAMP</code>.
      */
-    public TbUserRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.UPDATE_USER</code>.
      */
-    public TbUserRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.EMAIL</code>.
      */
-    public TbUserRecord setEmail(String value) {
+    public void setEmail(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.GENDER</code>.
      */
-    public TbUserRecord setGender(String value) {
+    public void setGender(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.NAME</code>.
      */
-    public TbUserRecord setName(String value) {
+    public void setName(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.PASSWORD</code>.
      */
-    public TbUserRecord setPassword(String value) {
+    public void setPassword(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.PHONE_NUM</code>.
      */
-    public TbUserRecord setPhoneNum(String value) {
+    public void setPhoneNum(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.ROLE</code>.
      */
-    public TbUserRecord setRole(String value) {
+    public void setRole(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.USER_TYPE</code>.
      */
-    public TbUserRecord setUserType(String value) {
+    public void setUserType(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -218,9 +205,8 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_USER.DEPT_CODE</code>.
      */
-    public TbUserRecord setDeptCode(String value) {
+    public void setDeptCode(String value) {
         set(13, value);
-        return this;
     }
 
     /**
@@ -271,30 +257,5 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
         setUserType(userType);
         setDeptCode(deptCode);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbUserRecord
-     */
-    public TbUserRecord(com.basic.app.entity.jooq.tables.pojos.TbUser value) {
-        super(TbUser.TB_USER);
-
-        if (value != null) {
-            setUserId(value.getUserId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setEmail(value.getEmail());
-            setGender(value.getGender());
-            setName(value.getName());
-            setPassword(value.getPassword());
-            setPhoneNum(value.getPhoneNum());
-            setRole(value.getRole());
-            setUserType(value.getUserType());
-            setDeptCode(value.getDeptCode());
-            resetChangedOnNotNull();
-        }
     }
 }

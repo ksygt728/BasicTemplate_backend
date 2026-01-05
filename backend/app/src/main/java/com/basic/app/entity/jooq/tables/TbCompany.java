@@ -58,12 +58,12 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
     /**
      * The column <code>CBSK-DEV.TB_COMPANY.CREATE_DATE</code>.
      */
-    public final TableField<TbCompanyRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbCompanyRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COMPANY.TIMESTAMP</code>.
      */
-    public final TableField<TbCompanyRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbCompanyRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_COMPANY.COMPANY_CODE</code>.

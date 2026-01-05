@@ -23,9 +23,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.LOG_ID</code>.
      */
-    public TbSmsHRecord setLogId(String value) {
+    public void setLogId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.CREATE_DATE</code>.
      */
-    public TbSmsHRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.CREATE_USER</code>.
      */
-    public TbSmsHRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.STS</code>.
      */
-    public TbSmsHRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.TIMESTAMP</code>.
      */
-    public TbSmsHRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.UPDATE_USER</code>.
      */
-    public TbSmsHRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.ERROR_MSG</code>.
      */
-    public TbSmsHRecord setErrorMsg(String value) {
+    public void setErrorMsg(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.FROM_PHONE</code>.
      */
-    public TbSmsHRecord setFromPhone(String value) {
+    public void setFromPhone(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.SMS_ID</code>.
      */
-    public TbSmsHRecord setSmsId(String value) {
+    public void setSmsId(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.SUCCESS</code>.
      */
-    public TbSmsHRecord setSuccess(String value) {
+    public void setSuccess(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.TEXT</code>.
      */
-    public TbSmsHRecord setText(String value) {
+    public void setText(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_H.TO_PHONE</code>.
      */
-    public TbSmsHRecord setToPhone(String value) {
+    public void setToPhone(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -239,28 +227,5 @@ public class TbSmsHRecord extends UpdatableRecordImpl<TbSmsHRecord> {
         setText(text);
         setToPhone(toPhone);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbSmsHRecord
-     */
-    public TbSmsHRecord(com.basic.app.entity.jooq.tables.pojos.TbSmsH value) {
-        super(TbSmsH.TB_SMS_H);
-
-        if (value != null) {
-            setLogId(value.getLogId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setErrorMsg(value.getErrorMsg());
-            setFromPhone(value.getFromPhone());
-            setSmsId(value.getSmsId());
-            setSuccess(value.getSuccess());
-            setText(value.getText());
-            setToPhone(value.getToPhone());
-            resetChangedOnNotNull();
-        }
     }
 }

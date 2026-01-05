@@ -23,9 +23,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.SCHE_ID</code>.
      */
-    public TbScheMRecord setScheId(String value) {
+    public void setScheId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.CREATE_DATE</code>.
      */
-    public TbScheMRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.CREATE_USER</code>.
      */
-    public TbScheMRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.STS</code>.
      */
-    public TbScheMRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.TIMESTAMP</code>.
      */
-    public TbScheMRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.UPDATE_USER</code>.
      */
-    public TbScheMRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.CLASS_NAME</code>.
      */
-    public TbScheMRecord setClassName(String value) {
+    public void setClassName(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.CRON_EXP</code>.
      */
-    public TbScheMRecord setCronExp(String value) {
+    public void setCronExp(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.DESCRIPTION</code>.
      */
-    public TbScheMRecord setDescription(String value) {
+    public void setDescription(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.LAST_EXEC_TIME</code>.
      */
-    public TbScheMRecord setLastExecTime(LocalDateTime value) {
+    public void setLastExecTime(LocalDateTime value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.METHOD_NAME</code>.
      */
-    public TbScheMRecord setMethodName(String value) {
+    public void setMethodName(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.NEXT_EXEC_TIME</code>.
      */
-    public TbScheMRecord setNextExecTime(LocalDateTime value) {
+    public void setNextExecTime(LocalDateTime value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.SCHE_GROUP</code>.
      */
-    public TbScheMRecord setScheGroup(String value) {
+    public void setScheGroup(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -218,9 +205,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.SCHE_NAME</code>.
      */
-    public TbScheMRecord setScheName(String value) {
+    public void setScheName(String value) {
         set(13, value);
-        return this;
     }
 
     /**
@@ -233,9 +219,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.TRIGGER_NAME</code>.
      */
-    public TbScheMRecord setTriggerName(String value) {
+    public void setTriggerName(String value) {
         set(14, value);
-        return this;
     }
 
     /**
@@ -248,9 +233,8 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_M.USE_YN</code>.
      */
-    public TbScheMRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(15, value);
-        return this;
     }
 
     /**
@@ -303,32 +287,5 @@ public class TbScheMRecord extends UpdatableRecordImpl<TbScheMRecord> {
         setTriggerName(triggerName);
         setUseYn(useYn);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbScheMRecord
-     */
-    public TbScheMRecord(com.basic.app.entity.jooq.tables.pojos.TbScheM value) {
-        super(TbScheM.TB_SCHE_M);
-
-        if (value != null) {
-            setScheId(value.getScheId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setClassName(value.getClassName());
-            setCronExp(value.getCronExp());
-            setDescription(value.getDescription());
-            setLastExecTime(value.getLastExecTime());
-            setMethodName(value.getMethodName());
-            setNextExecTime(value.getNextExecTime());
-            setScheGroup(value.getScheGroup());
-            setScheName(value.getScheName());
-            setTriggerName(value.getTriggerName());
-            setUseYn(value.getUseYn());
-            resetChangedOnNotNull();
-        }
     }
 }

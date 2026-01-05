@@ -58,7 +58,7 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MAIL_M.CREATE_DATE</code>.
      */
-    public final TableField<TbMailMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMailMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MAIL_M.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MAIL_M.TIMESTAMP</code>.
      */
-    public final TableField<TbMailMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMailMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MAIL_M.UPDATE_USER</code>.

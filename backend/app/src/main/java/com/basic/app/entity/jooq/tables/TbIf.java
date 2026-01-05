@@ -58,7 +58,7 @@ public class TbIf extends TableImpl<TbIfRecord> {
     /**
      * The column <code>CBSK-DEV.TB_IF.CREATE_DATE</code>.
      */
-    public final TableField<TbIfRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbIfRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_IF.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbIf extends TableImpl<TbIfRecord> {
     /**
      * The column <code>CBSK-DEV.TB_IF.TIMESTAMP</code>.
      */
-    public final TableField<TbIfRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbIfRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_IF.UPDATE_USER</code>.

@@ -23,9 +23,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
      */
-    public TbComCodeTPivotRecord setAttrCd(String value) {
+    public void setAttrCd(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
      */
-    public TbComCodeTPivotRecord setGrpCd(String value) {
+    public void setGrpCd(String value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
      */
-    public TbComCodeTPivotRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
      */
-    public TbComCodeTPivotRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.STS</code>.
      */
-    public TbComCodeTPivotRecord setSts(String value) {
+    public void setSts(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
      */
-    public TbComCodeTPivotRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
      */
-    public TbComCodeTPivotRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
      */
-    public TbComCodeTPivotRecord setAttrNm(String value) {
+    public void setAttrNm(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
      */
-    public TbComCodeTPivotRecord setOrderNum(Integer value) {
+    public void setOrderNum(Integer value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -191,25 +182,5 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
         setAttrNm(attrNm);
         setOrderNum(orderNum);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbComCodeTPivotRecord
-     */
-    public TbComCodeTPivotRecord(com.basic.app.entity.jooq.tables.pojos.TbComCodeTPivot value) {
-        super(TbComCodeTPivot.TB_COM_CODE_T_PIVOT);
-
-        if (value != null) {
-            setAttrCd(value.getAttrCd());
-            setGrpCd(value.getGrpCd());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setAttrNm(value.getAttrNm());
-            setOrderNum(value.getOrderNum());
-            resetChangedOnNotNull();
-        }
     }
 }

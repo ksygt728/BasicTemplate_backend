@@ -23,9 +23,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.IF_ID</code>.
      */
-    public TbIfRecord setIfId(String value) {
+    public void setIfId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.CREATE_DATE</code>.
      */
-    public TbIfRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.CREATE_USER</code>.
      */
-    public TbIfRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.STS</code>.
      */
-    public TbIfRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.TIMESTAMP</code>.
      */
-    public TbIfRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.UPDATE_USER</code>.
      */
-    public TbIfRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.IF_NAME</code>.
      */
-    public TbIfRecord setIfName(String value) {
+    public void setIfName(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_IF.TEXT</code>.
      */
-    public TbIfRecord setText(String value) {
+    public void setText(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -175,24 +167,5 @@ public class TbIfRecord extends UpdatableRecordImpl<TbIfRecord> {
         setIfName(ifName);
         setText(text);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbIfRecord
-     */
-    public TbIfRecord(com.basic.app.entity.jooq.tables.pojos.TbIf value) {
-        super(TbIf.TB_IF);
-
-        if (value != null) {
-            setIfId(value.getIfId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setIfName(value.getIfName());
-            setText(value.getText());
-            resetChangedOnNotNull();
-        }
     }
 }

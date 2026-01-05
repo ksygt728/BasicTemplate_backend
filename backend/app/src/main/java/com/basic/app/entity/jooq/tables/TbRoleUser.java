@@ -61,7 +61,7 @@ public class TbRoleUser extends TableImpl<TbRoleUserRecord> {
     /**
      * The column <code>CBSK-DEV.TB_ROLE_USER.CREATE_DATE</code>.
      */
-    public final TableField<TbRoleUserRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbRoleUserRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_ROLE_USER.CREATE_USER</code>.
@@ -76,7 +76,7 @@ public class TbRoleUser extends TableImpl<TbRoleUserRecord> {
     /**
      * The column <code>CBSK-DEV.TB_ROLE_USER.TIMESTAMP</code>.
      */
-    public final TableField<TbRoleUserRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbRoleUserRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_ROLE_USER.UPDATE_USER</code>.

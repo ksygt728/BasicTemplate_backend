@@ -23,9 +23,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_LV</code>.
      */
-    public TbDepartmentRecord setDeptLv(Integer value) {
+    public void setDeptLv(Integer value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.USE_YN</code>.
      */
-    public TbDepartmentRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_DATE</code>.
      */
-    public TbDepartmentRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.TIMESTAMP</code>.
      */
-    public TbDepartmentRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.COMPANY_CODE</code>.
      */
-    public TbDepartmentRecord setCompanyCode(String value) {
+    public void setCompanyCode(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_USER</code>.
      */
-    public TbDepartmentRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_CODE</code>.
      */
-    public TbDepartmentRecord setDeptCode(String value) {
+    public void setDeptCode(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.UPDATE_USER</code>.
      */
-    public TbDepartmentRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
      */
-    public TbDepartmentRecord setUpperDeptCode(String value) {
+    public void setUpperDeptCode(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_NM</code>.
      */
-    public TbDepartmentRecord setDeptNm(String value) {
+    public void setDeptNm(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_DEPARTMENT.STS</code>.
      */
-    public TbDepartmentRecord setSts(String value) {
+    public void setSts(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -223,27 +212,5 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
         setDeptNm(deptNm);
         setSts(sts);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbDepartmentRecord
-     */
-    public TbDepartmentRecord(com.basic.app.entity.jooq.tables.pojos.TbDepartment value) {
-        super(TbDepartment.TB_DEPARTMENT);
-
-        if (value != null) {
-            setDeptLv(value.getDeptLv());
-            setUseYn(value.getUseYn());
-            setCreateDate(value.getCreateDate());
-            setTimestamp(value.getTimestamp());
-            setCompanyCode(value.getCompanyCode());
-            setCreateUser(value.getCreateUser());
-            setDeptCode(value.getDeptCode());
-            setUpdateUser(value.getUpdateUser());
-            setUpperDeptCode(value.getUpperDeptCode());
-            setDeptNm(value.getDeptNm());
-            setSts(value.getSts());
-            resetChangedOnNotNull();
-        }
     }
 }

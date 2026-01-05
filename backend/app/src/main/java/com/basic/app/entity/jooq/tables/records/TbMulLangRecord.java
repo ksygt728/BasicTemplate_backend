@@ -23,9 +23,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_CD</code>.
      */
-    public TbMulLangRecord setLangCd(String value) {
+    public void setLangCd(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_GUBUN</code>.
      */
-    public TbMulLangRecord setLangGubun(String value) {
+    public void setLangGubun(String value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_TYPE</code>.
      */
-    public TbMulLangRecord setLangType(String value) {
+    public void setLangType(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_DATE</code>.
      */
-    public TbMulLangRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_USER</code>.
      */
-    public TbMulLangRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.STS</code>.
      */
-    public TbMulLangRecord setSts(String value) {
+    public void setSts(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.TIMESTAMP</code>.
      */
-    public TbMulLangRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.UPDATE_USER</code>.
      */
-    public TbMulLangRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_NM</code>.
      */
-    public TbMulLangRecord setLangNm(String value) {
+    public void setLangNm(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MUL_LANG.USE_YN</code>.
      */
-    public TbMulLangRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -207,26 +197,5 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
         setLangNm(langNm);
         setUseYn(useYn);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbMulLangRecord
-     */
-    public TbMulLangRecord(com.basic.app.entity.jooq.tables.pojos.TbMulLang value) {
-        super(TbMulLang.TB_MUL_LANG);
-
-        if (value != null) {
-            setLangCd(value.getLangCd());
-            setLangGubun(value.getLangGubun());
-            setLangType(value.getLangType());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setLangNm(value.getLangNm());
-            setUseYn(value.getUseYn());
-            resetChangedOnNotNull();
-        }
     }
 }

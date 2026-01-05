@@ -23,9 +23,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.LOG_ID</code>.
      */
-    public TbMailHRecord setLogId(String value) {
+    public void setLogId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.CREATE_DATE</code>.
      */
-    public TbMailHRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.CREATE_USER</code>.
      */
-    public TbMailHRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.STS</code>.
      */
-    public TbMailHRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.TIMESTAMP</code>.
      */
-    public TbMailHRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.UPDATE_USER</code>.
      */
-    public TbMailHRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.CONTENT</code>.
      */
-    public TbMailHRecord setContent(String value) {
+    public void setContent(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.ERROR_MSG</code>.
      */
-    public TbMailHRecord setErrorMsg(String value) {
+    public void setErrorMsg(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.FROM_ADDR</code>.
      */
-    public TbMailHRecord setFromAddr(String value) {
+    public void setFromAddr(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.MAIL_ID</code>.
      */
-    public TbMailHRecord setMailId(String value) {
+    public void setMailId(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.SUCCESS</code>.
      */
-    public TbMailHRecord setSuccess(String value) {
+    public void setSuccess(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.TITLE</code>.
      */
-    public TbMailHRecord setTitle(String value) {
+    public void setTitle(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_H.TO_ADDR</code>.
      */
-    public TbMailHRecord setToAddr(String value) {
+    public void setToAddr(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -255,29 +242,5 @@ public class TbMailHRecord extends UpdatableRecordImpl<TbMailHRecord> {
         setTitle(title);
         setToAddr(toAddr);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbMailHRecord
-     */
-    public TbMailHRecord(com.basic.app.entity.jooq.tables.pojos.TbMailH value) {
-        super(TbMailH.TB_MAIL_H);
-
-        if (value != null) {
-            setLogId(value.getLogId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setContent(value.getContent());
-            setErrorMsg(value.getErrorMsg());
-            setFromAddr(value.getFromAddr());
-            setMailId(value.getMailId());
-            setSuccess(value.getSuccess());
-            setTitle(value.getTitle());
-            setToAddr(value.getToAddr());
-            resetChangedOnNotNull();
-        }
     }
 }

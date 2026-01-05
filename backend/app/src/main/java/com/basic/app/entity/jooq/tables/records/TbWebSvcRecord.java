@@ -23,9 +23,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.SVC_ID</code>.
      */
-    public TbWebSvcRecord setSvcId(String value) {
+    public void setSvcId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_DATE</code>.
      */
-    public TbWebSvcRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_USER</code>.
      */
-    public TbWebSvcRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.STS</code>.
      */
-    public TbWebSvcRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.TIMESTAMP</code>.
      */
-    public TbWebSvcRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.UPDATE_USER</code>.
      */
-    public TbWebSvcRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_WEB_SVC.SVC_NAME</code>.
      */
-    public TbWebSvcRecord setSvcName(String value) {
+    public void setSvcName(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -159,23 +152,5 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
         setUpdateUser(updateUser);
         setSvcName(svcName);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbWebSvcRecord
-     */
-    public TbWebSvcRecord(com.basic.app.entity.jooq.tables.pojos.TbWebSvc value) {
-        super(TbWebSvc.TB_WEB_SVC);
-
-        if (value != null) {
-            setSvcId(value.getSvcId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setSvcName(value.getSvcName());
-            resetChangedOnNotNull();
-        }
     }
 }

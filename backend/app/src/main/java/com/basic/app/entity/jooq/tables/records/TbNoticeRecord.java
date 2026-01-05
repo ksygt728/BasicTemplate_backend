@@ -23,9 +23,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.NOT_ID</code>.
      */
-    public TbNoticeRecord setNotId(String value) {
+    public void setNotId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.CREATE_DATE</code>.
      */
-    public TbNoticeRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.CREATE_USER</code>.
      */
-    public TbNoticeRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.STS</code>.
      */
-    public TbNoticeRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.TIMESTAMP</code>.
      */
-    public TbNoticeRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.UPDATE_USER</code>.
      */
-    public TbNoticeRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.CONTENT</code>.
      */
-    public TbNoticeRecord setContent(String value) {
+    public void setContent(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.NOT_TYPE</code>.
      */
-    public TbNoticeRecord setNotType(String value) {
+    public void setNotType(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.TITLE</code>.
      */
-    public TbNoticeRecord setTitle(String value) {
+    public void setTitle(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.WRITE_DATE</code>.
      */
-    public TbNoticeRecord setWriteDate(LocalDateTime value) {
+    public void setWriteDate(LocalDateTime value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_NOTICE.WRITOR</code>.
      */
-    public TbNoticeRecord setWritor(String value) {
+    public void setWritor(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -223,27 +212,5 @@ public class TbNoticeRecord extends UpdatableRecordImpl<TbNoticeRecord> {
         setWriteDate(writeDate);
         setWritor(writor);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbNoticeRecord
-     */
-    public TbNoticeRecord(com.basic.app.entity.jooq.tables.pojos.TbNotice value) {
-        super(TbNotice.TB_NOTICE);
-
-        if (value != null) {
-            setNotId(value.getNotId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setContent(value.getContent());
-            setNotType(value.getNotType());
-            setTitle(value.getTitle());
-            setWriteDate(value.getWriteDate());
-            setWritor(value.getWritor());
-            resetChangedOnNotNull();
-        }
     }
 }

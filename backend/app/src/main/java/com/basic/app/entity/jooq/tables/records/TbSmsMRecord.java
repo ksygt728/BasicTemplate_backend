@@ -23,9 +23,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.SMS_ID</code>.
      */
-    public TbSmsMRecord setSmsId(String value) {
+    public void setSmsId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.CREATE_DATE</code>.
      */
-    public TbSmsMRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.CREATE_USER</code>.
      */
-    public TbSmsMRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.STS</code>.
      */
-    public TbSmsMRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.TIMESTAMP</code>.
      */
-    public TbSmsMRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.UPDATE_USER</code>.
      */
-    public TbSmsMRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.DESCRIPTION</code>.
      */
-    public TbSmsMRecord setDescription(String value) {
+    public void setDescription(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.LANG_TYPE</code>.
      */
-    public TbSmsMRecord setLangType(String value) {
+    public void setLangType(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.SMS_NAME</code>.
      */
-    public TbSmsMRecord setSmsName(String value) {
+    public void setSmsName(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SMS_M.TEXT</code>.
      */
-    public TbSmsMRecord setText(String value) {
+    public void setText(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -207,26 +197,5 @@ public class TbSmsMRecord extends UpdatableRecordImpl<TbSmsMRecord> {
         setSmsName(smsName);
         setText(text);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbSmsMRecord
-     */
-    public TbSmsMRecord(com.basic.app.entity.jooq.tables.pojos.TbSmsM value) {
-        super(TbSmsM.TB_SMS_M);
-
-        if (value != null) {
-            setSmsId(value.getSmsId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setDescription(value.getDescription());
-            setLangType(value.getLangType());
-            setSmsName(value.getSmsName());
-            setText(value.getText());
-            resetChangedOnNotNull();
-        }
     }
 }

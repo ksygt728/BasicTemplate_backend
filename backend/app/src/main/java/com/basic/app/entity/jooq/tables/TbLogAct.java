@@ -58,7 +58,7 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
     /**
      * The column <code>CBSK-DEV.TB_LOG_ACT.CREATE_DATE</code>.
      */
-    public final TableField<TbLogActRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogActRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_ACT.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
     /**
      * The column <code>CBSK-DEV.TB_LOG_ACT.TIMESTAMP</code>.
      */
-    public final TableField<TbLogActRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogActRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_ACT.UPDATE_USER</code>.

@@ -58,7 +58,7 @@ public class TbScheH extends TableImpl<TbScheHRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.CREATE_DATE</code>.
      */
-    public final TableField<TbScheHRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbScheHRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbScheH extends TableImpl<TbScheHRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.TIMESTAMP</code>.
      */
-    public final TableField<TbScheHRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbScheHRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.UPDATE_USER</code>.
@@ -83,7 +83,7 @@ public class TbScheH extends TableImpl<TbScheHRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.END_TIME</code>.
      */
-    public final TableField<TbScheHRecord, LocalDateTime> END_TIME = createField(DSL.name("END_TIME"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbScheHRecord, LocalDateTime> END_TIME = createField(DSL.name("END_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.ERROR_MSG</code>.
@@ -108,7 +108,7 @@ public class TbScheH extends TableImpl<TbScheHRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.START_TIME</code>.
      */
-    public final TableField<TbScheHRecord, LocalDateTime> START_TIME = createField(DSL.name("START_TIME"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbScheHRecord, LocalDateTime> START_TIME = createField(DSL.name("START_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_H.SUCCESS</code>.

@@ -58,7 +58,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.CREATE_DATE</code>.
      */
-    public final TableField<TbScheMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbScheMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.CREATE_USER</code>.
@@ -73,7 +73,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.TIMESTAMP</code>.
      */
-    public final TableField<TbScheMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbScheMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.UPDATE_USER</code>.
@@ -98,7 +98,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.LAST_EXEC_TIME</code>.
      */
-    public final TableField<TbScheMRecord, LocalDateTime> LAST_EXEC_TIME = createField(DSL.name("LAST_EXEC_TIME"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbScheMRecord, LocalDateTime> LAST_EXEC_TIME = createField(DSL.name("LAST_EXEC_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.METHOD_NAME</code>.
@@ -108,7 +108,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.NEXT_EXEC_TIME</code>.
      */
-    public final TableField<TbScheMRecord, LocalDateTime> NEXT_EXEC_TIME = createField(DSL.name("NEXT_EXEC_TIME"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbScheMRecord, LocalDateTime> NEXT_EXEC_TIME = createField(DSL.name("NEXT_EXEC_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_SCHE_M.SCHE_GROUP</code>.

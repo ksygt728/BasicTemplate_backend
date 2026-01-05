@@ -65,7 +65,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.CREATE_DATE</code>.
      */
-    public final TableField<TbNoticeRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbNoticeRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.CREATE_USER</code>.
@@ -80,7 +80,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.TIMESTAMP</code>.
      */
-    public final TableField<TbNoticeRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbNoticeRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.UPDATE_USER</code>.
@@ -105,7 +105,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.WRITE_DATE</code>.
      */
-    public final TableField<TbNoticeRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbNoticeRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_NOTICE.WRITOR</code>.

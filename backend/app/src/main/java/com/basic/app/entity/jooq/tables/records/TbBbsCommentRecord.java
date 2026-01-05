@@ -23,9 +23,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.COMMENT_ID</code>.
      */
-    public TbBbsCommentRecord setCommentId(String value) {
+    public void setCommentId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_DATE</code>.
      */
-    public TbBbsCommentRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_USER</code>.
      */
-    public TbBbsCommentRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.STS</code>.
      */
-    public TbBbsCommentRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.TIMESTAMP</code>.
      */
-    public TbBbsCommentRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.UPDATE_USER</code>.
      */
-    public TbBbsCommentRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CONTENT</code>.
      */
-    public TbBbsCommentRecord setContent(String value) {
+    public void setContent(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITE_DATE</code>.
      */
-    public TbBbsCommentRecord setWriteDate(LocalDateTime value) {
+    public void setWriteDate(LocalDateTime value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.BBS_ID</code>.
      */
-    public TbBbsCommentRecord setBbsId(String value) {
+    public void setBbsId(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     /**
      * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITOR</code>.
      */
-    public TbBbsCommentRecord setWritor(String value) {
+    public void setWritor(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -207,26 +197,5 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
         setBbsId(bbsId);
         setWritor(writor);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbBbsCommentRecord
-     */
-    public TbBbsCommentRecord(com.basic.app.entity.jooq.tables.pojos.TbBbsComment value) {
-        super(TbBbsComment.TB_BBS_COMMENT);
-
-        if (value != null) {
-            setCommentId(value.getCommentId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setContent(value.getContent());
-            setWriteDate(value.getWriteDate());
-            setBbsId(value.getBbsId());
-            setWritor(value.getWritor());
-            resetChangedOnNotNull();
-        }
     }
 }

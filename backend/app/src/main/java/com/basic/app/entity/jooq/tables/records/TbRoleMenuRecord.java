@@ -23,9 +23,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.CREATE_DATE</code>.
      */
-    public TbRoleMenuRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.CREATE_USER</code>.
      */
-    public TbRoleMenuRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.STS</code>.
      */
-    public TbRoleMenuRecord setSts(String value) {
+    public void setSts(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.TIMESTAMP</code>.
      */
-    public TbRoleMenuRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.UPDATE_USER</code>.
      */
-    public TbRoleMenuRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.MENU_RW</code>.
      */
-    public TbRoleMenuRecord setMenuRw(String value) {
+    public void setMenuRw(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.USE_YN</code>.
      */
-    public TbRoleMenuRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.MENU_CD</code>.
      */
-    public TbRoleMenuRecord setMenuCd(String value) {
+    public void setMenuCd(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_ROLE_MENU.ROLE_CD</code>.
      */
-    public TbRoleMenuRecord setRoleCd(String value) {
+    public void setRoleCd(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -191,25 +182,5 @@ public class TbRoleMenuRecord extends UpdatableRecordImpl<TbRoleMenuRecord> {
         setMenuCd(menuCd);
         setRoleCd(roleCd);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbRoleMenuRecord
-     */
-    public TbRoleMenuRecord(com.basic.app.entity.jooq.tables.pojos.TbRoleMenu value) {
-        super(TbRoleMenu.TB_ROLE_MENU);
-
-        if (value != null) {
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setMenuRw(value.getMenuRw());
-            setUseYn(value.getUseYn());
-            setMenuCd(value.getMenuCd());
-            setRoleCd(value.getRoleCd());
-            resetChangedOnNotNull();
-        }
     }
 }

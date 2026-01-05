@@ -66,7 +66,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_DATE</code>.
      */
-    public final TableField<TbBbsCommentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbBbsCommentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_USER</code>.
@@ -81,7 +81,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.TIMESTAMP</code>.
      */
-    public final TableField<TbBbsCommentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbBbsCommentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.UPDATE_USER</code>.
@@ -96,7 +96,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.WRITE_DATE</code>.
      */
-    public final TableField<TbBbsCommentRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbBbsCommentRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_BBS_COMMENT.BBS_ID</code>.

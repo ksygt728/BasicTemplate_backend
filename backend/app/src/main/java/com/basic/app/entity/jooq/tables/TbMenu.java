@@ -67,7 +67,7 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MENU.CREATE_DATE</code>.
      */
-    public final TableField<TbMenuRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMenuRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MENU.CREATE_USER</code>.
@@ -82,7 +82,7 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     /**
      * The column <code>CBSK-DEV.TB_MENU.TIMESTAMP</code>.
      */
-    public final TableField<TbMenuRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbMenuRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_MENU.UPDATE_USER</code>.

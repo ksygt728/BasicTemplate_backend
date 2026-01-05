@@ -23,9 +23,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_DATE</code>.
      */
-    public TbComCodeMRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.TIMESTAMP</code>.
      */
-    public TbComCodeMRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_USER</code>.
      */
-    public TbComCodeMRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD</code>.
      */
-    public TbComCodeMRecord setGrpCd(String value) {
+    public void setGrpCd(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD_TYPE</code>.
      */
-    public TbComCodeMRecord setGrpCdType(String value) {
+    public void setGrpCdType(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.UPDATE_USER</code>.
      */
-    public TbComCodeMRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_NM</code>.
      */
-    public TbComCodeMRecord setGrpNm(String value) {
+    public void setGrpNm(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_M.STS</code>.
      */
-    public TbComCodeMRecord setSts(String value) {
+    public void setSts(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -175,24 +167,5 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
         setGrpNm(grpNm);
         setSts(sts);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbComCodeMRecord
-     */
-    public TbComCodeMRecord(com.basic.app.entity.jooq.tables.pojos.TbComCodeM value) {
-        super(TbComCodeM.TB_COM_CODE_M);
-
-        if (value != null) {
-            setCreateDate(value.getCreateDate());
-            setTimestamp(value.getTimestamp());
-            setCreateUser(value.getCreateUser());
-            setGrpCd(value.getGrpCd());
-            setGrpCdType(value.getGrpCdType());
-            setUpdateUser(value.getUpdateUser());
-            setGrpNm(value.getGrpNm());
-            setSts(value.getSts());
-            resetChangedOnNotNull();
-        }
     }
 }

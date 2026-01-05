@@ -23,9 +23,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
      */
-    public TbComCodeDPivotRecord setDtlCd(String value) {
+    public void setDtlCd(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
      */
-    public TbComCodeDPivotRecord setGrpCd(String value) {
+    public void setGrpCd(String value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
      */
-    public TbComCodeDPivotRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
      */
-    public TbComCodeDPivotRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.STS</code>.
      */
-    public TbComCodeDPivotRecord setSts(String value) {
+    public void setSts(String value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
      */
-    public TbComCodeDPivotRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
      */
-    public TbComCodeDPivotRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
      */
-    public TbComCodeDPivotRecord setAttr_01(String value) {
+    public void setAttr_01(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
      */
-    public TbComCodeDPivotRecord setAttr_02(String value) {
+    public void setAttr_02(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
      */
-    public TbComCodeDPivotRecord setAttr_03(String value) {
+    public void setAttr_03(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
      */
-    public TbComCodeDPivotRecord setAttr_04(String value) {
+    public void setAttr_04(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
      */
-    public TbComCodeDPivotRecord setAttr_05(String value) {
+    public void setAttr_05(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
      */
-    public TbComCodeDPivotRecord setAttr_06(String value) {
+    public void setAttr_06(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -218,9 +205,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
      */
-    public TbComCodeDPivotRecord setAttr_07(String value) {
+    public void setAttr_07(String value) {
         set(13, value);
-        return this;
     }
 
     /**
@@ -233,9 +219,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
      */
-    public TbComCodeDPivotRecord setAttr_08(String value) {
+    public void setAttr_08(String value) {
         set(14, value);
-        return this;
     }
 
     /**
@@ -248,9 +233,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
      */
-    public TbComCodeDPivotRecord setAttr_09(String value) {
+    public void setAttr_09(String value) {
         set(15, value);
-        return this;
     }
 
     /**
@@ -263,9 +247,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
      */
-    public TbComCodeDPivotRecord setAttr_10(String value) {
+    public void setAttr_10(String value) {
         set(16, value);
-        return this;
     }
 
     /**
@@ -278,9 +261,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
      */
-    public TbComCodeDPivotRecord setOrderNum(Integer value) {
+    public void setOrderNum(Integer value) {
         set(17, value);
-        return this;
     }
 
     /**
@@ -293,9 +275,8 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     /**
      * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.USE_YN</code>.
      */
-    public TbComCodeDPivotRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(18, value);
-        return this;
     }
 
     /**
@@ -351,35 +332,5 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
         setOrderNum(orderNum);
         setUseYn(useYn);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbComCodeDPivotRecord
-     */
-    public TbComCodeDPivotRecord(com.basic.app.entity.jooq.tables.pojos.TbComCodeDPivot value) {
-        super(TbComCodeDPivot.TB_COM_CODE_D_PIVOT);
-
-        if (value != null) {
-            setDtlCd(value.getDtlCd());
-            setGrpCd(value.getGrpCd());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setAttr_01(value.getAttr_01());
-            setAttr_02(value.getAttr_02());
-            setAttr_03(value.getAttr_03());
-            setAttr_04(value.getAttr_04());
-            setAttr_05(value.getAttr_05());
-            setAttr_06(value.getAttr_06());
-            setAttr_07(value.getAttr_07());
-            setAttr_08(value.getAttr_08());
-            setAttr_09(value.getAttr_09());
-            setAttr_10(value.getAttr_10());
-            setOrderNum(value.getOrderNum());
-            setUseYn(value.getUseYn());
-            resetChangedOnNotNull();
-        }
     }
 }

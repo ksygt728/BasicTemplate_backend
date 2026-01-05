@@ -53,12 +53,12 @@ public class TbLogError extends TableImpl<TbLogErrorRecord> {
     /**
      * The column <code>CBSK-DEV.TB_LOG_ERROR.CREATE_DATE</code>.
      */
-    public final TableField<TbLogErrorRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogErrorRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_ERROR.TIMESTAMP</code>.
      */
-    public final TableField<TbLogErrorRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogErrorRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_ERROR.ERR_ID</code>.

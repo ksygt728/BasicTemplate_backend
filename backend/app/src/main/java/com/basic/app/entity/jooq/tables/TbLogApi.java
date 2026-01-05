@@ -57,12 +57,12 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.CREATE_DATE</code>.
      */
-    public final TableField<TbLogApiRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogApiRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.END_DATE</code>.
      */
-    public final TableField<TbLogApiRecord, LocalDateTime> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbLogApiRecord, LocalDateTime> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.EXEC_TIME</code>.
@@ -72,12 +72,12 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.START_DATE</code>.
      */
-    public final TableField<TbLogApiRecord, LocalDateTime> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<TbLogApiRecord, LocalDateTime> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.TIMESTAMP</code>.
      */
-    public final TableField<TbLogApiRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<TbLogApiRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
      * The column <code>CBSK-DEV.TB_LOG_API.LOG_ID</code>.

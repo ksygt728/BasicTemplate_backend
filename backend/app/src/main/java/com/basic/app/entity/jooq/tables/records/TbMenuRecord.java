@@ -23,9 +23,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.MENU_CD</code>.
      */
-    public TbMenuRecord setMenuCd(String value) {
+    public void setMenuCd(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.CREATE_DATE</code>.
      */
-    public TbMenuRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.CREATE_USER</code>.
      */
-    public TbMenuRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.STS</code>.
      */
-    public TbMenuRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.TIMESTAMP</code>.
      */
-    public TbMenuRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.UPDATE_USER</code>.
      */
-    public TbMenuRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.MENU_LV</code>.
      */
-    public TbMenuRecord setMenuLv(Integer value) {
+    public void setMenuLv(Integer value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.MENU_NM</code>.
      */
-    public TbMenuRecord setMenuNm(String value) {
+    public void setMenuNm(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.MENU_URL</code>.
      */
-    public TbMenuRecord setMenuUrl(String value) {
+    public void setMenuUrl(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.ORDER_NUM</code>.
      */
-    public TbMenuRecord setOrderNum(Integer value) {
+    public void setOrderNum(Integer value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.USE_YN</code>.
      */
-    public TbMenuRecord setUseYn(String value) {
+    public void setUseYn(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MENU.UPPER_MENU_CD</code>.
      */
-    public TbMenuRecord setUpperMenuCd(String value) {
+    public void setUpperMenuCd(String value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -239,28 +227,5 @@ public class TbMenuRecord extends UpdatableRecordImpl<TbMenuRecord> {
         setUseYn(useYn);
         setUpperMenuCd(upperMenuCd);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbMenuRecord
-     */
-    public TbMenuRecord(com.basic.app.entity.jooq.tables.pojos.TbMenu value) {
-        super(TbMenu.TB_MENU);
-
-        if (value != null) {
-            setMenuCd(value.getMenuCd());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setMenuLv(value.getMenuLv());
-            setMenuNm(value.getMenuNm());
-            setMenuUrl(value.getMenuUrl());
-            setOrderNum(value.getOrderNum());
-            setUseYn(value.getUseYn());
-            setUpperMenuCd(value.getUpperMenuCd());
-            resetChangedOnNotNull();
-        }
     }
 }

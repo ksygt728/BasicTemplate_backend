@@ -23,9 +23,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.MAIL_ID</code>.
      */
-    public TbMailMRecord setMailId(String value) {
+    public void setMailId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.CREATE_DATE</code>.
      */
-    public TbMailMRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.CREATE_USER</code>.
      */
-    public TbMailMRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.STS</code>.
      */
-    public TbMailMRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.TIMESTAMP</code>.
      */
-    public TbMailMRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.UPDATE_USER</code>.
      */
-    public TbMailMRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.CONTENT</code>.
      */
-    public TbMailMRecord setContent(String value) {
+    public void setContent(String value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.DESCRIPTION</code>.
      */
-    public TbMailMRecord setDescription(String value) {
+    public void setDescription(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.LANG_TYPE</code>.
      */
-    public TbMailMRecord setLangType(String value) {
+    public void setLangType(String value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.MAIL_NAME</code>.
      */
-    public TbMailMRecord setMailName(String value) {
+    public void setMailName(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_MAIL_M.TITLE</code>.
      */
-    public TbMailMRecord setTitle(String value) {
+    public void setTitle(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -223,27 +212,5 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
         setMailName(mailName);
         setTitle(title);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbMailMRecord
-     */
-    public TbMailMRecord(com.basic.app.entity.jooq.tables.pojos.TbMailM value) {
-        super(TbMailM.TB_MAIL_M);
-
-        if (value != null) {
-            setMailId(value.getMailId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setContent(value.getContent());
-            setDescription(value.getDescription());
-            setLangType(value.getLangType());
-            setMailName(value.getMailName());
-            setTitle(value.getTitle());
-            resetChangedOnNotNull();
-        }
     }
 }

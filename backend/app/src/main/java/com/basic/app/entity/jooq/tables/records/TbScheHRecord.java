@@ -23,9 +23,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.LOG_ID</code>.
      */
-    public TbScheHRecord setLogId(String value) {
+    public void setLogId(String value) {
         set(0, value);
-        return this;
     }
 
     /**
@@ -38,9 +37,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.CREATE_DATE</code>.
      */
-    public TbScheHRecord setCreateDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
-        return this;
     }
 
     /**
@@ -53,9 +51,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.CREATE_USER</code>.
      */
-    public TbScheHRecord setCreateUser(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
-        return this;
     }
 
     /**
@@ -68,9 +65,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.STS</code>.
      */
-    public TbScheHRecord setSts(String value) {
+    public void setSts(String value) {
         set(3, value);
-        return this;
     }
 
     /**
@@ -83,9 +79,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.TIMESTAMP</code>.
      */
-    public TbScheHRecord setTimestamp(LocalDateTime value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
-        return this;
     }
 
     /**
@@ -98,9 +93,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.UPDATE_USER</code>.
      */
-    public TbScheHRecord setUpdateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
-        return this;
     }
 
     /**
@@ -113,9 +107,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.END_TIME</code>.
      */
-    public TbScheHRecord setEndTime(LocalDateTime value) {
+    public void setEndTime(LocalDateTime value) {
         set(6, value);
-        return this;
     }
 
     /**
@@ -128,9 +121,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.ERROR_MSG</code>.
      */
-    public TbScheHRecord setErrorMsg(String value) {
+    public void setErrorMsg(String value) {
         set(7, value);
-        return this;
     }
 
     /**
@@ -143,9 +135,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.EXEC_TIME</code>.
      */
-    public TbScheHRecord setExecTime(Long value) {
+    public void setExecTime(Long value) {
         set(8, value);
-        return this;
     }
 
     /**
@@ -158,9 +149,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.SCHE_GROUP</code>.
      */
-    public TbScheHRecord setScheGroup(String value) {
+    public void setScheGroup(String value) {
         set(9, value);
-        return this;
     }
 
     /**
@@ -173,9 +163,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.SCHE_ID</code>.
      */
-    public TbScheHRecord setScheId(String value) {
+    public void setScheId(String value) {
         set(10, value);
-        return this;
     }
 
     /**
@@ -188,9 +177,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.START_TIME</code>.
      */
-    public TbScheHRecord setStartTime(LocalDateTime value) {
+    public void setStartTime(LocalDateTime value) {
         set(11, value);
-        return this;
     }
 
     /**
@@ -203,9 +191,8 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     /**
      * Setter for <code>CBSK-DEV.TB_SCHE_H.SUCCESS</code>.
      */
-    public TbScheHRecord setSuccess(String value) {
+    public void setSuccess(String value) {
         set(12, value);
-        return this;
     }
 
     /**
@@ -255,29 +242,5 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
         setStartTime(startTime);
         setSuccess(success);
         resetChangedOnNotNull();
-    }
-
-    /**
-     * Create a detached, initialised TbScheHRecord
-     */
-    public TbScheHRecord(com.basic.app.entity.jooq.tables.pojos.TbScheH value) {
-        super(TbScheH.TB_SCHE_H);
-
-        if (value != null) {
-            setLogId(value.getLogId());
-            setCreateDate(value.getCreateDate());
-            setCreateUser(value.getCreateUser());
-            setSts(value.getSts());
-            setTimestamp(value.getTimestamp());
-            setUpdateUser(value.getUpdateUser());
-            setEndTime(value.getEndTime());
-            setErrorMsg(value.getErrorMsg());
-            setExecTime(value.getExecTime());
-            setScheGroup(value.getScheGroup());
-            setScheId(value.getScheId());
-            setStartTime(value.getStartTime());
-            setSuccess(value.getSuccess());
-            resetChangedOnNotNull();
-        }
     }
 }
