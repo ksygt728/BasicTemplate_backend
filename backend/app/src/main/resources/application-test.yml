@@ -26,11 +26,12 @@ spring:
   quartz:
     enabled: false
 
-  # ✅ Redis 비활성화 (필요 시 TestConfiguration으로 Mock)
   data:
     redis:
-      repositories:
-        enabled: false
+      host: localhost
+      port: 6379
+      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
+      timeout: 30000ms
 
   # ✅ Kafka 자동 시작 방지
   kafka:
