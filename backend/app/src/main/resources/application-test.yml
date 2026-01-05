@@ -1,10 +1,15 @@
+# [dev 프로필 전용 설정 파일]
 server:
-  port: 0 # ✅ 테스트 시 포트 사용 안 함
+  port: 8080
 
 front-end:
   url: http://localhost:3000
 
 spring:
+  profiles:
+    group:
+      env: test
+
   datasource:
     url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
@@ -22,33 +27,133 @@ spring:
         "[format_sql]": true
         "[use_sql_comments]": true
 
-  # ✅ Quartz 완전 비활성화
-  quartz:
-    enabled: false
-
+  # ==============================
+  # Redis (유지)
+  # ==============================
   data:
     redis:
       host: host.docker.internal
       port: 6379
-      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
+      database: 0
       timeout: 30000ms
 
-  # ✅ Kafka 자동 시작 방지
+  # ==============================
+  # Quartz 비활성화
+  # ==============================
+  quartz:
+    auto-startup: false
+    job-store-type: memory
+
+  # ==============================
+  # Kafka 비활성화
+  # ==============================
   kafka:
-    listener:
-      auto-startup: false
+    enabled: false
+
+  # ==============================
+  # Mail (유지)
+  # ==============================
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ksygt728.study@gmail.com
+    alias: "[CBSK] SYSTEM-DEV"
+    password: awuc myeu ipxo vjdc
+    max-mail-queue: 1000
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  # ==============================
+  # SMS (유지)
+  # ==============================
+  sms:
+    provider: coolSMS
+    api-key: NCSNCL3RFCGBWVHC
+    api-secret-key: AKKSPK5FYIHGQVVDRP4OCLAJTQGQJYT6
+    api-domain: https://api.solapi.com
+    from-phone: 01084320767
+
+  # ==============================
+  # OAuth2 (유지 – SecurityConfig 분리 전제)
+  # ==============================
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 305da1aa1489acfde40743eecdd25716
+            client-secret: K5PHcStiFJhdhx1nlu4Bgrzx2jewx6iz
+            client-name: kakao
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - profile_nickname
+              - profile_image
+              - account_email
+            client-authentication-method: client_secret_post
+
+          naver:
+            client-id: lzmJMjrfOVC3E0CtO8Bq
+            client-secret: t96zRG_Fdk
+            client-name: naver
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - name
+              - email
+            client-authentication-method: client_secret_post
+
+          google:
+            client-id: 425928171876-d8f6h7f73bp66akn1c7a085vr3pm6sit.apps.googleusercontent.com
+            client-secret: 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
+            client-name: google
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - profile
+              - email
+            client-authentication-method: client_secret_post
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+          naver:
+            authorization-uri: https://nid.naver.com/oauth2.0/authorize
+            token-uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user-name-attribute: response
+
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
 
 logging:
   level:
     root: info
     org:
-      jooq: warn
+      jooq: debug
+      "[jooq.tools]": debug
+      "[jooq.tools.LoggerListener]": debug
+      "[springframework.kafka]": off
       hibernate:
         SQL: debug
         orm:
           jdbc:
             bind: trace
-    com.basic.app.featureTest: debug
+    com:
+      basic:
+        app: debug
+        featureTest: debug
 
 jwt:
   env: test
@@ -56,14 +161,22 @@ jwt:
   access-token-header: Authorization-AccessToken-DEV
   refresh-token-header: Authorization-RefreshToken-DEV
   bearer-type: Bearer
-  issuer: CBSK SERVER(TEST)
+  issuer: CBSK SERVER(DEV)
+  subject:
+    first: CBSK JWT TOKEN
+    second: userId
+    third: phoneNum
+    fourth: roles
   expire-time:
     access-token: 10m
     refresh-token: 1d
-  secret-key: TEST-SECRET-KEY
+  dead-time-for-server: 10s
+  secret-key: CBSK-DEV-SECRET-KEY-KSYGT728-ORI-IS-THE-BEST-ANIMAL
 
 springdoc:
-  api-docs:
-    enabled: false
   swagger-ui:
-    enabled: false
+    path: /swagger-ui
+    operations-sorter: method
+    tags-sorter: alpha
+  api-docs:
+    path: /api-docs
