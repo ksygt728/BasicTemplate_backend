@@ -30,7 +30,79 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<!-- jOOQ 코드 생성 기본 설정 (프로파일 미지정 시 dev 사용) -->
+		<jooq.db.url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+		<jooq.db.username>root</jooq.db.username>
+		<jooq.db.password>root961019</jooq.db.password>
+		<jooq.db.schema>CBSK-DEV</jooq.db.schema>
+		<jooq.db.driver>com.mysql.cj.jdbc.Driver</jooq.db.driver>
+		<jooq.db.dialect>org.jooq.meta.mysql.MySQLDatabase</jooq.db.dialect>
 	</properties>
+
+	<!-- Maven 프로파일: 환경별 DB 설정 -->
+	<profiles>
+
+		<!-- LOCAL 프로파일 (dev와 동일한 DB 사용) -->
+		<profile>
+			<id>local</id>
+			<properties>
+				<jooq.db.url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.username>root</jooq.db.username>
+				<jooq.db.password>root961019</jooq.db.password>
+				<jooq.db.schema>CBSK-DEV</jooq.db.schema>
+			</properties>
+		</profile>
+		
+		<!-- DEV 프로파일 (기본값) -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jooq.db.url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.username>root</jooq.db.username>
+				<jooq.db.password>root961019</jooq.db.password>
+				<jooq.db.schema>CBSK-DEV</jooq.db.schema>
+			</properties>
+		</profile>
+
+		<!-- QA 프로파일 -->
+		<profile>
+			<id>qa</id>
+			<properties>
+				<jooq.db.url>jdbc:mysql://localhost:3307/CBSK-QA?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.username>root</jooq.db.username>
+				<jooq.db.password>root961019</jooq.db.password>
+				<jooq.db.schema>CBSK-QA</jooq.db.schema>
+			</properties>
+		</profile>
+
+		<!-- PROD 프로파일 -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<jooq.db.url>jdbc:mysql://localhost:3308/CBSK-PROD?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.username>root</jooq.db.username>
+				<jooq.db.password>root961019</jooq.db.password>
+				<jooq.db.schema>CBSK-PROD</jooq.db.schema>
+			</properties>
+		</profile>
+
+		<!-- TEST 프로파일 (H2 인메모리) -->
+		<profile>
+			<id>test</id>
+			<properties>
+				<jooq.db.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</jooq.db.url>
+				<jooq.db.username>sa</jooq.db.username>
+				<jooq.db.password></jooq.db.password>
+				<jooq.db.schema>PUBLIC</jooq.db.schema>
+				<jooq.db.driver>org.h2.Driver</jooq.db.driver>
+				<jooq.db.dialect>org.jooq.meta.h2.H2Database</jooq.db.dialect>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 
 		<dependency>
@@ -251,17 +323,16 @@
 						</goals>
 						<configuration>
 							<jdbc>
-								<driver>com.mysql.cj.jdbc.Driver</driver>
-								<url>
-									jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</url>
-								<user>root</user>
-								<password>root961019</password>
+								<driver>${jooq.db.driver}</driver>
+								<url>${jooq.db.url}</url>
+								<user>${jooq.db.username}</user>
+								<password>${jooq.db.password}</password>
 							</jdbc>
 							<generator>
 								<database>
-									<name>org.jooq.meta.mysql.MySQLDatabase</name>
+									<name>${jooq.db.dialect}</name>
 									<includes>.*</includes>
-									<inputSchema>CBSK-DEV</inputSchema>
+									<inputSchema>${jooq.db.schema}</inputSchema>
 									<forcedTypes>
 										<!-- DATE를 LocalDate로 매핑 -->
 										<forcedType>
