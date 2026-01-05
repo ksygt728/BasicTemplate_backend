@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.RoleReqDto;
 import com.basic.app.dto.responseDto.RoleResDto;
-import com.basic.app.jooq.generated.tables.TbRole;
+import com.basic.app.entity.jooq.tables.TbRole;
 
 /**
  * @파일명 : RoleJooqRepository.java

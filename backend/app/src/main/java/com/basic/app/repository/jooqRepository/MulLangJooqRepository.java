@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.MulLangReqDto;
 import com.basic.app.dto.responseDto.MulLangResDto;
-import com.basic.app.jooq.generated.tables.TbMulLang;
+import com.basic.app.entity.jooq.tables.TbMulLang;
 
 /**
  * @파일명 : MulLangJooqRepository.java

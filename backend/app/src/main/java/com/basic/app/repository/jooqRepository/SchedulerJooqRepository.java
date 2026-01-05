@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.ScheMReqDto;
 import com.basic.app.dto.responseDto.ScheMResDto;
-import com.basic.app.jooq.generated.tables.TbScheM;
+import com.basic.app.entity.jooq.tables.TbScheM;
 
 /**
  * @파일명 : SchedulerJooqRepository.java

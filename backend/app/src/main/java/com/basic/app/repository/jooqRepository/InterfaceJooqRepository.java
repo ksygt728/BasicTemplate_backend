@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.InterfaceReqDto;
 import com.basic.app.dto.responseDto.InterfaceResDto;
-import com.basic.app.jooq.generated.tables.TbIf;
+import com.basic.app.entity.jooq.tables.TbIf;
 
 /**
  * @파일명 : InterfaceJooqRepository.java

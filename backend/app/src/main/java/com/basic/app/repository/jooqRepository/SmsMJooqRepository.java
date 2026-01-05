@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.SmsMReqDto;
 import com.basic.app.dto.responseDto.SmsMResDto;
-import com.basic.app.jooq.generated.tables.TbSmsM;
+import com.basic.app.entity.jooq.tables.TbSmsM;
 
 /**
  * @파일명 : SmsMJooqRepository.java

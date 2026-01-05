@@ -350,8 +350,8 @@
 									</forcedTypes>
 								</database>
 								<target>
-									<packageName>com.basic.app.jooq.generated</packageName>
-									<directory>target/generated-sources/jooq</directory>
+								<packageName>com.basic.app.entity.jooq</packageName>
+								<directory>src/main/java</directory>
 								</target>
 								<generate>
 									<deprecated>false</deprecated>
