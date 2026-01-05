@@ -94,12 +94,10 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<jooq.db.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</jooq.db.url>
-				<jooq.db.username>sa</jooq.db.username>
-				<jooq.db.password></jooq.db.password>
-				<jooq.db.schema>PUBLIC</jooq.db.schema>
-				<jooq.db.driver>org.h2.Driver</jooq.db.driver>
-				<jooq.db.dialect>org.jooq.meta.h2.H2Database</jooq.db.dialect>
+				<jooq.db.url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.username>root</jooq.db.username>
+				<jooq.db.password>root961019</jooq.db.password>
+				<jooq.db.schema>CBSK-DEV</jooq.db.schema>
 				<skip.jooq.codegen>true</skip.jooq.codegen>
 			</properties>
 		</profile>
