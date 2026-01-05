@@ -28,7 +28,7 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: host.docker.internal
       port: 6379
       database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
       timeout: 30000ms
