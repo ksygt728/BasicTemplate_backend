@@ -300,6 +300,7 @@
 
 	<build>
 		<plugins>
+			<!-- 1. Java 컴파일 설정 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -309,7 +310,7 @@
 					<target>21</target>
 				</configuration>
 			</plugin>
-
+			<!-- 2. jOOQ 코드 생성 (로컬에서만 사용 가능) -->
 			<plugin>
 				<groupId>org.jooq</groupId>
 				<artifactId>jooq-codegen-maven</artifactId>
@@ -344,6 +345,19 @@
 						<version>8.3.0</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<!-- 3. Spring Boot fat jar 생성 -->
+			<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>3.3.6</version>
+					<executions>
+							<execution>
+									<goals>
+											<goal>repackage</goal> <!-- 실행 가능한 jar 생성 -->
+									</goals>
+							</execution>
+					</executions>
 			</plugin>
 		</plugins>
 	</build>
