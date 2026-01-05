@@ -11,7 +11,7 @@ spring:
       env: test
 
   datasource:
-    url: jdbc:mysql://db.dev.cbsk.internal:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
+    url: jdbc:mysql://host.docker.internal:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
     username: root
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
@@ -29,7 +29,7 @@ spring:
 
   data:
     redis:
-      host: db.dev.cbsk.internal
+      host: host.docker.internal
       port: 6379
       database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
       timeout: 30000ms
@@ -60,7 +60,7 @@ spring:
           dataSource:
             myDS:
               driver: com.mysql.cj.jdbc.Driver # 데이터소스 드라이버
-              URL: jdbc:mysql://db.dev.cbsk.internal:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
+              URL: jdbc:mysql://host.docker.internal:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
@@ -157,7 +157,7 @@ spring:
   #     user-info-uri: https://kapi.kakao.com/v2/user/me # 카카오 사용자 정보 조회 URI
 
   kafka:
-    bootstrap-servers: db.dev.cbsk.internal:9092
+    bootstrap-servers: host.docker.internal:9092
     consumer:
       group-id: log-group
       auto-offset-reset: earliest
