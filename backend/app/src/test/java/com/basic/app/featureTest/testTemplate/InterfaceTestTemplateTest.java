@@ -54,12 +54,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 전역으로 테스트데이터를 사용하기 위해 생성
 @Transactional
-@Sql(scripts = {
-                "classpath:sql/test-data/auth/auth-data.sql"
-}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = {
-                "classpath:sql/test-data/auth/cleanup-test-data.sql"
-}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
 public class InterfaceTestTemplateTest {
 
         @Autowired

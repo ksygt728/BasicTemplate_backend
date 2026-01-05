@@ -94,7 +94,7 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<jooq.db.url>jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
+				<jooq.db.url>jdbc:mysql://host.docker.internal:3306/CBSK-DEV?useUnicode=true&amp;serverTimezone=Asia/Seoul</jooq.db.url>
 				<jooq.db.username>root</jooq.db.username>
 				<jooq.db.password>root961019</jooq.db.password>
 				<jooq.db.schema>CBSK-DEV</jooq.db.schema>
