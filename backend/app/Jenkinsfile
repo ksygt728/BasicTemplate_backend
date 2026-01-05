@@ -71,7 +71,7 @@ pipeline {
         echo "================ [TEST] Maven Test ================="
         sh """
           cd ${WORKSPACE}/${COMPOSE_FILE_PATH}
-          ./mvnw clean test -Dspring.profiles.active=test -P test
+          ./mvnw clean test -Dspring.profiles.active=test
         """
         echo "================ ✅ TEST PASSED ================="
       }
