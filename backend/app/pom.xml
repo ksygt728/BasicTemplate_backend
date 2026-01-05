@@ -37,6 +37,7 @@
 		<jooq.db.schema>CBSK-DEV</jooq.db.schema>
 		<jooq.db.driver>com.mysql.cj.jdbc.Driver</jooq.db.driver>
 		<jooq.db.dialect>org.jooq.meta.mysql.MySQLDatabase</jooq.db.dialect>
+		<skip.jooq.codegen>false</skip.jooq.codegen>
 	</properties>
 
 	<!-- Maven 프로파일: 환경별 DB 설정 -->
@@ -99,6 +100,7 @@
 				<jooq.db.schema>PUBLIC</jooq.db.schema>
 				<jooq.db.driver>org.h2.Driver</jooq.db.driver>
 				<jooq.db.dialect>org.jooq.meta.h2.H2Database</jooq.db.dialect>
+				<skip.jooq.codegen>true</skip.jooq.codegen>
 			</properties>
 		</profile>
 	</profiles>
@@ -322,6 +324,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
+							<skip>${skip.jooq.codegen}</skip>
 							<jdbc>
 								<driver>${jooq.db.driver}</driver>
 								<url>${jooq.db.url}</url>
