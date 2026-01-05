@@ -34,7 +34,6 @@ import lombok.RequiredArgsConstructor;
  * @변경이력 :
  *       2025.07.24 김승연 최초 생성
  */
-@Profile("!test")
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity

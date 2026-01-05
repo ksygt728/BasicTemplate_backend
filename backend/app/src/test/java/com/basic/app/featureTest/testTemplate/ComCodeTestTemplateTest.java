@@ -55,11 +55,15 @@ import lombok.extern.log4j.Log4j2;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
 @Transactional
 @Sql(scripts = {
+                "classpath:sql/test-data/auth/auth-data.sql",
                 "classpath:sql/test-data/comcode/comcode-m-data.sql",
                 "classpath:sql/test-data/comcode/comcode-t-data.sql",
                 "classpath:sql/test-data/comcode/comcode-d-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = "classpath:sql/test-data/comcode/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
+@Sql(scripts = {
+                "classpath:sql/test-data/comcode/cleanup-test-data.sql",
+                "classpath:sql/test-data/auth/cleanup-test-data.sql"
+}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
 public class ComCodeTestTemplateTest {
 
         @Autowired
