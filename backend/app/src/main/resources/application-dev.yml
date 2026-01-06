@@ -4,7 +4,7 @@ server:
 
 front-end:
   #   url: http://125.246.20.99 # 개발 환경 프론트엔드 URL (외부 IP 포트포워딩)
-  url: http://localhost:3000 # 개발 환경 프론트엔드 URL
+  url: http://host.docker.internal:3000 # 개발 환경 프론트엔드 URL
 
 spring:
   profiles:
@@ -12,7 +12,7 @@ spring:
       env: dev
 
   datasource:
-    url: jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
+    url: jdbc:mysql://host.docker.internal:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
     username: root
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
@@ -30,7 +30,7 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: host.docker.internal
       port: 6379
       database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
       timeout: 30000ms
@@ -61,7 +61,7 @@ spring:
           dataSource:
             myDS:
               driver: com.mysql.cj.jdbc.Driver # 데이터소스 드라이버
-              URL: jdbc:mysql://localhost:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
+              URL: jdbc:mysql://host.docker.internal:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
@@ -149,16 +149,8 @@ spring:
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo # 구글 사용자 정보 조회 URL
             user-name-attribute: sub # 구글 사용자 ID 속성명
 
-  # OAuth:
-  #   kakao:
-  #     api-key: 48a605518fb3519e52a95dd78d205a1b # 카카오 API 키
-  #     client-secret-key: D9QHopbDBavL1L9SfX9vipn6TZJrJ1o4 # 카카오 클라이언트 시크릿 키
-  #     redirect-uri: http://localhost:8080/api/auth/kakao-callback # 카카오 인증 리다이렉트 URI
-  #     access-token-uri: https://kauth.kakao.com/oauth/token # 카카오 액세스 토큰 발급 URI
-  #     user-info-uri: https://kapi.kakao.com/v2/user/me # 카카오 사용자 정보 조회 URI
-
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: host.docker.internal:9092
     consumer:
       group-id: log-group
       auto-offset-reset: earliest
