@@ -28,13 +28,6 @@ spring:
         "[format_sql]": true # SQL 쿼리를 보기 좋게 포맷팅해서 출력
         "[use_sql_comments]": true # SQL 쿼리에 주석 추가해서 출력
 
-  data:
-    redis:
-      host: host.docker.internal
-      port: 6379
-      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
-      timeout: 30000ms
-
   quartz:
     job-store-type: jdbc # Quartz 상태 저장 방식을 JDBC(DB)로 설정
     jdbc:
@@ -64,6 +57,18 @@ spring:
               URL: jdbc:mysql://host.docker.internal:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  data:
+    redis:
+      host: host.docker.internal
+      port: 6379
+      database: 0 # Redis 데이터베이스 번호 (0~15, 기본 0)
+      timeout: 30000ms
 
   mail:
     host: smtp.gmail.com

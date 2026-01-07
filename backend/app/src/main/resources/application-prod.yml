@@ -55,6 +55,11 @@ spring:
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
   data:
     redis:
       host: localhost
