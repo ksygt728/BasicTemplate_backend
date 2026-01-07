@@ -34,7 +34,7 @@ import lombok.extern.log4j.Log4j2;
 @Component
 @Log4j2
 @Order(1)
-@Profile({ "dev", "qa", "prod" })
+@Profile({ "local", "dev", "qa", "prod" })
 public class PermissionCheckAspect {
 
   @Around("@annotation(checkPermissions)")
