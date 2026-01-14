@@ -3,8 +3,7 @@ server:
   port: 8080 # 개발 서버 포트
 
 front-end:
-  #   url: http://125.246.20.99 # 개발 환경 프론트엔드 URL (외부 IP 포트포워딩)
-  url: http://localhost:3000 # 개발 환경 프론트엔드 URL
+  url: http://dev.cbmsori.com:3000 # 개발 환경 프론트엔드 URL
 
 spring:
   profiles:

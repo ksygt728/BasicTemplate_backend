@@ -3,7 +3,7 @@ server:
   port: 8081 # QA 서버 포트
 
 front-end:
-  url: http://localhost:3000
+  url: http://qa.cbmsori.com:3000
 
 spring:
   profiles:
