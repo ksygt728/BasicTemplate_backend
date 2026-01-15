@@ -10,6 +10,10 @@ pipeline {
     // Git repository URL
     REPO_URL = 'https://github.com/ksygt728/BasicTemplate_backend.git'
 
+    // Git Tag에 사용할 변수
+    GIT_TAG_ID = 'ksygt728'
+    GIT_TAG_EMAIL = 'ksygt728@gmail.com'
+
     // Git workspace 기준 docker-compose 파일 경로
     COMPOSE_FILE_PATH = 'backend/app'
 
@@ -17,11 +21,8 @@ pipeline {
     DEPLOY_PATH = '/home/ec2-user/deploy'
 
     // Docker registry info
-    REGISTRY   = 'docker.io/ksygt728'
+    REGISTRY   = 'docker.io/seungyeon728'
     IMAGE_NAME = 'cbms-back'
-
-    // SSH 키 경로
-    SSH_KEY_PATH = '/var/jenkins_home/.ssh/id_ed25519'
 
     // Local 판단 변수
     IS_LOCAL = "${params.DEPLOY_SERVER == 'localhost' || params.DEPLOY_SERVER == '127.0.0.1'}"
@@ -82,7 +83,7 @@ pipeline {
         echo "================ [DOCKER] Build ================="
         sh """
           cd ${WORKSPACE}/${COMPOSE_FILE_PATH}
-          docker build -t ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG} .
+          docker build --no-cache -t ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG} .
         """
         echo "================ ✅ DOCKER BUILD DONE ================="
       }
@@ -93,8 +94,20 @@ pipeline {
         expression { env.IS_LOCAL != "true" }
       }
       steps {
-        echo "================ [DOCKER] Push ================="
-        sh "docker push ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG}"
+        echo "================ [DOCKER] Login & Push ================="
+
+        withCredentials([usernamePassword(
+          credentialsId: 'dockerhub-credential',
+          usernameVariable: 'DOCKER_USER',
+          passwordVariable: 'DOCKER_PASS'
+        )]) {
+          sh """
+            echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
+            docker push ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG}
+            docker logout
+          """
+        }
+
         echo "================ ✅ DOCKER PUSH DONE ================="
       }
     }
@@ -104,29 +117,30 @@ pipeline {
         expression { env.IS_LOCAL != "true" }
       }
       steps {
-        echo "================ [DEPLOY] ================="
-        echo "Target : ${params.DEPLOY_SERVER}"
+        echo "================ [DEPLOY][REMOTE] Detected ================"
+        echo "▶▶ Target server : ${params.DEPLOY_SERVER}"
 
-        sshagent(credentials: ['git-credential']) {
+        sshagent(credentials: ['deploy-ssh-key']) {
           sh """
-            ssh ec2-user@${params.DEPLOY_SERVER} "mkdir -p ${DEPLOY_PATH}"
+            ssh -o StrictHostKeyChecking=no ec2-user@${params.DEPLOY_SERVER} "mkdir -p ${DEPLOY_PATH}"
 
-            scp ${WORKSPACE}/${COMPOSE_FILE_PATH}/docker-compose.yml \
+            scp -o StrictHostKeyChecking=no \
+                ${WORKSPACE}/${COMPOSE_FILE_PATH}/docker-compose.yml \
                 ec2-user@${params.DEPLOY_SERVER}:${DEPLOY_PATH}/docker-compose.yml
 
-            scp ${WORKSPACE}/${COMPOSE_FILE_PATH}/.env.${params.ENV} \
+            scp -o StrictHostKeyChecking=no \
+                ${WORKSPACE}/${COMPOSE_FILE_PATH}/.env.${params.ENV} \
                 ec2-user@${params.DEPLOY_SERVER}:${DEPLOY_PATH}/.env.${params.ENV}
 
-            ssh ec2-user@${params.DEPLOY_SERVER} '
-              docker pull ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG}
-              cd ${DEPLOY_PATH}
-              IMAGE_TAG=${TAG} ENV=${params.ENV} BACK_PORT=${params.BACK_PORT} \
-              docker compose up -d --build
-            '
+            ssh -o StrictHostKeyChecking=no ec2-user@${params.DEPLOY_SERVER} "
+              docker pull ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG} && \
+              cd ${DEPLOY_PATH} && \
+              REGISTRY=${REGISTRY} IMAGE_NAME=${IMAGE_NAME} ENV=${params.ENV} IMAGE_TAG=${TAG} BACK_PORT=${params.BACK_PORT} docker-compose up -d
+            "
           """
         }
 
-        echo "================ ✅ DEPLOY DONE ================="
+        echo "================ ✅ [DEPLOY][REMOTE] Completed ================"
       }
     }
 
@@ -135,13 +149,25 @@ pipeline {
         expression { env.IS_LOCAL != "true" }
       }
       steps {
-        echo "================ [GIT TAG] ================="
-        sh """
-          git tag -a ${TAG} -m "back deploy ${params.ENV}"
-          git push origin ${TAG}
-        """
-        echo "================ ✅ GIT TAG PUSHED ================="
+        echo "▶▶ [GIT][REMOTE] Create Git tag"
+
+        withCredentials([usernamePassword(
+          credentialsId: 'git-credential',
+          usernameVariable: 'GIT_USER',
+          passwordVariable: 'GIT_PASS'
+        )]) {
+          sh """
+            git config user.name "${GIT_TAG_ID}"
+            git config user.email "${GIT_TAG_EMAIL}"
+
+            git tag -a ${TAG} -m "back deploy ${params.ENV}"
+
+            git push https://${GIT_USER}:${GIT_PASS}@github.com/ksygt728/BasicTemplate_backend.git ${TAG}
+          """
+        }
+
+        echo "✅ [GIT][REMOTE] Tag pushed"
       }
-    }
+    }  
   }
 }
