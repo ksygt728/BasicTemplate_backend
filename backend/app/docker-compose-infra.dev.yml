@@ -49,7 +49,7 @@ services:
       # new
       # ✅ 문제 해결 1: localhost만으로 advertised 하면 컨테이너 내부 서비스(kafka-ui 등)에서 접근 불가
       # 외부(Spring Boot 등)에서 접근 가능한 주소와 내부 컨테이너끼리 통신 가능한 주소를 각각 명시
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,INTERNAL://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://dev.cbmsori.com:9092,INTERNAL://kafka:29092
       # ✅ 문제 해결 2: listener 이름마다 프로토콜을 지정
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
       # ✅ 문제 해결 3: 실제로 브로커가 바인딩할 포트를 명시해야 연결됨
