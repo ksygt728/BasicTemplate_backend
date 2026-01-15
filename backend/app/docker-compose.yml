@@ -7,8 +7,6 @@ services:
     restart: always
     ports:
       - "${BACK_PORT}:8080"
-    env_file:
-      - application-${ENV}.yml
     environment:
       SPRING_PROFILES_ACTIVE: ${ENV}
     networks:
