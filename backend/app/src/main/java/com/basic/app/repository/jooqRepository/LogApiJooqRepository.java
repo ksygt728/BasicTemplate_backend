@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.LogApiReqDto;
 import com.basic.app.dto.responseDto.LogApiResDto;
-import com.basic.app.jooq.generated.tables.TbLogApi;
+import com.basic.app.entity.jooq.tables.TbLogApi;
 import com.basic.app.util.TimeKeeper;
 
 /**

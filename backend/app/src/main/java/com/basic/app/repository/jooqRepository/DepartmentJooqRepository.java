@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.DepartmentReqDto;
 import com.basic.app.dto.responseDto.DepartmentResDto;
-import com.basic.app.jooq.generated.tables.TbCompany;
-import com.basic.app.jooq.generated.tables.TbDepartment;
+import com.basic.app.entity.jooq.tables.TbCompany;
+import com.basic.app.entity.jooq.tables.TbDepartment;
 
 /**
  * @파일명 : DepartmentJooqRepository.java

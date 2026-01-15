@@ -50,7 +50,6 @@ import lombok.extern.log4j.Log4j2;
  *       2025.09.10 김승연 최초 생성
  */
 @SpringBootTest
-@ActiveProfiles("test")
 @AutoConfigureMockMvc
 @Log4j2
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // 클래스 단위로 테스트 인스턴스 생성
@@ -58,7 +57,9 @@ import lombok.extern.log4j.Log4j2;
 @Sql(scripts = {
     "classpath:sql/test-data/mulLang/mullang-test-data.sql"
 }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@Sql(scripts = "classpath:sql/test-data/mulLang/cleanup-test-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
+@Sql(scripts = {
+    "classpath:sql/test-data/mulLang/cleanup-test-data.sql"
+}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_CLASS)
 public class MulLangTestTemplateTest {
 
   @Autowired

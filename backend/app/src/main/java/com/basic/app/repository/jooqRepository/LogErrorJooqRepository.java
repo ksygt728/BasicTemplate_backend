@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.LogErrorReqDto;
 import com.basic.app.dto.responseDto.LogErrorResDto;
-import com.basic.app.jooq.generated.tables.TbLogError;
+import com.basic.app.entity.jooq.tables.TbLogError;
 import com.basic.app.util.TimeKeeper;
 
 /**
