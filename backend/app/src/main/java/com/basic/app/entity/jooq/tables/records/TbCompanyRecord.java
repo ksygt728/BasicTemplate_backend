@@ -21,100 +21,100 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_COMPANY.COMPANY_CODE</code>.
      */
-    public void setCreateDate(LocalDateTime value) {
+    public void setCompanyCode(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_COMPANY.COMPANY_CODE</code>.
      */
-    public LocalDateTime getCreateDate() {
-        return (LocalDateTime) get(0);
+    public String getCompanyCode() {
+        return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_COMPANY.CREATE_DATE</code>.
      */
-    public void setTimestamp(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_COMPANY.CREATE_DATE</code>.
      */
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.COMPANY_CODE</code>.
+     * Setter for <code>CBMS.TB_COMPANY.CREATE_USER</code>.
      */
-    public void setCompanyCode(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.COMPANY_CODE</code>.
+     * Getter for <code>CBMS.TB_COMPANY.CREATE_USER</code>.
      */
-    public String getCompanyCode() {
+    public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_COMPANY.STS</code>.
      */
-    public void setCreateUser(String value) {
+    public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_COMPANY.STS</code>.
      */
-    public String getCreateUser() {
+    public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_COMPANY.TIMESTAMP</code>.
      */
-    public void setUpdateUser(String value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_COMPANY.TIMESTAMP</code>.
      */
-    public String getUpdateUser() {
-        return (String) get(4);
+    public LocalDateTime getTimestamp() {
+        return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.COMPANY_NAME</code>.
+     * Setter for <code>CBMS.TB_COMPANY.UPDATE_USER</code>.
      */
-    public void setCompanyName(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.COMPANY_NAME</code>.
+     * Getter for <code>CBMS.TB_COMPANY.UPDATE_USER</code>.
      */
-    public String getCompanyName() {
+    public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COMPANY.STS</code>.
+     * Setter for <code>CBMS.TB_COMPANY.COMPANY_NAME</code>.
      */
-    public void setSts(String value) {
+    public void setCompanyName(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COMPANY.STS</code>.
+     * Getter for <code>CBMS.TB_COMPANY.COMPANY_NAME</code>.
      */
-    public String getSts() {
+    public String getCompanyName() {
         return (String) get(6);
     }
 
@@ -141,16 +141,16 @@ public class TbCompanyRecord extends UpdatableRecordImpl<TbCompanyRecord> {
     /**
      * Create a detached, initialised TbCompanyRecord
      */
-    public TbCompanyRecord(LocalDateTime createDate, LocalDateTime timestamp, String companyCode, String createUser, String updateUser, String companyName, String sts) {
+    public TbCompanyRecord(String companyCode, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, String companyName) {
         super(TbCompany.TB_COMPANY);
 
-        setCreateDate(createDate);
-        setTimestamp(timestamp);
         setCompanyCode(companyCode);
+        setCreateDate(createDate);
         setCreateUser(createUser);
+        setSts(sts);
+        setTimestamp(timestamp);
         setUpdateUser(updateUser);
         setCompanyName(companyName);
-        setSts(sts);
         resetChangedOnNotNull();
     }
 }

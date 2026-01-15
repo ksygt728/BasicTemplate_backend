@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbBbs.TbBbsPath;
 import com.basic.app.entity.jooq.tables.TbUser.TbUserPath;
@@ -46,7 +46,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_BBS_COMMENT</code>
+     * The reference instance of <code>CBMS.TB_BBS_COMMENT</code>
      */
     public static final TbBbsComment TB_BBS_COMMENT = new TbBbsComment();
 
@@ -59,52 +59,52 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.COMMENT_ID</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.COMMENT_ID</code>.
      */
     public final TableField<TbBbsCommentRecord, String> COMMENT_ID = createField(DSL.name("COMMENT_ID"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.CREATE_DATE</code>.
      */
     public final TableField<TbBbsCommentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_USER</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.CREATE_USER</code>.
      */
     public final TableField<TbBbsCommentRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.STS</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.STS</code>.
      */
     public final TableField<TbBbsCommentRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.TIMESTAMP</code>.
      */
     public final TableField<TbBbsCommentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.UPDATE_USER</code>.
      */
     public final TableField<TbBbsCommentRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.CONTENT</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.CONTENT</code>.
      */
     public final TableField<TbBbsCommentRecord, String> CONTENT = createField(DSL.name("CONTENT"), SQLDataType.VARCHAR(2048).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.WRITE_DATE</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.WRITE_DATE</code>.
      */
     public final TableField<TbBbsCommentRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.BBS_ID</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.BBS_ID</code>.
      */
     public final TableField<TbBbsCommentRecord, String> BBS_ID = createField(DSL.name("BBS_ID"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_BBS_COMMENT.WRITOR</code>.
+     * The column <code>CBMS.TB_BBS_COMMENT.WRITOR</code>.
      */
     public final TableField<TbBbsCommentRecord, String> WRITOR = createField(DSL.name("WRITOR"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
@@ -117,21 +117,21 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_BBS_COMMENT</code> table reference
+     * Create an aliased <code>CBMS.TB_BBS_COMMENT</code> table reference
      */
     public TbBbsComment(String alias) {
         this(DSL.name(alias), TB_BBS_COMMENT);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_BBS_COMMENT</code> table reference
+     * Create an aliased <code>CBMS.TB_BBS_COMMENT</code> table reference
      */
     public TbBbsComment(Name alias) {
         this(alias, TB_BBS_COMMENT);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_BBS_COMMENT</code> table reference
+     * Create a <code>CBMS.TB_BBS_COMMENT</code> table reference
      */
     public TbBbsComment() {
         this(DSL.name("TB_BBS_COMMENT"), null);
@@ -172,7 +172,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -188,7 +188,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     private transient TbUserPath _tbUser;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_USER</code> table.
+     * Get the implicit join path to the <code>CBMS.TB_USER</code> table.
      */
     public TbUserPath tbUser() {
         if (_tbUser == null)
@@ -200,7 +200,7 @@ public class TbBbsComment extends TableImpl<TbBbsCommentRecord> {
     private transient TbBbsPath _tbBbs;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_BBS</code> table.
+     * Get the implicit join path to the <code>CBMS.TB_BBS</code> table.
      */
     public TbBbsPath tbBbs() {
         if (_tbBbs == null)

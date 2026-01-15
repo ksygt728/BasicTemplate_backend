@@ -21,114 +21,114 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.GRP_CD</code>.
      */
-    public void setCreateDate(LocalDateTime value) {
+    public void setGrpCd(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.GRP_CD</code>.
      */
-    public LocalDateTime getCreateDate() {
-        return (LocalDateTime) get(0);
+    public String getGrpCd() {
+        return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.CREATE_DATE</code>.
      */
-    public void setTimestamp(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.CREATE_DATE</code>.
      */
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.STS</code>.
      */
-    public void setGrpCd(String value) {
+    public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.STS</code>.
      */
-    public String getGrpCd() {
+    public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD_TYPE</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.TIMESTAMP</code>.
      */
-    public void setGrpCdType(String value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD_TYPE</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.TIMESTAMP</code>.
      */
-    public String getGrpCdType() {
-        return (String) get(4);
+    public LocalDateTime getTimestamp() {
+        return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_NM</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.GRP_CD_TYPE</code>.
      */
-    public void setGrpNm(String value) {
+    public void setGrpCdType(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.GRP_NM</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.GRP_CD_TYPE</code>.
      */
-    public String getGrpNm() {
+    public String getGrpCdType() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_M.STS</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_M.GRP_NM</code>.
      */
-    public void setSts(String value) {
+    public void setGrpNm(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_M.STS</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_M.GRP_NM</code>.
      */
-    public String getSts() {
+    public String getGrpNm() {
         return (String) get(7);
     }
 
@@ -155,17 +155,17 @@ public class TbComCodeMRecord extends UpdatableRecordImpl<TbComCodeMRecord> {
     /**
      * Create a detached, initialised TbComCodeMRecord
      */
-    public TbComCodeMRecord(LocalDateTime createDate, LocalDateTime timestamp, String createUser, String grpCd, String grpCdType, String updateUser, String grpNm, String sts) {
+    public TbComCodeMRecord(String grpCd, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, String grpCdType, String grpNm) {
         super(TbComCodeM.TB_COM_CODE_M);
 
-        setCreateDate(createDate);
-        setTimestamp(timestamp);
-        setCreateUser(createUser);
         setGrpCd(grpCd);
-        setGrpCdType(grpCdType);
-        setUpdateUser(updateUser);
-        setGrpNm(grpNm);
+        setCreateDate(createDate);
+        setCreateUser(createUser);
         setSts(sts);
+        setTimestamp(timestamp);
+        setUpdateUser(updateUser);
+        setGrpCdType(grpCdType);
+        setGrpNm(grpNm);
         resetChangedOnNotNull();
     }
 }

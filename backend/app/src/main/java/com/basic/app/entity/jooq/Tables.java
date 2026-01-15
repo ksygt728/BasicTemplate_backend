@@ -4,6 +4,7 @@
 package com.basic.app.entity.jooq;
 
 
+import com.basic.app.entity.jooq.tables.FlywaySchemaHistory;
 import com.basic.app.entity.jooq.tables.TbBbs;
 import com.basic.app.entity.jooq.tables.TbBbsComment;
 import com.basic.app.entity.jooq.tables.TbChaebun;
@@ -35,148 +36,153 @@ import com.basic.app.entity.jooq.tables.TbWebSvc;
 
 
 /**
- * Convenience access to all tables in CBSK-DEV.
+ * Convenience access to all tables in CBMS.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
 
     /**
-     * The table <code>CBSK-DEV.TB_BBS</code>.
+     * The table <code>CBMS.flyway_schema_history</code>.
+     */
+    public static final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
+
+    /**
+     * The table <code>CBMS.TB_BBS</code>.
      */
     public static final TbBbs TB_BBS = TbBbs.TB_BBS;
 
     /**
-     * The table <code>CBSK-DEV.TB_BBS_COMMENT</code>.
+     * The table <code>CBMS.TB_BBS_COMMENT</code>.
      */
     public static final TbBbsComment TB_BBS_COMMENT = TbBbsComment.TB_BBS_COMMENT;
 
     /**
-     * The table <code>CBSK-DEV.TB_CHAEBUN</code>.
+     * The table <code>CBMS.TB_CHAEBUN</code>.
      */
     public static final TbChaebun TB_CHAEBUN = TbChaebun.TB_CHAEBUN;
 
     /**
-     * The table <code>CBSK-DEV.TB_COM_CODE_D</code>.
+     * The table <code>CBMS.TB_COM_CODE_D</code>.
      */
     public static final TbComCodeD TB_COM_CODE_D = TbComCodeD.TB_COM_CODE_D;
 
     /**
-     * The table <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code>.
+     * The table <code>CBMS.TB_COM_CODE_D_PIVOT</code>.
      */
     public static final TbComCodeDPivot TB_COM_CODE_D_PIVOT = TbComCodeDPivot.TB_COM_CODE_D_PIVOT;
 
     /**
-     * The table <code>CBSK-DEV.TB_COM_CODE_M</code>.
+     * The table <code>CBMS.TB_COM_CODE_M</code>.
      */
     public static final TbComCodeM TB_COM_CODE_M = TbComCodeM.TB_COM_CODE_M;
 
     /**
-     * The table <code>CBSK-DEV.TB_COM_CODE_T</code>.
+     * The table <code>CBMS.TB_COM_CODE_T</code>.
      */
     public static final TbComCodeT TB_COM_CODE_T = TbComCodeT.TB_COM_CODE_T;
 
     /**
-     * The table <code>CBSK-DEV.TB_COM_CODE_T_PIVOT</code>.
+     * The table <code>CBMS.TB_COM_CODE_T_PIVOT</code>.
      */
     public static final TbComCodeTPivot TB_COM_CODE_T_PIVOT = TbComCodeTPivot.TB_COM_CODE_T_PIVOT;
 
     /**
-     * The table <code>CBSK-DEV.TB_COMPANY</code>.
+     * The table <code>CBMS.TB_COMPANY</code>.
      */
     public static final TbCompany TB_COMPANY = TbCompany.TB_COMPANY;
 
     /**
-     * The table <code>CBSK-DEV.TB_DEPARTMENT</code>.
+     * The table <code>CBMS.TB_DEPARTMENT</code>.
      */
     public static final TbDepartment TB_DEPARTMENT = TbDepartment.TB_DEPARTMENT;
 
     /**
-     * The table <code>CBSK-DEV.TB_IF</code>.
+     * The table <code>CBMS.TB_IF</code>.
      */
     public static final TbIf TB_IF = TbIf.TB_IF;
 
     /**
-     * The table <code>CBSK-DEV.TB_LOG_ACT</code>.
+     * The table <code>CBMS.TB_LOG_ACT</code>.
      */
     public static final TbLogAct TB_LOG_ACT = TbLogAct.TB_LOG_ACT;
 
     /**
-     * The table <code>CBSK-DEV.TB_LOG_API</code>.
+     * The table <code>CBMS.TB_LOG_API</code>.
      */
     public static final TbLogApi TB_LOG_API = TbLogApi.TB_LOG_API;
 
     /**
-     * The table <code>CBSK-DEV.TB_LOG_ERROR</code>.
+     * The table <code>CBMS.TB_LOG_ERROR</code>.
      */
     public static final TbLogError TB_LOG_ERROR = TbLogError.TB_LOG_ERROR;
 
     /**
-     * The table <code>CBSK-DEV.TB_MAIL_H</code>.
+     * The table <code>CBMS.TB_MAIL_H</code>.
      */
     public static final TbMailH TB_MAIL_H = TbMailH.TB_MAIL_H;
 
     /**
-     * The table <code>CBSK-DEV.TB_MAIL_M</code>.
+     * The table <code>CBMS.TB_MAIL_M</code>.
      */
     public static final TbMailM TB_MAIL_M = TbMailM.TB_MAIL_M;
 
     /**
-     * The table <code>CBSK-DEV.TB_MENU</code>.
+     * The table <code>CBMS.TB_MENU</code>.
      */
     public static final TbMenu TB_MENU = TbMenu.TB_MENU;
 
     /**
-     * The table <code>CBSK-DEV.TB_MUL_LANG</code>.
+     * The table <code>CBMS.TB_MUL_LANG</code>.
      */
     public static final TbMulLang TB_MUL_LANG = TbMulLang.TB_MUL_LANG;
 
     /**
-     * The table <code>CBSK-DEV.TB_NOTICE</code>.
+     * The table <code>CBMS.TB_NOTICE</code>.
      */
     public static final TbNotice TB_NOTICE = TbNotice.TB_NOTICE;
 
     /**
-     * The table <code>CBSK-DEV.TB_ROLE</code>.
+     * The table <code>CBMS.TB_ROLE</code>.
      */
     public static final TbRole TB_ROLE = TbRole.TB_ROLE;
 
     /**
-     * The table <code>CBSK-DEV.TB_ROLE_MENU</code>.
+     * The table <code>CBMS.TB_ROLE_MENU</code>.
      */
     public static final TbRoleMenu TB_ROLE_MENU = TbRoleMenu.TB_ROLE_MENU;
 
     /**
-     * The table <code>CBSK-DEV.TB_ROLE_USER</code>.
+     * The table <code>CBMS.TB_ROLE_USER</code>.
      */
     public static final TbRoleUser TB_ROLE_USER = TbRoleUser.TB_ROLE_USER;
 
     /**
-     * The table <code>CBSK-DEV.TB_SCHE_H</code>.
+     * The table <code>CBMS.TB_SCHE_H</code>.
      */
     public static final TbScheH TB_SCHE_H = TbScheH.TB_SCHE_H;
 
     /**
-     * The table <code>CBSK-DEV.TB_SCHE_M</code>.
+     * The table <code>CBMS.TB_SCHE_M</code>.
      */
     public static final TbScheM TB_SCHE_M = TbScheM.TB_SCHE_M;
 
     /**
-     * The table <code>CBSK-DEV.TB_SMS_H</code>.
+     * The table <code>CBMS.TB_SMS_H</code>.
      */
     public static final TbSmsH TB_SMS_H = TbSmsH.TB_SMS_H;
 
     /**
-     * The table <code>CBSK-DEV.TB_SMS_M</code>.
+     * The table <code>CBMS.TB_SMS_M</code>.
      */
     public static final TbSmsM TB_SMS_M = TbSmsM.TB_SMS_M;
 
     /**
-     * The table <code>CBSK-DEV.TB_USER</code>.
+     * The table <code>CBMS.TB_USER</code>.
      */
     public static final TbUser TB_USER = TbUser.TB_USER;
 
     /**
-     * The table <code>CBSK-DEV.TB_WEB_SVC</code>.
+     * The table <code>CBMS.TB_WEB_SVC</code>.
      */
     public static final TbWebSvc TB_WEB_SVC = TbWebSvc.TB_WEB_SVC;
 }

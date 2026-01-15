@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbComCodeD.TbComCodeDPath;
 import com.basic.app.entity.jooq.tables.TbComCodeM.TbComCodeMPath;
@@ -46,7 +46,7 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_COM_CODE_T</code>
+     * The reference instance of <code>CBMS.TB_COM_CODE_T</code>
      */
     public static final TbComCodeT TB_COM_CODE_T = new TbComCodeT();
 
@@ -59,47 +59,47 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.ATTR_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.ATTR_CD</code>.
      */
     public final TableField<TbComCodeTRecord, String> ATTR_CD = createField(DSL.name("ATTR_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.CREATE_DATE</code>.
      */
     public final TableField<TbComCodeTRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.CREATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.CREATE_USER</code>.
      */
     public final TableField<TbComCodeTRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.STS</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.STS</code>.
      */
     public final TableField<TbComCodeTRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.TIMESTAMP</code>.
      */
     public final TableField<TbComCodeTRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.UPDATE_USER</code>.
      */
     public final TableField<TbComCodeTRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.ATTR_NM</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.ATTR_NM</code>.
      */
     public final TableField<TbComCodeTRecord, String> ATTR_NM = createField(DSL.name("ATTR_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.ORDER_NUM</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.ORDER_NUM</code>.
      */
     public final TableField<TbComCodeTRecord, Integer> ORDER_NUM = createField(DSL.name("ORDER_NUM"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T.GRP_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_T.GRP_CD</code>.
      */
     public final TableField<TbComCodeTRecord, String> GRP_CD = createField(DSL.name("GRP_CD"), SQLDataType.VARCHAR(255).nullable(false), this, "");
 
@@ -112,21 +112,21 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_T</code> table reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_T</code> table reference
      */
     public TbComCodeT(String alias) {
         this(DSL.name(alias), TB_COM_CODE_T);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_T</code> table reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_T</code> table reference
      */
     public TbComCodeT(Name alias) {
         this(alias, TB_COM_CODE_T);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_COM_CODE_T</code> table reference
+     * Create a <code>CBMS.TB_COM_CODE_T</code> table reference
      */
     public TbComCodeT() {
         this(DSL.name("TB_COM_CODE_T"), null);
@@ -167,7 +167,7 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -183,8 +183,7 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     private transient TbComCodeMPath _tbComCodeM;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_COM_CODE_M</code>
-     * table.
+     * Get the implicit join path to the <code>CBMS.TB_COM_CODE_M</code> table.
      */
     public TbComCodeMPath tbComCodeM() {
         if (_tbComCodeM == null)
@@ -196,8 +195,8 @@ public class TbComCodeT extends TableImpl<TbComCodeTRecord> {
     private transient TbComCodeDPath _tbComCodeD;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_COM_CODE_D</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_COM_CODE_D</code>
+     * table
      */
     public TbComCodeDPath tbComCodeD() {
         if (_tbComCodeD == null)

@@ -21,140 +21,140 @@ public class TbBbsCommentRecord extends UpdatableRecordImpl<TbBbsCommentRecord> 
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.COMMENT_ID</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.COMMENT_ID</code>.
      */
     public void setCommentId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.COMMENT_ID</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.COMMENT_ID</code>.
      */
     public String getCommentId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.STS</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.STS</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.CONTENT</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.CONTENT</code>.
      */
     public void setContent(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.CONTENT</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.CONTENT</code>.
      */
     public String getContent() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITE_DATE</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.WRITE_DATE</code>.
      */
     public void setWriteDate(LocalDateTime value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITE_DATE</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.WRITE_DATE</code>.
      */
     public LocalDateTime getWriteDate() {
         return (LocalDateTime) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.BBS_ID</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.BBS_ID</code>.
      */
     public void setBbsId(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.BBS_ID</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.BBS_ID</code>.
      */
     public String getBbsId() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITOR</code>.
+     * Setter for <code>CBMS.TB_BBS_COMMENT.WRITOR</code>.
      */
     public void setWritor(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_BBS_COMMENT.WRITOR</code>.
+     * Getter for <code>CBMS.TB_BBS_COMMENT.WRITOR</code>.
      */
     public String getWritor() {
         return (String) get(9);

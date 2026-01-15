@@ -46,7 +46,7 @@ public class DepartmentTestCasesForSearch implements TestTemplateInvocationConte
         ResultMatcher status_order1 = status().isOk();
 
         String testName_order2 = "정상조회 | ROOT 부서조회";
-        DepartmentResDto testData_order2 = new DepartmentResDto("20000000_TEST", "CBSK", "ROOT", 0, testDataCompanyAll,
+        DepartmentResDto testData_order2 = new DepartmentResDto("20000000_TEST", "CBMS", "ROOT", 0, testDataCompanyAll,
                 "Y");
         ResponseApi<?> expected_order2 = ResponseApi.success(Map.of("data", testData_order2));
         String url_order2 = BASE_URL + "/" + testData_order2.getDeptCode();
@@ -63,7 +63,7 @@ public class DepartmentTestCasesForSearch implements TestTemplateInvocationConte
          * 관리] [기능 : 부서 정보 조회] [테스트항목 : [단건] 존재하지 않는 ID 조회] [테스트 상세 : ]
          */
         String testName_order3 = "존재하지 않는 ID 조회 | ";
-        DepartmentResDto testData_order3 = new DepartmentResDto("20000000113234", "CBSK", "ROOT", 0, testDataCompanyAll,
+        DepartmentResDto testData_order3 = new DepartmentResDto("20000000113234", "CBMS", "ROOT", 0, testDataCompanyAll,
                 "Y");
         ResponseApi<?> expected_order3 = ResponseApi.fail(ErrorCode.OBJECT_NOT_FOUND);
         String url_order3 = BASE_URL + "/" + testData_order3.getDeptCode();

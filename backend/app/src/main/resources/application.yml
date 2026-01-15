@@ -1,6 +1,6 @@
 spring:
   application:
-    name: CBSK # 서비스명
+    name: CBMS # 서비스명
   profiles:
     active: local # 디폴트 활성 프로필(dev) 개발 후
   jpa:

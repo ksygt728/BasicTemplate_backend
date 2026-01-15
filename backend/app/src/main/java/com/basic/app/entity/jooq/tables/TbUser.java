@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbBbs.TbBbsPath;
 import com.basic.app.entity.jooq.tables.TbBbsComment.TbBbsCommentPath;
@@ -50,7 +50,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_USER</code>
+     * The reference instance of <code>CBMS.TB_USER</code>
      */
     public static final TbUser TB_USER = new TbUser();
 
@@ -63,72 +63,72 @@ public class TbUser extends TableImpl<TbUserRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.USER_ID</code>.
+     * The column <code>CBMS.TB_USER.USER_ID</code>.
      */
     public final TableField<TbUserRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_USER.CREATE_DATE</code>.
      */
     public final TableField<TbUserRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.CREATE_USER</code>.
+     * The column <code>CBMS.TB_USER.CREATE_USER</code>.
      */
     public final TableField<TbUserRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.STS</code>.
+     * The column <code>CBMS.TB_USER.STS</code>.
      */
     public final TableField<TbUserRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_USER.TIMESTAMP</code>.
      */
     public final TableField<TbUserRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_USER.UPDATE_USER</code>.
      */
     public final TableField<TbUserRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.EMAIL</code>.
+     * The column <code>CBMS.TB_USER.EMAIL</code>.
      */
     public final TableField<TbUserRecord, String> EMAIL = createField(DSL.name("EMAIL"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.GENDER</code>.
+     * The column <code>CBMS.TB_USER.GENDER</code>.
      */
     public final TableField<TbUserRecord, String> GENDER = createField(DSL.name("GENDER"), SQLDataType.VARCHAR(1).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.NAME</code>.
+     * The column <code>CBMS.TB_USER.NAME</code>.
      */
     public final TableField<TbUserRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.PASSWORD</code>.
+     * The column <code>CBMS.TB_USER.PASSWORD</code>.
      */
     public final TableField<TbUserRecord, String> PASSWORD = createField(DSL.name("PASSWORD"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.PHONE_NUM</code>.
+     * The column <code>CBMS.TB_USER.PHONE_NUM</code>.
      */
     public final TableField<TbUserRecord, String> PHONE_NUM = createField(DSL.name("PHONE_NUM"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.ROLE</code>.
+     * The column <code>CBMS.TB_USER.ROLE</code>.
      */
     public final TableField<TbUserRecord, String> ROLE = createField(DSL.name("ROLE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.USER_TYPE</code>.
+     * The column <code>CBMS.TB_USER.USER_TYPE</code>.
      */
     public final TableField<TbUserRecord, String> USER_TYPE = createField(DSL.name("USER_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_USER.DEPT_CODE</code>.
+     * The column <code>CBMS.TB_USER.DEPT_CODE</code>.
      */
     public final TableField<TbUserRecord, String> DEPT_CODE = createField(DSL.name("DEPT_CODE"), SQLDataType.VARCHAR(45), this, "");
 
@@ -141,21 +141,21 @@ public class TbUser extends TableImpl<TbUserRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_USER</code> table reference
+     * Create an aliased <code>CBMS.TB_USER</code> table reference
      */
     public TbUser(String alias) {
         this(DSL.name(alias), TB_USER);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_USER</code> table reference
+     * Create an aliased <code>CBMS.TB_USER</code> table reference
      */
     public TbUser(Name alias) {
         this(alias, TB_USER);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_USER</code> table reference
+     * Create a <code>CBMS.TB_USER</code> table reference
      */
     public TbUser() {
         this(DSL.name("TB_USER"), null);
@@ -196,7 +196,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -212,8 +212,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
     private transient TbDepartmentPath _tbDepartment;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_DEPARTMENT</code>
-     * table.
+     * Get the implicit join path to the <code>CBMS.TB_DEPARTMENT</code> table.
      */
     public TbDepartmentPath tbDepartment() {
         if (_tbDepartment == null)
@@ -225,8 +224,8 @@ public class TbUser extends TableImpl<TbUserRecord> {
     private transient TbRoleUserPath _tbRoleUser;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE_USER</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_ROLE_USER</code>
+     * table
      */
     public TbRoleUserPath tbRoleUser() {
         if (_tbRoleUser == null)
@@ -239,7 +238,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
 
     /**
      * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_BBS_COMMENT</code> table
+     * <code>CBMS.TB_BBS_COMMENT</code> table
      */
     public TbBbsCommentPath tbBbsComment() {
         if (_tbBbsComment == null)
@@ -251,8 +250,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
     private transient TbBbsPath _tbBbs;
 
     /**
-     * Get the implicit to-many join path to the <code>CBSK-DEV.TB_BBS</code>
-     * table
+     * Get the implicit to-many join path to the <code>CBMS.TB_BBS</code> table
      */
     public TbBbsPath tbBbs() {
         if (_tbBbs == null)
@@ -264,7 +262,7 @@ public class TbUser extends TableImpl<TbUserRecord> {
     private transient TbNoticePath _tbNotice;
 
     /**
-     * Get the implicit to-many join path to the <code>CBSK-DEV.TB_NOTICE</code>
+     * Get the implicit to-many join path to the <code>CBMS.TB_NOTICE</code>
      * table
      */
     public TbNoticePath tbNotice() {
@@ -275,8 +273,8 @@ public class TbUser extends TableImpl<TbUserRecord> {
     }
 
     /**
-     * Get the implicit many-to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE</code> table
+     * Get the implicit many-to-many join path to the <code>CBMS.TB_ROLE</code>
+     * table
      */
     public TbRolePath tbRole() {
         return tbRoleUser().tbRole();

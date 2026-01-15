@@ -21,112 +21,112 @@ public class TbRoleRecord extends UpdatableRecordImpl<TbRoleRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_CD</code>.
+     * Setter for <code>CBMS.TB_ROLE.ROLE_CD</code>.
      */
     public void setRoleCd(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.ROLE_CD</code>.
+     * Getter for <code>CBMS.TB_ROLE.ROLE_CD</code>.
      */
     public String getRoleCd() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_ROLE.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_ROLE.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_ROLE.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_ROLE.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.STS</code>.
+     * Setter for <code>CBMS.TB_ROLE.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.STS</code>.
+     * Getter for <code>CBMS.TB_ROLE.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_ROLE.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_ROLE.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_ROLE.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_ROLE.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_DESC</code>.
+     * Setter for <code>CBMS.TB_ROLE.ROLE_DESC</code>.
      */
     public void setRoleDesc(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.ROLE_DESC</code>.
+     * Getter for <code>CBMS.TB_ROLE.ROLE_DESC</code>.
      */
     public String getRoleDesc() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_ROLE.ROLE_NAME</code>.
+     * Setter for <code>CBMS.TB_ROLE.ROLE_NAME</code>.
      */
     public void setRoleName(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_ROLE.ROLE_NAME</code>.
+     * Getter for <code>CBMS.TB_ROLE.ROLE_NAME</code>.
      */
     public String getRoleName() {
         return (String) get(7);

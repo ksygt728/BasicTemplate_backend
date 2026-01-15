@@ -21,185 +21,185 @@ public class TbChaebunRecord extends UpdatableRecordImpl<TbChaebunRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.SEQ_ID</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.SEQ_ID</code>.
      */
     public void setSeqId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.SEQ_ID</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.SEQ_ID</code>.
      */
     public String getSeqId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.STS</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.STS</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.CURRENT_VALUE</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.CURRENT_VALUE</code>.
      */
     public void setCurrentValue(Integer value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.CURRENT_VALUE</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.CURRENT_VALUE</code>.
      */
     public Integer getCurrentValue() {
         return (Integer) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.DATEFORMAT</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.DATEFORMAT</code>.
      */
     public void setDateformat(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.DATEFORMAT</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.DATEFORMAT</code>.
      */
     public String getDateformat() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.LENGTH</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.LENGTH</code>.
      */
     public void setLength(Integer value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.LENGTH</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.LENGTH</code>.
      */
     public Integer getLength() {
         return (Integer) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.PREFIX</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.PATTERN</code>.
      */
-    public void setPrefix(String value) {
+    public void setPattern(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.PREFIX</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.PATTERN</code>.
      */
-    public String getPrefix() {
+    public String getPattern() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.SEQ_NAME</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.PREFIX</code>.
      */
-    public void setSeqName(String value) {
+    public void setPrefix(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.SEQ_NAME</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.PREFIX</code>.
      */
-    public String getSeqName() {
+    public String getPrefix() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.STEP</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.SEQ_NAME</code>.
      */
-    public void setStep(Integer value) {
+    public void setSeqName(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.STEP</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.SEQ_NAME</code>.
      */
-    public Integer getStep() {
-        return (Integer) get(11);
+    public String getSeqName() {
+        return (String) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_CHAEBUN.PATTERN</code>.
+     * Setter for <code>CBMS.TB_CHAEBUN.STEP</code>.
      */
-    public void setPattern(String value) {
+    public void setStep(Integer value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_CHAEBUN.PATTERN</code>.
+     * Getter for <code>CBMS.TB_CHAEBUN.STEP</code>.
      */
-    public String getPattern() {
-        return (String) get(12);
+    public Integer getStep() {
+        return (Integer) get(12);
     }
 
     // -------------------------------------------------------------------------
@@ -225,7 +225,7 @@ public class TbChaebunRecord extends UpdatableRecordImpl<TbChaebunRecord> {
     /**
      * Create a detached, initialised TbChaebunRecord
      */
-    public TbChaebunRecord(String seqId, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, Integer currentValue, String dateformat, Integer length, String prefix, String seqName, Integer step, String pattern) {
+    public TbChaebunRecord(String seqId, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, Integer currentValue, String dateformat, Integer length, String pattern, String prefix, String seqName, Integer step) {
         super(TbChaebun.TB_CHAEBUN);
 
         setSeqId(seqId);
@@ -237,10 +237,10 @@ public class TbChaebunRecord extends UpdatableRecordImpl<TbChaebunRecord> {
         setCurrentValue(currentValue);
         setDateformat(dateformat);
         setLength(length);
+        setPattern(pattern);
         setPrefix(prefix);
         setSeqName(seqName);
         setStep(step);
-        setPattern(pattern);
         resetChangedOnNotNull();
     }
 }

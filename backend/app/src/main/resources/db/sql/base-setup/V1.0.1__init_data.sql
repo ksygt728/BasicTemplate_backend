@@ -189,11 +189,11 @@ INSERT INTO `TB_MUL_LANG` (`LANG_CD`, `LANG_GUBUN`, `LANG_TYPE`, `CREATE_DATE`, 
 SELECT * FROM TB_COMPANY;
 
 INSERT INTO TB_COMPANY (COMPANY_CODE, COMPANY_NAME, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, TIMESTAMP)
-values('C100', 'CBSK회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
+values('C100', 'CBMS회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
 
 
 
--- 👑 CBSK
+-- 👑 CBMS
 -- ├─── 💼 경영지원본부
 -- │    ├─── 🤝 인사팀
 -- │    │    ├─── ✍️ 채용파트
@@ -311,7 +311,7 @@ values('C100', 'CBSK회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
 
 -- 부서경로: 대표이사 > 경영지원본부
 INSERT INTO TB_DEPARTMENT (DEPT_CODE, DEPT_NM, UPPER_DEPT_CODE, DEPT_LV, COMPANY_CODE, USE_YN, CREATE_DATE, CREATE_USER, TIMESTAMP, UPDATE_USER, STS)
-VALUES ('20000000', 'CBSK', 'ROOT', 0, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
+VALUES ('20000000', 'CBMS', 'ROOT', 0, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
 ,('21000000', '경영지원본부', '20000000', 1, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
 -- 부서경로: 대표이사 > 기술개발본부
  ,('22000000', '기술개발본부', '20000000', 1, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
@@ -830,13 +830,13 @@ INSERT INTO `TB_MENU` (`MENU_CD`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAM
 ('SYS00044', '2025-08-27 07:21:41.000', 'SYSTEM', 'C', '2025-08-27 07:21:41.000', 'SYSTEM', 5, '메뉴별권한', '/system/auth/member/grant/bymenu', 2, 'Y', 'SYS00037');
 
 
-INSERT INTO `CBSK-DEV`.TB_SCHE_M
+INSERT INTO `CBMS`.TB_SCHE_M
 (SCHE_ID, SCHE_NAME, DESCRIPTION, SCHE_GROUP, CLASS_NAME, METHOD_NAME, TRIGGER_NAME, CRON_EXP, LAST_EXEC_TIME, NEXT_EXEC_TIME, USE_YN, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, `TIMESTAMP`)
 VALUES('MAIL_SEND', '메일 배치 전송', '10초마다 한번씩 실행', 'common', 'com.basic.app.quartz.SchedulerJobListImpl', 'sendMailToBatch', 'MAIL_SEND_TRIGGER', '0/10 * * * * ? ', '2025-08-22 03:41:30.060', '2025-08-22 03:41:40', 'Y', 'D', 'ADMIN', '2025-08-20 22:01:45.500', 'SYSTEM', '2025-08-22 03:41:30.061');
-INSERT INTO `CBSK-DEV`.TB_SCHE_M
+INSERT INTO `CBMS`.TB_SCHE_M
 (SCHE_ID, SCHE_NAME, DESCRIPTION, SCHE_GROUP, CLASS_NAME, METHOD_NAME, TRIGGER_NAME, CRON_EXP, LAST_EXEC_TIME, NEXT_EXEC_TIME, USE_YN, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, `TIMESTAMP`)
 VALUES('SCHE_001', '5초마다 실행 잡', '5초마다 실행되는 테스트 잡', 'default', 'com.basic.app.quartz.SchedulerJobListImpl', 'test1for5second', 'SCHE_001Trigger', '0/5 * * * * ?', '2025-08-19 10:49:55.043', '2025-08-19 10:50:00', 'Y', 'D', 'ADMIN', '2025-08-19 10:39:57', 'SYSTEM', '2025-08-19 10:49:55.044');
-INSERT INTO `CBSK-DEV`.TB_SCHE_M
+INSERT INTO `CBMS`.TB_SCHE_M
 (SCHE_ID, SCHE_NAME, DESCRIPTION, SCHE_GROUP, CLASS_NAME, METHOD_NAME, TRIGGER_NAME, CRON_EXP, LAST_EXEC_TIME, NEXT_EXEC_TIME, USE_YN, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, `TIMESTAMP`)
 VALUES('SCHE_003', '1분마다 실행 잡', '1분마다 실행되는 테스트 잡', 'default', 'com.basic.app.quartz.SchedulerJobListImpl', 'test3for1minute', 'SCHE_003Trigger', '0 0/1 * * * ?', '2025-08-19 10:49:01.065', '2025-08-19 10:50:00', 'Y', 'D', 'ADMIN', '2025-08-19 10:39:57', 'SYSTEM', '2025-08-19 10:49:01.069');
 
@@ -1028,3 +1028,15 @@ INSERT INTO `TB_ROLE_MENU` (`CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `U
 ('2025-12-15 10:15:42.846', 'ksygt728111', 'C', '2025-12-15 10:15:42.846', 'ksygt728111', 'CRUD', 'Y', 'SYS00129', 'ROLE_ADMIN'),
 ('2025-12-15 10:15:42.876', 'ksygt728111', 'C', '2025-12-15 10:15:42.876', 'ksygt728111', 'CRUD', 'Y', 'SYS00130', 'ROLE_ADMIN'),
 ('2025-12-15 10:15:42.878', 'ksygt728111', 'C', '2025-12-15 10:15:42.878', 'ksygt728111', 'CRUD', 'Y', 'SYS00131', 'ROLE_ADMIN');
+
+INSERT INTO `TB_SMS_M` (`SMS_ID`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `UPDATE_USER`, `DESCRIPTION`, `LANG_TYPE`, `SMS_NAME`, `TEXT`) VALUES
+('1', '2025-12-17 18:42:16.933', 'ksygt728111', 'D', '2025-12-17 18:42:24.910', 'ksygt728111', '1', 'ko', '1', '1'),
+('SMS_001', '2025-08-22 03:35:28.000', 'SYSTEM', 'D', '2025-12-17 18:33:52.855', 'ksygt728111', '인증문자번aa호 전송', 'en', '6자리 인', '안zzz녕하세요. CBMS 인증번호 : {code} 입니다.'),
+('SMS_AUTH', '2025-08-22 03:35:28.000', 'SYSTEM', 'C', '2025-08-22 03:35:28.000', 'SYSTEM', '인증문자번호 전송', 'KR', '6자리 인증문자번호를 전송합니다.', '안녕하세요. CBMS 인증번호 : {code} 입니다.'),
+('SMS_AUTH1', '2025-08-23 23:41:48.257', 'ADMIN', 'D', '2025-08-23 23:42:47.138', 'ADMIN', 'zz', 'KR', '증문자번qq', '인증번호'),
+('SMS-001', '2025-08-22 03:35:28.000', 'SYSTEM', 'C', '2025-08-22 03:35:28.000', 'SYSTEM', '인증문자번호 전송', 'KR', '6자리 인증문자번호를 전송합니다.', '안녕하세요. CBMS 인증번호 : {code} 입니다.');
+
+INSERT INTO `TB_MAIL_M` (`MAIL_ID`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `UPDATE_USER`, `CONTENT`, `DESCRIPTION`, `LANG_TYPE`, `MAIL_NAME`, `TITLE`) VALUES
+('MAIL-001', '2025-08-19 10:41:27.000', 'ADMIN', 'C', '2025-12-15 23:16:11.398', 'ksygt728111', '<!DOCTYPE html>\n     <html>\n     <head><meta charset=\"UTF-8\"><title>테스트 메일</title></head>\n     <body>\n     <h2>안녕하세요!</h2>\n     <p>아래는 전송된 코드 리스트입니다:</p>\n     <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\n         <thead><tr><th>코드</th><th>코드명</th><th>코드타입</th></tr></thead>\n         <tbody>\n             <#list params as code>\n                 <tr><td>${code.grpCd}</td><td>${code.grpNm}</td><td>${code.grpCdType}</td></tr>\n             </#list>\n         </tbody>\n     </table>\n     <p>감사합니다.</p>\n     </body>\n     </html>', '테스트용 메일 템ㅁ플릿', 'ko', '테스트 메일 템플릿', '테스트 코드 리스트 안내 메일'),
+('MAIL-002', '2025-08-19 10:41:27.000', 'ADMIN', 'C', '2025-12-15 23:16:16.966', 'ksygt728111', '\n<!DOCTYPE html>\n     <html>\n     <head><meta charset=\"UTF-8\"><title>테스트 메일</title></head>\n     <body>\n     <h2>안녕하세요! 이건 두번째 테스트 입니다.</h2>\n     <p>아래는 전송된 코드 리스트입니다:</p>\n     <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\n         <thead><tr><th>코드</th><th>코드명</th><th>코드타입</th></tr></thead>\n         <tbody>\n             <#list params as code>\n                 <tr><td>${code.grp}</td><td>${code.grpNm}</td><td>${code.grdType}</td></tr>\n             </#list>\n         </tbody>\n     </table>\n     <p>감사합니다.</p>\n     </body>\n     </html>', '테스트용 메일 템플릿', 'ko', '테스트 메일 템플릿', '테스트 코드 리스트 안내 메일'),
+('MAIL-003', '2025-08-21 16:39:54.271', 'ADMIN', 'D', '2025-08-21 16:40:40.521', 'ADMIN', 'TEST content', 'this is test', 'ko_KR', 'bb', 'TEST1');

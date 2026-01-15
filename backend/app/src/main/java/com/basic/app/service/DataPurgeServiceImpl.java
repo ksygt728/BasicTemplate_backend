@@ -16,7 +16,7 @@
 
 // @Transactional
 // public void purgeWithBackup(PurgeConfig config) {
-// String backupDb = "CBSK_BACK";
+// String backupDb = "CBMS_BACK";
 // String backupTableName = config.getTableName() + "_BACK";
 
 // // 1. 백업 테이블 스키마 동기화

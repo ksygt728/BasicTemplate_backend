@@ -21,126 +21,126 @@ public class TbComCodeTPivotRecord extends UpdatableRecordImpl<TbComCodeTPivotRe
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
      */
     public void setAttrCd(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
      */
     public String getAttrCd() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
      */
     public void setGrpCd(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
      */
     public String getGrpCd() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.STS</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.STS</code>.
      */
     public void setSts(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.STS</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.STS</code>.
      */
     public String getSts() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
      */
     public void setAttrNm(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
      */
     public String getAttrNm() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
      */
     public void setOrderNum(Integer value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
      */
     public Integer getOrderNum() {
         return (Integer) get(8);

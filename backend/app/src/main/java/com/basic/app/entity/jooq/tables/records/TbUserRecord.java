@@ -21,196 +21,196 @@ public class TbUserRecord extends UpdatableRecordImpl<TbUserRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.USER_ID</code>.
+     * Setter for <code>CBMS.TB_USER.USER_ID</code>.
      */
     public void setUserId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.USER_ID</code>.
+     * Getter for <code>CBMS.TB_USER.USER_ID</code>.
      */
     public String getUserId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_USER.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_USER.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_USER.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_USER.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.STS</code>.
+     * Setter for <code>CBMS.TB_USER.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.STS</code>.
+     * Getter for <code>CBMS.TB_USER.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_USER.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_USER.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_USER.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_USER.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.EMAIL</code>.
+     * Setter for <code>CBMS.TB_USER.EMAIL</code>.
      */
     public void setEmail(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.EMAIL</code>.
+     * Getter for <code>CBMS.TB_USER.EMAIL</code>.
      */
     public String getEmail() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.GENDER</code>.
+     * Setter for <code>CBMS.TB_USER.GENDER</code>.
      */
     public void setGender(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.GENDER</code>.
+     * Getter for <code>CBMS.TB_USER.GENDER</code>.
      */
     public String getGender() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.NAME</code>.
+     * Setter for <code>CBMS.TB_USER.NAME</code>.
      */
     public void setName(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.NAME</code>.
+     * Getter for <code>CBMS.TB_USER.NAME</code>.
      */
     public String getName() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.PASSWORD</code>.
+     * Setter for <code>CBMS.TB_USER.PASSWORD</code>.
      */
     public void setPassword(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.PASSWORD</code>.
+     * Getter for <code>CBMS.TB_USER.PASSWORD</code>.
      */
     public String getPassword() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.PHONE_NUM</code>.
+     * Setter for <code>CBMS.TB_USER.PHONE_NUM</code>.
      */
     public void setPhoneNum(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.PHONE_NUM</code>.
+     * Getter for <code>CBMS.TB_USER.PHONE_NUM</code>.
      */
     public String getPhoneNum() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.ROLE</code>.
+     * Setter for <code>CBMS.TB_USER.ROLE</code>.
      */
     public void setRole(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.ROLE</code>.
+     * Getter for <code>CBMS.TB_USER.ROLE</code>.
      */
     public String getRole() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.USER_TYPE</code>.
+     * Setter for <code>CBMS.TB_USER.USER_TYPE</code>.
      */
     public void setUserType(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.USER_TYPE</code>.
+     * Getter for <code>CBMS.TB_USER.USER_TYPE</code>.
      */
     public String getUserType() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_USER.DEPT_CODE</code>.
+     * Setter for <code>CBMS.TB_USER.DEPT_CODE</code>.
      */
     public void setDeptCode(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_USER.DEPT_CODE</code>.
+     * Getter for <code>CBMS.TB_USER.DEPT_CODE</code>.
      */
     public String getDeptCode() {
         return (String) get(13);

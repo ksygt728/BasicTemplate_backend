@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbLogErrorRecord;
 
@@ -38,7 +38,7 @@ public class TbLogError extends TableImpl<TbLogErrorRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_LOG_ERROR</code>
+     * The reference instance of <code>CBMS.TB_LOG_ERROR</code>
      */
     public static final TbLogError TB_LOG_ERROR = new TbLogError();
 
@@ -51,69 +51,69 @@ public class TbLogError extends TableImpl<TbLogErrorRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.CREATE_DATE</code>.
-     */
-    public final TableField<TbLogErrorRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.TIMESTAMP</code>.
-     */
-    public final TableField<TbLogErrorRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.ERR_ID</code>.
+     * The column <code>CBMS.TB_LOG_ERROR.ERR_ID</code>.
      */
     public final TableField<TbLogErrorRecord, String> ERR_ID = createField(DSL.name("ERR_ID"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.CREATE_USER</code>.
+     * The column <code>CBMS.TB_LOG_ERROR.CREATE_DATE</code>.
+     */
+    public final TableField<TbLogErrorRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.CREATE_USER</code>.
      */
     public final TableField<TbLogErrorRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.HTTP_METHOD</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> HTTP_METHOD = createField(DSL.name("HTTP_METHOD"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.IP_ADDR</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> IP_ADDR = createField(DSL.name("IP_ADDR"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.UPDATE_USER</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.USER_AGENT</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> USER_AGENT = createField(DSL.name("USER_AGENT"), SQLDataType.VARCHAR(200), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.USER_ID</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.REQUEST_URI</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> REQUEST_URI = createField(DSL.name("REQUEST_URI"), SQLDataType.VARCHAR(200), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.ERR_MSG</code>.
-     */
-    public final TableField<TbLogErrorRecord, String> ERR_MSG = createField(DSL.name("ERR_MSG"), SQLDataType.CLOB, this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.STS</code>.
+     * The column <code>CBMS.TB_LOG_ERROR.STS</code>.
      */
     public final TableField<TbLogErrorRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ERROR.ERR_STACK</code>.
+     * The column <code>CBMS.TB_LOG_ERROR.TIMESTAMP</code>.
+     */
+    public final TableField<TbLogErrorRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.UPDATE_USER</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.ERR_MSG</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> ERR_MSG = createField(DSL.name("ERR_MSG"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.ERR_STACK</code>.
      */
     public final TableField<TbLogErrorRecord, String> ERR_STACK = createField(DSL.name("ERR_STACK"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.HTTP_METHOD</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> HTTP_METHOD = createField(DSL.name("HTTP_METHOD"), SQLDataType.VARCHAR(45), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.IP_ADDR</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> IP_ADDR = createField(DSL.name("IP_ADDR"), SQLDataType.VARCHAR(45), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.REQUEST_URI</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> REQUEST_URI = createField(DSL.name("REQUEST_URI"), SQLDataType.VARCHAR(200), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.USER_AGENT</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> USER_AGENT = createField(DSL.name("USER_AGENT"), SQLDataType.VARCHAR(200), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_ERROR.USER_ID</code>.
+     */
+    public final TableField<TbLogErrorRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45), this, "");
 
     private TbLogError(Name alias, Table<TbLogErrorRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -124,21 +124,21 @@ public class TbLogError extends TableImpl<TbLogErrorRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_ERROR</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_ERROR</code> table reference
      */
     public TbLogError(String alias) {
         this(DSL.name(alias), TB_LOG_ERROR);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_ERROR</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_ERROR</code> table reference
      */
     public TbLogError(Name alias) {
         this(alias, TB_LOG_ERROR);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_LOG_ERROR</code> table reference
+     * Create a <code>CBMS.TB_LOG_ERROR</code> table reference
      */
     public TbLogError() {
         this(DSL.name("TB_LOG_ERROR"), null);
@@ -146,7 +146,7 @@ public class TbLogError extends TableImpl<TbLogErrorRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

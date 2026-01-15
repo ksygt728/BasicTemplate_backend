@@ -21,140 +21,140 @@ public class TbMulLangRecord extends UpdatableRecordImpl<TbMulLangRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_CD</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.LANG_CD</code>.
      */
     public void setLangCd(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.LANG_CD</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.LANG_CD</code>.
      */
     public String getLangCd() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_GUBUN</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.LANG_GUBUN</code>.
      */
     public void setLangGubun(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.LANG_GUBUN</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.LANG_GUBUN</code>.
      */
     public String getLangGubun() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_TYPE</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.LANG_TYPE</code>.
      */
     public void setLangType(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.LANG_TYPE</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.LANG_TYPE</code>.
      */
     public String getLangType() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.STS</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.STS</code>.
      */
     public void setSts(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.STS</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.STS</code>.
      */
     public String getSts() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.LANG_NM</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.LANG_NM</code>.
      */
     public void setLangNm(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.LANG_NM</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.LANG_NM</code>.
      */
     public String getLangNm() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MUL_LANG.USE_YN</code>.
+     * Setter for <code>CBMS.TB_MUL_LANG.USE_YN</code>.
      */
     public void setUseYn(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MUL_LANG.USE_YN</code>.
+     * Getter for <code>CBMS.TB_MUL_LANG.USE_YN</code>.
      */
     public String getUseYn() {
         return (String) get(9);

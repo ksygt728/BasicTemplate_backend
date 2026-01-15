@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbMulLangRecord;
 
@@ -38,7 +38,7 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_MUL_LANG</code>
+     * The reference instance of <code>CBMS.TB_MUL_LANG</code>
      */
     public static final TbMulLang TB_MUL_LANG = new TbMulLang();
 
@@ -51,52 +51,52 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.LANG_CD</code>.
+     * The column <code>CBMS.TB_MUL_LANG.LANG_CD</code>.
      */
     public final TableField<TbMulLangRecord, String> LANG_CD = createField(DSL.name("LANG_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.LANG_GUBUN</code>.
+     * The column <code>CBMS.TB_MUL_LANG.LANG_GUBUN</code>.
      */
     public final TableField<TbMulLangRecord, String> LANG_GUBUN = createField(DSL.name("LANG_GUBUN"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.LANG_TYPE</code>.
+     * The column <code>CBMS.TB_MUL_LANG.LANG_TYPE</code>.
      */
     public final TableField<TbMulLangRecord, String> LANG_TYPE = createField(DSL.name("LANG_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_MUL_LANG.CREATE_DATE</code>.
      */
     public final TableField<TbMulLangRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.CREATE_USER</code>.
+     * The column <code>CBMS.TB_MUL_LANG.CREATE_USER</code>.
      */
     public final TableField<TbMulLangRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.STS</code>.
+     * The column <code>CBMS.TB_MUL_LANG.STS</code>.
      */
     public final TableField<TbMulLangRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_MUL_LANG.TIMESTAMP</code>.
      */
     public final TableField<TbMulLangRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_MUL_LANG.UPDATE_USER</code>.
      */
     public final TableField<TbMulLangRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.LANG_NM</code>.
+     * The column <code>CBMS.TB_MUL_LANG.LANG_NM</code>.
      */
     public final TableField<TbMulLangRecord, String> LANG_NM = createField(DSL.name("LANG_NM"), SQLDataType.VARCHAR(2048).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MUL_LANG.USE_YN</code>.
+     * The column <code>CBMS.TB_MUL_LANG.USE_YN</code>.
      */
     public final TableField<TbMulLangRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
 
@@ -109,21 +109,21 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MUL_LANG</code> table reference
+     * Create an aliased <code>CBMS.TB_MUL_LANG</code> table reference
      */
     public TbMulLang(String alias) {
         this(DSL.name(alias), TB_MUL_LANG);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MUL_LANG</code> table reference
+     * Create an aliased <code>CBMS.TB_MUL_LANG</code> table reference
      */
     public TbMulLang(Name alias) {
         this(alias, TB_MUL_LANG);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_MUL_LANG</code> table reference
+     * Create a <code>CBMS.TB_MUL_LANG</code> table reference
      */
     public TbMulLang() {
         this(DSL.name("TB_MUL_LANG"), null);
@@ -131,7 +131,7 @@ public class TbMulLang extends TableImpl<TbMulLangRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

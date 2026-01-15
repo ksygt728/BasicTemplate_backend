@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbComCodeDPivot.TbComCodeDPivotPath;
 import com.basic.app.entity.jooq.tables.TbComCodeT.TbComCodeTPath;
@@ -44,7 +44,7 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_COM_CODE_M</code>
+     * The reference instance of <code>CBMS.TB_COM_CODE_M</code>
      */
     public static final TbComCodeM TB_COM_CODE_M = new TbComCodeM();
 
@@ -57,44 +57,44 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.CREATE_DATE</code>.
-     */
-    public final TableField<TbComCodeMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.TIMESTAMP</code>.
-     */
-    public final TableField<TbComCodeMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.CREATE_USER</code>.
-     */
-    public final TableField<TbComCodeMRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_M.GRP_CD</code>.
      */
     public final TableField<TbComCodeMRecord, String> GRP_CD = createField(DSL.name("GRP_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.GRP_CD_TYPE</code>.
+     * The column <code>CBMS.TB_COM_CODE_M.CREATE_DATE</code>.
      */
-    public final TableField<TbComCodeMRecord, String> GRP_CD_TYPE = createField(DSL.name("GRP_CD_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+    public final TableField<TbComCodeMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_M.CREATE_USER</code>.
+     */
+    public final TableField<TbComCodeMRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COM_CODE_M.STS</code>.
+     */
+    public final TableField<TbComCodeMRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COM_CODE_M.TIMESTAMP</code>.
+     */
+    public final TableField<TbComCodeMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COM_CODE_M.UPDATE_USER</code>.
      */
     public final TableField<TbComCodeMRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.GRP_NM</code>.
+     * The column <code>CBMS.TB_COM_CODE_M.GRP_CD_TYPE</code>.
      */
-    public final TableField<TbComCodeMRecord, String> GRP_NM = createField(DSL.name("GRP_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+    public final TableField<TbComCodeMRecord, String> GRP_CD_TYPE = createField(DSL.name("GRP_CD_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_M.STS</code>.
+     * The column <code>CBMS.TB_COM_CODE_M.GRP_NM</code>.
      */
-    public final TableField<TbComCodeMRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TbComCodeMRecord, String> GRP_NM = createField(DSL.name("GRP_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     private TbComCodeM(Name alias, Table<TbComCodeMRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -105,21 +105,21 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_M</code> table reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_M</code> table reference
      */
     public TbComCodeM(String alias) {
         this(DSL.name(alias), TB_COM_CODE_M);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_M</code> table reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_M</code> table reference
      */
     public TbComCodeM(Name alias) {
         this(alias, TB_COM_CODE_M);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_COM_CODE_M</code> table reference
+     * Create a <code>CBMS.TB_COM_CODE_M</code> table reference
      */
     public TbComCodeM() {
         this(DSL.name("TB_COM_CODE_M"), null);
@@ -160,7 +160,7 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -171,8 +171,8 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
     private transient TbComCodeTPath _tbComCodeT;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_COM_CODE_T</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_COM_CODE_T</code>
+     * table
      */
     public TbComCodeTPath tbComCodeT() {
         if (_tbComCodeT == null)
@@ -185,7 +185,7 @@ public class TbComCodeM extends TableImpl<TbComCodeMRecord> {
 
     /**
      * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code> table
+     * <code>CBMS.TB_COM_CODE_D_PIVOT</code> table
      */
     public TbComCodeDPivotPath tbComCodeDPivot() {
         if (_tbComCodeDPivot == null)

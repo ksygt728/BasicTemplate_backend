@@ -12,7 +12,7 @@ spring:
       env: dev
 
   datasource:
-    url: jdbc:mysql://localhost:3306/CBSK-DEV?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBSK-DEV)
+    url: jdbc:mysql://localhost:3306/CBMS?useUnicode=true&serverTimezone=Asia/Seoul # 개발 DB 접속 URL (DOCKER DB명: CBMS)
     username: root
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
@@ -66,7 +66,7 @@ spring:
           dataSource:
             myDS:
               driver: com.mysql.cj.jdbc.Driver # 데이터소스 드라이버
-              URL: jdbc:mysql://localhost:3306/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
+              URL: jdbc:mysql://localhost:3306/CBMS-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
@@ -74,7 +74,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: ksygt728.study@gmail.com
-    alias: "[CBSK] SYSTEM-DEV"
+    alias: "[CBMS] SYSTEM-DEV"
     password: awuc myeu ipxo vjdc
     max-mail-queue: 1000 # 메일 큐 최대 크기
     properties:
@@ -210,9 +210,9 @@ jwt:
   access-token-header: Authorization-AccessToken-DEV
   refresh-token-header: Authorization-RefreshToken-DEV
   bearer-type: Bearer
-  issuer: CBSK SERVER(DEV)
+  issuer: CBMS SERVER(DEV)
   subject:
-    first: CBSK JWT TOKEN
+    first: CBMS JWT TOKEN
     second: userId
     third: phoneNum
     fourth: roles
@@ -220,7 +220,7 @@ jwt:
     access-token: 10m # 10분 = 1000 * 60 * 10
     refresh-token: 1d
   dead-time-for-server: 10s # 10초
-  secret-key: CBSK-DEV-SECRET-KEY-KSYGT728-ORI-IS-THE-BEST-ANIMAL # JWT 서명에 사용할 비밀 키
+  secret-key: CBMS-DEV-SECRET-KEY-KSYGT728-ORI-IS-THE-BEST-ANIMAL # JWT 서명에 사용할 비밀 키
 
 springdoc:
   swagger-ui:
