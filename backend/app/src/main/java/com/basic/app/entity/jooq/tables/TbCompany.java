@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbDepartment.TbDepartmentPath;
 import com.basic.app.entity.jooq.tables.records.TbCompanyRecord;
@@ -43,7 +43,7 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_COMPANY</code>
+     * The reference instance of <code>CBMS.TB_COMPANY</code>
      */
     public static final TbCompany TB_COMPANY = new TbCompany();
 
@@ -56,39 +56,39 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_COMPANY.CREATE_DATE</code>.
-     */
-    public final TableField<TbCompanyRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COMPANY.TIMESTAMP</code>.
-     */
-    public final TableField<TbCompanyRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COMPANY.COMPANY_CODE</code>.
+     * The column <code>CBMS.TB_COMPANY.COMPANY_CODE</code>.
      */
     public final TableField<TbCompanyRecord, String> COMPANY_CODE = createField(DSL.name("COMPANY_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COMPANY.CREATE_USER</code>.
+     * The column <code>CBMS.TB_COMPANY.CREATE_DATE</code>.
+     */
+    public final TableField<TbCompanyRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COMPANY.CREATE_USER</code>.
      */
     public final TableField<TbCompanyRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COMPANY.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_COMPANY.STS</code>.
+     */
+    public final TableField<TbCompanyRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COMPANY.TIMESTAMP</code>.
+     */
+    public final TableField<TbCompanyRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_COMPANY.UPDATE_USER</code>.
      */
     public final TableField<TbCompanyRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COMPANY.COMPANY_NAME</code>.
+     * The column <code>CBMS.TB_COMPANY.COMPANY_NAME</code>.
      */
     public final TableField<TbCompanyRecord, String> COMPANY_NAME = createField(DSL.name("COMPANY_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_COMPANY.STS</code>.
-     */
-    public final TableField<TbCompanyRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     private TbCompany(Name alias, Table<TbCompanyRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -99,21 +99,21 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COMPANY</code> table reference
+     * Create an aliased <code>CBMS.TB_COMPANY</code> table reference
      */
     public TbCompany(String alias) {
         this(DSL.name(alias), TB_COMPANY);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COMPANY</code> table reference
+     * Create an aliased <code>CBMS.TB_COMPANY</code> table reference
      */
     public TbCompany(Name alias) {
         this(alias, TB_COMPANY);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_COMPANY</code> table reference
+     * Create a <code>CBMS.TB_COMPANY</code> table reference
      */
     public TbCompany() {
         this(DSL.name("TB_COMPANY"), null);
@@ -154,7 +154,7 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -165,8 +165,8 @@ public class TbCompany extends TableImpl<TbCompanyRecord> {
     private transient TbDepartmentPath _tbDepartment;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_DEPARTMENT</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_DEPARTMENT</code>
+     * table
      */
     public TbDepartmentPath tbDepartment() {
         if (_tbDepartment == null)

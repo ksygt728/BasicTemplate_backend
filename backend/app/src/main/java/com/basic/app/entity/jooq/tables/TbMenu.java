@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbMenu.TbMenuPath;
 import com.basic.app.entity.jooq.tables.TbRole.TbRolePath;
@@ -47,7 +47,7 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_MENU</code>
+     * The reference instance of <code>CBMS.TB_MENU</code>
      */
     public static final TbMenu TB_MENU = new TbMenu();
 
@@ -60,62 +60,62 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.MENU_CD</code>.
+     * The column <code>CBMS.TB_MENU.MENU_CD</code>.
      */
     public final TableField<TbMenuRecord, String> MENU_CD = createField(DSL.name("MENU_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_MENU.CREATE_DATE</code>.
      */
     public final TableField<TbMenuRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.CREATE_USER</code>.
+     * The column <code>CBMS.TB_MENU.CREATE_USER</code>.
      */
     public final TableField<TbMenuRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.STS</code>.
+     * The column <code>CBMS.TB_MENU.STS</code>.
      */
     public final TableField<TbMenuRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_MENU.TIMESTAMP</code>.
      */
     public final TableField<TbMenuRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_MENU.UPDATE_USER</code>.
      */
     public final TableField<TbMenuRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.MENU_LV</code>.
+     * The column <code>CBMS.TB_MENU.MENU_LV</code>.
      */
     public final TableField<TbMenuRecord, Integer> MENU_LV = createField(DSL.name("MENU_LV"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.MENU_NM</code>.
+     * The column <code>CBMS.TB_MENU.MENU_NM</code>.
      */
     public final TableField<TbMenuRecord, String> MENU_NM = createField(DSL.name("MENU_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.MENU_URL</code>.
+     * The column <code>CBMS.TB_MENU.MENU_URL</code>.
      */
     public final TableField<TbMenuRecord, String> MENU_URL = createField(DSL.name("MENU_URL"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.ORDER_NUM</code>.
+     * The column <code>CBMS.TB_MENU.ORDER_NUM</code>.
      */
     public final TableField<TbMenuRecord, Integer> ORDER_NUM = createField(DSL.name("ORDER_NUM"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.USE_YN</code>.
+     * The column <code>CBMS.TB_MENU.USE_YN</code>.
      */
     public final TableField<TbMenuRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MENU.UPPER_MENU_CD</code>.
+     * The column <code>CBMS.TB_MENU.UPPER_MENU_CD</code>.
      */
     public final TableField<TbMenuRecord, String> UPPER_MENU_CD = createField(DSL.name("UPPER_MENU_CD"), SQLDataType.VARCHAR(45), this, "");
 
@@ -128,21 +128,21 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MENU</code> table reference
+     * Create an aliased <code>CBMS.TB_MENU</code> table reference
      */
     public TbMenu(String alias) {
         this(DSL.name(alias), TB_MENU);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MENU</code> table reference
+     * Create an aliased <code>CBMS.TB_MENU</code> table reference
      */
     public TbMenu(Name alias) {
         this(alias, TB_MENU);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_MENU</code> table reference
+     * Create a <code>CBMS.TB_MENU</code> table reference
      */
     public TbMenu() {
         this(DSL.name("TB_MENU"), null);
@@ -183,7 +183,7 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -199,7 +199,7 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     private transient TbMenuPath _tbMenu;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_MENU</code> table.
+     * Get the implicit join path to the <code>CBMS.TB_MENU</code> table.
      */
     public TbMenuPath tbMenu() {
         if (_tbMenu == null)
@@ -211,8 +211,8 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     private transient TbRoleMenuPath _tbRoleMenu;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE_MENU</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_ROLE_MENU</code>
+     * table
      */
     public TbRoleMenuPath tbRoleMenu() {
         if (_tbRoleMenu == null)
@@ -222,8 +222,8 @@ public class TbMenu extends TableImpl<TbMenuRecord> {
     }
 
     /**
-     * Get the implicit many-to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE</code> table
+     * Get the implicit many-to-many join path to the <code>CBMS.TB_ROLE</code>
+     * table
      */
     public TbRolePath tbRole() {
         return tbRoleMenu().tbRole();

@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbMailMRecord;
 
@@ -38,7 +38,7 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_MAIL_M</code>
+     * The reference instance of <code>CBMS.TB_MAIL_M</code>
      */
     public static final TbMailM TB_MAIL_M = new TbMailM();
 
@@ -51,57 +51,57 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.MAIL_ID</code>.
+     * The column <code>CBMS.TB_MAIL_M.MAIL_ID</code>.
      */
     public final TableField<TbMailMRecord, String> MAIL_ID = createField(DSL.name("MAIL_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_MAIL_M.CREATE_DATE</code>.
      */
     public final TableField<TbMailMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.CREATE_USER</code>.
+     * The column <code>CBMS.TB_MAIL_M.CREATE_USER</code>.
      */
     public final TableField<TbMailMRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.STS</code>.
+     * The column <code>CBMS.TB_MAIL_M.STS</code>.
      */
     public final TableField<TbMailMRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_MAIL_M.TIMESTAMP</code>.
      */
     public final TableField<TbMailMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_MAIL_M.UPDATE_USER</code>.
      */
     public final TableField<TbMailMRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.CONTENT</code>.
+     * The column <code>CBMS.TB_MAIL_M.CONTENT</code>.
      */
     public final TableField<TbMailMRecord, String> CONTENT = createField(DSL.name("CONTENT"), SQLDataType.CLOB.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.DESCRIPTION</code>.
+     * The column <code>CBMS.TB_MAIL_M.DESCRIPTION</code>.
      */
     public final TableField<TbMailMRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(2048), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.LANG_TYPE</code>.
+     * The column <code>CBMS.TB_MAIL_M.LANG_TYPE</code>.
      */
     public final TableField<TbMailMRecord, String> LANG_TYPE = createField(DSL.name("LANG_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.MAIL_NAME</code>.
+     * The column <code>CBMS.TB_MAIL_M.MAIL_NAME</code>.
      */
     public final TableField<TbMailMRecord, String> MAIL_NAME = createField(DSL.name("MAIL_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_MAIL_M.TITLE</code>.
+     * The column <code>CBMS.TB_MAIL_M.TITLE</code>.
      */
     public final TableField<TbMailMRecord, String> TITLE = createField(DSL.name("TITLE"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
@@ -114,21 +114,21 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MAIL_M</code> table reference
+     * Create an aliased <code>CBMS.TB_MAIL_M</code> table reference
      */
     public TbMailM(String alias) {
         this(DSL.name(alias), TB_MAIL_M);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_MAIL_M</code> table reference
+     * Create an aliased <code>CBMS.TB_MAIL_M</code> table reference
      */
     public TbMailM(Name alias) {
         this(alias, TB_MAIL_M);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_MAIL_M</code> table reference
+     * Create a <code>CBMS.TB_MAIL_M</code> table reference
      */
     public TbMailM() {
         this(DSL.name("TB_MAIL_M"), null);
@@ -136,7 +136,7 @@ public class TbMailM extends TableImpl<TbMailMRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

@@ -21,154 +21,154 @@ public class TbMailMRecord extends UpdatableRecordImpl<TbMailMRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.MAIL_ID</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.MAIL_ID</code>.
      */
     public void setMailId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.MAIL_ID</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.MAIL_ID</code>.
      */
     public String getMailId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.STS</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.STS</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.CONTENT</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.CONTENT</code>.
      */
     public void setContent(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.CONTENT</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.CONTENT</code>.
      */
     public String getContent() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.DESCRIPTION</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.DESCRIPTION</code>.
      */
     public void setDescription(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.DESCRIPTION</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.DESCRIPTION</code>.
      */
     public String getDescription() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.LANG_TYPE</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.LANG_TYPE</code>.
      */
     public void setLangType(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.LANG_TYPE</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.LANG_TYPE</code>.
      */
     public String getLangType() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.MAIL_NAME</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.MAIL_NAME</code>.
      */
     public void setMailName(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.MAIL_NAME</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.MAIL_NAME</code>.
      */
     public String getMailName() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_MAIL_M.TITLE</code>.
+     * Setter for <code>CBMS.TB_MAIL_M.TITLE</code>.
      */
     public void setTitle(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_MAIL_M.TITLE</code>.
+     * Getter for <code>CBMS.TB_MAIL_M.TITLE</code>.
      */
     public String getTitle() {
         return (String) get(10);

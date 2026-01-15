@@ -3,10 +3,10 @@ version: "3.8"
 services:
   mysql-prod:
     image: mysql:8.0
-    container_name: CBSK-DB-PROD
+    container_name: CBMS-DB-PROD
     environment:
       MYSQL_ROOT_PASSWORD: root961019
-      MYSQL_DATABASE: CBSK-PROD
+      MYSQL_DATABASE: CBMS
       TZ: Asia/Seoul
     ports:
       - "3308:3306"
@@ -17,7 +17,7 @@ services:
 
   redis-prod:
     image: redis:latest
-    container_name: CBSK-REDIS-PROD
+    container_name: CBMS-REDIS-PROD
     environment:
       TZ: Asia/Seoul
     ports:
@@ -29,7 +29,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: CBSK-ZOOKEEPER-PROD
+    container_name: CBMS-ZOOKEEPER-PROD
     ports:
       - "2183:2181" # PROD용 포트 분리
     logging:
@@ -37,7 +37,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
-    container_name: CBSK-KAFKA-PROD
+    container_name: CBMS-KAFKA-PROD
     ports:
       - "9094:9092" # PROD용 포트 분리
     logging:
@@ -55,7 +55,7 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: CBSK-KAFKA-UI-PROD
+    container_name: CBMS-KAFKA-UI-PROD
     ports:
       - "9082:8080" # PROD용 포트 분리
     logging:

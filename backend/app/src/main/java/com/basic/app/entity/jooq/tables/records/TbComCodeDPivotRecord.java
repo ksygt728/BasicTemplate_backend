@@ -21,266 +21,266 @@ public class TbComCodeDPivotRecord extends UpdatableRecordImpl<TbComCodeDPivotRe
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
      */
     public void setDtlCd(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
      */
     public String getDtlCd() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
      */
     public void setGrpCd(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
      */
     public String getGrpCd() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.STS</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.STS</code>.
      */
     public void setSts(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.STS</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.STS</code>.
      */
     public String getSts() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
      */
     public void setAttr_01(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
      */
     public String getAttr_01() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
      */
     public void setAttr_02(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
      */
     public String getAttr_02() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
      */
     public void setAttr_03(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
      */
     public String getAttr_03() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
      */
     public void setAttr_04(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
      */
     public String getAttr_04() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
      */
     public void setAttr_05(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
      */
     public String getAttr_05() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
      */
     public void setAttr_06(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
      */
     public String getAttr_06() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
      */
     public void setAttr_07(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
      */
     public String getAttr_07() {
         return (String) get(13);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
      */
     public void setAttr_08(String value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
      */
     public String getAttr_08() {
         return (String) get(14);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
      */
     public void setAttr_09(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
      */
     public String getAttr_09() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
      */
     public void setAttr_10(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
      */
     public String getAttr_10() {
         return (String) get(16);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
      */
     public void setOrderNum(Integer value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
      */
     public Integer getOrderNum() {
         return (Integer) get(17);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.USE_YN</code>.
+     * Setter for <code>CBMS.TB_COM_CODE_D_PIVOT.USE_YN</code>.
      */
     public void setUseYn(String value) {
         set(18, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.USE_YN</code>.
+     * Getter for <code>CBMS.TB_COM_CODE_D_PIVOT.USE_YN</code>.
      */
     public String getUseYn() {
         return (String) get(18);

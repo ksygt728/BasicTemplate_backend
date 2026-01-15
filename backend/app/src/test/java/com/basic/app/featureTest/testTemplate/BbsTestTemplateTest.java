@@ -63,14 +63,14 @@ public class BbsTestTemplateTest {
 
   @BeforeAll
   void setUpOnce() {
-    log.info("\n📦 [CBSK-TEST] ***[테스트 전체 시작]*** {}", this.getClass().getName());
+    log.info("\n📦 [CBMS-TEST] ***[테스트 전체 시작]*** {}", this.getClass().getName());
     // DB 스키마 초기화나 공통 설정 작업
   }
 
   @BeforeEach
   void beforeEach(TestInfo testInfo) {
 
-    log.info("\n\n🔄 [CBSK-TEST] ***[테스트 시작]*** " + testInfo.getDisplayName());
+    log.info("\n\n🔄 [CBMS-TEST] ***[테스트 시작]*** " + testInfo.getDisplayName());
     startTime = System.nanoTime();
   }
 
@@ -79,13 +79,13 @@ public class BbsTestTemplateTest {
 
     long endTime = System.nanoTime();
     long durationMs = (endTime - startTime) / 1_000_000;
-    log.info("\n✅ [CBSK-TEST] ***[테스트 종료]*** (실행 시간: {} ms)\n", durationMs);
+    log.info("\n✅ [CBMS-TEST] ***[테스트 종료]*** (실행 시간: {} ms)\n", durationMs);
 
   }
 
   @AfterAll
   void cleanUpOnce() {
-    log.info("\n🧹 [CBSK-TEST] ***[테스트 전체 종료]*** {}", this.getClass().getName());
+    log.info("\n🧹 [CBMS-TEST] ***[테스트 전체 종료]*** {}", this.getClass().getName());
 
   }
 

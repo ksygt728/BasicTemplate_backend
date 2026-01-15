@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Indexes;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbLogApiRecord;
@@ -42,7 +42,7 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_LOG_API</code>
+     * The reference instance of <code>CBMS.TB_LOG_API</code>
      */
     public static final TbLogApi TB_LOG_API = new TbLogApi();
 
@@ -55,89 +55,89 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_API.CREATE_DATE</code>.
-     */
-    public final TableField<TbLogApiRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.END_DATE</code>.
-     */
-    public final TableField<TbLogApiRecord, LocalDateTime> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.EXEC_TIME</code>.
-     */
-    public final TableField<TbLogApiRecord, Long> EXEC_TIME = createField(DSL.name("EXEC_TIME"), SQLDataType.BIGINT, this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.START_DATE</code>.
-     */
-    public final TableField<TbLogApiRecord, LocalDateTime> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.TIMESTAMP</code>.
-     */
-    public final TableField<TbLogApiRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.LOG_ID</code>.
+     * The column <code>CBMS.TB_LOG_API.LOG_ID</code>.
      */
     public final TableField<TbLogApiRecord, String> LOG_ID = createField(DSL.name("LOG_ID"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_API.CREATE_USER</code>.
+     * The column <code>CBMS.TB_LOG_API.CREATE_DATE</code>.
+     */
+    public final TableField<TbLogApiRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.CREATE_USER</code>.
      */
     public final TableField<TbLogApiRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_API.HTTP_METHOD</code>.
-     */
-    public final TableField<TbLogApiRecord, String> HTTP_METHOD = createField(DSL.name("HTTP_METHOD"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.IP_ADDR</code>.
-     */
-    public final TableField<TbLogApiRecord, String> IP_ADDR = createField(DSL.name("IP_ADDR"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.STATUS_CODE</code>.
-     */
-    public final TableField<TbLogApiRecord, String> STATUS_CODE = createField(DSL.name("STATUS_CODE"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.UPDATE_USER</code>.
-     */
-    public final TableField<TbLogApiRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.USER_AGENT</code>.
-     */
-    public final TableField<TbLogApiRecord, String> USER_AGENT = createField(DSL.name("USER_AGENT"), SQLDataType.VARCHAR(200), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.USER_ID</code>.
-     */
-    public final TableField<TbLogApiRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.REQUEST_URI</code>.
-     */
-    public final TableField<TbLogApiRecord, String> REQUEST_URI = createField(DSL.name("REQUEST_URI"), SQLDataType.VARCHAR(200), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_LOG_API.STS</code>.
+     * The column <code>CBMS.TB_LOG_API.STS</code>.
      */
     public final TableField<TbLogApiRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_API.REQUEST_BODY</code>.
+     * The column <code>CBMS.TB_LOG_API.TIMESTAMP</code>.
+     */
+    public final TableField<TbLogApiRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.UPDATE_USER</code>.
+     */
+    public final TableField<TbLogApiRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.END_DATE</code>.
+     */
+    public final TableField<TbLogApiRecord, LocalDateTime> END_DATE = createField(DSL.name("END_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.EXEC_TIME</code>.
+     */
+    public final TableField<TbLogApiRecord, Long> EXEC_TIME = createField(DSL.name("EXEC_TIME"), SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.HTTP_METHOD</code>.
+     */
+    public final TableField<TbLogApiRecord, String> HTTP_METHOD = createField(DSL.name("HTTP_METHOD"), SQLDataType.VARCHAR(45), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.IP_ADDR</code>.
+     */
+    public final TableField<TbLogApiRecord, String> IP_ADDR = createField(DSL.name("IP_ADDR"), SQLDataType.VARCHAR(45), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.REQUEST_BODY</code>.
      */
     public final TableField<TbLogApiRecord, String> REQUEST_BODY = createField(DSL.name("REQUEST_BODY"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_API.RESPONSE_BODY</code>.
+     * The column <code>CBMS.TB_LOG_API.REQUEST_URI</code>.
+     */
+    public final TableField<TbLogApiRecord, String> REQUEST_URI = createField(DSL.name("REQUEST_URI"), SQLDataType.VARCHAR(200), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.RESPONSE_BODY</code>.
      */
     public final TableField<TbLogApiRecord, String> RESPONSE_BODY = createField(DSL.name("RESPONSE_BODY"), SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.START_DATE</code>.
+     */
+    public final TableField<TbLogApiRecord, LocalDateTime> START_DATE = createField(DSL.name("START_DATE"), SQLDataType.LOCALDATETIME(3), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.STATUS_CODE</code>.
+     */
+    public final TableField<TbLogApiRecord, String> STATUS_CODE = createField(DSL.name("STATUS_CODE"), SQLDataType.VARCHAR(45), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.USER_AGENT</code>.
+     */
+    public final TableField<TbLogApiRecord, String> USER_AGENT = createField(DSL.name("USER_AGENT"), SQLDataType.VARCHAR(200), this, "");
+
+    /**
+     * The column <code>CBMS.TB_LOG_API.USER_ID</code>.
+     */
+    public final TableField<TbLogApiRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45), this, "");
 
     private TbLogApi(Name alias, Table<TbLogApiRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -148,21 +148,21 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_API</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_API</code> table reference
      */
     public TbLogApi(String alias) {
         this(DSL.name(alias), TB_LOG_API);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_API</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_API</code> table reference
      */
     public TbLogApi(Name alias) {
         this(alias, TB_LOG_API);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_LOG_API</code> table reference
+     * Create a <code>CBMS.TB_LOG_API</code> table reference
      */
     public TbLogApi() {
         this(DSL.name("TB_LOG_API"), null);
@@ -170,7 +170,7 @@ public class TbLogApi extends TableImpl<TbLogApiRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

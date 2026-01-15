@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbScheMRecord;
 
@@ -38,7 +38,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_SCHE_M</code>
+     * The reference instance of <code>CBMS.TB_SCHE_M</code>
      */
     public static final TbScheM TB_SCHE_M = new TbScheM();
 
@@ -51,82 +51,82 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.SCHE_ID</code>.
+     * The column <code>CBMS.TB_SCHE_M.SCHE_ID</code>.
      */
     public final TableField<TbScheMRecord, String> SCHE_ID = createField(DSL.name("SCHE_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_SCHE_M.CREATE_DATE</code>.
      */
     public final TableField<TbScheMRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.CREATE_USER</code>.
+     * The column <code>CBMS.TB_SCHE_M.CREATE_USER</code>.
      */
     public final TableField<TbScheMRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.STS</code>.
+     * The column <code>CBMS.TB_SCHE_M.STS</code>.
      */
     public final TableField<TbScheMRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_SCHE_M.TIMESTAMP</code>.
      */
     public final TableField<TbScheMRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_SCHE_M.UPDATE_USER</code>.
      */
     public final TableField<TbScheMRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.CLASS_NAME</code>.
+     * The column <code>CBMS.TB_SCHE_M.CLASS_NAME</code>.
      */
     public final TableField<TbScheMRecord, String> CLASS_NAME = createField(DSL.name("CLASS_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.CRON_EXP</code>.
+     * The column <code>CBMS.TB_SCHE_M.CRON_EXP</code>.
      */
     public final TableField<TbScheMRecord, String> CRON_EXP = createField(DSL.name("CRON_EXP"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.DESCRIPTION</code>.
+     * The column <code>CBMS.TB_SCHE_M.DESCRIPTION</code>.
      */
     public final TableField<TbScheMRecord, String> DESCRIPTION = createField(DSL.name("DESCRIPTION"), SQLDataType.VARCHAR(2048), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.LAST_EXEC_TIME</code>.
+     * The column <code>CBMS.TB_SCHE_M.LAST_EXEC_TIME</code>.
      */
     public final TableField<TbScheMRecord, LocalDateTime> LAST_EXEC_TIME = createField(DSL.name("LAST_EXEC_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.METHOD_NAME</code>.
+     * The column <code>CBMS.TB_SCHE_M.METHOD_NAME</code>.
      */
     public final TableField<TbScheMRecord, String> METHOD_NAME = createField(DSL.name("METHOD_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.NEXT_EXEC_TIME</code>.
+     * The column <code>CBMS.TB_SCHE_M.NEXT_EXEC_TIME</code>.
      */
     public final TableField<TbScheMRecord, LocalDateTime> NEXT_EXEC_TIME = createField(DSL.name("NEXT_EXEC_TIME"), SQLDataType.LOCALDATETIME(3), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.SCHE_GROUP</code>.
+     * The column <code>CBMS.TB_SCHE_M.SCHE_GROUP</code>.
      */
     public final TableField<TbScheMRecord, String> SCHE_GROUP = createField(DSL.name("SCHE_GROUP"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.SCHE_NAME</code>.
+     * The column <code>CBMS.TB_SCHE_M.SCHE_NAME</code>.
      */
     public final TableField<TbScheMRecord, String> SCHE_NAME = createField(DSL.name("SCHE_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.TRIGGER_NAME</code>.
+     * The column <code>CBMS.TB_SCHE_M.TRIGGER_NAME</code>.
      */
     public final TableField<TbScheMRecord, String> TRIGGER_NAME = createField(DSL.name("TRIGGER_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_SCHE_M.USE_YN</code>.
+     * The column <code>CBMS.TB_SCHE_M.USE_YN</code>.
      */
     public final TableField<TbScheMRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
 
@@ -139,21 +139,21 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_SCHE_M</code> table reference
+     * Create an aliased <code>CBMS.TB_SCHE_M</code> table reference
      */
     public TbScheM(String alias) {
         this(DSL.name(alias), TB_SCHE_M);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_SCHE_M</code> table reference
+     * Create an aliased <code>CBMS.TB_SCHE_M</code> table reference
      */
     public TbScheM(Name alias) {
         this(alias, TB_SCHE_M);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_SCHE_M</code> table reference
+     * Create a <code>CBMS.TB_SCHE_M</code> table reference
      */
     public TbScheM() {
         this(DSL.name("TB_SCHE_M"), null);
@@ -161,7 +161,7 @@ public class TbScheM extends TableImpl<TbScheMRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

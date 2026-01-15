@@ -92,7 +92,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, message, additionalMessage);
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
@@ -116,7 +116,7 @@ public class GlobalExceptionHandler {
       logService.insertErrorLog(e, request, errorCode, message, additionalMessage);
 
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
@@ -139,7 +139,7 @@ public class GlobalExceptionHandler {
       logService.insertErrorLog(e.getE(), request, errorCode, additionalMessage);
 
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -162,7 +162,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, additionalMessage);
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -192,7 +192,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, validatorErrorMessage);
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
@@ -211,7 +211,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
@@ -231,7 +231,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
     return ResponseEntity
@@ -250,7 +250,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -271,7 +271,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -292,7 +292,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -312,7 +312,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -333,7 +333,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -354,7 +354,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -374,7 +374,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 
@@ -394,7 +394,7 @@ public class GlobalExceptionHandler {
     try {
       logService.insertErrorLog(e, request, errorCode, "");
     } catch (Exception ex) {
-      log.error("CBSK : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
+      log.error("CBMS : GlobalExceptionHandler 로그 저장 중 오류가 발생했습니다. ERROR내용 : ");
       ex.printStackTrace();
     }
 

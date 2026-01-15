@@ -75,14 +75,14 @@ public class DepartmentTestTemplateTest {
         @BeforeAll
         void setUpOnce() {
                 initTestData();
-                log.info("\n📦 [CBSK-TEST] ***[테스트 전체 시작]*** {}", this.getClass().getName());
+                log.info("\n📦 [CBMS-TEST] ***[테스트 전체 시작]*** {}", this.getClass().getName());
                 // DB 스키마 초기화나 공통 설정 작업
         }
 
         @BeforeEach
         void beforeEach(TestInfo testInfo) {
 
-                log.info("\n\n🔄 [CBSK-TEST] ***[테스트 시작]*** " + testInfo.getDisplayName());
+                log.info("\n\n🔄 [CBMS-TEST] ***[테스트 시작]*** " + testInfo.getDisplayName());
                 startTime = System.nanoTime();
         }
 
@@ -91,13 +91,13 @@ public class DepartmentTestTemplateTest {
 
                 long endTime = System.nanoTime();
                 long durationMs = (endTime - startTime) / 1_000_000;
-                log.info("\n✅ [CBSK-TEST] ***[테스트 종료]*** (실행 시간: {} ms)\n", durationMs);
+                log.info("\n✅ [CBMS-TEST] ***[테스트 종료]*** (실행 시간: {} ms)\n", durationMs);
 
         }
 
         @AfterAll
         void cleanUpOnce() {
-                log.info("\n🧹 [CBSK-TEST] ***[테스트 전체 종료]*** {}", this.getClass().getName());
+                log.info("\n🧹 [CBMS-TEST] ***[테스트 전체 종료]*** {}", this.getClass().getName());
 
                 // 파일 삭제, 서버 연결 종료 등 자원 해제
                 departmentRepository.deleteAllById(testDataList.stream()
@@ -121,7 +121,7 @@ public class DepartmentTestTemplateTest {
                 Company company = companyRepository.findById("C100_TEST").orElse(null);
 
                 testDataList = List.of(
-                                new Department("20000000_TEST", "CBSK", "ROOT", 0, company, "Y", null),
+                                new Department("20000000_TEST", "CBMS", "ROOT", 0, company, "Y", null),
                                 new Department("21000000_TEST", "경영지원본부", "20000000_TEST", 1, company, "Y", null),
                                 new Department("21100000_TEST", "인사팀", "21000000_TEST", 2, company, "Y", null),
                                 new Department("21110000_TEST", "채용파트", "21100000_TEST", 3, company, "Y", null),

@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbMenu.TbMenuPath;
 import com.basic.app.entity.jooq.tables.TbRoleMenu.TbRoleMenuPath;
@@ -46,7 +46,7 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_ROLE</code>
+     * The reference instance of <code>CBMS.TB_ROLE</code>
      */
     public static final TbRole TB_ROLE = new TbRole();
 
@@ -59,42 +59,42 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.ROLE_CD</code>.
+     * The column <code>CBMS.TB_ROLE.ROLE_CD</code>.
      */
     public final TableField<TbRoleRecord, String> ROLE_CD = createField(DSL.name("ROLE_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_ROLE.CREATE_DATE</code>.
      */
     public final TableField<TbRoleRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.CREATE_USER</code>.
+     * The column <code>CBMS.TB_ROLE.CREATE_USER</code>.
      */
     public final TableField<TbRoleRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.STS</code>.
+     * The column <code>CBMS.TB_ROLE.STS</code>.
      */
     public final TableField<TbRoleRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_ROLE.TIMESTAMP</code>.
      */
     public final TableField<TbRoleRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_ROLE.UPDATE_USER</code>.
      */
     public final TableField<TbRoleRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.ROLE_DESC</code>.
+     * The column <code>CBMS.TB_ROLE.ROLE_DESC</code>.
      */
     public final TableField<TbRoleRecord, String> ROLE_DESC = createField(DSL.name("ROLE_DESC"), SQLDataType.VARCHAR(1024), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_ROLE.ROLE_NAME</code>.
+     * The column <code>CBMS.TB_ROLE.ROLE_NAME</code>.
      */
     public final TableField<TbRoleRecord, String> ROLE_NAME = createField(DSL.name("ROLE_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
@@ -107,21 +107,21 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_ROLE</code> table reference
+     * Create an aliased <code>CBMS.TB_ROLE</code> table reference
      */
     public TbRole(String alias) {
         this(DSL.name(alias), TB_ROLE);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_ROLE</code> table reference
+     * Create an aliased <code>CBMS.TB_ROLE</code> table reference
      */
     public TbRole(Name alias) {
         this(alias, TB_ROLE);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_ROLE</code> table reference
+     * Create a <code>CBMS.TB_ROLE</code> table reference
      */
     public TbRole() {
         this(DSL.name("TB_ROLE"), null);
@@ -162,7 +162,7 @@ public class TbRole extends TableImpl<TbRoleRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -173,8 +173,8 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     private transient TbRoleMenuPath _tbRoleMenu;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE_MENU</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_ROLE_MENU</code>
+     * table
      */
     public TbRoleMenuPath tbRoleMenu() {
         if (_tbRoleMenu == null)
@@ -186,8 +186,8 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     private transient TbRoleUserPath _tbRoleUser;
 
     /**
-     * Get the implicit to-many join path to the
-     * <code>CBSK-DEV.TB_ROLE_USER</code> table
+     * Get the implicit to-many join path to the <code>CBMS.TB_ROLE_USER</code>
+     * table
      */
     public TbRoleUserPath tbRoleUser() {
         if (_tbRoleUser == null)
@@ -197,16 +197,16 @@ public class TbRole extends TableImpl<TbRoleRecord> {
     }
 
     /**
-     * Get the implicit many-to-many join path to the
-     * <code>CBSK-DEV.TB_MENU</code> table
+     * Get the implicit many-to-many join path to the <code>CBMS.TB_MENU</code>
+     * table
      */
     public TbMenuPath tbMenu() {
         return tbRoleMenu().tbMenu();
     }
 
     /**
-     * Get the implicit many-to-many join path to the
-     * <code>CBSK-DEV.TB_USER</code> table
+     * Get the implicit many-to-many join path to the <code>CBMS.TB_USER</code>
+     * table
      */
     public TbUserPath tbUser() {
         return tbRoleUser().tbUser();

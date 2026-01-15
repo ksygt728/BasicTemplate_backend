@@ -3,10 +3,10 @@ version: "3.8"
 services:
   mysql-qa:
     image: mysql:8.0
-    container_name: CBSK-DB-QA
+    container_name: CBMS-DB-QA
     environment:
       MYSQL_ROOT_PASSWORD: root961019
-      MYSQL_DATABASE: CBSK-QA
+      MYSQL_DATABASE: CBMS
       TZ: Asia/Seoul
     ports:
       - "3307:3306"
@@ -17,7 +17,7 @@ services:
 
   redis-qa:
     image: redis:latest
-    container_name: CBSK-REDIS-QA
+    container_name: CBMS-REDIS-QA
     environment:
       TZ: Asia/Seoul
     ports:
@@ -29,7 +29,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: CBSK-ZOOKEEPER-QA
+    container_name: CBMS-ZOOKEEPER-QA
     ports:
       - "2182:2181" # QA용 포트 분리
     logging:
@@ -37,7 +37,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
-    container_name: CBSK-KAFKA-QA
+    container_name: CBMS-KAFKA-QA
     ports:
       - "9093:9092" # QA용 포트 분리
     logging:
@@ -55,7 +55,7 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: CBSK-KAFKA-UI-QA
+    container_name: CBMS-KAFKA-UI-QA
     ports:
       - "9081:8080" # QA용 포트 분리
     logging:

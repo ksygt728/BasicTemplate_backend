@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbCompany.TbCompanyPath;
 import com.basic.app.entity.jooq.tables.TbUser.TbUserPath;
@@ -46,7 +46,7 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_DEPARTMENT</code>
+     * The reference instance of <code>CBMS.TB_DEPARTMENT</code>
      */
     public static final TbDepartment TB_DEPARTMENT = new TbDepartment();
 
@@ -59,59 +59,59 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.DEPT_LV</code>.
-     */
-    public final TableField<TbDepartmentRecord, Integer> DEPT_LV = createField(DSL.name("DEPT_LV"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.USE_YN</code>.
-     */
-    public final TableField<TbDepartmentRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.CREATE_DATE</code>.
-     */
-    public final TableField<TbDepartmentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.TIMESTAMP</code>.
-     */
-    public final TableField<TbDepartmentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.COMPANY_CODE</code>.
-     */
-    public final TableField<TbDepartmentRecord, String> COMPANY_CODE = createField(DSL.name("COMPANY_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.CREATE_USER</code>.
-     */
-    public final TableField<TbDepartmentRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.DEPT_CODE</code>.
+     * The column <code>CBMS.TB_DEPARTMENT.DEPT_CODE</code>.
      */
     public final TableField<TbDepartmentRecord, String> DEPT_CODE = createField(DSL.name("DEPT_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_DEPARTMENT.CREATE_DATE</code>.
+     */
+    public final TableField<TbDepartmentRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.CREATE_USER</code>.
+     */
+    public final TableField<TbDepartmentRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.STS</code>.
+     */
+    public final TableField<TbDepartmentRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.TIMESTAMP</code>.
+     */
+    public final TableField<TbDepartmentRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.UPDATE_USER</code>.
      */
     public final TableField<TbDepartmentRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
+     * The column <code>CBMS.TB_DEPARTMENT.DEPT_LV</code>.
      */
-    public final TableField<TbDepartmentRecord, String> UPPER_DEPT_CODE = createField(DSL.name("UPPER_DEPT_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+    public final TableField<TbDepartmentRecord, Integer> DEPT_LV = createField(DSL.name("DEPT_LV"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.DEPT_NM</code>.
+     * The column <code>CBMS.TB_DEPARTMENT.DEPT_NM</code>.
      */
     public final TableField<TbDepartmentRecord, String> DEPT_NM = createField(DSL.name("DEPT_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_DEPARTMENT.STS</code>.
+     * The column <code>CBMS.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
      */
-    public final TableField<TbDepartmentRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
+    public final TableField<TbDepartmentRecord, String> UPPER_DEPT_CODE = createField(DSL.name("UPPER_DEPT_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.USE_YN</code>.
+     */
+    public final TableField<TbDepartmentRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
+
+    /**
+     * The column <code>CBMS.TB_DEPARTMENT.COMPANY_CODE</code>.
+     */
+    public final TableField<TbDepartmentRecord, String> COMPANY_CODE = createField(DSL.name("COMPANY_CODE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     private TbDepartment(Name alias, Table<TbDepartmentRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -122,21 +122,21 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_DEPARTMENT</code> table reference
+     * Create an aliased <code>CBMS.TB_DEPARTMENT</code> table reference
      */
     public TbDepartment(String alias) {
         this(DSL.name(alias), TB_DEPARTMENT);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_DEPARTMENT</code> table reference
+     * Create an aliased <code>CBMS.TB_DEPARTMENT</code> table reference
      */
     public TbDepartment(Name alias) {
         this(alias, TB_DEPARTMENT);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_DEPARTMENT</code> table reference
+     * Create a <code>CBMS.TB_DEPARTMENT</code> table reference
      */
     public TbDepartment() {
         this(DSL.name("TB_DEPARTMENT"), null);
@@ -177,7 +177,7 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -193,7 +193,7 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     private transient TbCompanyPath _tbCompany;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_COMPANY</code> table.
+     * Get the implicit join path to the <code>CBMS.TB_COMPANY</code> table.
      */
     public TbCompanyPath tbCompany() {
         if (_tbCompany == null)
@@ -205,8 +205,7 @@ public class TbDepartment extends TableImpl<TbDepartmentRecord> {
     private transient TbUserPath _tbUser;
 
     /**
-     * Get the implicit to-many join path to the <code>CBSK-DEV.TB_USER</code>
-     * table
+     * Get the implicit to-many join path to the <code>CBMS.TB_USER</code> table
      */
     public TbUserPath tbUser() {
         if (_tbUser == null)

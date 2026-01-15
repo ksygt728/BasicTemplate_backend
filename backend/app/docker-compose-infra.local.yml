@@ -3,10 +3,10 @@ version: "3.8"
 services:
   mysql-dev:
     image: mysql:8.0
-    container_name: CBSK-DB-DEV
+    container_name: CBMS-DB-LOCAL
     environment:
       MYSQL_ROOT_PASSWORD: root961019
-      MYSQL_DATABASE: CBSK-DEV
+      MYSQL_DATABASE: CBMS
       TZ: Asia/Seoul
     ports:
       - "3306:3306"
@@ -17,7 +17,7 @@ services:
 
   redis-dev:
     image: redis:latest
-    container_name: CBSK-REDIS-DEV
+    container_name: CBMS-REDIS-LOCAL
     environment:
       TZ: Asia/Seoul
     ports:
@@ -29,7 +29,7 @@ services:
 
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: CBSK-ZOOKEEPER-DEV
+    container_name: CBMS-ZOOKEEPER-LOCAL
     ports:
       - "2181:2181"
     logging:
@@ -37,7 +37,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
-    container_name: CBSK-KAFKA-DEV
+    container_name: CBMS-KAFKA-LOCAL
     ports:
       - "9092:9092" # 로컬 PC에서 접속할 포트
     logging:
@@ -64,7 +64,7 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: CBSK-KAFKA-UI-DEV
+    container_name: CBMS-KAFKA-UI-LOCAL
     logging:
       driver: "none"
     ports:
@@ -88,7 +88,7 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts
-    container_name: CBSK-JENKINS-DEV
+    container_name: CBMS-JENKINS-LOCAL
     restart: unless-stopped
     privileged: true # 도커 명령어 실행을 위해 필요
     user: root

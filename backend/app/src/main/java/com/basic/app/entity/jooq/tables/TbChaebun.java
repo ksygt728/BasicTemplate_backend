@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbChaebunRecord;
 
@@ -38,7 +38,7 @@ public class TbChaebun extends TableImpl<TbChaebunRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_CHAEBUN</code>
+     * The reference instance of <code>CBMS.TB_CHAEBUN</code>
      */
     public static final TbChaebun TB_CHAEBUN = new TbChaebun();
 
@@ -51,69 +51,69 @@ public class TbChaebun extends TableImpl<TbChaebunRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.SEQ_ID</code>.
+     * The column <code>CBMS.TB_CHAEBUN.SEQ_ID</code>.
      */
     public final TableField<TbChaebunRecord, String> SEQ_ID = createField(DSL.name("SEQ_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_CHAEBUN.CREATE_DATE</code>.
      */
     public final TableField<TbChaebunRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.CREATE_USER</code>.
+     * The column <code>CBMS.TB_CHAEBUN.CREATE_USER</code>.
      */
     public final TableField<TbChaebunRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.STS</code>.
+     * The column <code>CBMS.TB_CHAEBUN.STS</code>.
      */
     public final TableField<TbChaebunRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_CHAEBUN.TIMESTAMP</code>.
      */
     public final TableField<TbChaebunRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_CHAEBUN.UPDATE_USER</code>.
      */
     public final TableField<TbChaebunRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.CURRENT_VALUE</code>.
+     * The column <code>CBMS.TB_CHAEBUN.CURRENT_VALUE</code>.
      */
     public final TableField<TbChaebunRecord, Integer> CURRENT_VALUE = createField(DSL.name("CURRENT_VALUE"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.DATEFORMAT</code>.
+     * The column <code>CBMS.TB_CHAEBUN.DATEFORMAT</code>.
      */
     public final TableField<TbChaebunRecord, String> DATEFORMAT = createField(DSL.name("DATEFORMAT"), SQLDataType.VARCHAR(45), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.LENGTH</code>.
+     * The column <code>CBMS.TB_CHAEBUN.LENGTH</code>.
      */
-    public final TableField<TbChaebunRecord, Integer> LENGTH = createField(DSL.name("LENGTH"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<TbChaebunRecord, Integer> LENGTH = createField(DSL.name("LENGTH"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.inline("4", SQLDataType.INTEGER)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.PREFIX</code>.
+     * The column <code>CBMS.TB_CHAEBUN.PATTERN</code>.
+     */
+    public final TableField<TbChaebunRecord, String> PATTERN = createField(DSL.name("PATTERN"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+
+    /**
+     * The column <code>CBMS.TB_CHAEBUN.PREFIX</code>.
      */
     public final TableField<TbChaebunRecord, String> PREFIX = createField(DSL.name("PREFIX"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.SEQ_NAME</code>.
+     * The column <code>CBMS.TB_CHAEBUN.SEQ_NAME</code>.
      */
     public final TableField<TbChaebunRecord, String> SEQ_NAME = createField(DSL.name("SEQ_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.STEP</code>.
+     * The column <code>CBMS.TB_CHAEBUN.STEP</code>.
      */
-    public final TableField<TbChaebunRecord, Integer> STEP = createField(DSL.name("STEP"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>CBSK-DEV.TB_CHAEBUN.PATTERN</code>.
-     */
-    public final TableField<TbChaebunRecord, String> PATTERN = createField(DSL.name("PATTERN"), SQLDataType.VARCHAR(45).nullable(false), this, "");
+    public final TableField<TbChaebunRecord, Integer> STEP = createField(DSL.name("STEP"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.inline("1", SQLDataType.INTEGER)), this, "");
 
     private TbChaebun(Name alias, Table<TbChaebunRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -124,21 +124,21 @@ public class TbChaebun extends TableImpl<TbChaebunRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_CHAEBUN</code> table reference
+     * Create an aliased <code>CBMS.TB_CHAEBUN</code> table reference
      */
     public TbChaebun(String alias) {
         this(DSL.name(alias), TB_CHAEBUN);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_CHAEBUN</code> table reference
+     * Create an aliased <code>CBMS.TB_CHAEBUN</code> table reference
      */
     public TbChaebun(Name alias) {
         this(alias, TB_CHAEBUN);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_CHAEBUN</code> table reference
+     * Create a <code>CBMS.TB_CHAEBUN</code> table reference
      */
     public TbChaebun() {
         this(DSL.name("TB_CHAEBUN"), null);
@@ -146,7 +146,7 @@ public class TbChaebun extends TableImpl<TbChaebunRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
