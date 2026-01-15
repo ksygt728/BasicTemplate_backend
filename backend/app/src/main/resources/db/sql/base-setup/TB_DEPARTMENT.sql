@@ -1,7 +1,7 @@
 SELECT * FROM TB_COMPANY;
 
 INSERT INTO TB_COMPANY (COMPANY_CODE, COMPANY_NAME, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, TIMESTAMP)
-values('C100', 'CBSK회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
+values('C100', 'CBMS회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
 
 
 WITH RECURSIVE CHILDDEPTS AS (
@@ -32,7 +32,7 @@ WHERE 1=1
 
 
 
--- 👑 CBSK
+-- 👑 CBMS
 -- ├─── 💼 경영지원본부
 -- │    ├─── 🤝 인사팀
 -- │    │    ├─── ✍️ 채용파트
@@ -158,7 +158,7 @@ WHERE 1=1
 
 -- 부서경로: 대표이사 > 경영지원본부
 INSERT INTO TB_DEPARTMENT (DEPT_CODE, DEPT_NM, UPPER_DEPT_CODE, DEPT_LV, COMPANY_CODE, USE_YN, CREATE_DATE, CREATE_USER, TIMESTAMP, UPDATE_USER, STS)
-VALUES ('20000000', 'CBSK', 'ROOT', 0, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
+VALUES ('20000000', 'CBMS', 'ROOT', 0, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
 ,('21000000', '경영지원본부', '20000000', 1, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
 -- 부서경로: 대표이사 > 기술개발본부
  ,('22000000', '기술개발본부', '20000000', 1, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')

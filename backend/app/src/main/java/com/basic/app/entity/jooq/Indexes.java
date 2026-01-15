@@ -4,6 +4,7 @@
 package com.basic.app.entity.jooq;
 
 
+import com.basic.app.entity.jooq.tables.FlywaySchemaHistory;
 import com.basic.app.entity.jooq.tables.TbLogApi;
 
 import org.jooq.Index;
@@ -13,7 +14,7 @@ import org.jooq.impl.Internal;
 
 
 /**
- * A class modelling indexes of tables in CBSK-DEV.
+ * A class modelling indexes of tables in CBMS.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Indexes {
@@ -22,6 +23,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex(DSL.name("flyway_schema_history_s_idx"), FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);
     public static final Index TB_LOG_API_IDX_ACCESS_LOG_END_DATE = Internal.createIndex(DSL.name("idx_access_log_end_date"), TbLogApi.TB_LOG_API, new OrderField[] { TbLogApi.TB_LOG_API.END_DATE }, false);
     public static final Index TB_LOG_API_IDX_ACCESS_LOG_IP_END_DATE = Internal.createIndex(DSL.name("idx_access_log_ip_end_date"), TbLogApi.TB_LOG_API, new OrderField[] { TbLogApi.TB_LOG_API.IP_ADDR, TbLogApi.TB_LOG_API.END_DATE }, false);
     public static final Index TB_LOG_API_IDX_ACCESS_LOG_URI_END_DATE = Internal.createIndex(DSL.name("idx_access_log_uri_end_date"), TbLogApi.TB_LOG_API, new OrderField[] { TbLogApi.TB_LOG_API.REQUEST_URI, TbLogApi.TB_LOG_API.END_DATE }, false);

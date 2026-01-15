@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbComCodeTPivotRecord;
 
@@ -38,7 +38,7 @@ public class TbComCodeTPivot extends TableImpl<TbComCodeTPivotRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_COM_CODE_T_PIVOT</code>
+     * The reference instance of <code>CBMS.TB_COM_CODE_T_PIVOT</code>
      */
     public static final TbComCodeTPivot TB_COM_CODE_T_PIVOT = new TbComCodeTPivot();
 
@@ -51,47 +51,47 @@ public class TbComCodeTPivot extends TableImpl<TbComCodeTPivotRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_CD</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> ATTR_CD = createField(DSL.name("ATTR_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.GRP_CD</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> GRP_CD = createField(DSL.name("GRP_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_DATE</code>.
      */
     public final TableField<TbComCodeTPivotRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.CREATE_USER</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.STS</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.STS</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.TIMESTAMP</code>.
      */
     public final TableField<TbComCodeTPivotRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.UPDATE_USER</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.ATTR_NM</code>.
      */
     public final TableField<TbComCodeTPivotRecord, String> ATTR_NM = createField(DSL.name("ATTR_NM"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
+     * The column <code>CBMS.TB_COM_CODE_T_PIVOT.ORDER_NUM</code>.
      */
     public final TableField<TbComCodeTPivotRecord, Integer> ORDER_NUM = createField(DSL.name("ORDER_NUM"), SQLDataType.INTEGER.nullable(false), this, "");
 
@@ -104,23 +104,21 @@ public class TbComCodeTPivot extends TableImpl<TbComCodeTPivotRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_T_PIVOT</code> table
-     * reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_T_PIVOT</code> table reference
      */
     public TbComCodeTPivot(String alias) {
         this(DSL.name(alias), TB_COM_CODE_T_PIVOT);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_T_PIVOT</code> table
-     * reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_T_PIVOT</code> table reference
      */
     public TbComCodeTPivot(Name alias) {
         this(alias, TB_COM_CODE_T_PIVOT);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_COM_CODE_T_PIVOT</code> table reference
+     * Create a <code>CBMS.TB_COM_CODE_T_PIVOT</code> table reference
      */
     public TbComCodeTPivot() {
         this(DSL.name("TB_COM_CODE_T_PIVOT"), null);
@@ -128,7 +126,7 @@ public class TbComCodeTPivot extends TableImpl<TbComCodeTPivotRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

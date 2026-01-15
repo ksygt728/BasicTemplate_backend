@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbIfRecord;
 
@@ -38,7 +38,7 @@ public class TbIf extends TableImpl<TbIfRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_IF</code>
+     * The reference instance of <code>CBMS.TB_IF</code>
      */
     public static final TbIf TB_IF = new TbIf();
 
@@ -51,42 +51,42 @@ public class TbIf extends TableImpl<TbIfRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.IF_ID</code>.
+     * The column <code>CBMS.TB_IF.IF_ID</code>.
      */
     public final TableField<TbIfRecord, String> IF_ID = createField(DSL.name("IF_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_IF.CREATE_DATE</code>.
      */
     public final TableField<TbIfRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.CREATE_USER</code>.
+     * The column <code>CBMS.TB_IF.CREATE_USER</code>.
      */
     public final TableField<TbIfRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.STS</code>.
+     * The column <code>CBMS.TB_IF.STS</code>.
      */
     public final TableField<TbIfRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_IF.TIMESTAMP</code>.
      */
     public final TableField<TbIfRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_IF.UPDATE_USER</code>.
      */
     public final TableField<TbIfRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.IF_NAME</code>.
+     * The column <code>CBMS.TB_IF.IF_NAME</code>.
      */
     public final TableField<TbIfRecord, String> IF_NAME = createField(DSL.name("IF_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_IF.TEXT</code>.
+     * The column <code>CBMS.TB_IF.TEXT</code>.
      */
     public final TableField<TbIfRecord, String> TEXT = createField(DSL.name("TEXT"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
@@ -99,21 +99,21 @@ public class TbIf extends TableImpl<TbIfRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_IF</code> table reference
+     * Create an aliased <code>CBMS.TB_IF</code> table reference
      */
     public TbIf(String alias) {
         this(DSL.name(alias), TB_IF);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_IF</code> table reference
+     * Create an aliased <code>CBMS.TB_IF</code> table reference
      */
     public TbIf(Name alias) {
         this(alias, TB_IF);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_IF</code> table reference
+     * Create a <code>CBMS.TB_IF</code> table reference
      */
     public TbIf() {
         this(DSL.name("TB_IF"), null);
@@ -121,7 +121,7 @@ public class TbIf extends TableImpl<TbIfRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

@@ -75,14 +75,14 @@ public class RoleUserTestCasesForUserSearch implements
             .gender("M")
             .department(DepartmentResDto.builder()
                 .deptCode("20000000")
-                .deptNm("CBSK")
+                .deptNm("CBMS")
                 .deptLv(0)
                 .upperDeptCode("ROOT")
                 .useYn("Y")
                 .company(
                     CompanyResDto.builder()
                         .companyCode("C100")
-                        .companyName("CBSK회사")
+                        .companyName("CBMS회사")
                         .build())
                 .build())
             .build());

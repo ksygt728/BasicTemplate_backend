@@ -68,14 +68,14 @@ public class KafkaLogConsumer {
                         logApis.add(logApi);
                     }
                 } catch (Exception e) {
-                    log.warn("CBSK Kafka : 역직렬화 실패: {}", record.value(), e);
+                    log.warn("CBMS Kafka : 역직렬화 실패: {}", record.value(), e);
                 }
             }
-            log.info("CBSK Kafka : {}건 로그 수신.", logApis.size());
+            log.info("CBMS Kafka : {}건 로그 수신.", logApis.size());
 
             if (!logApis.isEmpty()) {
                 logService.insertApiLog(logApis);
-                log.info("CBSK Kafka : 총 {}건 로그 저장 완료.", logApis.size());
+                log.info("CBMS Kafka : 총 {}건 로그 저장 완료.", logApis.size());
             }
 
             consumer.commitSync();

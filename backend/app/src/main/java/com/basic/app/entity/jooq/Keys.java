@@ -4,6 +4,7 @@
 package com.basic.app.entity.jooq;
 
 
+import com.basic.app.entity.jooq.tables.FlywaySchemaHistory;
 import com.basic.app.entity.jooq.tables.TbBbs;
 import com.basic.app.entity.jooq.tables.TbBbsComment;
 import com.basic.app.entity.jooq.tables.TbChaebun;
@@ -32,6 +33,7 @@ import com.basic.app.entity.jooq.tables.TbSmsH;
 import com.basic.app.entity.jooq.tables.TbSmsM;
 import com.basic.app.entity.jooq.tables.TbUser;
 import com.basic.app.entity.jooq.tables.TbWebSvc;
+import com.basic.app.entity.jooq.tables.records.FlywaySchemaHistoryRecord;
 import com.basic.app.entity.jooq.tables.records.TbBbsCommentRecord;
 import com.basic.app.entity.jooq.tables.records.TbBbsRecord;
 import com.basic.app.entity.jooq.tables.records.TbChaebunRecord;
@@ -70,7 +72,7 @@ import org.jooq.impl.Internal;
 
 /**
  * A class modelling foreign key relationships and constraints of tables in
- * CBSK-DEV.
+ * CBMS.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Keys {
@@ -79,6 +81,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, DSL.name("KEY_flyway_schema_history_PRIMARY"), new TableField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
     public static final UniqueKey<TbBbsRecord> KEY_TB_BBS_PRIMARY = Internal.createUniqueKey(TbBbs.TB_BBS, DSL.name("KEY_TB_BBS_PRIMARY"), new TableField[] { TbBbs.TB_BBS.BBS_ID }, true);
     public static final UniqueKey<TbBbsCommentRecord> KEY_TB_BBS_COMMENT_PRIMARY = Internal.createUniqueKey(TbBbsComment.TB_BBS_COMMENT, DSL.name("KEY_TB_BBS_COMMENT_PRIMARY"), new TableField[] { TbBbsComment.TB_BBS_COMMENT.COMMENT_ID }, true);
     public static final UniqueKey<TbChaebunRecord> KEY_TB_CHAEBUN_PRIMARY = Internal.createUniqueKey(TbChaebun.TB_CHAEBUN, DSL.name("KEY_TB_CHAEBUN_PRIMARY"), new TableField[] { TbChaebun.TB_CHAEBUN.SEQ_ID }, true);

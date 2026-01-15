@@ -1,0 +1,230 @@
+configuration-as-code: {}
+credentials:
+  folder: {}
+  providerImpl: {}
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              description: "Git 계정"
+              id: "git-credential"
+              password: "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"
+              scope: GLOBAL
+              username: "ksygt728"
+          - usernamePassword:
+              description: "Docker Hub access token for CI"
+              id: "dockerhub-credential"
+              password: "dckr_pat_1701m67FUu_a4EGjX2c4GcY5Xfg"
+              scope: GLOBAL
+              username: "seungyeon728"
+          - basicSSHUserPrivateKey:
+              description: "SSH접속 계정"
+              id: "deploy-ssh-key"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{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}"
+              scope: GLOBAL
+              username: "ec2-user"
+        domain: {}
+  user: {}
+jenkins:
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+    - name: "built-in"
+  log: {}
+  markupFormatter: "plainText"
+  mode: NORMAL
+  nodeMonitors:
+    - "architecture"
+    - "clock"
+    - diskSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "swapSpace"
+    - tmpSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "responseTime"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "ksygt728"
+          name: "김승연"
+          properties:
+            - theme:
+                theme: "darkSystem"
+            - "consoleUrlProvider"
+            - "viewsTabBar"
+            - myView:
+                viewsTabBar: "standard"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "ksygt728.study@gmail.com"
+            - "apiToken"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "default"
+        url: "https://updates.jenkins.io/update-center.json"
+  views:
+    - all:
+        name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+appearance:
+  consoleUrlProvider: {}
+  pipelineGraphView:
+    showGraphOnBuildPage: false
+    showGraphOnJobPage: false
+    showStageDurations: false
+    showStageNames: false
+  prism:
+    theme: PRISM
+  themeManager:
+    disableUserThemes: false
+    theme: "noOp"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  apiTokenProperty: {}
+  cps:
+    hideSandbox: false
+  crumb: {}
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  prism: {}
+  queueItemAuthenticator: {}
+  scriptApproval:
+    forceSandbox: false
+  updateSiteWarningsConfiguration: {}
+unclassified:
+  administrativeMonitorsConfiguration: {}
+  artifactManager: {}
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  buildStepOperation:
+    enabled: false
+  builtInNode: {}
+  casCGlobalConfig: {}
+  computerRetentionCheckInterval: {}
+  defaultDisplayUrlProvider: {}
+  defaultFolderConfiguration: {}
+  defaultView: {}
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount: {}
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    throttlingEnabled: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  envVarsFilter: {}
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://dev.cbmsori.com:9900/github-webhook/"
+  gitParameter: {}
+  globalDefaultFlowDurabilityLevel: {}
+  globalLibraries: {}
+  globalTimeOutConfiguration:
+    operations:
+      - "abortOperation"
+    overwriteable: false
+  globalUntrustedLibraries: {}
+  injectionConfig:
+    allowUntrusted: false
+    checkForBuildAgentErrors: false
+    enabled: false
+    enforceUrl: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://dev.cbmsori.com:9900/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  metricsAccessKey: {}
+  myView: {}
+  nodeProperties: {}
+  plugin: {}
+  pollSCM:
+    pollingThreadCount: 10
+  projectNamingStrategy: {}
+  proxyConfigurationManager: {}
+  quietPeriod: {}
+  resourceRoot: {}
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  scmRetryCount: {}
+  shell: {}
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  usageStatistics: {}
+  viewsTabBar: {}
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

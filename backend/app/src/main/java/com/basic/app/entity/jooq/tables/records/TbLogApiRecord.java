@@ -21,240 +21,240 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_LOG_API.LOG_ID</code>.
      */
-    public void setCreateDate(LocalDateTime value) {
+    public void setLogId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_LOG_API.LOG_ID</code>.
      */
-    public LocalDateTime getCreateDate() {
-        return (LocalDateTime) get(0);
+    public String getLogId() {
+        return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.END_DATE</code>.
+     * Setter for <code>CBMS.TB_LOG_API.CREATE_DATE</code>.
      */
-    public void setEndDate(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.END_DATE</code>.
+     * Getter for <code>CBMS.TB_LOG_API.CREATE_DATE</code>.
      */
-    public LocalDateTime getEndDate() {
+    public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.EXEC_TIME</code>.
+     * Setter for <code>CBMS.TB_LOG_API.CREATE_USER</code>.
      */
-    public void setExecTime(Long value) {
+    public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.EXEC_TIME</code>.
+     * Getter for <code>CBMS.TB_LOG_API.CREATE_USER</code>.
      */
-    public Long getExecTime() {
-        return (Long) get(2);
+    public String getCreateUser() {
+        return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.START_DATE</code>.
+     * Setter for <code>CBMS.TB_LOG_API.STS</code>.
      */
-    public void setStartDate(LocalDateTime value) {
+    public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.START_DATE</code>.
+     * Getter for <code>CBMS.TB_LOG_API.STS</code>.
      */
-    public LocalDateTime getStartDate() {
-        return (LocalDateTime) get(3);
+    public String getSts() {
+        return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_LOG_API.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_LOG_API.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.LOG_ID</code>.
+     * Setter for <code>CBMS.TB_LOG_API.UPDATE_USER</code>.
      */
-    public void setLogId(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.LOG_ID</code>.
+     * Getter for <code>CBMS.TB_LOG_API.UPDATE_USER</code>.
      */
-    public String getLogId() {
+    public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_LOG_API.END_DATE</code>.
      */
-    public void setCreateUser(String value) {
+    public void setEndDate(LocalDateTime value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_LOG_API.END_DATE</code>.
      */
-    public String getCreateUser() {
-        return (String) get(6);
+    public LocalDateTime getEndDate() {
+        return (LocalDateTime) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.HTTP_METHOD</code>.
+     * Setter for <code>CBMS.TB_LOG_API.EXEC_TIME</code>.
      */
-    public void setHttpMethod(String value) {
+    public void setExecTime(Long value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.HTTP_METHOD</code>.
+     * Getter for <code>CBMS.TB_LOG_API.EXEC_TIME</code>.
      */
-    public String getHttpMethod() {
-        return (String) get(7);
+    public Long getExecTime() {
+        return (Long) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.IP_ADDR</code>.
+     * Setter for <code>CBMS.TB_LOG_API.HTTP_METHOD</code>.
      */
-    public void setIpAddr(String value) {
+    public void setHttpMethod(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.IP_ADDR</code>.
+     * Getter for <code>CBMS.TB_LOG_API.HTTP_METHOD</code>.
      */
-    public String getIpAddr() {
+    public String getHttpMethod() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.STATUS_CODE</code>.
+     * Setter for <code>CBMS.TB_LOG_API.IP_ADDR</code>.
      */
-    public void setStatusCode(String value) {
+    public void setIpAddr(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.STATUS_CODE</code>.
+     * Getter for <code>CBMS.TB_LOG_API.IP_ADDR</code>.
      */
-    public String getStatusCode() {
+    public String getIpAddr() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_LOG_API.REQUEST_BODY</code>.
      */
-    public void setUpdateUser(String value) {
+    public void setRequestBody(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_LOG_API.REQUEST_BODY</code>.
      */
-    public String getUpdateUser() {
+    public String getRequestBody() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.USER_AGENT</code>.
+     * Setter for <code>CBMS.TB_LOG_API.REQUEST_URI</code>.
      */
-    public void setUserAgent(String value) {
+    public void setRequestUri(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.USER_AGENT</code>.
+     * Getter for <code>CBMS.TB_LOG_API.REQUEST_URI</code>.
      */
-    public String getUserAgent() {
+    public String getRequestUri() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.USER_ID</code>.
+     * Setter for <code>CBMS.TB_LOG_API.RESPONSE_BODY</code>.
      */
-    public void setUserId(String value) {
+    public void setResponseBody(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.USER_ID</code>.
+     * Getter for <code>CBMS.TB_LOG_API.RESPONSE_BODY</code>.
      */
-    public String getUserId() {
+    public String getResponseBody() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.REQUEST_URI</code>.
+     * Setter for <code>CBMS.TB_LOG_API.START_DATE</code>.
      */
-    public void setRequestUri(String value) {
+    public void setStartDate(LocalDateTime value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.REQUEST_URI</code>.
+     * Getter for <code>CBMS.TB_LOG_API.START_DATE</code>.
      */
-    public String getRequestUri() {
-        return (String) get(13);
+    public LocalDateTime getStartDate() {
+        return (LocalDateTime) get(13);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.STS</code>.
+     * Setter for <code>CBMS.TB_LOG_API.STATUS_CODE</code>.
      */
-    public void setSts(String value) {
+    public void setStatusCode(String value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.STS</code>.
+     * Getter for <code>CBMS.TB_LOG_API.STATUS_CODE</code>.
      */
-    public String getSts() {
+    public String getStatusCode() {
         return (String) get(14);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.REQUEST_BODY</code>.
+     * Setter for <code>CBMS.TB_LOG_API.USER_AGENT</code>.
      */
-    public void setRequestBody(String value) {
+    public void setUserAgent(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.REQUEST_BODY</code>.
+     * Getter for <code>CBMS.TB_LOG_API.USER_AGENT</code>.
      */
-    public String getRequestBody() {
+    public String getUserAgent() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_API.RESPONSE_BODY</code>.
+     * Setter for <code>CBMS.TB_LOG_API.USER_ID</code>.
      */
-    public void setResponseBody(String value) {
+    public void setUserId(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_API.RESPONSE_BODY</code>.
+     * Getter for <code>CBMS.TB_LOG_API.USER_ID</code>.
      */
-    public String getResponseBody() {
+    public String getUserId() {
         return (String) get(16);
     }
 
@@ -281,26 +281,26 @@ public class TbLogApiRecord extends UpdatableRecordImpl<TbLogApiRecord> {
     /**
      * Create a detached, initialised TbLogApiRecord
      */
-    public TbLogApiRecord(LocalDateTime createDate, LocalDateTime endDate, Long execTime, LocalDateTime startDate, LocalDateTime timestamp, String logId, String createUser, String httpMethod, String ipAddr, String statusCode, String updateUser, String userAgent, String userId, String requestUri, String sts, String requestBody, String responseBody) {
+    public TbLogApiRecord(String logId, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, LocalDateTime endDate, Long execTime, String httpMethod, String ipAddr, String requestBody, String requestUri, String responseBody, LocalDateTime startDate, String statusCode, String userAgent, String userId) {
         super(TbLogApi.TB_LOG_API);
 
+        setLogId(logId);
         setCreateDate(createDate);
+        setCreateUser(createUser);
+        setSts(sts);
+        setTimestamp(timestamp);
+        setUpdateUser(updateUser);
         setEndDate(endDate);
         setExecTime(execTime);
-        setStartDate(startDate);
-        setTimestamp(timestamp);
-        setLogId(logId);
-        setCreateUser(createUser);
         setHttpMethod(httpMethod);
         setIpAddr(ipAddr);
+        setRequestBody(requestBody);
+        setRequestUri(requestUri);
+        setResponseBody(responseBody);
+        setStartDate(startDate);
         setStatusCode(statusCode);
-        setUpdateUser(updateUser);
         setUserAgent(userAgent);
         setUserId(userId);
-        setRequestUri(requestUri);
-        setSts(sts);
-        setRequestBody(requestBody);
-        setResponseBody(responseBody);
         resetChangedOnNotNull();
     }
 }

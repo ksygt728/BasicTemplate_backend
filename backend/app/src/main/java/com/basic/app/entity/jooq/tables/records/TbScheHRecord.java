@@ -21,182 +21,182 @@ public class TbScheHRecord extends UpdatableRecordImpl<TbScheHRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.LOG_ID</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.LOG_ID</code>.
      */
     public void setLogId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.LOG_ID</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.LOG_ID</code>.
      */
     public String getLogId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.STS</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.STS</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.END_TIME</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.END_TIME</code>.
      */
     public void setEndTime(LocalDateTime value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.END_TIME</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.END_TIME</code>.
      */
     public LocalDateTime getEndTime() {
         return (LocalDateTime) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.ERROR_MSG</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.ERROR_MSG</code>.
      */
     public void setErrorMsg(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.ERROR_MSG</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.ERROR_MSG</code>.
      */
     public String getErrorMsg() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.EXEC_TIME</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.EXEC_TIME</code>.
      */
     public void setExecTime(Long value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.EXEC_TIME</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.EXEC_TIME</code>.
      */
     public Long getExecTime() {
         return (Long) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.SCHE_GROUP</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.SCHE_GROUP</code>.
      */
     public void setScheGroup(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.SCHE_GROUP</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.SCHE_GROUP</code>.
      */
     public String getScheGroup() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.SCHE_ID</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.SCHE_ID</code>.
      */
     public void setScheId(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.SCHE_ID</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.SCHE_ID</code>.
      */
     public String getScheId() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.START_TIME</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.START_TIME</code>.
      */
     public void setStartTime(LocalDateTime value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.START_TIME</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.START_TIME</code>.
      */
     public LocalDateTime getStartTime() {
         return (LocalDateTime) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_SCHE_H.SUCCESS</code>.
+     * Setter for <code>CBMS.TB_SCHE_H.SUCCESS</code>.
      */
     public void setSuccess(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_SCHE_H.SUCCESS</code>.
+     * Getter for <code>CBMS.TB_SCHE_H.SUCCESS</code>.
      */
     public String getSuccess() {
         return (String) get(12);

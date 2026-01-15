@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbWebSvcRecord;
 
@@ -38,7 +38,7 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_WEB_SVC</code>
+     * The reference instance of <code>CBMS.TB_WEB_SVC</code>
      */
     public static final TbWebSvc TB_WEB_SVC = new TbWebSvc();
 
@@ -51,37 +51,37 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.SVC_ID</code>.
+     * The column <code>CBMS.TB_WEB_SVC.SVC_ID</code>.
      */
     public final TableField<TbWebSvcRecord, String> SVC_ID = createField(DSL.name("SVC_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_WEB_SVC.CREATE_DATE</code>.
      */
     public final TableField<TbWebSvcRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.CREATE_USER</code>.
+     * The column <code>CBMS.TB_WEB_SVC.CREATE_USER</code>.
      */
     public final TableField<TbWebSvcRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.STS</code>.
+     * The column <code>CBMS.TB_WEB_SVC.STS</code>.
      */
     public final TableField<TbWebSvcRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_WEB_SVC.TIMESTAMP</code>.
      */
     public final TableField<TbWebSvcRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_WEB_SVC.UPDATE_USER</code>.
      */
     public final TableField<TbWebSvcRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_WEB_SVC.SVC_NAME</code>.
+     * The column <code>CBMS.TB_WEB_SVC.SVC_NAME</code>.
      */
     public final TableField<TbWebSvcRecord, String> SVC_NAME = createField(DSL.name("SVC_NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
@@ -94,21 +94,21 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_WEB_SVC</code> table reference
+     * Create an aliased <code>CBMS.TB_WEB_SVC</code> table reference
      */
     public TbWebSvc(String alias) {
         this(DSL.name(alias), TB_WEB_SVC);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_WEB_SVC</code> table reference
+     * Create an aliased <code>CBMS.TB_WEB_SVC</code> table reference
      */
     public TbWebSvc(Name alias) {
         this(alias, TB_WEB_SVC);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_WEB_SVC</code> table reference
+     * Create a <code>CBMS.TB_WEB_SVC</code> table reference
      */
     public TbWebSvc() {
         this(DSL.name("TB_WEB_SVC"), null);
@@ -116,7 +116,7 @@ public class TbWebSvc extends TableImpl<TbWebSvcRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

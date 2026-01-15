@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbUser.TbUserPath;
 import com.basic.app.entity.jooq.tables.records.TbNoticeRecord;
@@ -45,7 +45,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_NOTICE</code>
+     * The reference instance of <code>CBMS.TB_NOTICE</code>
      */
     public static final TbNotice TB_NOTICE = new TbNotice();
 
@@ -58,57 +58,57 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.NOT_ID</code>.
+     * The column <code>CBMS.TB_NOTICE.NOT_ID</code>.
      */
     public final TableField<TbNoticeRecord, String> NOT_ID = createField(DSL.name("NOT_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_NOTICE.CREATE_DATE</code>.
      */
     public final TableField<TbNoticeRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.CREATE_USER</code>.
+     * The column <code>CBMS.TB_NOTICE.CREATE_USER</code>.
      */
     public final TableField<TbNoticeRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.STS</code>.
+     * The column <code>CBMS.TB_NOTICE.STS</code>.
      */
     public final TableField<TbNoticeRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_NOTICE.TIMESTAMP</code>.
      */
     public final TableField<TbNoticeRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_NOTICE.UPDATE_USER</code>.
      */
     public final TableField<TbNoticeRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.CONTENT</code>.
+     * The column <code>CBMS.TB_NOTICE.CONTENT</code>.
      */
     public final TableField<TbNoticeRecord, String> CONTENT = createField(DSL.name("CONTENT"), SQLDataType.VARCHAR(2048).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.NOT_TYPE</code>.
+     * The column <code>CBMS.TB_NOTICE.NOT_TYPE</code>.
      */
     public final TableField<TbNoticeRecord, String> NOT_TYPE = createField(DSL.name("NOT_TYPE"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.TITLE</code>.
+     * The column <code>CBMS.TB_NOTICE.TITLE</code>.
      */
     public final TableField<TbNoticeRecord, String> TITLE = createField(DSL.name("TITLE"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.WRITE_DATE</code>.
+     * The column <code>CBMS.TB_NOTICE.WRITE_DATE</code>.
      */
     public final TableField<TbNoticeRecord, LocalDateTime> WRITE_DATE = createField(DSL.name("WRITE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_NOTICE.WRITOR</code>.
+     * The column <code>CBMS.TB_NOTICE.WRITOR</code>.
      */
     public final TableField<TbNoticeRecord, String> WRITOR = createField(DSL.name("WRITOR"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
@@ -121,21 +121,21 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_NOTICE</code> table reference
+     * Create an aliased <code>CBMS.TB_NOTICE</code> table reference
      */
     public TbNotice(String alias) {
         this(DSL.name(alias), TB_NOTICE);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_NOTICE</code> table reference
+     * Create an aliased <code>CBMS.TB_NOTICE</code> table reference
      */
     public TbNotice(Name alias) {
         this(alias, TB_NOTICE);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_NOTICE</code> table reference
+     * Create a <code>CBMS.TB_NOTICE</code> table reference
      */
     public TbNotice() {
         this(DSL.name("TB_NOTICE"), null);
@@ -176,7 +176,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -192,7 +192,7 @@ public class TbNotice extends TableImpl<TbNoticeRecord> {
     private transient TbUserPath _tbUser;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_USER</code> table.
+     * Get the implicit join path to the <code>CBMS.TB_USER</code> table.
      */
     public TbUserPath tbUser() {
         if (_tbUser == null)

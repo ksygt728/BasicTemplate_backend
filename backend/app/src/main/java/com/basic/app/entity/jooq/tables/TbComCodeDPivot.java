@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.TbComCodeM.TbComCodeMPath;
 import com.basic.app.entity.jooq.tables.records.TbComCodeDPivotRecord;
@@ -45,7 +45,7 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code>
+     * The reference instance of <code>CBMS.TB_COM_CODE_D_PIVOT</code>
      */
     public static final TbComCodeDPivot TB_COM_CODE_D_PIVOT = new TbComCodeDPivot();
 
@@ -58,97 +58,97 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.DTL_CD</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> DTL_CD = createField(DSL.name("DTL_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.GRP_CD</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> GRP_CD = createField(DSL.name("GRP_CD"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_DATE</code>.
      */
     public final TableField<TbComCodeDPivotRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.CREATE_USER</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.STS</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.STS</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.TIMESTAMP</code>.
      */
     public final TableField<TbComCodeDPivotRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.UPDATE_USER</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_01</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_01 = createField(DSL.name("ATTR_01"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_02</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_02 = createField(DSL.name("ATTR_02"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_03</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_03 = createField(DSL.name("ATTR_03"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_04</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_04 = createField(DSL.name("ATTR_04"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_05</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_05 = createField(DSL.name("ATTR_05"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_06</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_06 = createField(DSL.name("ATTR_06"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_07</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_07 = createField(DSL.name("ATTR_07"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_08</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_08 = createField(DSL.name("ATTR_08"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_09</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_09 = createField(DSL.name("ATTR_09"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ATTR_10</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> ATTR_10 = createField(DSL.name("ATTR_10"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.ORDER_NUM</code>.
      */
     public final TableField<TbComCodeDPivotRecord, Integer> ORDER_NUM = createField(DSL.name("ORDER_NUM"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_COM_CODE_D_PIVOT.USE_YN</code>.
+     * The column <code>CBMS.TB_COM_CODE_D_PIVOT.USE_YN</code>.
      */
     public final TableField<TbComCodeDPivotRecord, String> USE_YN = createField(DSL.name("USE_YN"), SQLDataType.VARCHAR(1).defaultValue(DSL.inline("N", SQLDataType.VARCHAR)), this, "");
 
@@ -161,23 +161,21 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code> table
-     * reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_D_PIVOT</code> table reference
      */
     public TbComCodeDPivot(String alias) {
         this(DSL.name(alias), TB_COM_CODE_D_PIVOT);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code> table
-     * reference
+     * Create an aliased <code>CBMS.TB_COM_CODE_D_PIVOT</code> table reference
      */
     public TbComCodeDPivot(Name alias) {
         this(alias, TB_COM_CODE_D_PIVOT);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_COM_CODE_D_PIVOT</code> table reference
+     * Create a <code>CBMS.TB_COM_CODE_D_PIVOT</code> table reference
      */
     public TbComCodeDPivot() {
         this(DSL.name("TB_COM_CODE_D_PIVOT"), null);
@@ -218,7 +216,7 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override
@@ -234,8 +232,7 @@ public class TbComCodeDPivot extends TableImpl<TbComCodeDPivotRecord> {
     private transient TbComCodeMPath _tbComCodeM;
 
     /**
-     * Get the implicit join path to the <code>CBSK-DEV.TB_COM_CODE_M</code>
-     * table.
+     * Get the implicit join path to the <code>CBMS.TB_COM_CODE_M</code> table.
      */
     public TbComCodeMPath tbComCodeM() {
         if (_tbComCodeM == null)

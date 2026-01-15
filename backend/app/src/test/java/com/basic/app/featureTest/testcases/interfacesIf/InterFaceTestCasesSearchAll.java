@@ -43,7 +43,7 @@ public class InterFaceTestCasesSearchAll implements
 
         String testName_order1 = "정상조회(N건)";
         // searchForm
-        InterfaceReqDto testData_order1 = new InterfaceReqDto("IF009", null, null);
+        InterfaceReqDto testData_order1 = new InterfaceReqDto("IF009_SEARCH", null, null);
         PageRequest pageRequest_order1 = PageRequest.of(0, 5, Sort.by("ifId").descending());
         List<InterfaceResDto> content = List.of(
                 new InterfaceResDto("IF009_SEARCH", "이벤트정보 요청", "/api/v1/events/info"));

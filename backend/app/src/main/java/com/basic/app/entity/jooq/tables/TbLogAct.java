@@ -4,7 +4,7 @@
 package com.basic.app.entity.jooq.tables;
 
 
-import com.basic.app.entity.jooq.CbskDev;
+import com.basic.app.entity.jooq.Cbms;
 import com.basic.app.entity.jooq.Keys;
 import com.basic.app.entity.jooq.tables.records.TbLogActRecord;
 
@@ -38,7 +38,7 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>CBSK-DEV.TB_LOG_ACT</code>
+     * The reference instance of <code>CBMS.TB_LOG_ACT</code>
      */
     public static final TbLogAct TB_LOG_ACT = new TbLogAct();
 
@@ -51,57 +51,57 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
     }
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.LOG_ID</code>.
+     * The column <code>CBMS.TB_LOG_ACT.LOG_ID</code>.
      */
     public final TableField<TbLogActRecord, String> LOG_ID = createField(DSL.name("LOG_ID"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.CREATE_DATE</code>.
+     * The column <code>CBMS.TB_LOG_ACT.CREATE_DATE</code>.
      */
     public final TableField<TbLogActRecord, LocalDateTime> CREATE_DATE = createField(DSL.name("CREATE_DATE"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.CREATE_USER</code>.
+     * The column <code>CBMS.TB_LOG_ACT.CREATE_USER</code>.
      */
     public final TableField<TbLogActRecord, String> CREATE_USER = createField(DSL.name("CREATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.STS</code>.
+     * The column <code>CBMS.TB_LOG_ACT.STS</code>.
      */
     public final TableField<TbLogActRecord, String> STS = createField(DSL.name("STS"), SQLDataType.VARCHAR(1).nullable(false).defaultValue(DSL.inline("C", SQLDataType.VARCHAR)), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.TIMESTAMP</code>.
+     * The column <code>CBMS.TB_LOG_ACT.TIMESTAMP</code>.
      */
     public final TableField<TbLogActRecord, LocalDateTime> TIMESTAMP = createField(DSL.name("TIMESTAMP"), SQLDataType.LOCALDATETIME(3).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.UPDATE_USER</code>.
+     * The column <code>CBMS.TB_LOG_ACT.UPDATE_USER</code>.
      */
     public final TableField<TbLogActRecord, String> UPDATE_USER = createField(DSL.name("UPDATE_USER"), SQLDataType.VARCHAR(45).nullable(false), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.ACTION_TYPE</code>.
+     * The column <code>CBMS.TB_LOG_ACT.ACTION_TYPE</code>.
      */
     public final TableField<TbLogActRecord, String> ACTION_TYPE = createField(DSL.name("ACTION_TYPE"), SQLDataType.VARCHAR(45), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.ACTION_TYPE_DETAIL</code>.
+     * The column <code>CBMS.TB_LOG_ACT.ACTION_TYPE_DETAIL</code>.
      */
     public final TableField<TbLogActRecord, String> ACTION_TYPE_DETAIL = createField(DSL.name("ACTION_TYPE_DETAIL"), SQLDataType.VARCHAR(45), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.IP_ADDR</code>.
+     * The column <code>CBMS.TB_LOG_ACT.IP_ADDR</code>.
      */
     public final TableField<TbLogActRecord, String> IP_ADDR = createField(DSL.name("IP_ADDR"), SQLDataType.VARCHAR(45), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.PAGE_URL</code>.
+     * The column <code>CBMS.TB_LOG_ACT.PAGE_URL</code>.
      */
     public final TableField<TbLogActRecord, String> PAGE_URL = createField(DSL.name("PAGE_URL"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>CBSK-DEV.TB_LOG_ACT.USER_ID</code>.
+     * The column <code>CBMS.TB_LOG_ACT.USER_ID</code>.
      */
     public final TableField<TbLogActRecord, String> USER_ID = createField(DSL.name("USER_ID"), SQLDataType.VARCHAR(45), this, "");
 
@@ -114,21 +114,21 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_ACT</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_ACT</code> table reference
      */
     public TbLogAct(String alias) {
         this(DSL.name(alias), TB_LOG_ACT);
     }
 
     /**
-     * Create an aliased <code>CBSK-DEV.TB_LOG_ACT</code> table reference
+     * Create an aliased <code>CBMS.TB_LOG_ACT</code> table reference
      */
     public TbLogAct(Name alias) {
         this(alias, TB_LOG_ACT);
     }
 
     /**
-     * Create a <code>CBSK-DEV.TB_LOG_ACT</code> table reference
+     * Create a <code>CBMS.TB_LOG_ACT</code> table reference
      */
     public TbLogAct() {
         this(DSL.name("TB_LOG_ACT"), null);
@@ -136,7 +136,7 @@ public class TbLogAct extends TableImpl<TbLogActRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : CbskDev.CBSK_DEV;
+        return aliased() ? null : Cbms.CBMS;
     }
 
     @Override

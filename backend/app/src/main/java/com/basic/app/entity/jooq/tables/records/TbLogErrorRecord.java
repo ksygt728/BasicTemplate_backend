@@ -21,184 +21,184 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.ERR_ID</code>.
      */
-    public void setCreateDate(LocalDateTime value) {
+    public void setErrId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.ERR_ID</code>.
      */
-    public LocalDateTime getCreateDate() {
-        return (LocalDateTime) get(0);
+    public String getErrId() {
+        return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.CREATE_DATE</code>.
      */
-    public void setTimestamp(LocalDateTime value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.CREATE_DATE</code>.
      */
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_ID</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.CREATE_USER</code>.
      */
-    public void setErrId(String value) {
+    public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_ID</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.CREATE_USER</code>.
      */
-    public String getErrId() {
+    public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.STS</code>.
      */
-    public void setCreateUser(String value) {
+    public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.STS</code>.
      */
-    public String getCreateUser() {
+    public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.HTTP_METHOD</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.TIMESTAMP</code>.
      */
-    public void setHttpMethod(String value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.HTTP_METHOD</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.TIMESTAMP</code>.
      */
-    public String getHttpMethod() {
-        return (String) get(4);
+    public LocalDateTime getTimestamp() {
+        return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.IP_ADDR</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.UPDATE_USER</code>.
      */
-    public void setIpAddr(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.IP_ADDR</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.UPDATE_USER</code>.
      */
-    public String getIpAddr() {
+    public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.ERR_MSG</code>.
      */
-    public void setUpdateUser(String value) {
+    public void setErrMsg(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.ERR_MSG</code>.
      */
-    public String getUpdateUser() {
+    public String getErrMsg() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.USER_AGENT</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.ERR_STACK</code>.
      */
-    public void setUserAgent(String value) {
+    public void setErrStack(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.USER_AGENT</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.ERR_STACK</code>.
      */
-    public String getUserAgent() {
+    public String getErrStack() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.USER_ID</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.HTTP_METHOD</code>.
      */
-    public void setUserId(String value) {
+    public void setHttpMethod(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.USER_ID</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.HTTP_METHOD</code>.
      */
-    public String getUserId() {
+    public String getHttpMethod() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.REQUEST_URI</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.IP_ADDR</code>.
      */
-    public void setRequestUri(String value) {
+    public void setIpAddr(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.REQUEST_URI</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.IP_ADDR</code>.
      */
-    public String getRequestUri() {
+    public String getIpAddr() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_MSG</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.REQUEST_URI</code>.
      */
-    public void setErrMsg(String value) {
+    public void setRequestUri(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_MSG</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.REQUEST_URI</code>.
      */
-    public String getErrMsg() {
+    public String getRequestUri() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.STS</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.USER_AGENT</code>.
      */
-    public void setSts(String value) {
+    public void setUserAgent(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.STS</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.USER_AGENT</code>.
      */
-    public String getSts() {
+    public String getUserAgent() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_STACK</code>.
+     * Setter for <code>CBMS.TB_LOG_ERROR.USER_ID</code>.
      */
-    public void setErrStack(String value) {
+    public void setUserId(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_LOG_ERROR.ERR_STACK</code>.
+     * Getter for <code>CBMS.TB_LOG_ERROR.USER_ID</code>.
      */
-    public String getErrStack() {
+    public String getUserId() {
         return (String) get(12);
     }
 
@@ -225,22 +225,22 @@ public class TbLogErrorRecord extends UpdatableRecordImpl<TbLogErrorRecord> {
     /**
      * Create a detached, initialised TbLogErrorRecord
      */
-    public TbLogErrorRecord(LocalDateTime createDate, LocalDateTime timestamp, String errId, String createUser, String httpMethod, String ipAddr, String updateUser, String userAgent, String userId, String requestUri, String errMsg, String sts, String errStack) {
+    public TbLogErrorRecord(String errId, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, String errMsg, String errStack, String httpMethod, String ipAddr, String requestUri, String userAgent, String userId) {
         super(TbLogError.TB_LOG_ERROR);
 
-        setCreateDate(createDate);
-        setTimestamp(timestamp);
         setErrId(errId);
+        setCreateDate(createDate);
         setCreateUser(createUser);
+        setSts(sts);
+        setTimestamp(timestamp);
+        setUpdateUser(updateUser);
+        setErrMsg(errMsg);
+        setErrStack(errStack);
         setHttpMethod(httpMethod);
         setIpAddr(ipAddr);
-        setUpdateUser(updateUser);
+        setRequestUri(requestUri);
         setUserAgent(userAgent);
         setUserId(userId);
-        setRequestUri(requestUri);
-        setErrMsg(errMsg);
-        setSts(sts);
-        setErrStack(errStack);
         resetChangedOnNotNull();
     }
 }

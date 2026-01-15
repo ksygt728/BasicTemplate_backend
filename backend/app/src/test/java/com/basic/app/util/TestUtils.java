@@ -73,7 +73,7 @@ public class TestUtils {
    * @설명 : 테스트케이스별 시작로그 출력
    */
   public static void showLogTestCaseStart(String testCaseName) throws Exception {
-    // log.info("🔄 [CBSK-TEST] 테스트 시작: " + testCaseName);
+    // log.info("🔄 [CBMS-TEST] 테스트 시작: " + testCaseName);
 
   }
 
@@ -82,18 +82,18 @@ public class TestUtils {
    */
   public static void showLogTestCaseEnd(Object testData, JsonNode expectedToJson, JsonNode actualToJson)
       throws Exception {
-    log.info("\n🧪 [CBSK-TEST] Test Data: {}", testData);
-    log.info("\n☑️ [CBSK-TEST] Expected Response: {}", expectedToJson);
-    log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actualToJson);
+    log.info("\n🧪 [CBMS-TEST] Test Data: {}", testData);
+    log.info("\n☑️ [CBMS-TEST] Expected Response: {}", expectedToJson);
+    log.info("\n🧠 [CBMS-TEST] Actual Response: {}", actualToJson);
   }
 
   /**
    * @설명 : 테스트케이스가 없는 경우 로그 출력
    */
   public static void showLogNoneTestCaseEnd(String testData, String expected, String actual) {
-    log.info("\n🧪 [CBSK-TEST] Test Data: {}", testData);
-    log.info("\n☑️ [CBSK-TEST] Expected Response: {}", expected);
-    log.info("\n🧠 [CBSK-TEST] Actual Response: {}", actual);
+    log.info("\n🧪 [CBMS-TEST] Test Data: {}", testData);
+    log.info("\n☑️ [CBMS-TEST] Expected Response: {}", expected);
+    log.info("\n🧠 [CBMS-TEST] Actual Response: {}", actual);
   }
 
   /**

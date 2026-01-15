@@ -21,98 +21,98 @@ public class TbWebSvcRecord extends UpdatableRecordImpl<TbWebSvcRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.SVC_ID</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.SVC_ID</code>.
      */
     public void setSvcId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.SVC_ID</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.SVC_ID</code>.
      */
     public String getSvcId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.CREATE_DATE</code>.
      */
     public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.CREATE_DATE</code>.
      */
     public LocalDateTime getCreateDate() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.CREATE_USER</code>.
      */
     public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.CREATE_USER</code>.
      */
     public String getCreateUser() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.STS</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.STS</code>.
      */
     public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.STS</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.STS</code>.
      */
     public String getSts() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.TIMESTAMP</code>.
      */
     public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.TIMESTAMP</code>.
      */
     public LocalDateTime getTimestamp() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.UPDATE_USER</code>.
      */
     public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.UPDATE_USER</code>.
      */
     public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_WEB_SVC.SVC_NAME</code>.
+     * Setter for <code>CBMS.TB_WEB_SVC.SVC_NAME</code>.
      */
     public void setSvcName(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_WEB_SVC.SVC_NAME</code>.
+     * Getter for <code>CBMS.TB_WEB_SVC.SVC_NAME</code>.
      */
     public String getSvcName() {
         return (String) get(6);

@@ -21,156 +21,156 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_LV</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.DEPT_CODE</code>.
      */
-    public void setDeptLv(Integer value) {
+    public void setDeptCode(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_LV</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.DEPT_CODE</code>.
      */
-    public Integer getDeptLv() {
-        return (Integer) get(0);
+    public String getDeptCode() {
+        return (String) get(0);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.USE_YN</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.CREATE_DATE</code>.
      */
-    public void setUseYn(String value) {
+    public void setCreateDate(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.USE_YN</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.CREATE_DATE</code>.
      */
-    public String getUseYn() {
-        return (String) get(1);
+    public LocalDateTime getCreateDate() {
+        return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_DATE</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.CREATE_USER</code>.
      */
-    public void setCreateDate(LocalDateTime value) {
+    public void setCreateUser(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_DATE</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.CREATE_USER</code>.
      */
-    public LocalDateTime getCreateDate() {
-        return (LocalDateTime) get(2);
+    public String getCreateUser() {
+        return (String) get(2);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.TIMESTAMP</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.STS</code>.
      */
-    public void setTimestamp(LocalDateTime value) {
+    public void setSts(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.TIMESTAMP</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.STS</code>.
      */
-    public LocalDateTime getTimestamp() {
-        return (LocalDateTime) get(3);
+    public String getSts() {
+        return (String) get(3);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.COMPANY_CODE</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.TIMESTAMP</code>.
      */
-    public void setCompanyCode(String value) {
+    public void setTimestamp(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.COMPANY_CODE</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.TIMESTAMP</code>.
      */
-    public String getCompanyCode() {
-        return (String) get(4);
+    public LocalDateTime getTimestamp() {
+        return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_USER</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.UPDATE_USER</code>.
      */
-    public void setCreateUser(String value) {
+    public void setUpdateUser(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.CREATE_USER</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.UPDATE_USER</code>.
      */
-    public String getCreateUser() {
+    public String getUpdateUser() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_CODE</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.DEPT_LV</code>.
      */
-    public void setDeptCode(String value) {
+    public void setDeptLv(Integer value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_CODE</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.DEPT_LV</code>.
      */
-    public String getDeptCode() {
-        return (String) get(6);
+    public Integer getDeptLv() {
+        return (Integer) get(6);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.UPDATE_USER</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.DEPT_NM</code>.
      */
-    public void setUpdateUser(String value) {
+    public void setDeptNm(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.UPDATE_USER</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.DEPT_NM</code>.
      */
-    public String getUpdateUser() {
+    public String getDeptNm() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
      */
     public void setUpperDeptCode(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.UPPER_DEPT_CODE</code>.
      */
     public String getUpperDeptCode() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_NM</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.USE_YN</code>.
      */
-    public void setDeptNm(String value) {
+    public void setUseYn(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.DEPT_NM</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.USE_YN</code>.
      */
-    public String getDeptNm() {
+    public String getUseYn() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>CBSK-DEV.TB_DEPARTMENT.STS</code>.
+     * Setter for <code>CBMS.TB_DEPARTMENT.COMPANY_CODE</code>.
      */
-    public void setSts(String value) {
+    public void setCompanyCode(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>CBSK-DEV.TB_DEPARTMENT.STS</code>.
+     * Getter for <code>CBMS.TB_DEPARTMENT.COMPANY_CODE</code>.
      */
-    public String getSts() {
+    public String getCompanyCode() {
         return (String) get(10);
     }
 
@@ -197,20 +197,20 @@ public class TbDepartmentRecord extends UpdatableRecordImpl<TbDepartmentRecord> 
     /**
      * Create a detached, initialised TbDepartmentRecord
      */
-    public TbDepartmentRecord(Integer deptLv, String useYn, LocalDateTime createDate, LocalDateTime timestamp, String companyCode, String createUser, String deptCode, String updateUser, String upperDeptCode, String deptNm, String sts) {
+    public TbDepartmentRecord(String deptCode, LocalDateTime createDate, String createUser, String sts, LocalDateTime timestamp, String updateUser, Integer deptLv, String deptNm, String upperDeptCode, String useYn, String companyCode) {
         super(TbDepartment.TB_DEPARTMENT);
 
-        setDeptLv(deptLv);
-        setUseYn(useYn);
-        setCreateDate(createDate);
-        setTimestamp(timestamp);
-        setCompanyCode(companyCode);
-        setCreateUser(createUser);
         setDeptCode(deptCode);
-        setUpdateUser(updateUser);
-        setUpperDeptCode(upperDeptCode);
-        setDeptNm(deptNm);
+        setCreateDate(createDate);
+        setCreateUser(createUser);
         setSts(sts);
+        setTimestamp(timestamp);
+        setUpdateUser(updateUser);
+        setDeptLv(deptLv);
+        setDeptNm(deptNm);
+        setUpperDeptCode(upperDeptCode);
+        setUseYn(useYn);
+        setCompanyCode(companyCode);
         resetChangedOnNotNull();
     }
 }
