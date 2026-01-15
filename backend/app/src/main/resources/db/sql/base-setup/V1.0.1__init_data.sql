@@ -186,8 +186,6 @@ INSERT INTO `TB_MUL_LANG` (`LANG_CD`, `LANG_GUBUN`, `LANG_TYPE`, `CREATE_DATE`, 
 ('test', 'err', 'en', '2025-12-11 19:37:40.444', 'ksygt728111', 'D', '2025-12-11 19:46:35.351', 'ksygt728111', 'this is the test!!', 'N');
 
 
-SELECT * FROM TB_COMPANY;
-
 INSERT INTO TB_COMPANY (COMPANY_CODE, COMPANY_NAME, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, TIMESTAMP)
 values('C100', 'CBMS회사', 'C', 'ADMIN' , now(), 'ADMIN',now());
 
@@ -652,7 +650,7 @@ VALUES ('20000000', 'CBMS', 'ROOT', 0, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYS
 -- 부서경로: 대표이사 > 해외사업본부 > 유럽사업팀 > 서유럽파트 > 영국사업팀 > 런던사업팀
 
  ,('24211100', '런던사업팀', '24211000', 5, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
-
+;
 
 
 INSERT INTO `TB_USER` (`USER_ID`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `UPDATE_USER`, `EMAIL`, `GENDER`, `NAME`, `PASSWORD`, `PHONE_NUM`, `ROLE`, `USER_TYPE`, `DEPT_CODE`) VALUES
