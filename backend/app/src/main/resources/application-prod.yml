@@ -18,7 +18,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQLDialect로 변경)
     hibernate:
-      ddl-auto: update # 운영에서는 보통 DDL 자동 변경을 막음
+      ddl-auto: validate # 운영에서는 보통 DDL 자동 변경을 막음
     properties:
       hibernate:
         show_sql: false # SQL 쿼리 콘솔 출력 비활성화
