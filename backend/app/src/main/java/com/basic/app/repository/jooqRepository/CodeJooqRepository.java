@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.specialDto.CodeSearchFormReqDto;
 import com.basic.app.dto.responseDto.specialDto.CodeSearchFormResDto;
-import com.basic.app.jooq.generated.tables.TbComCodeD;
-import com.basic.app.jooq.generated.tables.TbComCodeM;
-import com.basic.app.jooq.generated.tables.TbComCodeT;
+import com.basic.app.entity.jooq.tables.TbComCodeD;
+import com.basic.app.entity.jooq.tables.TbComCodeM;
+import com.basic.app.entity.jooq.tables.TbComCodeT;
 import com.basic.app.util.Status;
 
 /**

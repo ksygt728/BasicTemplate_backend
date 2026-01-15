@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -44,6 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @Order(2)
+@Profile({ "local", "dev", "qa", "prod" })
 public class LoggingAspect {
 
   @Autowired

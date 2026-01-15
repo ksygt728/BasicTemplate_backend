@@ -3,7 +3,7 @@ server:
   port: 8082 # 운영 서버 포트
 
 front-end:
-  url: http://localhost:3000
+  url: http://prod.cbmsori.com:3000
 
 spring:
   profiles:
@@ -11,14 +11,14 @@ spring:
       env: prod
 
   datasource:
-    url: jdbc:mysql://localhost:3308/CBSK-PROD?useUnicode=true&serverTimezone=Asia/Seoul # 운영 DB 접속 URL (DOCKER DB명: CBSK-PROD)
+    url: jdbc:mysql://prod.cbmsori.com:3308/CBSK-PROD?useUnicode=true&serverTimezone=Asia/Seoul # 운영 DB 접속 URL (DOCKER DB명: CBSK-PROD)
     username: root
     password: root961019
     driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 드라이버
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect # Hibernate가 사용할 DB 방언(Dialect) 지정 (MySQLDialect로 변경)
     hibernate:
-      ddl-auto: none # 운영에서는 보통 DDL 자동 변경을 막음
+      ddl-auto: validate # 운영에서는 보통 DDL 자동 변경을 막음
     properties:
       hibernate:
         show_sql: false # SQL 쿼리 콘솔 출력 비활성화
@@ -51,18 +51,23 @@ spring:
           dataSource:
             myDS:
               driver: com.mysql.cj.jdbc.Driver # 데이터소스 드라이버
-              URL: jdbc:mysql://localhost:3308/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
+              URL: jdbc:mysql://prod.cbmsori.com:3308/CBSK-QUARTZ?useUnicode=true&serverTimezone=Asia/Seoul
               user: root # 데이터소스 사용자명
               password: root961019 # 데이터소스 비밀번호
 
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
   data:
     redis:
-      host: localhost
+      host: prod.cbmsori.com
       port: 6381
       timeout: 30000ms
 
   kafka:
-    bootstrap-servers: localhost:9094
+    bootstrap-servers: prod.cbmsori.com:9094
     consumer:
       group-id: log-group
       auto-offset-reset: earliest
@@ -168,7 +173,7 @@ spring:
   # kakao:
   #   api-key: 48a605518fb3519e52a95dd78d205a1b # 카카오 API 키
   #   client-secret-key: D9QHopbDBavL1L9SfX9vipn6TZJrJ1o4 # 카카오 클라이언트 시크릿 키
-  #   redirect-uri: http://localhost:8082/api/auth/kakao-callback # 카카오 인증 리다이렉트 URI
+  #   redirect-uri: http://prod.cbmsori.com:8082/api/auth/kakao-callback # 카카오 인증 리다이렉트 URI
   #   access-token-uri: https://kauth.kakao.com/oauth/token # 카카오 액세스 토큰 발급 URI
   #   user-info-uri: https://kapi.kakao.com/v2/user/me # 카카오 사용자 정보 조회 URI
 
@@ -208,8 +213,11 @@ jwt:
 
 springdoc:
   swagger-ui:
-    path: /swagger-ui # Swagger UI 접속 URL 변경
+    enabled: true # UI 활성화
+    path: /swagger-ui.html # 기본 접속 경로 지정
     operations-sorter: method # 정렬 방식 (alpha, method)
     tags-sorter: alpha
   api-docs:
+    enabled: true # openApi 문서 활성화
     path: /api-docs
+  override-with-generic-response: false # 일반화된 응답 사용 여부 결정

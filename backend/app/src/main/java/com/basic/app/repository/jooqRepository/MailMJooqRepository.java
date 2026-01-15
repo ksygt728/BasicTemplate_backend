@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.MailMReqDto;
 import com.basic.app.dto.responseDto.MailMResDto;
-import com.basic.app.jooq.generated.tables.TbMailM;
+import com.basic.app.entity.jooq.tables.TbMailM;
 
 /**
  * @파일명 : MailMJooqRepository.java

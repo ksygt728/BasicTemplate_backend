@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.ChaebunReqDto;
 import com.basic.app.dto.responseDto.ChaebunResDto;
-import com.basic.app.jooq.generated.tables.TbChaebun;
+import com.basic.app.entity.jooq.tables.TbChaebun;
 
 /**
  * @파일명 : ChaebunJooqRepository.java

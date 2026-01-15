@@ -17,10 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.BbsReqDto;
 import com.basic.app.dto.responseDto.BbsResDto;
-import com.basic.app.jooq.generated.tables.TbBbs;
-import com.basic.app.jooq.generated.tables.TbCompany;
-import com.basic.app.jooq.generated.tables.TbDepartment;
-import com.basic.app.jooq.generated.tables.TbUser;
+import com.basic.app.entity.jooq.tables.TbBbs;
+import com.basic.app.entity.jooq.tables.TbCompany;
+import com.basic.app.entity.jooq.tables.TbDepartment;
+import com.basic.app.entity.jooq.tables.TbUser;
 
 /**
  * @파일명 : BbsJooqRepository.java

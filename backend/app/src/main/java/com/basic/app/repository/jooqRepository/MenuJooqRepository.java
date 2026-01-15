@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.basic.app.dto.requestDto.MenuReqDto;
 import com.basic.app.dto.responseDto.MenuResDto;
-import com.basic.app.jooq.generated.tables.TbMenu;
+import com.basic.app.entity.jooq.tables.TbMenu;
 
 /**
  * @파일명 : MenuJooqRepository.java

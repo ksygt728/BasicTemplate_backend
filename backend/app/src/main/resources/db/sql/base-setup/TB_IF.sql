@@ -19,21 +19,3 @@ INSERT INTO TB_IF (IF_ID, IF_NAME, TEXT, STS, CREATE_USER, CREATE_DATE, UPDATE_U
 ('IF018', '주문 취소 인터페이스', 'https://example.com/wsdl/orderCancel', 'C', 'tester', NOW(), 'admin', NOW()),
 ('IF019', '세금계산서 발급 인터페이스', 'https://example.com/wsdl/taxInvoice', 'C', 'user01', NOW(), 'admin', NOW()),
 ('IF020', 'SMS 인증 인터페이스', 'https://example.com/wsdl/smsAuth', 'C', 'system', NOW(), 'system', NOW());
--- TB_IF (인터페이스 테이블)
-SELECT
-  IF_ID,
-  IF_NAME,
-  TEXT,
-  STS,
-  CREATE_USER,
-  CREATE_DATE,
-  UPDATE_USER,
-  TIMESTAMP
-FROM TB_IF;
-asd 
-
-SELECT * FROM TB_BBS 
-
-SELECT * FROM TB_COMPANY 
-
-
