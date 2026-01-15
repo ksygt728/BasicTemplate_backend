@@ -1,87 +1,169 @@
-============================================================
--- 1. 최상위 메뉴 (1레벨)
-============================================================
-INSERT INTO TB_MENU (
-    MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER,
-    MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD
-) VALUES (
-    'ADM10000', NOW(3), 'SYSTEM', 'C', NOW(3), 'SYSTEM',
-    1, '관리자', '/main/admin', 11, 'Y', 'MENU00000'
-)
-;
-
-============================================================
--- 2. 2레벨 메뉴 (관리자 하위)
-============================================================
-INSERT INTO TB_MENU VALUES
-('ADM20001', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',2,'조직 관리','/main/admin/org',1,'Y','ADM10000'),
-('ADM20002', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',2,'기준 정보','/main/admin/base',2,'Y','ADM10000'),
-('ADM20003', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',2,'권한 관리','/main/admin/auth',3,'Y','ADM10000'),
-('ADM20004', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',2,'시스템 관리','/main/admin/system',4,'Y','ADM10000');
-
-============================================================
--- 3레벨 : 조직 관리 (ADM20001)
-============================================================
-INSERT INTO TB_MENU VALUES
-('ADM30101', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'사용자 관리','/main/admin/org/user',1,'Y','ADM20001'),
-('ADM30102', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'부서 관리','/main/admin/org/dept',2,'Y','ADM20001');
-
-============================================================
--- 3레벨 : 기준 정보 (ADM20002)
-============================================================
-INSERT INTO TB_MENU VALUES
-('ADM30201', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'코드 관리','/main/admin/base/code',1,'Y','ADM20002'),
-('ADM30202', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'인터페이스 관리','/main/admin/base/interface',2,'Y','ADM20002'),
-('ADM30203', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'웹서비스 관리','/main/admin/base/webservice',3,'Y','ADM20002'),
-('ADM30204', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'다국어 관리','/main/admin/base/lang',4,'Y','ADM20002');
-
-============================================================
--- 3레벨 : 권한 관리 (ADM20003)
-============================================================
-INSERT INTO TB_MENU VALUES
-('ADM30301', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'메뉴 관리','/main/admin/auth/menu',1,'Y','ADM20003'),
-('ADM30302', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'권한 관리(Role)','/main/admin/auth/role',2,'Y','ADM20003'),
-('ADM30303', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'사용자별 권한','/main/admin/auth/user-role',3,'Y','ADM20003');
-
-============================================================
--- 3레벨 : 시스템 관리 (ADM20004)
-============================================================
-INSERT INTO TB_MENU VALUES
-('ADM30401', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'채번관리','/main/admin/system/seq',1,'Y','ADM20004'),
-('ADM30402', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'메일 관리','/main/admin/system/mail',2,'Y','ADM20004'),
-('ADM30403', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'사용자 접속 로그','/main/admin/system/login-log',3,'Y','ADM20004'),
-('ADM30404', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'Error 관리','/main/admin/system/error',4,'Y','ADM20004'),
-('ADM30405', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'SMS 발송 로그','/main/admin/system/sms',5,'Y','ADM20004'),
-('ADM30406', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'스케쥴러 관리','/main/admin/system/scheduler',6,'Y','ADM20004'),
-('ADM30407', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'메뉴얼 관리','/main/admin/system/manual',7,'Y','ADM20004'),
-('ADM30408', NOW(3),'SYSTEM','C',NOW(3),'SYSTEM',3,'결재 관리','/main/admin/system/approval',8,'Y','ADM20004');
-
-============================================================
--- 가이드 (GUD10000)
-============================================================
--- lv1
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD10000', '2025-11-20 14:24:29.790', 'SYSTEM', 'C', '2025-11-20 14:24:29.790', 'SYSTEM', 12, '가이드', '/main/guide', 1, 'Y', 'MENU00000');
--- lv 2
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD20000', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-11-20 14:24:29.808', 'SYSTEM', 2, '개발가이드', '/main/guide/develop', 1, 'Y', 'GUD10000');
--- lv 3
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD30000', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, 'ALERT demo ver', '/main/guide/develop/alert-demo', 1, 'Y', 'GUD20000');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD30001', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '기본 컴포넌트', '/main/guide/develop/demo-component', 2, 'Y', 'GUD20000');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD30002', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '고급테이블', '/main/guide/develop/advanced-demo', 3, 'Y', 'GUD20000');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD30003', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '페이지 렌더링 가이드', '/main/guide/develop/page-rendering-guide', 4, 'Y', 'GUD20000');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD30004', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '공통코드 사용방법', '/main/guide/develop/test-common-code', 5, 'Y', 'GUD20000');
--- lv4
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD40000', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'CSR', '/main/guide/develop/page-rendering-guide/CSR', 1, 'Y', 'GUD30003');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD40001', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'SSR', '/main/guide/develop/page-rendering-guide/SSR', 2, 'Y', 'GUD30003');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD40002', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'SSG', '/main/guide/develop/page-rendering-guide/SSG', 3, 'Y', 'GUD30003');
-INSERT INTO TB_MENU (MENU_CD, CREATE_DATE, CREATE_USER, STS, TIMESTAMP, UPDATE_USER, MENU_LV, MENU_NM, MENU_URL, ORDER_NUM, USE_YN, UPPER_MENU_CD) VALUES
-('GUD40003', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'ISR', '/main/guide/develop/page-rendering-guide/ISR', 4, 'Y', 'GUD30003');
+INSERT INTO `TB_MENU` (`MENU_CD`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `UPDATE_USER`, `MENU_LV`, `MENU_NM`, `MENU_URL`, `ORDER_NUM`, `USE_YN`, `UPPER_MENU_CD`) VALUES
+('MENU00000', '2025-08-27 07:20:53.000', 'SYSTEM', 'C', '2025-08-27 07:20:53.000', 'SYSTEM', 0, '최상위메뉴', '/main', 1, 'Y', NULL),
+('ADM10000', '2025-11-20 14:24:29.790', 'SYSTEM', 'C', '2025-11-20 14:24:29.790', 'SYSTEM', 1, '관리자', '/main/admin', 11, 'Y', 'MENU00000'),
+('BBS00006', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '게시판관리', '/board', 6, 'Y', 'MENU00000'),
+('CUS00007', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '고객지원', '/customer', 7, 'N', 'MENU00000'),
+('DOC00009', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '문서관리', '/document', 9, 'Y', 'MENU00000'),
+('GUD10000', '2025-11-20 14:24:29.790', 'SYSTEM', 'C', '2025-11-20 14:24:29.790', 'SYSTEM', 1, '가이드', '/main/guide', 12, 'Y', 'MENU00000'),
+('HRD00010', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '인사관리', '/human', 10, 'Y', 'MENU00000'),
+('MGR00001', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '회원관리', '/member', 1, 'Y', 'MENU00000'),
+('MKT00002', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '마케팅', '/marketing', 2, 'Y', 'MENU00000'),
+('PRD00003', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-12-11 22:24:26.601', 'ksygt728111', 1, '상품관리', '/product', 3, 'Y', 'MENU00000'),
+('REP00008', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '통계/보고서', '/report', 8, 'Y', 'MENU00000'),
+('SAL00004', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '영업관리', '/sales', 4, 'Y', 'MENU00000'),
+('SYS00005', '2025-08-27 07:21:29.000', 'SYSTEM', 'C', '2025-08-27 07:21:29.000', 'SYSTEM', 1, '시스템관리', '/system', 5, 'Y', 'MENU00000'),
+('ADM20001', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-11-20 14:24:29.808', 'SYSTEM', 2, '조직 관리', '/main/admin/org', 1, 'Y', 'ADM10000'),
+('ADM20002', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-11-20 14:24:29.808', 'SYSTEM', 2, '기준 정보', '/main/admin/base', 2, 'Y', 'ADM10000'),
+('ADM20003', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-11-20 14:24:29.808', 'SYSTEM', 2, '권한 관리', '/main/admin/auth', 3, 'Y', 'ADM10000'),
+('ADM20004', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-11-20 14:24:29.808', 'SYSTEM', 2, '시스템 관리', '/main/admin/system', 4, 'Y', 'ADM10000'),
+('BBS00023', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, 'FAQ', '/board/faq', 2, 'Y', 'BBS00006'),
+('BBS00052', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, 'Q&A', '/board/qna', 3, 'Y', 'BBS00006'),
+('CUS00024', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '1:1문의', '#', 1, 'N', 'CUS00007'),
+('CUS00058', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '공지사항', '/customer/notice', 2, 'Y', 'CUS00007'),
+('CUS00059', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '자주묻는질문', '', 3, 'N', 'CUS00007'),
+('DOC00060', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '문서함', '/document/box', 1, 'Y', 'DOC00009'),
+('DOC00061', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '결재관리', '/document/approval', 2, 'Y', 'DOC00009'),
+('GUD20000', '2025-11-20 14:24:29.808', 'SYSTEM', 'C', '2025-12-11 22:54:57.772', 'ksygt728111', 2, '개발가이드', '/main/guide/develop', 1, 'Y', 'GUD10000'),
+('HRD00062', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '직원목록', '/human/employee', 1, 'Y', 'HRD00010'),
+('HRD00063', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '급여관리', '/human/payroll', 2, 'Y', 'HRD00010'),
+('HRD00109', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '휴가관리', '/human/vacation', 3, 'Y', 'HRD00010'),
+('HRD00110', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '근태관리', '/human/attendance', 4, 'Y', 'HRD00010'),
+('MGR00011', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '회원정보조회', '/member/list', 1, 'Y', 'MGR00001'),
+('MGR00012', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '탈퇴회원관리', '/member/dropout', 2, 'Y', 'MGR00001'),
+('MKT00013', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '이벤트관리', '/marketing/event', 1, 'Y', 'MKT00002'),
+('MKT00014', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '프로모션', '/marketing/promotion', 2, 'N', 'MKT00002'),
+('MKT00056', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '푸시알림관리', '/marketing/push', 3, 'Y', 'MKT00002'),
+('MKT00057', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '팝업관리', '/marketing/popup', 4, 'N', 'MKT00002'),
+('PRD00015', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '상품목록', '/product/list', 1, 'Y', 'PRD00003'),
+('PRD00016', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '상품등록', '/product/register', 2, 'Y', 'PRD00003'),
+('PRD00095', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '상품리뷰관리', '/product/review', 4, 'Y', 'PRD00003'),
+('PRD00096', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '판매자정보', '/product/seller', 5, 'Y', 'PRD00003'),
+('REP00025', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '일별보고서', '/report/daily', 1, 'Y', 'REP00008'),
+('REP00026', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '월별보고서', '/report/monthly', 2, 'Y', 'REP00008'),
+('REP00069', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '주간보고서', '/report/weekly', 3, 'Y', 'REP00008'),
+('REP00070', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '연간보고서', '/report/yearly', 4, 'Y', 'REP00008'),
+('SAL00017', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '주문관리', '/sales/order', 1, 'Y', 'SAL00004'),
+('SAL00018', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '배송관리', '/sales/delivery', 2, 'Y', 'SAL00004'),
+('SYS00019', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '사용자관리', '#', 1, 'Y', 'SYS00005'),
+('SYS00020', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '권한관리', '/system/auth', 2, 'Y', 'SYS00005'),
+('SYS00021', '2025-08-27 07:21:32.000', 'SYSTEM', 'C', '2025-08-27 07:21:32.000', 'SYSTEM', 2, '코드관리', '/system/code', 3, 'Y', 'SYS00005'),
+('SYS00048', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '로그관리', '/system/log', 4, 'Y', 'SYS00005'),
+('SYS00066', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 2, '시스템설정', '/system/config', 5, 'Y', 'SYS00005'),
+('ADM30101', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '사용자 관리', '/main/admin/org/user', 1, 'Y', 'ADM20001'),
+('ADM30102', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '부서 관리', '/main/admin/org/dept', 2, 'Y', 'ADM20001'),
+('ADM30201', '2025-11-20 14:24:29.852', 'SYSTEM', 'C', '2025-11-20 14:24:29.852', 'SYSTEM', 3, '코드 관리', '/main/admin/base/code', 1, 'Y', 'ADM20002'),
+('ADM30202', '2025-11-20 14:24:29.852', 'SYSTEM', 'C', '2025-11-20 14:24:29.852', 'SYSTEM', 3, '인터페이스 관리', '/main/admin/base/interface', 2, 'Y', 'ADM20002'),
+('ADM30203', '2025-11-20 14:24:29.852', 'SYSTEM', 'C', '2025-11-20 14:24:29.852', 'SYSTEM', 3, '웹서비스 관리', '/main/admin/base/webservice', 3, 'Y', 'ADM20002'),
+('ADM30204', '2025-11-20 14:24:29.852', 'SYSTEM', 'C', '2025-11-20 14:24:29.852', 'SYSTEM', 3, '다국어 관리', '/main/admin/base/lang', 4, 'Y', 'ADM20002'),
+('ADM30301', '2025-11-20 14:24:29.874', 'SYSTEM', 'C', '2025-11-20 14:24:29.874', 'SYSTEM', 3, '메뉴 관리', '/main/admin/auth/menu', 1, 'Y', 'ADM20003'),
+('ADM30302', '2025-11-20 14:24:29.874', 'SYSTEM', 'C', '2025-11-20 14:24:29.874', 'SYSTEM', 3, '권한 관리(Role)', '/main/admin/auth/role', 2, 'Y', 'ADM20003'),
+('ADM30303', '2025-11-20 14:24:29.874', 'SYSTEM', 'C', '2025-11-20 14:24:29.874', 'SYSTEM', 3, '사용자별 권한', '/main/admin/auth/user-role', 3, 'Y', 'ADM20003'),
+('ADM30401', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '채번관리', '/main/admin/system/seq', 1, 'Y', 'ADM20004'),
+('ADM30402', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '메일 관리', '/main/admin/system/mail', 2, 'Y', 'ADM20004'),
+('ADM30403', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '사용자 접속 로그', '/main/admin/system/access', 3, 'Y', 'ADM20004'),
+('ADM30404', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, 'Error 관리', '/main/admin/system/error', 4, 'Y', 'ADM20004'),
+('ADM30405', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, 'SMS 발송 로그', '/main/admin/system/sms', 5, 'Y', 'ADM20004'),
+('ADM30406', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '스케쥴러 관리', '/main/admin/system/scheduler', 6, 'Y', 'ADM20004'),
+('ADM30407', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '메뉴얼 관리', '/main/admin/system/manual', 7, 'Y', 'ADM20004'),
+('ADM30408', '2025-11-20 14:24:29.897', 'SYSTEM', 'C', '2025-11-20 14:24:29.897', 'SYSTEM', 3, '결재 관리', '/main/admin/system/approval', 8, 'Y', 'ADM20004'),
+('CUS00079', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '문의접수', '/customer/inquiry/receipt', 1, 'N', 'CUS00024'),
+('CUS00080', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '문의처리', '/customer/inquiry/process', 2, 'N', 'CUS00024'),
+('CUS00104', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, 'FAQ 등록', '/customer/faq/add', 1, 'N', 'CUS00059'),
+('CUS00105', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, 'FAQ 수정', '/customer/faq/edit', 2, 'N', 'CUS00059'),
+('DOC00081', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '결재요청', '/document/approval/request', 1, 'Y', 'DOC00061'),
+('DOC00082', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '결재대기', '/document/approval/pending', 2, 'Y', 'DOC00061'),
+('DOC00106', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '문서등록', '/document/box/add', 1, 'Y', 'DOC00060'),
+('DOC00107', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '문서수정', '/document/box/edit', 2, 'Y', 'DOC00060'),
+('DOC00124', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '내결재함', '/document/approval/my', 3, 'Y', 'DOC00061'),
+('GUD30000', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, 'ALERT demo ver', '/main/guide/develop/alert-demo', 1, 'Y', 'GUD20000'),
+('GUD30001', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '기본 컴포넌트', '/main/guide/develop/demo-component', 2, 'Y', 'GUD20000'),
+('GUD30002', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '고급테이블', '/main/guide/develop/advanced-demo', 3, 'Y', 'GUD20000'),
+('GUD30003', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 3, '페이지 렌더링 가이드', '/main/guide/develop/page-rendering-guide', 4, 'Y', 'GUD20000'),
+('GUD30004', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-12-12 09:41:34.399', 'ksygt728111', 3, '공통코드 사용방법', '/main/guide/develop/test-common-code', 5, 'Y', 'GUD20000'),
+('HRD00083', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '직원등록', '/human/employee/add', 1, 'Y', 'HRD00062'),
+('HRD00084', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '직원정보수정', '/human/employee/edit', 2, 'Y', 'HRD00062'),
+('HRD00085', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '급여명세서', '/human/payroll/statement', 1, 'Y', 'HRD00063'),
+('HRD00086', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '세금계산', '/human/payroll/tax', 2, 'Y', 'HRD00063'),
+('HRD00108', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '직원퇴사처리', '/human/employee/retire', 3, 'Y', 'HRD00062'),
+('HRD00111', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '휴가신청', '/human/vacation/request', 1, 'Y', 'HRD00109'),
+('HRD00112', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '휴가승인', '/human/vacation/approval', 2, 'Y', 'HRD00109'),
+('HRD00113', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '출퇴근기록', '/human/attendance/record', 1, 'Y', 'HRD00110'),
+('HRD00114', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '근무시간관리', '/human/attendance/worktime', 2, 'Y', 'HRD00110'),
+('menuTest1', '2025-08-27 11:04:21.454', 'ADMIN', 'C', '2025-08-27 13:35:29.116', 'ADMIN', 3, '메뉴 테스트ㅁ', '/ㅁㄴㅇ', 1, 'Y', 'BBS00023'),
+('MGR00031', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '블랙리스트관리', '/member/list/blacklist', 1, 'Y', 'MGR00011'),
+('MGR00032', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '휴면회원관리', '/member/list/dormant', 2, 'Y', 'MGR00011'),
+('MGR00071', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '개인정보관리', '/member/list/privacy', 3, 'Y', 'MGR00011'),
+('MGR00091', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '회원정보수정', '/member/list/edit', 4, 'Y', 'MGR00011'),
+('MGR00092', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '회원별로그인기록', '/member/list/login-history', 5, 'Y', 'MGR00011'),
+('MGR00100', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '비밀번호초기화', '/member/dropout/password-reset', 1, 'Y', 'MGR00012'),
+('MGR00101', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '탈퇴처리', '/member/dropout/process', 2, 'Y', 'MGR00012'),
+('MKT00055', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '쿠폰관리', '/marketing/event/coupon', 1, 'Y', 'MKT00013'),
+('MKT00093', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '이메일발송', '/marketing/push/email', 1, 'Y', 'MKT00056'),
+('MKT00094', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, 'SMS발송', '/marketing/push/sms', 2, 'Y', 'MKT00056'),
+('MKT00102', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '프로모션코드생성', '/marketing/promotion/generate', 1, 'N', 'MKT00014'),
+('MKT00103', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '프로모션내역', '/marketing/promotion/history', 2, 'N', 'MKT00014'),
+('PRD00029', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '카테고리관리', '/product/list/category', 1, 'Y', 'PRD00015'),
+('PRD00030', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '재고관리', '/product/list/stock', 2, 'Y', 'PRD00015'),
+('PRD00073', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '상품상세', '/product/list/detail', 3, 'Y', 'PRD00015'),
+('PRD00117', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '상품후기승인', '/product/review/approve', 1, 'Y', 'PRD00095'),
+('PRD00118', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '상품후기반려', '/product/review/reject', 2, 'Y', 'PRD00095'),
+('REP00035', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '상품별판매통계', '/report/daily/product', 1, 'Y', 'REP00025'),
+('REP00036', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '지역별판매통계', '/report/daily/region', 2, 'N', 'REP00025'),
+('REP00051', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '판매자별통계', '/report/daily/seller', 3, 'Y', 'REP00025'),
+('REP00121', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '회원가입통계', '/report/daily/member', 5, 'Y', 'REP00025'),
+('REP00122', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '판매순위', '/report/monthly/rank', 1, 'Y', 'REP00026'),
+('REP00123', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '매출추이', '/report/monthly/trend', 2, 'Y', 'REP00026'),
+('SAL00033', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-12-11 22:37:07.995', 'ksygt728111', 3, '반품/교환', '/sales/order/return', 1, 'Y', 'SAL00017'),
+('SAL00034', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '주문취소', '/sales/order/cancel', 2, 'Y', 'SAL00017'),
+('SAL00047', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '배송지조회', '/sales/delivery/address', 1, 'Y', 'SAL00018'),
+('SAL00077', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-12-11 22:36:50.272', 'ksygt728111', 3, '결제수단관리', '/sales/order/payment', 3, 'Y', 'SAL00017'),
+('SAL00097', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '재고실사', '/sales/delivery/stock-take', 2, 'Y', 'SAL00018'),
+('SAL00115', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '영수증관리', '/sales/order/receipt', 4, 'Y', 'SAL00017'),
+('SAL00116', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '주문통계', '/sales/order/statistics', 5, 'Y', 'SAL00017'),
+('SAL00132', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 3, '배송조회', '/sales/delivery/trace', 3, 'Y', 'SAL00018'),
+('SYS00027', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '회원권한관리', '/system/auth/member', 1, 'Y', 'SYS00020'),
+('SYS00028', '2025-08-27 07:21:35.000', 'SYSTEM', 'C', '2025-08-27 07:21:35.000', 'SYSTEM', 3, '관리자권한관리', '/system/auth/admin', 2, 'Y', 'SYS00020'),
+('SYS00049', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '접속로그', '/system/log/access', 1, 'Y', 'SYS00048'),
+('SYS00050', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '오류로그', '/system/log/error', 2, 'Y', 'SYS00048'),
+('SYS00067', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, 'API관리', '/system/config/api', 1, 'Y', 'SYS00066'),
+('SYS00068', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '로그인설정', '/system/config/login', 2, 'N', 'SYS00066'),
+('SYS00087', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '사용자등록', '/system/user/add', 1, 'Y', 'SYS00019'),
+('SYS00088', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '사용자수정', '/system/user/edit', 2, 'Y', 'SYS00019'),
+('SYS00089', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '공통코드', '/system/code/common', 1, 'Y', 'SYS00021'),
+('SYS00090', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '에러코드', '/system/code/error', 2, 'Y', 'SYS00021'),
+('SYS00099', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 3, '메뉴별통계', '/report/daily/menu', 4, 'Y', 'REP00025'),
+('SYS00128', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 3, '사용자그룹관리', '/system/user/group', 3, 'Y', 'SYS00019'),
+('GUD40000', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'CSR', '/main/guide/develop/page-rendering-guide/CSR', 1, 'Y', 'GUD30003'),
+('GUD40001', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'SSR', '/main/guide/develop/page-rendering-guide/SSR', 2, 'Y', 'GUD30003'),
+('GUD40002', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'SSG', '/main/guide/develop/page-rendering-guide/SSG', 3, 'Y', 'GUD30003'),
+('GUD40003', '2025-11-20 14:24:29.829', 'SYSTEM', 'C', '2025-11-20 14:24:29.829', 'SYSTEM', 4, 'ISR', '/main/guide/develop/page-rendering-guide/ISR', 4, 'Y', 'GUD30003'),
+('HRD00125', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '급여명세서조회', '/human/payroll/statement/view', 1, 'Y', 'HRD00085'),
+('MGR00041', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-08-27 07:21:37.000', 'SYSTEM', 4, '블랙리스트등록', '/member/list/blacklist/add', 1, 'N', 'MGR00031'),
+('MGR00042', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-08-27 07:21:37.000', 'SYSTEM', 4, '블랙리스트해제', '/member/list/blacklist/remove', 2, 'Y', 'MGR00031'),
+('MGR00045', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '관리자권한부여', '/system/auth/admin/grant', 1, 'Y', 'SYS00028'),
+('MGR00072', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '개인정보이력', '/member/list/privacy/history', 1, 'Y', 'MGR00071'),
+('MGR00126', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '휴면회원전환', '/member/list/dormant/change', 1, 'Y', 'MGR00032'),
+('MGR00127', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '휴면회원해제', '/member/list/dormant/release', 2, 'Y', 'MGR00032'),
+('MGR00136', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '개인정보이용동의', '/member/list/privacy/agreement', 2, 'Y', 'MGR00071'),
+('MKT00075', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '쿠폰발급', '/marketing/event/coupon/issue', 1, 'Y', 'MKT00055'),
+('MKT00076', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '쿠폰사용내역', '/marketing/event/coupon/history', 2, 'Y', 'MKT00055'),
+('MKT00134', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '이메일템플릿관리', '/marketing/push/email/template', 1, 'Y', 'MKT00093'),
+('MKT00135', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, 'SMS템플릿관리', '/marketing/push/sms/template', 1, 'Y', 'MKT00094'),
+('PRD00039', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-12-11 22:29:39.348', 'ksygt728111', 4, '카테고리추가', '/product/list/category/add', 1, 'Y', 'PRD00029'),
+('PRD00040', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-08-27 07:21:37.000', 'SYSTEM', 4, '카테고리삭제', '/product/list/category/remove', 2, 'Y', 'PRD00029'),
+('PRD00046', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '재고 입고처리', '/product/list/stock/receive', 1, 'Y', 'PRD00030'),
+('PRD00074', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '상품옵션관리', '/product/list/detail/option', 1, 'Y', 'PRD00073'),
+('PRD00133', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '상품가격관리', '/product/list/detail/price', 2, 'Y', 'PRD00073'),
+('SAL00064', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '반품/교환승인', '/sales/order/return/approve', 1, 'Y', 'SAL00033'),
+('SAL00065', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '반품/교환반려', '/sales/order/return/reject', 2, 'Y', 'SAL00033'),
+('SAL00078', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '결제취소', '/sales/order/payment/cancel', 1, 'Y', 'SAL00077'),
+('SAL00098', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '반품입고', '/sales/order/return/receive', 3, 'Y', 'SAL00033'),
+('SYS00037', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-08-27 07:21:37.000', 'SYSTEM', 4, '권한부여', '/system/auth/member/grant', 1, 'Y', 'SYS00027'),
+('SYS00038', '2025-08-27 07:21:37.000', 'SYSTEM', 'C', '2025-08-27 07:21:37.000', 'SYSTEM', 4, '권한삭제', '/system/auth/member/revoke', 2, 'Y', 'SYS00027'),
+('SYS00119', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '접속로그상세', '/system/log/access/detail', 1, 'Y', 'SYS00049'),
+('SYS00120', '2025-08-27 07:21:43.000', 'SYSTEM', 'C', '2025-08-27 07:21:43.000', 'SYSTEM', 4, '오류로그상세', '/system/log/error/detail', 1, 'Y', 'SYS00050'),
+('SYS00129', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '사용자그룹별권한', '/system/user/group/auth', 1, 'Y', 'SYS00128'),
+('SYS00130', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '코드값관리', '/main/code/common', 1, 'Y', 'SYS00089'),
+('SYS00131', '2025-08-27 07:21:48.000', 'SYSTEM', 'C', '2025-08-27 07:21:48.000', 'SYSTEM', 4, '코드유형관리', '/system/code/common/type', 2, 'Y', 'SYS00089'),
+('SYS00043', '2025-08-27 07:21:41.000', 'SYSTEM', 'C', '2025-08-27 07:21:41.000', 'SYSTEM', 5, '사용자별권한', '/system/auth/member/grant/byuser', 1, 'Y', 'SYS00037'),
+('SYS00044', '2025-08-27 07:21:41.000', 'SYSTEM', 'C', '2025-08-27 07:21:41.000', 'SYSTEM', 5, '메뉴별권한', '/system/auth/member/grant/bymenu', 2, 'Y', 'SYS00037');

@@ -1,24 +1,4 @@
-INSERT INTO TB_IF (IF_ID, IF_NAME, TEXT, STS, CREATE_USER, CREATE_DATE, UPDATE_USER, TIMESTAMP) VALUES
-('IF001', '회원가입 인터페이스', 'https://example.com/wsdl/signup', 'C', 'admin', NOW(), 'admin', NOW()),
-('IF002', '로그인 인터페이스', 'https://example.com/wsdl/login', 'C', 'admin', NOW(), 'admin', NOW()),
-('IF003', '주문 조회 인터페이스', 'https://example.com/wsdl/orderSearch', 'C', 'admin', NOW(), 'admin', NOW()),
-('IF004', '상품 등록 인터페이스', 'https://example.com/wsdl/productInsert', 'C', 'tester', NOW(), 'tester', NOW()),
-('IF005', '결제 처리 인터페이스', 'https://example.com/wsdl/payment', 'C', 'tester', NOW(), 'tester', NOW()),
-('IF006', '배송 추적 인터페이스', 'https://example.com/wsdl/tracking', 'C', 'admin', NOW(), 'admin', NOW()),
-('IF007', '포인트 적립 인터페이스', 'https://example.com/wsdl/point', 'D', 'admin', NOW(), 'system', NOW()),
-('IF008', '쿠폰 발급 인터페이스', 'https://example.com/wsdl/coupon', 'C', 'system', NOW(), 'system', NOW()),
-('IF009', '리뷰 등록 인터페이스', 'https://example.com/wsdl/review', 'C', 'user01', NOW(), 'user02', NOW()),
-('IF010', '알림 전송 인터페이스', 'https://example.com/wsdl/notification', 'D', 'system', NOW(), 'system', NOW()),
-('IF011', '회원 탈퇴 인터페이스', 'https://example.com/wsdl/withdrawal', 'C', 'admin', NOW(), 'admin', NOW()),
-('IF012', '비밀번호 변경 인터페이스', 'https://example.com/wsdl/passwordChange', 'C', 'user01', NOW(), 'user01', NOW()),
-('IF013', '장바구니 조회 인터페이스', 'https://example.com/wsdl/cart', 'C', 'tester', NOW(), 'admin', NOW()),
-('IF014', '즐겨찾기 등록 인터페이스', 'https://example.com/wsdl/favoriteAdd', 'C', 'admin', NOW(), 'tester', NOW()),
-('IF015', '1:1 문의 등록 인터페이스', 'https://example.com/wsdl/qna', 'C', 'user02', NOW(), 'user02', NOW()),
-('IF016', '주소 변경 인터페이스', 'https://example.com/wsdl/addressChange', 'D', 'admin', NOW(), 'system', NOW()),
-('IF017', '재입고 알림 인터페이스', 'https://example.com/wsdl/restockNotify', 'C', 'system', NOW(), 'system', NOW()),
-('IF018', '주문 취소 인터페이스', 'https://example.com/wsdl/orderCancel', 'C', 'tester', NOW(), 'admin', NOW()),
-('IF019', '세금계산서 발급 인터페이스', 'https://example.com/wsdl/taxInvoice', 'C', 'user01', NOW(), 'admin', NOW()),
-('IF020', 'SMS 인증 인터페이스', 'https://example.com/wsdl/smsAuth', 'C', 'system', NOW(), 'system', NOW());
+
 -- TB_IF (인터페이스 테이블)
 SELECT
   IF_ID,

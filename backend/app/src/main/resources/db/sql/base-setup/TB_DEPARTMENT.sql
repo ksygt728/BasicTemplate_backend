@@ -499,3 +499,8 @@ VALUES ('20000000', 'CBSK', 'ROOT', 1, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYS
 -- 부서경로: 대표이사 > 해외사업본부 > 유럽사업팀 > 서유럽파트 > 영국사업팀 > 런던사업팀
 
  ,('24211100', '런던사업팀', '24211000', 5, 'C100', 'Y', NOW(), 'SYSTEM', NOW(), 'SYSTEM','C')
+
+
+
+INSERT INTO `TB_USER` (`USER_ID`, `CREATE_DATE`, `CREATE_USER`, `STS`, `TIMESTAMP`, `UPDATE_USER`, `EMAIL`, `GENDER`, `NAME`, `PASSWORD`, `PHONE_NUM`, `ROLE`, `USER_TYPE`, `DEPT_CODE`) VALUES
+('ADMIN', '2025-09-02 12:57:52.819', 'SYSTEM', 'C', '2025-09-02 12:57:52.819', 'SYSTEM', 'ksygt7280@naver.com', 'M', '김승연', '$2a$10$ZRob5tqIQgkL8urZWjeQNOtnLae98q6lxPSbEXvtSAuSNolIQhjYG', '01091360767', 'ROLE_ADMIN', 'CBMS', '20000000');
