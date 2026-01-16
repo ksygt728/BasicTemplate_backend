@@ -106,10 +106,15 @@ pipeline {
             echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
             docker push ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG}
             docker logout
+            
+            echo "================ [DOCKER] Cleanup unused images ================"
+              echo "▶▶ Prune all unused images"
+              docker image prune -a -f
+            echo "================ ✅ [DOCKER] Cleanup completed ================"
           """
         }
 
-        echo "================ ✅ DOCKER PUSH DONE ================="
+        echo "================ ✅ DOCKER PUSH & CLEANUP DONE ================="
       }
     }
 
@@ -132,7 +137,9 @@ pipeline {
             ssh -o StrictHostKeyChecking=no ec2-user@${params.DEPLOY_SERVER} "
               docker pull ${REGISTRY}/${IMAGE_NAME}-${params.ENV}:${TAG} && \
               cd ${DEPLOY_PATH} && \
-              REGISTRY=${REGISTRY} IMAGE_NAME=${IMAGE_NAME} ENV=${params.ENV} IMAGE_TAG=${TAG} BACK_PORT=${params.BACK_PORT} docker-compose up -d
+              REGISTRY=${REGISTRY} IMAGE_NAME=${IMAGE_NAME} ENV=${params.ENV} IMAGE_TAG=${TAG} BACK_PORT=${params.BACK_PORT} docker-compose up -d && \
+              echo "▶▶ Prune all unused images"
+              docker image prune -a -f
             "
           """
         }
