@@ -4,7 +4,7 @@ services:
   back:
     image: ${REGISTRY}/${IMAGE_NAME}-${ENV}:${IMAGE_TAG}
     container_name: ${IMAGE_NAME}-${ENV}
-    restart: always
+    restart: unless-stopped
     ports:
       - "${BACK_PORT}:${BACK_PORT}"
     environment:
