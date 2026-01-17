@@ -4,6 +4,7 @@ services:
   mysql-dev:
     image: mysql:8.0
     container_name: CBMS-DB-DEV
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root961019
       MYSQL_DATABASE: CBMS
@@ -18,6 +19,7 @@ services:
   redis-dev:
     image: redis:latest
     container_name: CBMS-REDIS-DEV
+    restart: unless-stopped
     environment:
       TZ: Asia/Seoul
     ports:
@@ -30,6 +32,7 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: CBMS-ZOOKEEPER-DEV
+    restart: unless-stopped
     ports:
       - "2181:2181"
     logging:
@@ -38,6 +41,7 @@ services:
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
     container_name: CBMS-KAFKA-DEV
+    restart: unless-stopped
     ports:
       - "9092:9092" # 로컬 PC에서 접속할 포트
     logging:
@@ -65,6 +69,7 @@ services:
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: CBMS-KAFKA-UI-DEV
+    restart: unless-stopped
     logging:
       driver: "none"
     ports:
