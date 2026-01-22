@@ -8,13 +8,13 @@ credentials:
           - usernamePassword:
               description: "Git 계정"
               id: "git-credential"
-              password: "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"
+              password: "{AQAAABAAAAAwSaniiLkQb7Gjd2PFzsFizF+DQNSGA31ENLqK9qTZ0RT/LFshi7YBYaJBfYVx7XKZaVwug4CxZFVgEEtVZ/AQ4A==}"
               scope: GLOBAL
               username: "ksygt728"
           - usernamePassword:
               description: "Docker Hub access token for CI"
               id: "dockerhub-credential"
-              password: "dckr_pat_1701m67FUu_a4EGjX2c4GcY5Xfg"
+              password: "{AQAAABAAAAAww7oE3Akmdrm7SpOtMegrRn7vxM2x8L63VHbnax+tvsS8CSsI4vDrJrrwtKEE7EHPKs2BlSI6FqHXOSQtli1IBQ==}"
               scope: GLOBAL
               username: "seungyeon728"
           - basicSSHUserPrivateKey:
@@ -22,43 +22,73 @@ credentials:
               id: "deploy-ssh-key"
               privateKeySource:
                 directEntry:
-                  privateKey: |
-                    -----BEGIN RSA PRIVATE KEY-----
-                    MIIEpQIBAAKCAQEAwDFYAKwOLU6rBrH6SrY1rBIUaWSWhU7GmduforF1VMOjTCRw
-                    0Cg/ylQCb2TROIyGvEyi7aeGLvkyYPEIlG1Wrj/tnE51Haj6Ot+VY4gDgQ5DyXGe
-                    nJAq9ZcXBK3xS2ekwX+SDaWrSNXn1dTzgCgBqMZOlUT0LfgrxGitvINN00VYIDH+
-                    u/uOg2y9w4uCRNO0I+oyIrkCmmabJ5DEt/ywXJdZG85TZz9pzL6uUOWqou7JhwN8
-                    tlfR/pTr+G9grexhuTGpDoPSSVvrtiq+787Z19sHoorW0NUzHlC6BoRD/JWjIeYb
-                    evViA1hprEcd6zPD38uhnXqNHPMijNv/pXh7eQIDAQABAoIBAC1GspOd9M0JnlK6
-                    dNtK54P80mAtuSP4deLjEU1Tfu+UExEp+IWhJb31Yol5d6xZtpf/edaAw6SnQg4C
-                    WmIVC/mKx+Atv3tYRnK+H0ROU30ArklzgckiUWx/xoVssM5xwSdwdSjP4XUMJ0yB
-                    mUeUpSdsaDDUCK4Xq7/eZSdmy1u8rrRzFTJ9ovDZHDY6GoeTeogdPYhc54h+3KZC
-                    cGT2bthDOas0NyD6ZtjZ3aCyG2zmXHuyfR/RTvJc7Bz8sJwAv2QgI61PnzySi//s
-                    HolhcwjsbSL6T4D3duMvsaTr0toKeuncZ00fq0645VlgpunonZ2o/GFDEI+DuIJW
-                    /5cJVbECgYEA59JjZR1o9W3YA5AROomjFiQ68bNZlYaLult1nbRyIpeywMIzwpna
-                    ikRIamnKCv+F3XLDU471Ve8yom9lhRQtkoHd20tNrURb1xzlhlmqeEswmwbtHL5r
-                    2tkpX8ztGAh1M2jCS84e0ikpbYN1FbCnwKv+gViG4RBsVKv9pHNB920CgYEA1Dzd
-                    R8wf3T4J6DE3pMZQ3b6OgmLDfxhK0Q8+HJgUg5waAUDZhQa9gOpc/L4jw1aCSQzK
-                    GrCWp09Orh6W2yQxqYMcsMVUNtMgiY5XXrtiVrtzY78owPcV/hs58WdhayoCvWr8
-                    j3aZ1XAXq55/nio0mnQC0N+h2Is0JUciV1DGEL0CgYEAzEjB/iDklSKu8LTL+eHA
-                    LYrPxp5dmz5tc1OVWdvhmEpF40c/hYU+6Ak0J1ICEZ8KwBKZvdCEsa2P2USBGbym
-                    TCzU7KJ3WPCcXfvA55usdUUNGBAKcwH62Wf05c8YP810OlFepp6E2n4bW740N2Ds
-                    8wSdyi3Q7hQi4pqNcZV/1CECgYEAicNoLy6EkGuwqpMn90DzRLxobKIHG/x8s+8c
-                    9hqRVkyBZMbfasXRRFjcOwKA3E7PCvPOTDzLzZZhEAyzB1QbGFkOyn+MBnpM6H0I
-                    oWkoj/vlDp4Kqha4o9Swa84bIiCG3sUPY2Aswqqb8r5TQCtNMeST31kKCTFyi6/8
-                    zoiTyFECgYEAj1S9SHNlHb+KLHpSsVcalTyODAJRHXxSG3BSCldAAdEpB777GDpF
-                    0UXrqFtaBg27DY8ScxaHFGVJEahHklaPwVHxH51ZqMuScaTIU7K2INHrVeE5Rhh6
-                    avWYZB9Xk97tPnN3LpSYr0H4B8MDQcirytSsKGz/d6559uyEeT9giQM=
-                    -----END RSA PRIVATE KEY-----
-
+                  privateKey: "{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}"
               scope: GLOBAL
               username: "ec2-user"
         domain: {}
   user: {}
 jenkins:
   authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+    roleBased:
+      roles:
+        global:
+          - entries:
+              - user: "admin"
+              - user: "ksygt728"
+            name: "ROLE_ADMIN"
+            pattern: ".*"
+            permissions:
+              - "Overall/Administer"
+          - entries:
+              - user: "admin"
+              - user: "ksygt728"
+              - user: "user_deploy"
+            name: "ROLE_DEPLOYER"
+            pattern: ".*"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Metrics/View"
+              - "View/Read"
+          - entries:
+              - user: "admin"
+              - user: "ksygt728"
+              - user: "user_dev"
+            name: "ROLE_DEVELOPER"
+            pattern: ".*"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Metrics/View"
+              - "View/Read"
+          - entries:
+              - user: "admin"
+              - user: "ksygt728"
+            name: "admin"
+            pattern: ".*"
+            permissions:
+              - "Overall/Administer"
+        items:
+          - entries:
+              - user: "user_deploy"
+            name: "ROLE_DEPLOYER"
+            pattern: "^CBMS-.*"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "SCM/Tag"
+              - "Job/Read"
+              - "View/Read"
+          - entries:
+              - user: "user_dev"
+            name: "ROLE_DEVELOPER"
+            pattern: "^CBMS-DEV-.*"
+            permissions:
+              - "Job/Cancel"
+              - "Job/Build"
+              - "SCM/Tag"
+              - "Job/Read"
+              - "View/Read"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -93,6 +123,22 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
+        - id: "admin"
+          name: "관리자"
+          properties:
+            - theme:
+                theme: "dark"
+            - "apiToken"
+            - "consoleUrlProvider"
+            - "viewsTabBar"
+            - myView:
+                viewsTabBar: "standard"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "ksygt728.study@gmail.com"
         - id: "ksygt728"
           name: "김승연"
           properties:
@@ -109,6 +155,38 @@ jenkins:
             - mailer:
                 emailAddress: "ksygt728.study@gmail.com"
             - "apiToken"
+        - id: "user_deploy"
+          name: "배포담당자"
+          properties:
+            - theme:
+                theme: "dark"
+            - "apiToken"
+            - "consoleUrlProvider"
+            - "viewsTabBar"
+            - myView:
+                viewsTabBar: "standard"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "ksygt728.study@gmail.com"
+            - preferredProvider:
+                providerId: "default"
+            - timezone: {}
+        - id: "user_dev"
+          name: "개발자"
+          properties:
+            - theme:
+                theme: "dark"
+            - "apiToken"
+            - "consoleUrlProvider"
+            - "viewsTabBar"
+            - myView:
+                viewsTabBar: "standard"
+            - preferredProvider:
+                providerId: "default"
+            - "timezone"
+            - "experimentalFlags"
+            - mailer:
+                emailAddress: "ksygt728.stduy@gmail.com"
   slaveAgentPort: 50000
   updateCenter:
     sites:
@@ -162,7 +240,8 @@ unclassified:
   buildStepOperation:
     enabled: false
   builtInNode: {}
-  casCGlobalConfig: {}
+  casCGlobalConfig:
+    configurationPath: "/var/jenkins_home/JenkinsCasC.yaml"
   computerRetentionCheckInterval: {}
   defaultDisplayUrlProvider: {}
   defaultFolderConfiguration: {}
