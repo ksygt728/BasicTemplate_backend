@@ -172,18 +172,14 @@ pipeline {
       steps {
         echo "▶▶ [GIT][REMOTE] Create Git tag"
 
-        withCredentials([usernamePassword(
-          credentialsId: 'git-credential',
-          usernameVariable: 'GIT_USER',
-          passwordVariable: 'GIT_PASS'
-        )]) {
+        sshagent(credentials: ['git-credential']) {
           sh """
             git config user.name "${GIT_TAG_ID}"
             git config user.email "${GIT_TAG_EMAIL}"
 
             git tag -a ${TAG} -m "back deploy ${params.ENV}"
 
-            git push https://${GIT_USER}:${GIT_PASS}@github.com/ksygt728/BasicTemplate_backend.git ${TAG}
+            git push git@github.com:ksygt728/BasicTemplate_backend.git ${TAG}
           """
         }
 
