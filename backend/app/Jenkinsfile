@@ -179,7 +179,7 @@ pipeline {
 
             git tag -a ${TAG} -m "back deploy ${params.ENV}"
 
-            git push git@github.com:ksygt728/BasicTemplate_backend.git ${TAG}
+            GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=no' git push git@github.com:ksygt728/BasicTemplate_backend.git ${TAG}
           """
         }
 
