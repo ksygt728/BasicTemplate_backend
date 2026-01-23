@@ -172,7 +172,7 @@ pipeline {
       steps {
         echo "▶▶ [GIT][REMOTE] Create Git tag"
 
-        sshagent(credentials: ['deploy-ssh-key']) {
+        sshagent(credentials: ['git-credential']) {
           sh """
             git config user.name "${GIT_TAG_ID}"
             git config user.email "${GIT_TAG_EMAIL}"
