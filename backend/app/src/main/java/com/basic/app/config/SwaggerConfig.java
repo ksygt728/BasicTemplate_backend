@@ -37,7 +37,7 @@ public class SwaggerConfig {
                 return new OpenAPI()
                                 .info(new Info().title("API 문서")
                                                 .description("Backend API documentation for CBMS project")
-                                                .version("v1.0.0"))
+                                                .version("v1.1.0"))
 
                                 // 모든 엔드포인트에 적용할 Security Requirement
                                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
