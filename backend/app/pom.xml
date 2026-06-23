@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.6</version>
+		<version>3.5.15</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.basic</groupId>
@@ -207,13 +207,13 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>9.22.3</version>
+			<version>11.7.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-mysql</artifactId>
-			<version>9.22.3</version>
+			<version>11.7.2</version>
 		</dependency>
 
 		<!--[ModelMapper]-->
@@ -363,7 +363,7 @@
 			<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>3.3.6</version>
+					<version>3.5.15</version>
 					<executions>
 							<execution>
 									<goals>
